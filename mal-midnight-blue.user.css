@@ -1,0 +1,7090 @@
+/* ==UserStyle==
+@name           MAL - Midnight Blue
+@namespace      github.com/ush-ruff
+@homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
+@updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
+@version        0.1.0
+@description    A dark blue theme for MyAnimelist.
+@author         ushruff
+@license        GNU GPLv3
+==/UserStyle== */
+@-moz-document domain("myanimelist.net") {
+  /* ======================================================================================= */
+  /* Setup                                                                                   */
+  /* ======================================================================================= */
+  /* --- Font Imports --- */
+  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+
+  @import url('https://fonts.cdnfonts.com/css/avenir'); /* DEBUGGING ONLY */
+
+  /* --- Image Imports --- */
+  /*   @import url('https://cdn.jsdelivr.net/gh/ush-ruff/Common@main/MAL/entryimagelink.css'); */
+  /*   @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"); */
+
+  /* --- Custom Variables --- */
+  :root {
+    --page-size: 1120px;
+
+
+    /* Fonts */
+    --ff-main: Lexend, sans-serif;
+    --ff-secondary: Lato, sans-serif;
+    --ff-tertiary: "Bai Jamjuree", "Work Sans", Bitter, sans-serif;
+    --ff-accent: "Roboto Slab", sans-serif;
+    --ff-fa: "Font Awesome 6 Pro";
+
+
+    /* Images */
+    --cube-texture: url("https://i.imgur.com/3ZFqVkc.png");
+    --mal-logo: url("https://i.imgur.com/GkTwfpQ.png");
+    --questionmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M22.14 25.7c1.54-2.78 4.5-4.42 6.22-6.88 1.82-2.58.8-7.4-4.36-7.4-3.38 0-5.04 2.56-5.74 4.68l-5.18-2.18A11.3 11.3 0 0123.98 6c4.7 0 7.92 2.14 9.56 4.82 1.4 2.3 2.22 6.6.06 9.8-2.4 3.54-4.7 4.62-5.94 6.9-.5.92-.7 1.52-.7 4.48h-5.78c-.02-1.56-.26-4.1.96-6.3M28 40c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4 4 1.8 4 4'/%3E%3C/svg%3E");
+
+    /* Icons */
+    --tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23e8eaed'%3E%3Cpath d='M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z'/%3E%3C/svg%3E");
+
+
+    /* Fancy Images */
+    --img-border-size: 2px;
+    --img-border-radius: 0.1rem;
+    --img-border-offset: 0.1rem;
+    --img-border-radius-large: 0.2rem;
+    --img-border-offset-large: 0.2rem;
+
+
+    /* Easing Functions */
+    --ease-bounce-subtle: linear(0, 0.417 25.5%, 0.867 49.4%, 1 57.7%, 0.925 65.1%, 0.908 68.6%, 0.902 72.2%, 0.916 78.2%, 0.988 92.1%, 1);
+    --ease-overshoot-dramatic: linear(0, 0.618 4.6%, 1.072 9.7%, 1.358 15.3%, 1.446 18.4%, 1.497 21.7%, 1.512 23.9%, 1.514 26.2%, 1.481 31.5%, 1.421 36.4%, 1.174 53.4%, 1.108 59.5%, 1.059 65.7%, 1.028 71.9%, 1.009 78.9%, 1);
+    --ease-overshoot-smooth: linear(0, 0.49 7.4%, 0.864 15.3%, 1.005 19.4%, 1.12 23.7%, 1.206 28.1%, 1.267 32.8%, 1.296 36.4%, 1.311 40.2%, 1.313 44.2%, 1.301 48.6%, 1.252 56.9%, 1.105 74.4%, 1.048 82.5%, 1.011 91.1%, 1);
+
+
+    /* Scrollbar */
+    scrollbar-color: var(--accent-color) var(--bg-second);
+    scrollbar-width: thin;
+
+
+    /* ----- COLORS ----- */
+    /*   Sakura */
+    /*  
+    --accent-color: #FF1481;
+    
+    --bg-main: rgba(51, 51, 61, 0.85);
+    --bg-second: rgba(38, 40, 47, 0.85);
+    --bg-hover: rgba(66, 66, 80, 0.85);
+    
+    --text-bright: #00ffa2;
+    --text-main: #1EB980;
+    --text-second: #D78DCC;
+    --text-dim: #be90b6;
+
+    --background-image: url(https://cdn.myanimelist.net/images/userwalls/6277462.jpg);
+  */
+
+    /* Anilist */
+    --accent-color: #3db4f2;
+
+    --bg-main: #272c3a;
+    --bg-second: #151f2e;
+    --bg-hover: #060c13;
+
+    --text-bright: #f4faff;
+    --text-main: #d0e7fd;
+    --text-second: #aabecf;
+    --text-dim: #808f9c;
+
+    --background-image: url(https://i.imgur.com/UTum8Le.jpg);
+
+
+    /* Accent Colors */
+    --red-light: #DA4453;
+    --red-midtone: #a51b13;
+    --red-dark: #702321;
+
+    --green: #27AE60;
+    --green-light: #13b66b;
+
+    --blue-light: #0b8be1;
+    --blue-lighter: #109ffd;
+
+    --orange: #eba55a;
+    --orange-light: #ebb666;
+
+    --yellow: #dfb200;
+    --yellow-light: #bea236;
+
+    --purple: #8c7dd0;
+
+    --pink: #f46592;
+
+    --gray: #8f8989;
+
+
+    /* Tag Colors */
+    --tag-color-blue: var(--blue-lighter);
+    --tag-color-red: var(--red-light);
+    --tag-color-orange: var(--orange);
+    --tag-color-green: var(--green-light);
+    --tag-color-purple: var(--purple);
+    --tag-color-pink: var(--pink);
+    --tag-color-gray: var(--gray);
+
+
+    /* Halloween Colors */
+    --halloween-01: #ea6000;
+    --halloween-02: #181818;
+    --halloween-03: #981800;
+    --halloween-04: #813116;
+    --halloween-05: #ffa801;
+    --halloween-06: #f2e8c6;
+    --halloween-07: #ea60003d;
+    --halloween-08: #fefefe;
+
+    --halloween-image: url(https://static.vecteezy.com/system/resources/previews/027/807/583/non_2x/spooky-halloween-wallpaper-with-pumpkin-and-old-house-free-photo.jpg);
+
+
+    /* Christmas Colors */
+    --christmas-01: #9a1a33;
+    --christmas-02: #80a256;
+    --christmas-03: #3a5947;
+    --christmas-04: #fee0ae;
+    --christmas-05: #dea588;
+
+    --christmas-image: url(https://wallpaperaccess.com/full/307390.jpg);
+    --falling-snow: url(https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWJ5NjUxOG5oZHhkdHR2cGlpbTM2d3IwcjYzM2pkOG5pcmRxOXd0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CkBzt6qXCCXw4/giphy.webp);
+
+
+    /* Easter Colors */
+    --easter-01: #ba8fc7;
+    --easter-02: #e1c7ea;
+
+
+    /* Color Mixes */
+    --25-main-second: color-mix(in oklab, var(--bg-main) 25%, var(--bg-second));
+    --50-main-second: color-mix(in oklab, var(--bg-main) 50%, var(--bg-second));
+    --75-main-second: color-mix(in oklab, var(--bg-main) 75%, var(--bg-second));
+
+    --25-main-hover: color-mix(in oklab, var(--bg-main) 25%, var(--bg-hover));
+    --50-main-hover: color-mix(in oklab, var(--bg-main) 50%, var(--bg-hover));
+    --75-main-hover: color-mix(in oklab, var(--bg-main) 75%, var(--bg-hover));
+
+    --25-accent-main: color-mix(in oklab, var(--accent-color) 25%, var(--bg-main));
+    --50-accent-main: color-mix(in oklab, var(--accent-color) 50%, var(--bg-main));
+    --75-accent-main: color-mix(in oklab, var(--accent-color) 75%, var(--bg-main));
+
+    --25-accent-second: color-mix(in oklab, var(--accent-color) 25%, var(--bg-second));
+    --50-accent-second: color-mix(in oklab, var(--accent-color) 50%, var(--bg-second));
+    --75-accent-second: color-mix(in oklab, var(--accent-color) 75%, var(--bg-second));
+
+    --25-accent-hover: color-mix(in oklab, var(--accent-color) 25%, var(--bg-hover));
+    --50-accent-hover: color-mix(in oklab, var(--accent-color) 50%, var(--bg-hover));
+    --75-accent-hover: color-mix(in oklab, var(--accent-color) 75%, var(--bg-hover));
+
+    --25-accent-main-text: color-mix(in oklab, var(--accent-color) 25%, var(--text-main));
+    --50-accent-main-text: color-mix(in oklab, var(--accent-color) 50%, var(--text-main));
+    --75-accent-main-text: color-mix(in oklab, var(--accent-color) 75%, var(--text-main));
+  }
+
+  /* --- Reset --- */
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
+
+  /* html {
+    interpolate-size: allow-keywords;
+  } */
+
+  /* --- Animations --- */
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scaleX(1);
+    }
+
+    50% {
+      transform: scale(1.25);
+    }
+  }
+
+  @keyframes scaleUp {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.2);
+    }
+  }
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /*                                                                                         */
+  /* ======================================================================================= */
+  html, .dark-mode {
+    opacity: 1;
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+  
+  /* ======================================================================================= */
+  /*                                    TABLE OF CONTENTS                                    */
+  /* ======================================================================================= */
+  /* 1.0.0 - Common Elements ...................................................... line 476 */
+      /* 1.0.1 - Charts ........................................................... line 506 */
+    /* 1.1.0 - Common page elements ............................................... line 513 */
+      /* 1.1.1 - Tables ........................................................... line 609 */
+      /* 1.1.2 - Update Bar ....................................................... line 625 */
+      /* 1.1.3 - Text Inputs & Dropdowns .......................................... line 631 */
+      /* 1.1.4 - Quotes & Code blocks ............................................. line 660 */
+      /* 1.1.5 - Icons ............................................................ line 668 */
+      /* 1.1.6 - Buttons .......................................................... line 756 */
+        /* 1.1.6.1 - Show/Hide Btn ................................................ line 857 */
+        /* 1.1.6.2 - Add/Edit Btn ................................................. line 869 */
+        /* 1.1.6.3 - Top Btn ...................................................... line 891 */
+        /* 1.1.6.4 - Pagination ................................................... line 896 */
+        /* 1.1.6.5 - Choose Your Own .............................................. line 912 */
+      /* 1.1.7 - Notice ........................................................... line 927 */
+      /* 1.1.8 - Action Feedback .................................................. line 943 */
+      /* 1.1.9 - Hover Info Container ............................................. line 965 */
+      /* 1.1.10 - Images .......................................................... line 994 */
+        /* 1.1.10.1 - Image Unavailable .......................................... line 1007 */
+        /* 1.1.10.2 - Images - Fancy Border ...................................... line 1043 */
+        /* 1.1.10.3 - Images - Fancy Border (Type 2) ............................. line 1112 */
+      /* 1.1.11 - Footer ......................................................... line 1126 */
+      /* 1.1.12 - Header ......................................................... line 1157 */
+      /* 1.1.13 - Notifications .................................................. line 1284 */
+      /* 1.1.14 - Search Bar ..................................................... line 1393 */
+        /* 1.1.14.1 - Search Bar - Results ....................................... line 1478 */
+      /* 1.1.15 - Breadcrumb ..................................................... line 1485 */
+      /* 1.1.16 - Body ........................................................... line 1493 */
+      /* 1.1.17 - Iframes ........................................................ line 1546 */
+      /* 1.1.18 - Pagination ..................................................... line 1557 */
+    /* 1.2.0 - Tip Menu .......................................................... line 1573 */
+    /* 1.3.0 - Halloween ......................................................... line 1598 */
+      /* 1.3.1 - Header .......................................................... line 1626 */
+      /* 1.3.2 - Menu ............................................................ line 1640 */
+      /* 1.3.3 - Search Bar ...................................................... line 1654 */
+    /* 1.4.0 - Christmas ......................................................... line 1662 */
+      /* 1.4.1 - Header .......................................................... line 1669 */
+      /* 1.4.2 - Menu ............................................................ line 1698 */
+      /* 1.4.3 - Search Bar ...................................................... line 1725 */
+    /* 1.5.0 - Easter ............................................................ line 1738 */
+
+  /* 2.0.0 - Home Page ........................................................... line 1768 */
+    /* 2.1.0 - Widgets ........................................................... line 1776 */
+      /* 2.1.1 - Latest Updates - My List, Clubs, Reviews ........................ line 1787 */
+      /* 2.1.2 - News ............................................................ line 1814 */
+      /* 2.1.3 - Statistics ...................................................... line 1849 */
+      /* 2.1.4 - Friend Updates .................................................. line 1854 */
+      /* 2.1.5 - Anime/Manga Rankings ............................................ line 1883 */
+      /* 2.1.6 - Forum - Watched Topics .......................................... line 1952 */
+      /* 2.1.7 - Seasonal Anime/Manga ............................................ line 2015 */
+      /* 2.1.8 - Recommendations ................................................. line 2085 */
+      /* 2.1.9 - Auto Recommendations ............................................ line 2109 */
+
+  /* 3.0.0 - Anime / Manga Pages ................................................. line 2187 */
+    /* 3.1.0 - Seasonal Pages .................................................... line 2190 */
+      /* 3.1.1 - Nav ............................................................. line 2191 */
+      /* 3.1.2 - Sort/Filter ..................................................... line 2284 */
+      /* 3.1.3 - Body ............................................................ line 2480 */
+      /* 3.1.4 - Card ............................................................ line 2508 */
+      /* 3.1.5 - Archive ......................................................... line 2731 */
+    /* 3.2.0 - Single Anime / Manga Pages ........................................ line 2768 */
+      /* 3.2.1 - Sidebar ......................................................... line 2822 */
+        /* 3.2.1.1 - Streaming Platforms ......................................... line 2849 */
+        /* 3.2.1.2 - "Watch Episodes" Button ..................................... line 2855 */
+        /* 3.2.1.3 - "Notify Me" Button .......................................... line 2860 */
+        /* 3.2.1.4 - Add to List ................................................. line 2872 */
+      /* 3.2.2 - Nav ............................................................. line 2936 */
+      /* 3.2.3 - Anime Details ................................................... line 3000 */
+      /* 3.2.4 - Related Entries ................................................. line 3133 */
+      /* 3.2.5 - Characters & Voice Actors ....................................... line 3193 */
+      /* 3.2.6 - Opening & Ending Theme .......................................... line 3208 */
+      /* 3.2.7 - Episode Videos .................................................. line 3257 */
+      /* 3.2.8 - Recommendations ................................................. line 3286 */
+      /* 3.2.9 - Reviews ......................................................... line 3419 */
+        /* 3.2.9.1 - Review Item ................................................. line 3475 */
+        /* 3.2.9.2 - Reviews - All Reactions Modal ............................... line 3736 */
+      /* 3.2.10 - Characters Tab ................................................. line 3776 */
+        /* 3.2.10.1 - Nav ........................................................ line 3777 */
+        /* 3.2.10.2 - Filter & Sort .............................................. line 3797 */
+        /* 3.2.10.3 - Container .................................................. line 3878 */
+      /* 3.2.11 - Episodes & Videos Tab .......................................... line 3941 */
+      /* 3.2.12 - Stats Tab ...................................................... line 3952 */
+      /* 3.2.13 - Reviews Tab .................................................... line 3957 */
+        /* 3.2.13.1 - Nav ........................................................ line 3958 */
+      /* 3.2.14 - User Recommendations Tab ....................................... line 3981 */
+      /* 3.2.15 - Stacks Tab ..................................................... line 3983 */
+      /* 3.2.16 - News Tab ....................................................... line 3985 */
+      /* 3.2.17 - Featured Articles Tab .......................................... line 4051 */
+    /* 3.3.0 - Anime/Manga Update Box ............................................ line 4057 */
+
+  /* 4.0.0 - Forum ............................................................... line 4229 */
+    /* 4.1.0 - Polls ............................................................. line 4379 */
+    /* 4.2.0 - Reply Box ......................................................... line 4405 */
+    /* 4.3.0 - Forum Widget Item ................................................. line 4484 */
+      /* 4.3.1 - Forum Widget Item - Ignore Button ............................... line 4543 */
+
+  /* 5.0.0 - News ................................................................ line 4577 */
+    /* 5.1.0 - Categories Filter ................................................. line 4610 */
+    /* 5.2.0 - News Article ...................................................... line 4696 */
+    /* 5.3.0 - Right Side ........................................................ line 4828 */
+      /* 5.3.1 - Search .......................................................... line 4834 */
+      /* 5.3.2 - Article Blocks .................................................. line 4895 */
+      /* 5.3.3 - Articles ........................................................ line 4918 */
+      /* 5.3.4 - Tags ............................................................ line 4984 */
+      /* 5.3.5 - News Team ....................................................... line 4993 */
+      /* 5.3.6 - RSS ............................................................. line 5032 */
+    /* 5.4.0 - Tags .............................................................. line 5071 */
+    /* 5.5.0 - All Tags Page ..................................................... line 5132 */
+      /* 5.5.1 - Filter Buttons .................................................. line 5143 */
+      /* 5.5.2 - Tables .......................................................... line 5195 */
+    /* 5.6.0 - News Article Page ................................................. line 5239 */
+      /* 5.6.1 - Comments ........................................................ line 5306 */
+        /* 5.6.1.1 - Comments Header ............................................. line 5307 */
+        /* 5.6.1.2 - Comments List ............................................... line 5324 */
+    /* 5.7.0 - Featured Articles ................................................. line 5366 */
+    /* 5.8.0 - Featured News Widget .............................................. line 5444 */
+
+  /* 6.0.0 - Industry Lists ...................................................... line 5458 */
+    /* 6.1.0 - Filter Bar (Alphabet Letters) ..................................... line 5464 */
+    /* 6.2.0 - Search Bar ........................................................ line 5510 */
+    /* 6.3.0 - Table ............................................................. line 5560 */
+
+  /* 7.0.0 - User ................................................................ line 5632 */
+
+  /* 8.0.0 - Settings ............................................................ line 5660 */
+
+  /* 9.0.0 - Stacks .............................................................. line 5676 */
+    /* 9.1.0 - Header ............................................................ line 5687 */
+    /* 9.2.0 - Highlighted Content ............................................... line 5719 */
+      /* 9.2.1 - Highlighted Content - Single Stack .............................. line 5737 */
+      /* 9.2.2 - Highlighted Content - Triple Stack .............................. line 5784 */
+    /* 9.3.0 - Stack Images ...................................................... line 5835 */
+    /* 9.4.0 - Stack details ..................................................... line 5868 */
+      /* 9.4.1 - Report Button ................................................... line 5901 */
+    /* 9.5.0 - Tags .............................................................. line 5976 */
+    /* 9.6.0 - Restack Icon ...................................................... line 6036 */
+    /* 9.7.0 - Restacks Users Count .............................................. line 6050 */
+    /* 9.8.0 - Main Content - Recent Lists ....................................... line 6084 */
+    /* 9.9.0 - Right Side - Search ............................................... line 6117 */
+      /* 9.9.1 - Right Side - Lists .............................................. line 6150 */
+
+  /* 10.0.0 - Watch Anime ........................................................ line 6177 */
+    /* 10.1.0 - Nav .............................................................. line 6180 */
+    /* 10.2.0 - Body ............................................................. line 6201 */
+    /* 10.3.0 - Watch Anime - Single Anime Pages - Episodes Tab .................. line 6311 */
+      /* 10.3.1 - Video Player ................................................... line 6326 */
+      /* 10.3.2 - Current Episode Details ........................................ line 6350 */
+      /* 10.3.3 - Episode List - Carousel ........................................ line 6391 */
+      /* 10.3.4 - Characters & Voice Actors List ................................. line 6491 */
+    /* 10.4.0 - Watch Anime - Single Anime Pages - Videos Tab .................... line 6541 */
+      /* 10.4.1 - Episode List Block ............................................. line 6542 */
+        /* 10.4.1.1 - Thumbnail for videos "not available in your country" ....... line 6612 */
+        /* 10.4.1.2 - Video Edit/Delete Buttons .................................. line 6649 */
+
+  /* 11.0.0 - Manga Store ........................................................ line 6724 */
+  /* ======================================================================================= */
+  
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Fonts                                                                                   */
+  /* ======================================================================================= */
+  /* Primary Font (from "Verdana,Arial") */
+  html, .dark-mode {
+    .page-common td {
+      font-size: 12px;
+      line-height: 1.7
+    }
+  }
+
+  /* Secondary Font */
+  html, .dark-mode {
+    .page-common .header-right {
+      font-family: var(--ff-secondary);
+    }
+
+    .page-common .breadcrumb {
+      font-family: var(--ff-secondary);
+    }
+
+    .navi-seasonal .horiznav_nav ul li a {
+      font-family: var(--ff-secondary);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .page-common .h2_anime_title {
+      font-family: var(--ff-secondary);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+  /* Tertiary Font */
+  html, .dark-mode {
+    body.index .widget-container .widget :is(.index_h2_seo, .widget-header) {
+      font-family: var(--ff-tertiary);
+      font-size: 0.85rem;
+
+      > span[style="float: right;"] {
+        font-family: var(--ff-main);
+      }
+    }
+
+    .page-common .h2_side {
+      font-family: var(--ff-tertiary);
+    }
+  }
+
+  /* Accent Font */
+  html, .dark-mode {
+    .page-common .h1 {
+      font-family: var(--ff-accent);
+    }
+  }
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Common Elements                                                                         */
+  /* ======================================================================================= */
+  /* ---- 1.0.0 - Common Elements ---- */
+  ::selection {
+    background-color: var(--accent-color);
+    color: var(--bg-hover);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-outline-color, var(--accent-color));
+    outline-offset: 2px;
+  }
+
+  html, .dark-mode {
+    body:not([class*="ownlist "]) {
+      display: flex;
+      flex-direction: column;
+      font-family: var(--ff-main);
+      font-size: 12px;
+      /*       background: var(--bg-main) var(--background-image) top / cover no-repeat fixed !important; */
+      background-color: var(--bg-hover) !important;
+      background-image: var(--background-image) !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+      color: var(--text-second);
+    }
+
+    .mal-navbar {
+      background-color: var(--bg-hover);
+    }
+
+    /* -- 1.0.1 - Charts -- */
+    .mal-progress .mal-progress-bar.primary {
+      background-color: var(--accent-color);
+      color: var(--text-bright);
+    }
+
+
+    /* --- 1.1.0 - Common page elements --- */
+    .page-common {
+      #myanimelist {
+        width: var(--page-size);
+      }
+
+      p:not([class]),
+      .reviews_p {
+        /* text-align: justify; */
+        text-wrap-style: pretty;
+      }
+
+      a,
+      a:link,
+      a:visited {
+        color: var(--accent-color);
+      }
+
+      h1, .h1 {
+        background-color: var(--bg-hover);
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+      }
+
+      .normal_header {
+        padding: 0.4rem 0.6rem !important;
+        background-color: var(--bg-hover);
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+      }
+
+      h2, .h2 {
+        font-size: 0.825rem;
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+      }
+
+      .h2_overwrite {
+        font-size: 1rem; /* TEST */
+      }
+
+      .h1 .title-english {
+        color: var(--text-second);
+      }
+
+      .h1.edit-info {
+        width: 100%;
+      }
+
+      .hovertitle,
+      .hovertitle a,
+      .hovertitle a:is(:visited, :hover, :focus-visible, :active) {
+        color: var(--text-main) !important;
+      }
+
+      .bgColor2 {
+        background-color: var(--bg-main);
+      }
+
+      .bgColor1 {
+        background-color: var(--75-main-hover);
+      }
+
+      .borderClass,
+      .border_solid,
+      .borderDark,
+      #header-menu > .border::before {
+        border-color: var(--bg-hover);
+      }
+
+      .fn-grey2,
+      .fn-grey4,
+      .fn-grey5,
+      .fn-grey6 {
+        color: var(--text-dim) !important;
+      }
+
+      .dark_text,
+      .dark_text:is(:hover, :focus-visible, :visited) {
+        color: var(--text-dim);
+      }
+
+      .lightLink,
+      .lightLink:is(:link, :visited, :active) {
+        color: var(--text-dim);
+      }
+
+      a.bookstore-preview-link.bookstore-preview-link-2 {
+        color: var(--text-second) !important;
+
+        &:is(:hover, :focus-visible) {
+          color: var(--accent-color) !important;
+        }
+      }
+
+
+      /* -- 1.1.1 - Tables -- */
+      table.forum-topics tr td {
+        width: auto;
+        /* TEST */
+        border-color: var(--bg-hover);
+      }
+
+      .table-recently-updated tr:nth-of-type(2n) td {
+        background-color: var(--75-main-hover);
+      }
+
+      table.forum-topics tr td:nth-child(2n + 1) {
+        background-color: var(--50-main-hover);
+      }
+
+
+      /* -- 1.1.2 - Update Bar -- */
+      .updatesBar {
+        background-color: var(--accent-color);
+      }
+
+
+      /* -- 1.1.3 - Text Inputs & Dropdowns -- */
+      .inputtext {
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.2rem;
+        background-color: var(--bg-second);
+        border-color: var(--75-main-hover);
+        color: var(--text-main);
+        scrollbar-width: thin;
+
+        &:focus-visible {
+          outline: 2px solid var(--accent-color);
+        }
+      }
+
+      select.inputtext {
+        cursor: pointer;
+      }
+
+      .textarea {
+        background-color: var(--bg-main);
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+
+        &:focus-visible {
+          outline: 2px solid var(--accent-color);
+        }
+      }
+
+
+      /* -- 1.1.4 - Quotes & Code blocks -- */
+      .quotetext,
+      .codetext {
+        background-color: var(--bg-hover);
+        border-color: var(--bg-hover);
+      }
+
+
+      /* -- 1.1.5 - Icons -- */
+      .icon-about-recommendations {
+        color: var(--accent-color);
+      }
+
+      .fa-comment {
+        --fa: "\f27a";
+      }
+
+      .information .comment::before {
+        content: "\f27a";
+        font-family: var(--ff-fa);
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-inline-end: 0.25rem;
+      }
+
+      .watch-state-icon {
+        cursor: pointer;
+
+        &::before {
+          content: "\f1ce";
+          font-weight: 900;
+          font-size: 0.8rem;
+        }
+
+        &:hover {
+          animation: pulse 350ms var(--ease-bounce-subtle);
+        }
+
+        &:is(.watched, :hover, :focus-visible)::before {
+          color: var(--accent-color);
+        }
+
+        &.watched:is(:hover, :focus-visible)::before {
+          color: var(--red-light);
+        }
+      }
+
+      .icon-pay,
+      .video-block .video-list .icon-pay,
+      .contents-video-embed .video-anime-slide-block.hori .video-anime-slide .btn-anime .icon-pay {
+        background: unset;
+
+        &::after {
+          content: "\f2e8";
+          font-family: var(--ff-fa);
+          font-weight: 500;
+          color: gold;
+        }
+      }
+
+      .anime-detail-header-video .video-episode .video-unit,
+      .anime-detail-header-video .video-promotion .video-unit,
+      .watch-video .video-list-outer-vertical .video-list,
+      .video-block .video-list {
+        .btn-play {
+          --_size: 2.5rem;
+          width: var(--_size);
+          height: auto;
+          aspect-ratio: 1;
+          text-indent: unset;
+          margin: unset;
+          background: radial-gradient(circle, rgb(0 0 0 / 0.5), transparent) !important;
+          border-radius: 50%;
+          color: transparent;
+          box-shadow: 0 0 10px rgb(0 0 0 / 0.5);
+          translate: -50% -50%;
+          transition: transform 350ms var(--ease-overshoot-smooth);
+          overflow: unset;
+
+          &::before {
+            content: "\f144";
+            position: absolute;
+            inset: inherit;
+            font-family: var(--ff-fa);
+            font-size: var(--_size);
+            color: var(--text-bright);
+            translate: inherit;
+          }
+
+          &:is(:hover, :focus-visible) {
+            transform: scale(1.5);
+          }
+        }
+      }
+
+
+      /* -- 1.1.6 - Buttons -- */
+      a.mal-btn.primary,
+      button.mal-btn.primary,
+      .inputButton,
+      .btn-blue-rect,
+      .view-style2 a.on {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: var(--text-bright);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+        }
+
+        &:disabled {
+          background-color: var(--50-accent-main);
+          border-color: var(--50-accent-main);
+          color: var(--text-second);
+          opacity: 1;
+        }
+      }
+
+      .btn-blue-rect {
+        color: var(--text-bright) !important;
+
+        &:is(:hover, :focus-visible) {
+          color: var(--text-main) !important;
+        }
+
+        &:disabled {
+          color: var(--text-second) !important;
+        }
+      }
+
+      .inputButton {
+        padding: 0.2rem 0.4rem !important;
+        border-radius: 0.2rem;
+      }
+
+      a.mal-btn.primary.outline,
+      button.mal-btn.primary.outline,
+      .view-style2 a:not(.on) {
+        background-color: var(--50-accent-hover);
+        color: var(--accent-color);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          color: var(--text-main);
+        }
+      }
+
+      .view-style2 a {
+        border-color: var(--accent-color);
+      }
+
+      a.mal-btn.primary.outline.noborder,
+      button.mal-btn.primary.outline.noborder {
+        &.pressed {
+          background-color: var(--25-accent-hover);
+          color: var(--accent-color);
+        }
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          color: var(--text-main);
+        }
+      }
+
+      a.mal-btn.secondary.outline,
+      button.mal-btn.secondary.outline {
+        background-color: var(--50-main-hover);
+        border-color: var(--bg-hover);
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-main-hover);
+          color: var(--text-main);
+        }
+      }
+
+      a.mal-btn.secondary.outline.noborder,
+      button.mal-btn.secondary.outline.noborder {
+        background-color: transparent;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-main-second);
+        }
+      }
+
+      .btn-form-submit.small {
+        background-color: var(--50-accent-hover);
+        border: 1px solid var(--50-accent-hover);
+        transition-property: background-color, border-color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--25-accent-hover);
+          border-color: var(--75-accent-hover);
+        }
+      }
+
+      /* - 1.1.6.1 - Show/Hide Btn - */
+      .button:is(.show_button, .expand_quote) {
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+        color: var(--text-second);
+      }
+
+      .button.hide_button {
+        background-color: var(--25-accent-hover);
+        color: var(--75-accent-hover);
+      }
+
+      /* - 1.1.6.2 - Add/Edit Btn - */
+      a:is(.button_add, .button_edit) {
+        height: auto;
+        font-family: var(--ff-main);
+        border-radius: 3px;
+      }
+
+      a.addtolist,
+      .watch-video .video-list-outer-vertical .video-info-title a.addtolist {
+        background-color: var(--accent-color);
+        border-bottom: 1px solid var(--text-main);
+        color: var(--text-bright);
+        transition: 250ms linear;
+        transition-property: background-color, border-color, color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+          opacity: 1;
+        }
+      }
+
+      /* - 1.1.6.3 - Top Btn - */
+      .btn-top {
+        background-color: var(--accent-color);
+      }
+
+      /* - 1.1.6.4 - Pagination - */
+      .pagination .link-blue-box,
+      a.link-blue-box {
+        font-family: var(--ff-secondary);
+        padding: 0.5rem;
+        background-color: var(--accent-color);
+        border-radius: 0.2rem;
+        color: var(--text-bright);
+        transition-property: background-color, color;
+
+        &:not(span):is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+        }
+      }
+
+      /* - 1.1.6.5 - Choose Your Own - */
+      a.btn-choose-your-own {
+        padding: 0.5rem 0.75rem;
+        background-color: var(--25-main-second);
+        border-color: var(--accent-color);
+        border-radius: 100vw;
+        transition-property: background-color, color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+
+
+      /* -- 1.1.7 - Notice -- */
+      .notice_open_public {
+        font-style: italic;
+        color: var(--red-light);
+      }
+
+      .msg-frame {
+        font-size: 0.725rem;
+        padding: 0.5rem;
+        background-color: var(--25-accent-main);
+        border: 1px solid var(--75-accent-hover);
+        border-radius: 0.2rem;
+        color: var(--text-main);
+      }
+
+
+      /* -- 1.1.8 - Action Feedback -- */
+      .goodresult,
+      .successQuery {
+        /* TODO: UPDATE COLORS */
+        /*         background-color: var(--bg-hover) !important; */
+        /*         border-color: var(--bg-hover) !important; */
+
+        background-color: hsl(from var(--green-light) h s calc(l - 20)) !important;
+        border-color: var(--green-light) !important;
+        color: var(--text-main);
+      }
+
+      .badresult {
+        background-color: var(--red-dark);
+        border-color: var(--red-midtone);
+        color: var(--text-main);
+      }
+
+      .badresult-text {
+        color: var(--red-light);
+      }
+
+      /* -- 1.1.9 - Hover Info Container -- */
+      .hoverinfo {
+        width: 60ch;
+        height: unset;
+        background: var(--bg-second);
+        border-radius: 0.3rem;
+
+        &::after {
+          --_size: 15px;
+          width: unset;
+          height: unset;
+          background: unset;
+          border: var(--_size) solid transparent;
+          border-right-color: var(--bg-second);
+        }
+
+        &.left.top::after {
+          top: var(--_size);
+          left: calc(var(--_size) * -2 + 2px);
+        }
+
+        &.left.bottom::after {
+          top: unset;
+          bottom: var(--_size);
+          left: calc(var(--_size) * -2 + 2px);
+        }
+      }
+
+
+      /* -- 1.1.10 - Images -- */
+      .lazyloaded {
+        image-rendering: unset;
+      }
+
+      div.picSurround img {
+        background-color: var(--bg-hover);
+      }
+
+      .img-a-r {
+        padding: unset;
+      }
+
+      /* - 1.1.10.1 - Image Unavailable - */
+      .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]) {
+        position: relative;
+        background-color: var(--50-main-hover);
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: -100%;
+          background-color: white;
+          mask-image: var(--questionmark-image), var(--questionmark-image);
+          mask-position: top left, bottom right;
+          mask-size: 12px;
+          mix-blend-mode: overlay;
+          rotate: -20deg;
+          opacity: 0.4;
+        }
+
+        > a {
+          display: block;
+          width: 42px;
+          height: auto;
+          aspect-ratio: 42 / 62;
+          background-color: var(--accent-color);
+          mask-image: var(--questionmark-image);
+          mask-position: center;
+          mask-repeat: no-repeat;
+          mask-size: 48px;
+        }
+
+        img {
+          display: none;
+        }
+      }
+
+      /* - 1.1.10.2 - Images - Fancy Border - */
+      div.picSurround img,
+      div.picSurround a img,
+      .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]),
+      .column-item .img .edge img,
+      .mb12.lh12.clearfix td[width="28"] a img,
+      img[src*="clubs"],
+      table[class*="-favorites-ranking-table"] td:nth-child(2) .image,
+      .table-recently-updated div.di-tc[style="width:30px;"],
+      td.forum_boardrow2 a img,
+      &.page-forum .forum-icon img,
+      .profile .statistics-updates .image img,
+      .user-comments .comment .image img,
+      /*       .user-profile .user-image > img,  */
+      .news-side-block img.thumbs,
+      .ranking-unit .image img,
+      .top-ranking-table .title .image,
+      .featured.po-r.clearfix img,
+      .ranking-list img,
+      .boxlist-container img,
+      .anime-filter .content-left .logo img,
+      &.stacks .img .edge img,
+      &.stacks .side-list img,
+      &.stacks .my-list img,
+      form + .stacks-modal img,
+      .widget-slide-outer .btn-anime img,
+      .news-container .img-a-l,
+      .news-list .news-unit .image-link .image,
+      .columnist-side-block .columnist-list .columnists-unit-side .image,
+      .friend_list_updates .image,
+      .friend_list_updates .friend-image,
+      .history-updates .image,
+      .history-updates .friend-image,
+      .review-element .thumbbody img,
+      /*       .related-entries img,  */
+      .related-entries .image,
+      .anime-slide .image {
+        margin: var(--img-border-offset);
+        border: unset;
+        border-radius: var(--img-border-radius) !important;
+        outline: var(--img-border-size) solid var(--25-accent-main);
+        outline-offset: var(--img-border-offset);
+        transition: outline-color 250ms ease-in-out;
+
+        &:is(:hover, :focus-visible) {
+          outline-color: var(--accent-color);
+        }
+      }
+
+      .ranking-digest .ranking-unit .image {
+        box-shadow: unset !important;
+        overflow: unset;
+      }
+
+      .news-list :is(.comment-list, .news-unit) .image-link {
+        margin: var(--img-border-offset);
+        border: unset;
+        overflow: unset;
+      }
+
+      :is(.news-list, .featured-list) :is(.news, .featured) a:is(.thumbs-link, .thumbs) {
+        margin-inline: var(--img-border-offset) 0 !important;
+      }
+
+      .columnist-side-block .columnist-list .columnists-unit-side .image {
+        margin: var(--img-border-offset) !important;
+        box-shadow: unset;
+      }
+
+      /* - 1.1.10.3 - Images - Fancy Border (Type 2) - */
+      .news-container .img-a-r {
+        --img-border-offset: var(--img-border-offset-large);
+        --img-border-radius: 0.5rem;
+        --_gap: 0.5rem;
+        --_border-size: calc(var(--img-border-offset) + var(--img-border-size));
+        --_margin: calc(var(--_border-size) + var(--_gap));
+        --_border-color: var(--25-accent-main);
+        margin: var(--_border-size) var(--_border-size) var(--_margin) var(--_margin);
+        border-radius: var(--img-border-radius);
+        box-shadow: 0 0 0 var(--img-border-offset) var(--bg-main), 0 0 0 var(--_border-size) var(--_border-color);
+      }
+
+
+      /* -- 1.1.11 - Footer -- */
+      #footer-block {
+        width: 100% !important;
+        background-color: var(--bg-second);
+
+        .footer-link-icon-block {
+          display: none;
+        }
+
+        .footer-link.home {
+          border-right-color: var(--25-accent-hover);
+        }
+
+        .footer-link a {
+          color: var(--accent-color);
+        }
+
+        #copyright {
+          color: var(--text-second);
+        }
+
+        #recaptcha-terms {
+          color: var(--text-dim);
+
+          a {
+            color: inherit;
+          }
+        }
+      }
+
+
+      /* -- 1.1.12 - Header -- */
+      #headerSmall {
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        background: unset;
+        background-color: var(--bg-second);
+      }
+
+      #header-menu {
+        position: unset;
+        grid-column: 2;
+        justify-self: end;
+      }
+
+      .link-mal-logo {
+        grid-column: 1;
+        grid-row: 1;
+        background-image: var(--mal-logo);
+        background-size: 160px;
+        background-repeat: no-repeat;
+        background-position: left 6px;
+      }
+
+      #headerSmall .link-mal-logo {
+        width: 250px;
+      }
+
+      #menu {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--bg-main);
+      }
+
+      #menu_left,
+      #menu_right {
+        height: auto;
+      }
+
+      #menu_right {
+        padding-inline: 0.5rem;
+      }
+
+      #nav {
+        display: flex;
+      }
+
+      #nav li > a:not(.halloween, .easter2025) {
+        height: 100%;
+        align-items: center;
+        padding-block: 0.65rem;
+      }
+
+      #nav > li:is(.hover, :hover, :focus-visible) a {
+        background-color: rgb(from var(--bg-second) r g b / 0.9);
+        color: var(--text-main);
+      }
+
+      #nav ul li a {
+        height: auto;
+        padding-block: 0.65rem;
+      }
+
+      #nav ul a:is(:hover, :focus-visible) {
+        background-color: var(--accent-color);
+        color: var(--text-bright)
+      }
+
+      #nav li li {
+        min-width: 150px;
+      }
+
+      .header-list-button,
+      a.header-message-button,
+      .header-notification-button:is(.new, .has-unread) {
+        color: var(--text-main);
+
+        &:is(:hover, :focus-visible) {
+          color: var(--accent-color);
+        }
+      }
+
+      .header-notification-button.has-unread::after {
+        background-color: var(--accent-color);
+      }
+
+      .header-profile-link:is(:hover, :focus-visible) {
+        color: var(--75-accent-main-text);
+      }
+
+      .header-profile.link-bg,
+      .header-profile.link-bg.on,
+      .header-profile.link-bg.on:active {
+        background-color: transparent;
+      }
+
+      .header-profile-button {
+        border-radius: 50%;
+      }
+
+      .header-list.on .header-list-button {
+        color: var(--accent-color);
+      }
+
+      .header-list .header-list-dropdown,
+      .header-profile .header-profile-dropdown {
+        background-color: rgb(from var(--bg-second) r g b / 0.9);
+        box-shadow: 0 0 2px rgb(from var(--bg-hover) r g b / 0.9);
+
+        ul li a {
+          background-color: transparent;
+          color: var(--text-main);
+
+          &:is(:hover, :focus-visible) {
+            background-color: var(--accent-color);
+            color: var(--text-bright)
+          }
+        }
+      }
+
+
+      /* -- 1.1.13 - Notifications -- */
+      .header-notification-dropdown .arrow_box {
+        background-color: var(--bg-main);
+        border: 1px solid var(--bg-hover);
+        box-shadow: 3px 6px 15px 2px rgb(from var(--bg-hover) r g b / 0.5);
+      }
+
+      .header-notification-dropdown-inner h3 {
+        background-color: var(--75-main-hover);
+        border-color: var(--bg-hover);
+
+        .mark-all {
+          color: var(--accent-color);
+        }
+      }
+
+      .header-notification-item-list {
+        scrollbar-width: thin;
+      }
+
+      .header-notification-item {
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+
+        &:has(> .inner.is-read) {
+          background-color: transparent;
+        }
+
+        &:is(:hover, :focus-visible),
+        &:has(> .inner.is-read):is(:hover, :focus-visible) {
+          background-color: var(--25-main-hover);
+        }
+
+        .header-notification-item-header .time {
+          color: var(--text-second);
+        }
+
+        .category {
+          color: var(--accent-color);
+        }
+
+        .header-notification-item-header .is-read .fa-check:is(:hover, :focus-visible) {
+          color: var(--text-main);
+        }
+
+        .header-notification-item-header .is-read .fa-circle-check {
+          color: var(--accent-color);
+        }
+
+
+        .inner.is-read,
+        .inner.is-read .header-notification-item-header :is(.time, .category) {
+          color: var(--text-dim);
+        }
+      }
+
+      .header-notification-item-content .actions {
+        .action-button {
+          font-size: 0.65rem;
+          padding: 0.2rem 0.4rem;
+          background-color: var(--_bg);
+          border-color: var(--_bg);
+
+          &:is(:hover, :focus-visible) {
+            background-color: var(--_bg-hover);
+            border-color: var(--_bg-hover);
+          }
+        }
+
+        .action-button.accept {
+          --_bg: var(--green-light);
+          --_bg-hover: hsl(from var(--green-light) h s calc(l - 15));
+        }
+
+        .action-button.deny {
+          --_bg: var(--red-light);
+          --_bg-hover: var(--red-midtone);
+        }
+
+        .result {
+          width: auto;
+          font-size: 0.65rem;
+          padding: 0.2rem 0.4rem;
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+
+      .header-notification-item-content:is(.friend_request, .profile_comment) .message {
+        font-weight: 300;
+        quotes: initial;
+        color: inherit;
+      }
+
+      .header-notification-item > .inner.is-read .header-notification-item-content:is(.friend_request, .profile_comment) .message {
+        color: inherit;
+      }
+
+      .header-notification-view-all a {
+        background-color: var(--75-main-hover);
+        border-color: var(--bg-hover);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--bg-hover);
+        }
+      }
+
+
+      /* -- 1.1.14 - Search Bar -- */
+      #top-search-bar {
+        --_br: 0.2rem;
+        position: relative;
+        font-family: var(--ff-main);
+        color: var(--text-second);
+
+        &::after {
+          content: '\f002';
+          position: absolute;
+          top: 50%;
+          right: 0.5rem;
+          display: block;
+          font-family: var(--ff-fa);
+          font-size: 0.85rem;
+          font-weight: 600;
+          transform: translate(0, -50%);
+          opacity: 0.25;
+        }
+      }
+
+      #searchBar {
+        display: flex;
+        padding: unset;
+      }
+
+      #searchBar.searchBar {
+        --_searchBar-bg: var(--bg-second);
+        --_searchBar-border: var(--bg-hover);
+        --_searchBar-text: var(--text-second);
+
+        #topSearchText {
+          height: auto;
+          border-radius: 0 var(--_br) var(--_br) 0;
+        }
+
+        .form-select-outer {
+          height: auto;
+          border-radius: var(--_br) 0 0 var(--_br);
+        }
+
+        #topSearchValue {
+          height: 100%;
+          font-family: inherit;
+          padding-inline-start: 0.75rem;
+          border-radius: inherit;
+          background-color: var(--_searchBar-bg);
+          border-color: var(--_searchBar-border);
+          color: var(--_searchBar-text);
+        }
+
+        /*         
+        #topSearchButon {
+          width: auto;
+          padding: 0 0.75rem;
+          border-width: 1px;
+          border-radius: 0 var(--_br) var(--_br) 0;
+          cursor: pointer;
+        }
+        
+        #topSearchValue,
+        #topSearchButon {
+          height: auto;
+          background-color: var(--_searchBar-bg);
+          border-color: var(--_searchBar-border);
+          color: var(--_searchBar-text);
+        } 
+        */
+
+        #topSearchText {
+          font-family: inherit;
+          background-color: var(--_searchBar-bg);
+          border: 1px solid var(--_searchBar-border);
+          color: var(--_searchBar-text);
+
+          &:is(:hover, :focus-visible) {
+            border-color: var(--accent-color);
+          }
+        }
+
+        #topSearchButon {
+          display: none;
+        }
+      }
+
+      /* - 1.1.14.1 - Search Bar - Results - */
+      #topSearchResultList {
+        width: 100% !important;
+        top: calc(100% + 0.5rem) !important;
+      }
+
+
+      /* -- 1.1.15 - Breadcrumb -- */
+      .breadcrumb {
+        margin: unset !important;
+        padding-block: 0.2rem 0.4rem;
+        padding-inline: 0.6rem;
+      }
+
+
+      /* -- 1.1.16 - Body -- */
+      #contentWrapper {
+        min-height: unset;
+        padding-block-end: 1rem;
+        background-color: transparent;
+        container-type: inline-size;
+      }
+
+      #content {
+        background-color: var(--bg-main);
+        background-blend-mode: multiply;
+        border-color: var(--bg-hover);
+
+        .left-column {
+          width: 68cqw;
+        }
+
+        .right-column {
+          width: auto;
+        }
+      }
+
+      &.notification #content {
+        .left-column {
+          width: auto;
+        }
+
+        .right-column {
+          width: 75cqw;
+        }
+      }
+
+      &.stacks #content {
+        display: grid;
+        grid-template-columns: calc(68cqw - 5px) auto;
+
+        .breadcrumbs_area {
+          grid-column: 1 / -1;
+        }
+
+        .content {
+          grid-column: 1 / -1;
+        }
+
+        .content-left {
+          width: 100%;
+        }
+
+        .content-right {
+          width: 100%;
+        }
+      }
+
+      /* -- 1.1.17 - Iframes -- */
+      iframe.movie.youtube {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+
+        &:focus-visible {
+          outline: unset;
+        }
+      }
+
+      /* -- 1.1.18 - Pagination -- */
+      .pagination .link {
+        padding: 0.4rem;
+        background-color: var(--bg-second);
+        border-radius: 0.2rem;
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible, .current) {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+          outline-offset: 3px;
+          transition: background-color 350ms ease-out;
+        }
+      }
+    }
+
+    /* --- 1.2.0 - Tip Menu --- */
+    .mal-tipmenu,
+    .page-common .mal-tipmenu {
+      --_bg: rgb(from var(--accent-color) r g b / 0.8);
+      background-color: unset;
+
+      &::before {
+        border-bottom-color: var(--_bg);
+      }
+
+      a {
+        background-color: var(--_bg);
+        color: var(--text-bright);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+        }
+      }
+
+      a + a {
+        border-left-color: var(--50-accent-main-text);
+      }
+    }
+
+
+    /* --- 1.3.0 - Halloween --- */
+    body.halloween:not([class*="ownlist "]) {
+      background-image: var(--halloween-image);
+    }
+
+    .page-common.halloween {
+      .text-ribbon > div {
+        background-color: var(--halloween-05) !important;
+      }
+
+      .halloween :is(h1, .h1) {
+        background-color: var(--halloween-01);
+        border-bottom-color: var(--halloween-02);
+        color: var(--halloween-02);
+
+        .header-right a {
+          color: var(--halloween-06);
+        }
+      }
+
+      .header-profile-link {
+        color: var(--halloween-01);
+      }
+
+      .header-profile-link:is(:hover, :focus-visible) {
+        color: var(--halloween-03);
+      }
+
+      /* -- 1.3.1 - Header -- */
+      #headerSmall.halloween {
+        background-color: var(--halloween-07);
+        background-position: 0.25rem 0.125rem;
+      }
+
+      #headerSmall #header-menu :is(.header-list-button, .header-message-button, .header-notification-button) {
+        color: var(--halloween-05);
+      }
+
+      .header-notification-button.has-unread::after {
+        background-color: var(--halloween-03);
+      }
+
+      /* -- 1.3.2 - Menu -- */
+      #menu.halloween #nav ul li a {
+        background-color: var(--halloween-04);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--halloween-05);
+          color: var(--halloween-08);
+        }
+      }
+
+      #header-menu .border::before {
+        border-color: var(--halloween-04);
+      }
+
+      /* -- 1.3.3 - Search Bar -- */
+      #searchBar.searchBar {
+        --_searchBar-bg: var(--halloween-04);
+        --_searchBar-border: var(--halloween-02);
+        --_searchBar-text: var(--halloween-06);
+      }
+    }
+
+    /* --- 1.4.0 - Christmas --- */
+    body.christmas:not([class*="ownlist "]) {
+      background-image: var(--christmas-image);
+    }
+
+    .page-common.christmas {
+
+      /* -- 1.4.1 - Header -- */
+      #headerSmall.christmas {
+        background: var(--christmas-03);
+      }
+
+      #headerSmall #header-menu :is(.header-list-button, .header-message-button, .header-notification-button) {
+        color: var(--christmas-04) !important;
+
+        &:is(:hover, :focus-visible) {
+          color: var(--christmas-05) !important;
+        }
+      }
+
+      #header-menu > .border::before {
+        border-color: var(--christmas-02);
+      }
+
+      .header-notification-button.has-unread::after {
+        background-color: var(--christmas-01);
+      }
+
+      .header-profile-link {
+        color: var(--christmas-04);
+
+        &:is(:hover, :focus-visible) {
+          color: var(--christmas-05);
+        }
+      }
+
+      /* -- 1.4.2 - Menu -- */
+      #menu {
+        background-color: var(--christmas-01);
+        background-image: var(--falling-snow);
+        background-size: auto 200px;
+        background-blend-mode: lighten;
+
+        #menu_left {
+          background: unset;
+        }
+      }
+
+      #menu.christmas #menu_left #nav li.hover a {
+        background-color: var(--christmas-02);
+      }
+
+      #menu.christmas #menu_left #nav li.hover li a {
+        background-color: var(--christmas-02);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--christmas-01);
+          background-image: var(--falling-snow);
+          background-size: auto 300px;
+          background-blend-mode: lighten;
+        }
+      }
+
+      /* -- 1.4.3 - Search Bar -- */
+      #searchBar.searchBar {
+        --_searchBar-bg: var(--christmas-03);
+        --_searchBar-border: var(--christmas-03);
+        --_searchBar-text: var(--christmas-04);
+
+        #topSearchText:is(:hover, :focus-visible) {
+          border-color: var(--christmas-02);
+        }
+      }
+    }
+
+
+    /* --- 1.5.0 - Easter --- */
+    .page-common.easter2025:not(.color-pc-constant) .easter2025 {
+      #headerSmall.easter2025 {
+        background: unset !important;
+        background-color: var(--easter-02) !important;
+      }
+
+      .link-mal-logo {
+        background-image: url(/images/event/2024_easter/mal_logo_egg.png?v=1634263200);
+        background-size: contain;
+      }
+
+      #menu.easter2025 #menu_left #nav li.easter2025 {
+        height: unset;
+      }
+
+      #contentWrapper div .h1 {
+        background-color: var(--easter-01);
+      }
+    }
+
+
+  }
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Home Page                                                                               */
+  /* ======================================================================================= */
+  /* ---- 2.0.0 - Home Page ---- */
+  html, .dark-mode {
+    body.index {
+      .left-column {
+        border-color: var(--bg-hover);
+      }
+    }
+
+    /* --- 2.1.0 - Widgets --- */
+    body.index .widget-container .widget {
+      .widget-header {
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+      }
+
+      .index_h2_seo a {
+        color: inherit;
+      }
+
+      /* -- 2.1.1 - Latest Updates - My List, Clubs, Reviews -- */
+      &:is(.my_list_updates, .clubs, .reviews) .item {
+        display: flex;
+        gap: 0.5rem;
+        border-color: var(--bg-hover);
+      }
+
+      &:is(.my_list_updates, .reviews) .item .image {
+        width: auto;
+
+        img {
+          width: 80px;
+          height: auto;
+          aspect-ratio: 5 / 7;
+        }
+      }
+
+      &.clubs .item .image {
+        width: auto;
+
+        img {
+          width: 60px !important;
+          height: auto !important;
+          aspect-ratio: 50 / 65;
+        }
+      }
+
+      /* -- 2.1.2 - News -- */
+      .news-list {
+        --_gap: 0.5rem;
+        display: grid;
+        gap: var(--_gap);
+
+        .comment-list,
+        .news-unit {
+          width: auto;
+          margin: unset;
+          font-family: var(--ff-main);
+          padding: 0 0 var(--_gap);
+          border-color: var(--bg-hover);
+
+          .image-link img {
+            min-width: 80px;
+            height: auto;
+            aspect-ratio: 5 / 7;
+          }
+
+          .title,
+          .text {
+            font-family: inherit;
+            font-size: 0.75rem;
+          }
+
+          .information .info {
+            display: flex !important;
+            gap: 0.2rem;
+            font-family: inherit;
+            color: var(--text-second);
+          }
+        }
+      }
+
+      /* -- 2.1.3 - Statistics -- */
+      &.my_statistics table td:nth-child(1) {
+        color: var(--text-dim);
+      }
+
+      /* -- 2.1.4 - Friend Updates -- */
+      &.friend_list_updates {
+        .image {
+          border: unset;
+        }
+
+        .updated-time {
+          color: var(--text-dim);
+        }
+
+        .navi-btn {
+          color: var(--text-dim);
+
+          &:is(:hover, :focus-visible) {
+            color: var(--accent-color);
+          }
+        }
+
+        .footer {
+          height: auto;
+          background-color: var(--bg-hover);
+          border-color: var(--bg-hover);
+
+          > * {
+            color: var(--accent-color);
+          }
+        }
+      }
+
+      /* -- 2.1.5 - Anime/Manga Rankings -- */
+      > .ranking-digest {
+        background: unset;
+        border: unset;
+
+        .ranking-header {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+          justify-content: space-between;
+          margin: unset;
+          padding: 0 0.5rem;
+          background: var(--bg-hover);
+          border-color: var(--bg-hover);
+
+          .btn-view_more {
+            font-family: var(--ff-secondary);
+            font-size: 0.688rem;
+          }
+        }
+
+        ul {
+          display: grid;
+          margin-block-start: 0.25rem;
+          padding: 0.25rem;
+          background-color: var(--75-main-hover);
+          border: 1px solid var(--50-main-hover);
+          border-radius: 0.2rem;
+        }
+
+        .ranking-unit {
+          width: auto;
+          height: min-content;
+          display: flex;
+          margin: unset;
+          padding: 0.5rem;
+
+          .rank {
+            display: none;
+            color: var(--text-second);
+          }
+
+          .data-image,
+          .image {
+            width: auto;
+            height: auto;
+          }
+
+          .image {
+            max-height: unset;
+          }
+
+          img {
+            width: 60px;
+            height: auto;
+            aspect-ratio: 5 / 7;
+          }
+
+          .data {
+            flex-grow: 1;
+          }
+
+          .info,
+          .members {
+            color: var(--text-second)
+          }
+        }
+      }
+
+      /* -- 2.1.6 - Forum - Watched Topics -- */
+      &.watched_topics table.forum-topics {
+        margin-block-start: 0.5rem;
+
+        tbody {
+          display: grid;
+          grid-template-columns: max-content 1fr auto;
+        }
+
+        tr {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: subgrid;
+        }
+
+        tr:first-child td {
+          border-top-width: 1px;
+        }
+
+        tr + tr td {
+          border-top: none;
+        }
+
+        td + td {
+          border-left: none;
+        }
+
+        td:last-child {
+          width: auto;
+          padding-inline: 1rem;
+          color: var(--text-dim);
+        }
+
+        .watch-state {
+          width: unset;
+          display: grid;
+          place-items: center;
+          padding: 0 0.5rem;
+        }
+
+        tr > td:nth-child(2) {
+          display: grid;
+          grid-template-columns: 1fr 1rem;
+          grid-template-areas: "title btn" "subtitle btn";
+          align-items: center;
+          padding: 0.5rem 1rem;
+          background-color: var(--75-main-hover);
+
+          > h4 {
+            grid-area: title;
+          }
+
+          > p {
+            grid-area: subtitle;
+          }
+
+          > a {
+            grid-area: btn;
+            place-self: center;
+          }
+        }
+      }
+
+      /* -- 2.1.7 - Seasonal Anime/Manga -- */
+      #widget-seasonal-video .widget-slide-outer {
+        --img-border-radius: var(--img-border-radius-large);
+        --img-border-offset: var(--img-border-offset-large);
+        --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
+        width: 100%;
+        height: auto;
+
+        .widget-slide {
+          height: auto;
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        .btn-anime {
+          width: auto;
+          height: auto;
+          flex-shrink: 0;
+          margin: unset;
+          border: unset;
+        }
+
+        .link {
+          width: min-content;
+          height: auto;
+          display: grid;
+          grid-template-rows: 1fr 50px;
+          text-decoration: unset;
+          opacity: 1;
+
+          .h3_character_name {
+            grid-column: 1;
+            grid-row: 2;
+            display: grid;
+            align-items: center;
+            margin: 0 var(--_img-margin) var(--_img-margin);
+            background-color: rgb(from var(--50-accent-main) r g b / 0.75);
+            border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(100%);
+            z-index: 2;
+          }
+
+          &:is(:hover, :focus-visible) .h3_character_name {
+            opacity: 1;
+            transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms 50ms linear;
+            transform: translateY(0);
+          }
+
+          .title {
+            position: unset;
+            width: unset;
+            font-family: var(--ff-main);
+            font-size: 0.785rem;
+            font-weight: 500;
+            padding: 0 0.2rem;
+            background: unset;
+            color: var(--text-bright);
+            text-shadow: unset;
+          }
+
+          img {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            margin: var(--_img-margin);
+          }
+        }
+      }
+
+      /* -- 2.1.8 - Recommendations -- */
+      &.recommendations .widget-content {
+        display: grid;
+        gap: 0.5rem;
+        margin-block-start: 0.5rem;
+
+        > div {
+          margin: unset;
+          padding: 0.75rem 0.75rem 0.5rem;
+          background-color: var(--75-main-second);
+          border: 1px solid var(--50-main-second);
+          border-radius: 0.2rem;
+        }
+
+        .lightLink {
+          font-family: var(--ff-secondary);
+          font-size: 0.775rem;
+          font-weight: 400;
+          font-style: italic;
+          padding: 0.25rem;
+          color: var(--text-second);
+        }
+      }
+
+      /* -- 2.1.9 - Auto Recommendations -- */
+      &:is(.anime_suggestions, .manga_suggestions) {
+        container-type: inline-size;
+      }
+
+      .auto-recommendations {
+        --img-border-radius: var(--img-border-radius-large);
+        --img-border-offset: var(--img-border-offset-large);
+        --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
+        --_item-count: 5;
+        --_gap: 0.5rem;
+        --_img-width: calc(((100cqw - (var(--_gap) * (var(--_item-count) - 1))) / var(--_item-count)) - (var(--_img-margin) * 2));
+        --_img-height: calc(var(--_img-width) * 170 / 124);
+
+        height: calc(var(--_img-height) + (var(--_img-margin) * 2));
+
+        .items {
+          display: flex;
+          gap: var(--_gap);
+        }
+
+        .item {
+          width: var(--_img-width);
+          height: var(--_img-height);
+          flex-shrink: 0;
+          margin: var(--_img-margin);
+          border-radius: 0.4rem;
+          outline: var(--img-border-size) solid var(--25-accent-main);
+          outline-offset: var(--img-border-offset);
+
+          &:is(:hover, :focus-visible) {
+            outline-color: var(--accent-color);
+          }
+
+          .title {
+            width: 100%;
+            height: 40px;
+            align-content: center;
+            font-family: var(--ff-main);
+            font-size: 0.785rem;
+            font-weight: 500;
+            text-wrap: pretty;
+            padding: 0 0.2rem;
+            background: rgb(from var(--50-accent-main) r g b / 0.75);
+            border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
+            color: var(--text-bright);
+            text-shadow: unset;
+            opacity: 0;
+            transform: translateY(100%);
+            overflow: clip;
+            text-overflow: ellipsis;
+          }
+
+          &:is(:hover, :focus-visible) .title {
+            opacity: 1;
+            transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms 50ms linear;
+            transform: translateY(0);
+          }
+        }
+
+        &:not(:hover, :focus-visible) .btn-side.left {
+          left: -40px;
+        }
+
+        &:not(:hover, :focus-visible) .btn-side.right {
+          right: -40px;
+        }
+      }
+
+    }
+  }
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Anime / Manga Pages                                                                     */
+  /* ======================================================================================= */
+  /* ---- 3.0.0 - Anime / Manga Pages ---- */
+  html, .dark-mode {
+
+    /* --- 3.1.0 - Seasonal Pages --- */
+    /* -- 3.1.1 - Nav -- */
+    .navi-seasonal,
+    .navi-adapted {
+      width: var(--page-size);
+      background-color: var(--bg-hover);
+
+      &.fixed::after {
+        width: 100%;
+        padding: unset;
+        background-image: linear-gradient(to bottom, var(--bg-hover), transparent);
+      }
+
+      .horiznav_nav,
+      .horiznav-nav-seasonal,
+      .horiznav-nav-adapted {
+        border-color: var(--accent-color);
+      }
+
+      .horiznav-nav-seasonal,
+      .horiznav-nav-adapted {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 0.5rem;
+
+        > span {
+          width: auto !important;
+          text-wrap: nowrap;
+          margin: unset !important;
+        }
+
+        + p {
+          padding: 0.5rem 0 !important;
+        }
+
+        .btn-seasonal,
+        .btn-adapted {
+          display: flex;
+          gap: 0.25rem;
+          margin-inline-end: auto;
+
+          .btn-type {
+            margin: unset;
+            background-color: var(--bg-main);
+            color: var(--text-second);
+
+            &:is(:hover, :focus-visible) {
+              background-color: var(--bg-second);
+              color: var(--accent-color);
+            }
+
+            &.on {
+              background-color: var(--accent-color);
+              color: var(--bg-hover);
+            }
+          }
+        }
+      }
+
+      .horiznav_nav ul li a {
+        background-color: var(--bg-main);
+        border-color: transparent;
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--bg-second);
+          color: var(--accent-color);
+        }
+
+        &.on {
+          background-color: var(--accent-color);
+          color: var(--bg-hover);
+        }
+
+        &.navtab:is(.horiznav_active, :hover, :focus-visible) {
+          background-color: transparent;
+          border-color: var(--accent-color);
+          color: var(--accent-color);
+        }
+      }
+    }
+
+    :is(.season, .adapted) :is(.btn-show-sort, .btn-show-kids, .btn-show-r18, .btn-show-broadcast, .btn-show-finished) {
+      color: var(--text-second);
+
+      .fa-square {
+        color: var(--text-dim);
+      }
+    }
+
+    :is(.season, .adapted) .btn-show-sort:is(:hover, :focus-visible) {
+      color: var(--accent-color);
+    }
+
+    /* -- 3.1.2 - Sort/Filter -- */
+    .seasonal-sort-order-block,
+    .adapted-sort-order-block,
+    .anime-character-sort-order-block,
+    .manga-character-sort-order-block {
+      min-width: fit-content;
+      padding: 0.4rem 0.5rem;
+      border-radius: 0.3rem;
+      background-color: var(--bg-second);
+      border-color: var(--bg-hover);
+      color: var(--text-second);
+
+      .sort-order-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.2rem;
+      }
+
+      .sort-order-list .btn-sort-order {
+        color: inherit;
+      }
+
+      .sort-order-list .btn-sort-order .fa-regular:is(.fa-circle, .fa-square) {
+        color: inherit;
+      }
+
+      .sort-order-list .btn-sort-order :is(.fa-circle.fa-solid,
+        mal-tooltip.fa-circle::part(icon)) {
+        color: var(--accent-color);
+      }
+
+      .sort-order-list .btn-sort-order .fa-check {
+        color: var(--green-light);
+      }
+
+      .sort-order-list .btn-sort-order .fa-xmark {
+        color: var(--red-light);
+      }
+
+      .sort-order-list .btn-sort-order.fa-stack {
+        width: 100% !important;
+        height: auto !important;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        line-height: 2;
+        margin: unset !important;
+        padding: unset;
+
+        .fa-regular {
+          position: unset;
+        }
+
+        .fa-solid {
+          inset: unset;
+          margin-block: auto;
+        }
+
+        .fa-square::before {
+          content: "";
+          display: block;
+          width: 14px;
+          aspect-ratio: 1;
+          border: 1px solid currentColor;
+        }
+
+        .fa-check {
+          font-size: 0.75rem;
+        }
+
+        .fa-xmark {
+          font-size: 0.8rem;
+        }
+      }
+
+      .btn-close {
+        color: var(--text-dim);
+      }
+    }
+
+    .season .seasonal-sort-order-block {
+      top: calc(100% - 2px);
+
+      &.sort {
+        right: 380px;
+      }
+
+      &.mylist {
+        right: 268px;
+      }
+    }
+
+    .adapted .adapted-sort-order-block {
+      top: calc(100% - 2px);
+
+      &.sort {
+        right: 436px;
+      }
+
+      &.myanimelist {
+        right: 178px;
+      }
+
+      &.mymangalist {
+        right: 278px;
+      }
+    }
+
+    .season .seasonal-sort-order-block.genres,
+    .adapted .adapted-sort-order-block.genres {
+      width: 100%;
+      padding: 1rem;
+
+      .sort-order-list {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        align-items: center;
+        gap: 0.2rem 0;
+        margin-block-start: -1rem;
+        color: transparent;
+
+        > *:not(a) {
+          color: var(--text-second);
+        }
+
+        > div {
+          grid-column: 1 / -1;
+          margin-block: 1rem 0.5rem !important;
+          padding-block: 0 0.25rem;
+          border-bottom: 1px solid var(--25-accent-hover);
+        }
+
+        .clear-all-btn {
+          grid-column: -2 / -1;
+          grid-row: 2;
+          justify-self: center;
+          padding: unset;
+        }
+
+        .selected-icon,
+        .crossed-icon {
+          all: unset;
+          display: block;
+
+          &::before {
+            display: inline-block;
+            margin-inline-end: 0.5rem;
+            color: var(--text-second);
+          }
+
+          &::after {
+            font-family: 'Font Awesome 6 Pro';
+          }
+        }
+
+        .selected-icon {
+          grid-column: 1;
+          grid-row: 2;
+        }
+
+        .crossed-icon {
+          grid-column: 2;
+          grid-row: 2;
+        }
+
+        .selected-icon::before {
+          content: "Click once to include";
+        }
+
+        .selected-icon:after {
+          content: "\f00c";
+          color: var(--green-light);
+        }
+
+        .crossed-icon::before {
+          content: "and twice to exclude";
+        }
+
+        .crossed-icon::after {
+          content: "\f00d";
+          color: var(--red-light);
+        }
+      }
+    }
+
+    .season .navi-seasonal .fa-xmark {
+      left: 1px;
+      color: var(--red-light);
+    }
+
+    .season .navi-seasonal .fa-check {
+      left: 1px;
+      color: var(--green-light);
+    }
+
+    /* -- 3.1.3 - Body -- */
+    :is(.seasonal-anime-list, .adapted-manga-list) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 1rem;
+
+      .js-middle_ad.seasonal-middle {
+        display: none;
+      }
+    }
+
+    .seasonal-anime-list .anime-header {
+      grid-column: 1 / -1;
+      line-height: 1.25;
+      margin: unset;
+      background-color: var(--accent-color);
+      border: unset;
+    }
+
+    .text-banner-tag {
+      grid-column: 1 / -1;
+      font-family: var(--ff-main) !important;
+      margin-block: -1rem auto !important;
+      padding: 0.6rem !important;
+      background-color: var(--50-accent-main);
+      color: var(--text-main);
+    }
+
+    /* -- 3.1.4 - Card -- */
+    :is(.seasonal-anime-list, .adapted-manga-list) .seasonal-anime {
+      width: auto;
+      height: auto;
+      display: grid;
+      grid-template-columns: 167px 1fr;
+      margin: unset;
+      background-color: var(--75-main-second);
+      border-color: var(--bg-hover);
+      border-radius: 0.3rem;
+
+      > div:first-child {
+        grid-column: span 2;
+      }
+
+      .title {
+        position: relative;
+        width: auto;
+        display: grid;
+        place-items: center;
+
+        .title-text {
+          display: grid;
+          place-items: center;
+          width: 100%;
+          margin: unset;
+          padding: 1rem 2rem;
+        }
+
+        .h2_anime_title {
+          color: var(--accent-color);
+        }
+
+        &:is(:hover, :focus-visible) {
+          overflow: visible;
+        }
+
+        &:is(:hover, :focus-visible) .h2_anime_title {
+          position: absolute;
+          display: grid;
+          top: 0;
+          width: 100%;
+          min-height: 60px;
+          place-items: center;
+          padding: inherit;
+          background-color: var(--25-accent-second);
+          border-block-end: 1px solid transparent;
+          z-index: 10;
+        }
+      }
+
+      .prodsrc {
+        height: auto;
+        background-color: var(--bg-second);
+        color: var(--text-second);
+
+        .info {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1px;
+          margin-inline: auto;
+
+          .item:nth-child(1) {
+            justify-self: right;
+          }
+
+          .item:nth-child(2) {
+            position: relative;
+            justify-self: left;
+            border: unset;
+
+            &::before {
+              content: "|";
+              position: absolute;
+              top: -0.5px;
+              left: -2px;
+              font-family: Arial;
+              font-size: 0.8rem;
+              color: var(--text-dim);
+            }
+          }
+        }
+
+        .video,
+        .broadcast {
+          display: none;
+        }
+      }
+
+      .genres {
+        width: auto;
+        height: auto;
+        min-height: 2.2rem;
+        padding: unset;
+        background-color: var(--bg-hover);
+        border-color: var(--bg-hover);
+      }
+
+      .genres-inner {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0;
+      }
+
+      .genres .genre {
+        font-size: 0.65rem;
+        margin: unset;
+        padding: 0.2rem 0.6rem;
+        background-color: var(--25-accent-hover);
+        border-color: var(--25-accent-hover);
+        color: var(--accent-color);
+        border-radius: 100vw;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-accent-hover);
+          border-color: var(--50-accent-hover);
+        }
+      }
+
+      .genres .genre a {
+        color: inherit !important;
+      }
+
+      .toggle-text {
+        color: var(--accent-color);
+
+        &:is(:hover, :focus-visible) {
+          color: var(--75-accent-main-text);
+        }
+      }
+
+      .image {
+        height: auto;
+        align-content: center;
+        background-color: var(--75-main-hover);
+      }
+
+      .link-image {
+        display: none !important;
+      }
+
+      .synopsis {
+        width: auto;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        scrollbar-width: thin;
+      }
+
+      .pin-cta {
+        grid-column: 2;
+      }
+
+      .properties {
+        .property {
+          background-color: var(--25-main-hover);
+        }
+
+        .property:nth-child(even) {
+          background-color: var(--25-main-second);
+        }
+      }
+
+      .information {
+        grid-column: span 2;
+        position: unset;
+        width: 100%;
+        height: auto;
+        align-items: center;
+        padding: 0.25rem;
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+      }
+
+      .information-item {
+        height: auto;
+        color: var(--text-main);
+      }
+
+      .information-item.buttons {
+        display: flex;
+        justify-content: center;
+
+        .button {
+          height: auto;
+          padding: 0.1rem 0.25rem;
+          border-radius: 0.3rem;
+        }
+
+        .button.addtolist {
+          background-color: var(--accent-color);
+          border-color: var(--text-bright);
+          color: var(--text-bright);
+
+          &:is(:hover, :focus-visible) {
+            background-color: var(--75-accent-hover);
+            border-color: var(--text-main);
+            color: var(--text-main);
+            opacity: 1;
+          }
+        }
+
+        .bubble {
+          --_bg: var(--50-main-hover);
+          font-family: var(--ff-main);
+          margin: 0 0 0 0.5rem;
+          padding: 0 0.4rem;
+          background-color: var(--_bg);
+          color: var(--text-second);
+
+          &::after {
+            left: -9px;
+            border-right-color: var(--_bg);
+          }
+        }
+      }
+    }
+
+    /* -- 3.1.5 - Archive -- */
+    .season .anime-seasonal-byseason {
+      --_mi: 1rem;
+      width: calc(100% - var(--_mi) * 2);
+      margin: var(--_mi) !important;
+
+      tr {
+        background-color: var(--75-main-hover);
+      }
+
+      tr:nth-child(2n + 1) {
+        background-color: var(--25-main-hover);
+      }
+
+      td {
+        border-color: var(--bg-hover) !important;
+      }
+
+      td a {
+        font-weight: bold;
+        font-style: italic;
+        color: var(--text-second);
+
+        &::after {
+          content: "\f054";
+          position: unset;
+          display: inline-block;
+          height: unset;
+          font-family: var(--ff-fa);
+          font-style: normal;
+          background: none;
+          color: inherit;
+        }
+      }
+    }
+
+
+    /* --- 3.2.0 - Single Anime / Manga Pages --- */
+    .page-common #content {
+      container-type: inline-size;
+
+      > table > tbody > tr:has(> td.borderClass[width="225"]) {
+        display: grid !important;
+        grid-template-columns: 1fr calc(100cqw - 250px);
+
+        > td {
+          width: auto !important;
+        }
+
+        > td:nth-child(1) {
+          padding: unset;
+          padding-inline-end: 0.5rem;
+        }
+
+        > td:nth-child(2) {
+          padding: unset !important;
+          padding-inline-start: 0.5rem !important;
+        }
+
+        .leftside,
+        .rightside {
+          width: unset !important;
+        }
+
+        .rightside .di-t > .di-tc:not(.anime-detail-header-video),
+        .detail-characters-list > div,
+        .anime-slide-block,
+        .anime-slide-block .anime-slide-outer,
+        .anime-slide-block .anime-slide,
+        .page-forum tr > td {
+          width: unset !important;
+
+          /* TODO: To fix width breaking on Forum Tab */
+        }
+
+        .rightside > table > tbody > tr:nth-of-type(4) .detail-page-featured-article .news-unit {
+          width: unset;
+        }
+
+        br + br {
+          display: none;
+        }
+
+      }
+
+      > table > tbody > tr .rightside > div[style*="width:728px"] {
+        width: unset !important;
+      }
+
+    }
+
+    /* -- 3.2.1 - Sidebar -- */
+    .page-common :is(#profileRows, .profileRows) {
+      margin-block: 0.5rem;
+      padding: unset !important;
+
+      a {
+        padding: 0.3rem 0.75rem;
+        background-color: var(--25-main-second);
+        border: unset;
+        border-block: 2px solid transparent;
+        border-radius: 0.2rem;
+        color: var(--text-main);
+        box-shadow: 0 0 0 1px var(--50-main-hover);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          border-color: var(--accent-color);
+          border-bottom-color: var(--text-main);
+          color: var(--text-bright);
+        }
+      }
+    }
+
+    .page-common .spaceit_pad.di-ib {
+      display: flow-root !important;
+    }
+
+    /* - 3.2.1.1 - Streaming Platforms - */
+    .leftside .broadcasts .info,
+    .leftside .broadcasts .broadcast-item.notavailable .caption::after {
+      color: var(--red-light);
+    }
+
+    /* - 3.2.1.2 - "Watch Episodes" Button - */
+    a.left-info-block-broadcast-button {
+      display: none;
+    }
+
+    /* - 3.2.1.3 - "Notify Me" Button - */
+    a.left-info-block-notify-on-air-button[data-label="notify-on-air"] {
+      background-color: var(--accent-color);
+      border: 1px solid var(--accent-color);
+      color: var(--text-main);
+
+      &:is(:hover, :focus-visible) {
+        border-bottom-color: currentColor;
+        /*         opacity: unset; */
+      }
+    }
+
+    /* - 3.2.1.4 - Add to List - */
+    .page-common .addtolist-block {
+      display: grid !important;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background-color: var(--25-accent-main);
+      border: 1px solid var(--75-accent-hover);
+      border-radius: 0.2rem;
+      color: var(--text-main);
+
+      .notice_open_public {
+        width: 100%;
+        padding-block: unset !important;
+        padding-inline-start: 0.5rem;
+      }
+
+      tbody {
+        display: grid;
+        grid-template-columns: 75px 1fr;
+        gap: 0.25rem 0.5rem;
+        align-items: center;
+      }
+
+      tr {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        align-items: center;
+      }
+
+      td {
+        margin: unset;
+      }
+
+      td:first-child {
+        justify-self: end;
+        font-style: italic;
+      }
+
+      tr:last-child td:first-child {
+        display: none;
+      }
+
+      tr:last-child td:last-child {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+        align-items: center;
+      }
+
+      .inputButton {
+        justify-self: end;
+        font-family: var(--ff-main);
+        padding: 0.3rem 0.6rem !important;
+        border-bottom: 1px solid var(--text-main);
+      }
+
+      #myinfoDisplay {
+        margin: 0 auto !important;
+        padding: unset !important;
+        color: var(--green-light);
+      }
+    }
+
+    /* -- 3.2.2 - Nav -- */
+    .page-common #horiznav_nav {
+      margin: unset !important;
+      padding-block: 0 0.5rem;
+      border-color: var(--bg-hover);
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        margin: unset !important;
+      }
+
+      ul li {
+        background-color: transparent;
+      }
+
+      ul li a {
+        display: flow-root;
+        line-height: 1.9;
+        padding: 0.125rem 0.5rem;
+        background-color: var(--bg-second);
+        border: 1px solid var(--bg-second);
+        border-radius: 0.2rem;
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible, .horiznav_active) {
+          background-color: var(--accent-color);
+          border-color: var(--accent-color);
+          border-bottom-color: var(--text-bright);
+          color: var(--text-bright);
+        }
+      }
+
+      li a:is([href$="/characters"], [href$="/stacks"], [href$="/userrecs"], [href$="/pics"], [href$="/moreinfo"]) {
+        font-size: 0;
+
+        &::before {
+          font-size: 13px;
+          line-height: 1.7;
+        }
+      }
+
+      li a[href$="/characters"]::before {
+        content: "Characters";
+      }
+
+      li a[href$="/stacks"]::before {
+        content: "Stacks";
+      }
+
+      li a[href$="/userrecs"]::before {
+        content: "User Recs";
+      }
+
+      li a[href$="/pics"]::before {
+        content: "Pics";
+      }
+
+      li a[href$="/moreinfo"]::before {
+        content: "More";
+      }
+    }
+
+    /* -- 3.2.3 - Anime Details -- */
+    div.di-t:nth-child(1):has(.anime-detail-header-stats) {
+      --_height: 140px;
+      width: auto;
+      display: grid !important;
+      grid-template-columns: 1fr auto;
+      margin: unset !important;
+    }
+
+    .anime-detail-header-stats {
+      .stats-block {
+        height: auto;
+        min-height: var(--_height);
+        display: grid;
+        grid-template-areas: "information separator ranking" "score separator ranking";
+        grid-template-columns: 200px 50px 1fr;
+        align-items: center;
+        padding: 0.5rem 0.5rem calc(0.5rem + 15px);
+        background-color: var(--25-main-second);
+        border-color: var(--bg-hover);
+        border-radius: 0.25rem;
+        color: var(--text-second);
+
+        &::before {
+          grid-area: separator;
+          place-self: center;
+          height: 100%;
+          inset: 0 auto -15px;
+          background-color: var(--25-accent-main);
+          box-shadow: unset;
+        }
+
+        .score,
+        .score::after,
+        .numbers {
+          margin: unset;
+          color: inherit;
+        }
+
+        .score {
+          grid-area: score;
+          place-self: center;
+          width: auto;
+          padding: 0.3rem 0;
+          color: var(--text-bright);
+
+          &::before {
+            inset: 0 auto auto 50%;
+            font-weight: bold;
+            line-height: unset;
+            margin: unset;
+            padding: unset;
+            background-color: var(--bg-main);
+            border-radius: 0.25rem;
+            color: var(--text-second);
+            transform: translate(-50%, -50%);
+          }
+
+          .score-label {
+            width: 100%;
+            padding: 0 1.5rem;
+            background-color: var(--accent-color);
+            border-radius: 100vw;
+          }
+
+          &::after {
+            width: 100%;
+            inset: auto auto 0 50%;
+            margin: unset;
+            transform: translate(-50%, 110%);
+          }
+        }
+
+        .score + div {
+          grid-area: ranking;
+          display: grid !important;
+          align-items: center;
+          margin: 15px 0 0 !important;
+          padding: unset !important;
+        }
+
+        .information-block {
+          grid-area: information;
+          position: static;
+          place-self: center;
+          margin-block-end: 1.5rem;
+        }
+
+        .information {
+          border-color: var(--25-accent-main);
+          color: var(--text-dim);
+        }
+      }
+
+      .user-status-block,
+      .notice_open_public {
+        display: none;
+      }
+    }
+
+    .anime-detail-header-video {
+      width: calc(var(--_height) / 9 * 16) !important;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      margin-inline-start: 1rem;
+      padding: unset !important;
+
+      .video-episode,
+      .video-promotion {
+        width: 100%;
+        height: 100%;
+      }
+
+      :is(.video-episode, .video-promotion) .video-unit {
+        --_size: calc(100% - (var(--img-border-offset-large) * 2) - var(--img-border-size));
+        width: var(--_size);
+        height: var(--_size);
+        margin: var(--img-border-offset-large);
+        border-radius: var(--img-border-radius-large);
+        outline: var(--img-border-size) solid var(--25-accent-main);
+        outline-offset: var(--img-border-offset-large);
+        overflow: hidden;
+
+        &:is(:hover, :focus-visible) {
+          outline-color: var(--accent-color);
+        }
+      }
+
+      .video-unit .title {
+        font-family: var(--ff-main);
+      }
+    }
+
+    /* -- 3.2.4 - Related Entries -- */
+    .related-entries .entries-tile {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      justify-content: center;
+      gap: 0.5rem;
+
+      .entry {
+        position: relative;
+        width: auto;
+        height: 100%;
+        min-height: unset;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.5rem;
+        padding: 0.3rem;
+        border: none;
+        border-radius: 0.3rem;
+      }
+
+      .entry:nth-child(2n + 1)::after {
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        right: -0.25rem;
+        border-color: var(--bg-hover);
+      }
+
+      .entry .image {
+        --img-border-radius: var(--img-border-radius-large);
+        --img-border-offset: var(--img-border-offset-large);
+        max-width: unset;
+        max-height: unset;
+        width: 125px;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        padding: unset;
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+        }
+
+        img {
+          display: none;
+          width: 100%;
+          height: 100%;
+          border: none;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .related-entries .entries-tile .entry:is(:nth-child(4n), :nth-child(4n-1)) {
+      background-color: var(--75-main-hover);
+    }
+
+    /* -- 3.2.5 - Characters & Voice Actors -- */
+    .detail-characters-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1rem;
+    }
+
+    .detail-characters-list .left-column.divider::after {
+      border-color: var(--bg-hover);
+    }
+
+    .detail-characters-list :is(.left-column, .left-right) table:nth-of-type(2n) {
+      background-color: var(--75-main-hover);
+    }
+
+    /* -- 3.2.6 - Opening & Ending Theme -- */
+    .detail-characters-list ~ .di-t {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1rem;
+
+      .di-tc {
+        width: auto !important;
+      }
+
+      .di-tc:nth-child(2) {
+        display: none !important;
+      }
+    }
+
+    .oped-preview-button {
+      width: auto;
+      height: auto;
+      padding: unset;
+      background-image: none !important;
+      filter: unset;
+      cursor: pointer;
+
+      &:is(:hover, :focus-visible) {
+        color: var(--text-main);
+        opacity: unset;
+      }
+
+      &.oped-preview-button-gray {
+        color: color-mix(in oklab, var(--text-dim) 80%, black);
+        cursor: auto;
+      }
+
+      &::before {
+        content: "\f144";
+        font-family: var(--ff-fa);
+        font-size: 1.25rem;
+        line-height: 1;
+      }
+
+      svg {
+        display: none;
+      }
+    }
+
+    .oped-video-button .malicon.malicon-movie-mv {
+      color: var(--accent-color);
+    }
+
+    /* -- 3.2.7 - Episode Videos -- */
+    #episode_video .anime-slide {
+      display: flex;
+      gap: 0.5rem;
+
+      .btn-anime {
+        flex-grow: 1;
+        width: auto !important;
+        margin: unset;
+
+        .link {
+          position: relative;
+          width: auto !important;
+          height: auto !important;
+          aspect-ratio: 16 / 9;
+
+          .title {
+            position: absolute;
+            width: 100% !important;
+            font-family: var(--ff-secondary);
+            font-size: 0.825rem;
+            font-weight: 800;
+            text-shadow: none;
+            color: var(--text-main);
+          }
+        }
+      }
+    }
+
+    /* -- 3.2.8 - Recommendations -- */
+    div:has(> #anime_recommendation) {
+      display: grid;
+      gap: 0.5rem;
+
+      .btn-detail-recommendations-view-all {
+        grid-row: 2;
+        float: unset !important;
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--ff-main);
+        text-decoration: none;
+        padding-block: 0.12rem;
+        background-color: var(--25-main-second);
+        border-block: 2px solid transparent;
+        border-radius: 0.2rem;
+        color: var(--text-main);
+        box-shadow: 0 0 0 1px var(--50-main-hover);
+        opacity: 1;
+        transition: unset;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          border-color: var(--accent-color);
+          border-bottom-color: var(--text-main);
+          color: var(--text-bright);
+        }
+
+        .text {
+          width: auto;
+          height: auto;
+          font-family: inherit;
+          padding: unset;
+          color: inherit;
+        }
+
+        .icon-next {
+          position: relative;
+          inset: unset;
+          width: 25px;
+          height: auto;
+          aspect-ratio: 1;
+          display: grid;
+          place-items: center;
+          margin: unset;
+          background: unset;
+        }
+
+        .icon-chevron {
+          position: unset;
+          inset: unset;
+          color: inherit;
+        }
+      }
+
+      #anime_recommendation {
+        --_items: 6;
+        --_gap: 0.5rem;
+
+        --img-border-radius: var(--img-border-radius-large);
+        --img-border-offset: var(--img-border-offset-large);
+        --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
+        --_img-width: calc(((100cqw - var(--_gap) * (var(--_items) - 1)) / var(--_items)) - var(--_img-margin) * 2);
+        --_slider-height: calc((var(--_img-width) + var(--_img-margin) * 2) * 14 / 9);
+
+        container-type: inline-size;
+
+        .anime-slide-outer {
+          height: var(--_slider-height) !important;
+        }
+
+        .anime-slide {
+          display: flex;
+          gap: var(--_gap);
+        }
+
+        .btn-anime {
+          flex-shrink: 0;
+          width: auto !important;
+          margin: unset;
+        }
+
+        .link {
+          width: auto !important;
+          height: auto !important;
+          margin: var(--img-border-size);
+
+          .title {
+            inset: auto auto var(--img-border-offset) var(--img-border-offset);
+            width: calc(100% - var(--img-border-offset) * 2);
+            min-height: 40px;
+            align-content: center;
+            font-family: var(--ff-main);
+            font-size: 0.785rem !important;
+            font-weight: 500;
+            padding: 0 0.2rem;
+            background: rgb(from var(--50-accent-main) r g b / 0.75);
+            border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
+            color: var(--text-bright);
+            text-shadow: none;
+            opacity: 0;
+            transform: translateY(100%);
+          }
+
+          &:is(:hover, :focus-visible) .title {
+            opacity: 1;
+            transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms 50ms linear;
+            transform: translateY(0);
+          }
+
+          .users {
+            --_inset: 0.2rem;
+            inset: calc(var(--img-border-offset) + var(--_inset)) calc(var(--img-border-offset) + var(--_inset)) auto auto;
+            font-family: var(--ff-main);
+            padding: 0.2rem 0.4rem;
+            text-shadow: none !important;
+            background-color: rgb(from var(--accent-color) r g b / 0.75) !important;
+            border-radius: 100vw;
+            color: var(--text-bright) !important;
+          }
+
+          .image {
+            width: var(--_img-width);
+            height: auto;
+          }
+        }
+      }
+    }
+
+
+    /* -- 3.2.9 - Reviews -- */
+    .anime-info-review__header.mal-navbar,
+    .manga-info-review__header.mal-navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 0.3rem;
+
+      .review-ratio__box {
+        gap: 0.75rem;
+      }
+
+      .review-ratio__bar {
+        height: 3px;
+        bottom: -3px;
+        border-radius: 100vw;
+        overflow: hidden;
+      }
+
+      .review-ratio__box :is(.recommended, .mixed-feelings, .not-recommended) {
+        margin: unset;
+
+        a {
+          color: var(--text-second);
+        }
+
+        a:is(:hover, :focus-visible) {
+          color: var(--_tag-color);
+        }
+
+        i {
+          color: var(--_tag-color);
+        }
+      }
+
+      .review-ratio__bar :is(.recommended__bar, .mixed_feeling__bar, .not-recommended__bar) {
+        background-color: var(--_tag-color);
+        opacity: 0.75;
+      }
+
+      .review-ratio__box .recommended,
+      .review-ratio__bar .recommended__bar {
+        --_tag-color: var(--green-light);
+      }
+
+      .review-ratio__box .mixed-feelings,
+      .review-ratio__bar .mixed_feeling__bar {
+        --_tag-color: var(--orange-light);
+      }
+
+      .review-ratio__box .not-recommended,
+      .review-ratio__bar .not_recommended__bar {
+        --_tag-color: var(--red-light);
+      }
+    }
+
+    /* - 3.2.9.1 - Review Item - */
+    .review-element {
+      margin-block: 0.5rem 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--75-main-second);
+      border: 1px solid var(--75-main-hover);
+      border-radius: 0.3rem;
+
+      .thumbbody {
+        display: grid;
+        grid-template-areas: "thumb username tags" "thumb date tags" "review review review" "rating rating rating" "reaction reaction reaction" "footer footer footer";
+        grid-template-columns: 50px auto 1fr;
+        gap: 0 0.5rem;
+        border: unset;
+
+        .thumb {
+          --img-border-radius: 2px;
+          grid-area: thumb;
+          width: 50px;
+          margin: unset;
+          z-index: 2;
+
+          img {
+            width: calc(100% - (var(--img-border-offset) + var(--img-border-size)) * 2);
+            height: auto;
+            aspect-ratio: 1;
+            margin: calc(var(--img-border-offset) + var(--img-border-size));
+            object-fit: cover;
+            object-position: top;
+          }
+        }
+
+        .body {
+          grid-column: 1 / -1;
+          grid-row: 1 / -1;
+          display: grid;
+          grid-template-columns: subgrid;
+          grid-template-rows: subgrid;
+
+          .update_at {
+            grid-area: date;
+            font-style: italic;
+            color: var(--text-dim);
+          }
+
+          .username {
+            grid-area: username;
+            align-self: center;
+            margin: unset;
+          }
+
+          .tags {
+            grid-area: tags;
+            width: 100%;
+
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.25rem 0.5rem;
+            justify-content: end;
+
+            margin: unset;
+          }
+
+          .tag.tag {
+            font-weight: 400;
+            text-align: right;
+            margin: unset;
+            padding: 0.25rem 0.5rem;
+            background: linear-gradient(90deg, transparent 0%, var(--_tag-color));
+            border: unset;
+            color: var(--text-main);
+          }
+
+          .tag.btn-label:is(:hover, :focus-visible) {
+            background-color: transparent;
+            filter: brightness(1.2);
+          }
+
+          .tag.tag:first-child {
+            width: 100%;
+            order: 1;
+            align-self: start;
+          }
+
+          .tag.recommended {
+            --_tag-color: var(--green-light);
+          }
+
+          .tag.mixed-feelings {
+            --_tag-color: var(--orange-light);
+          }
+
+          .tag.not-recommended {
+            --_tag-color: var(--red-light);
+          }
+
+          .tag.preliminary {
+            order: 2;
+            font-style: italic;
+            margin: unset;
+            background-color: transparent;
+            border: none;
+            color: var(--green-light);
+
+            span {
+              color: var(--text-second);
+            }
+          }
+
+          .tag.tag:has(img) {
+            order: 3;
+            padding: 0.125rem 0.5rem;
+            background-color: var(--50-accent-hover);
+            border: 1px solid transparent;
+          }
+
+          .tag.btn-label:has(img):is(:hover, :focus-visible) {
+            background-color: var(--75-accent-hover);
+            border-color: var(--accent-color);
+            color: var(--text-bright);
+          }
+
+          .tag > img {
+            display: none;
+          }
+
+          .text {
+            grid-area: review;
+            margin-block: 0.5rem;
+            color: var(--text-second);
+
+            .js-visible {
+              margin: unset !important;
+            }
+          }
+
+          .rating {
+            grid-area: rating;
+            font-style: italic;
+            color: var(--accent-color);
+          }
+
+          .notice {
+            display: none !important;
+          }
+
+          .reaction-box,
+          .bottom-navi {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-second);
+            border: 1px solid var(--50-main-hover);
+            border-radius: 0.3rem;
+          }
+
+          .reaction-box {
+            grid-area: reaction;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            color: var(--text-second);
+
+            .btn-showall {
+              color: inherit;
+
+              &:is(:hover, :focus-visible) {
+                color: var(--accent-color);
+              }
+            }
+
+            .btn-reaction {
+              margin: unset;
+              padding: 0.25rem 0.5rem;
+              background-color: var(--bg-main);
+              border-color: var(--bg-main);
+              border-radius: 0.3rem;
+              color: inherit;
+
+              &:is(:hover, :focus-visible, .selected) {
+                background-color: var(--accent-color);
+                border-color: var(--accent-color);
+                color: var(--text-bright);
+              }
+
+              img {
+                display: none;
+              }
+            }
+          }
+
+          .bottom-navi {
+            grid-area: footer;
+            gap: 1rem;
+            padding: 0 0.5rem;
+
+            > * {
+              margin: unset;
+              color: var(--text-second);
+            }
+
+            :is(.readmore, .showless, .open, .gift, .menu) a {
+              color: inherit;
+
+              &:is(:hover, :focus-visible) {
+                color: var(--accent-color);
+              }
+            }
+
+            .icon-reaction {
+              &::after {
+                content: " Reactions";
+              }
+
+              img {
+                display: none;
+              }
+
+              a {
+                color: var(--text-dim);
+
+                &:is(:hover, :focus-visible) {
+                  color: var(--accent-color);
+                }
+              }
+            }
+
+            .menu {
+              min-height: 20px;
+              display: flex;
+              flex-direction: row-reverse;
+              align-items: center;
+              gap: 0.5rem;
+              margin-inline-start: auto;
+            }
+
+            .menu .menu-block {
+              position: unset;
+              inset: unset;
+              padding: unset;
+              background-color: var(--accent-color);
+              border-color: var(--accent-color);
+              border-radius: 0.3rem;
+              color: var(--text-bright);
+              box-shadow: unset;
+              overflow: hidden;
+
+              a {
+                padding: 0.1rem;
+              }
+
+              a:is(:hover, :focus-visible) {
+                background-color: var(--75-accent-hover);
+                color: var(--text-bright);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* - 3.2.9.2 - Reviews - All Reactions Modal - */
+    .review-votes-modal .modal_contents {
+      background-color: var(--bg-main);
+      border-color: var(--bg-hover);
+
+      .head {
+        padding: 0.5rem 1rem;
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+
+        h3 {
+          margin: unset;
+        }
+      }
+
+      .list {
+        scrollbar-width: thin;
+
+        .item .reaction_title {
+          color: var(--text-second);
+        }
+
+        .next p {
+          color: var(--text-second);
+        }
+      }
+
+      .modal_btn_close {
+        top: 7px;
+        right: 0.8rem;
+        background: unset;
+
+        .fa-times-circle::before {
+          content: "\f00d";
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+
+    /* -- 3.2.10 - Characters Tab -- */
+    /* - 3.2.10.1 - Nav - */
+    .anime-character,
+    .manga-character {
+      height: auto;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: end;
+      gap: 1rem;
+      padding: 0.5rem 1rem !important;
+      background-color: var(--bg-hover);
+      border: 1px solid var(--bg-hover);
+      color: var(--text-second);
+
+      > span {
+        float: unset !important;
+        margin: unset !important;
+        color: inherit;
+      }
+
+      /* - 3.2.10.2 - Filter & Sort - */
+      .anime-character-sort-order-block,
+      .manga-character-sort-order-block {
+        top: calc(100% - 2px);
+
+        &.sort {
+          right: 100px;
+        }
+
+        &.language {
+          right: 12px;
+        }
+
+        .sort-order-list {
+          gap: 0.5rem;
+
+          > br {
+            display: none;
+          }
+
+          .btn-sort-order {
+            position: relative;
+            margin: unset;
+            padding-block: unset;
+            font-size: 0.68rem;
+            padding-inline-start: 1.25rem;
+            background: unset;
+          }
+
+          .btn-sort-order.circle {
+
+            &::after {
+              content: "\f111";
+              position: absolute;
+              inset: 1px auto auto 0;
+              width: auto;
+              height: auto;
+              display: unset;
+              font-family: var(--ff-fa);
+              font-size: 1.4em;
+              background: unset;
+            }
+
+            &.selected::before {
+              content: "\f111";
+              position: absolute;
+              inset: 1px auto auto 3px;
+              width: auto;
+              height: auto;
+              font-family: var(--ff-fa);
+              font-size: 0.8em;
+              font-weight: 900;
+              color: var(--accent-color);
+            }
+          }
+
+          .btn-sort-order:not(.circle) {
+            &::before {
+              content: "";
+              position: absolute;
+              inset: 3px auto auto 0;
+              width: 14px;
+              aspect-ratio: 1;
+              border: 1px solid var(--text-second);
+            }
+
+            &::after {
+              all: unset;
+              content: "\f00c";
+              position: absolute;
+              inset: 0 auto auto 2px;
+              font-family: var(--ff-fa);
+              font-size: 0.75rem;
+              font-weight: 900;
+              color: var(--green-light);
+            }
+          }
+        }
+      }
+    }
+
+    /* - 3.2.10.3 - Container - */
+    :is(.anime-character-container, .manga-character-container) > table {
+      padding: 0.5rem;
+
+      &:nth-child(2n) {
+        background-color: var(--75-main-hover);
+      }
+
+      + table {
+        border-top: 1px solid var(--bg-hover);
+      }
+    }
+
+    :is(.anime-character-container, .manga-character-container) > table > tbody > tr {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      grid-template-rows: auto 1fr;
+      grid-template-areas: "image actors" "info actors";
+      gap: 0 0.5rem;
+
+      > td:first-child img {
+        grid-area: image;
+        width: 90px;
+        height: auto;
+      }
+
+      > td:nth-child(2) {
+        grid-area: info;
+      }
+
+      > td:nth-child(3) {
+        grid-area: actors;
+
+        table {
+          width: 100%;
+        }
+
+        tbody {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          place-items: end;
+          gap: 1rem 0.5rem;
+
+          tr {
+            display: grid;
+            grid-template-columns: 1fr auto;
+          }
+        }
+      }
+
+      [style*="color: #787878"] {
+        color: var(--text-dim) !important;
+      }
+
+      .bgColor1 {
+        background-color: transparent;
+      }
+
+      .borderClass {
+        border: none;
+      }
+    }
+
+    /* -- 3.2.11 - Episodes & Videos Tab -- */
+    .page-common .episode-video .floatRightHeader + h2 {
+      font-size: 1rem;
+    }
+
+    .page-common .episode-video .video-providers {
+      font-family: var(--ff-secondary);
+      font-size: 0.725rem;
+      color: var(--text-dim);
+    }
+
+    /* -- 3.2.12 - Stats Tab -- */
+    #summary_stats {
+      font-size: 1rem;
+    }
+
+    /* -- 3.2.13 - Reviews Tab -- */
+    /* - 3.2.13.1 - Nav - */
+    .reviews-horiznav-nav-sort-block {
+      padding: 0.5rem 1rem !important;
+      background-color: var(--bg-hover);
+      border: 1px solid var(--bg-hover);
+      color: var(--text-second);
+
+      .filtered-results-box,
+      .review-sort-and-filter span {
+        color: inherit;
+      }
+
+      .review-sort-and-filter {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .review-sort-and-filter span {
+        margin: unset !important;
+      }
+    }
+
+    /* -- 3.2.14 - User Recommendations Tab -- */
+
+    /* -- 3.2.15 - Stacks Tab -- */
+
+    /* -- 3.2.16 - News Tab -- */
+    .page-common .rightside:has(#horiznav_nav > ul > li > a.horiznav_active[href*="/news"]) {
+
+      div:has(> .sUaidzctQfngSNMH-pdatla),
+      a[name="lower"] {
+        display: none !important;
+      }
+
+      .breadcrumb {
+        padding-inline: unset;
+      }
+
+      > h2 {
+        font-size: 1rem;
+        margin: unset !important;
+      }
+    }
+
+    .page-common #horiznav_nav:has(> ul > li > a.horiznav_active[href*="/news"]) ~ .clearfix {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas: "image title" "image text " "info  info ";
+      gap: 0.5rem;
+      padding-block: 0.5rem;
+      border-bottom: 1px solid var(--bg-hover);
+
+      &:has(> p.spaceit:first-child) {
+        grid-template-columns: unset;
+        grid-template-areas: "title" "text" "info";
+      }
+
+      .picSurround {
+        --_margin: calc(var(--img-border-offset) + var(--img-border-size));
+        grid-area: image;
+        margin: var(--_margin) var(--_margin) 0 !important;
+
+        img {
+          width: 60px;
+          height: auto;
+        }
+      }
+
+      p.spaceit:first-of-type {
+        margin: unset;
+        padding: unset;
+      }
+
+      .lightLink {
+        grid-area: info;
+        margin: unset;
+        padding: 0.5rem 0.5rem;
+        background-color: var(--50-main-second);
+        border-radius: 0.2rem;
+      }
+
+      + .borderClass {
+        display: none;
+      }
+
+      &::after,
+      .clearfix::after {
+        content: unset;
+      }
+    }
+
+    /* -- 3.2.17 - Featured Articles Tab -- */
+    .page-common .breadcrumb:has(> div > a[href*="featured"]) + h2 {
+      font-size: 1rem;
+    }
+
+
+    /* --- 3.3.0 - Anime/Manga Update Box --- */
+    #fancybox-wrap {
+      #fancybox-outer {
+        background-color: var(--bg-main);
+        border: 10px solid var(--bg-hover);
+        border-radius: 0.2rem;
+      }
+
+      #fancybox-inner {
+        width: 100% !important;
+        height: 100% !important;
+        inset: unset !important;
+      }
+
+      #fancybox-close {
+        width: auto;
+        height: auto;
+        top: 0;
+        right: 0;
+        text-decoration: none;
+        background: unset;
+        color: var(--text-main);
+        transition: color 250ms;
+
+        &:is(:hover, :focus-visible) {
+          color: var(--red-light);
+        }
+
+        &::before {
+          content: "\f057";
+          display: inline-block;
+          font-family: var(--ff-fa);
+          font-size: 1.5rem;
+          font-weight: 500;
+          padding: 0.5rem;
+        }
+      }
+
+      .fancy-bg {
+        display: none;
+      }
+    }
+
+    body.ownlist_anime_update #dialog {
+      min-width: 75%;
+      background-color: rgb(from var(--bg-second) r g b / 0.8);
+      border-color: var(--bg-hover);
+      border-radius: 0.2rem;
+
+      .normal_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: unset;
+        padding-block: 0 0.5rem !important;
+        background-color: var(--bg-hover);
+        border: 1px solid var(--bg-hover);
+        color: var(--text-main);
+      }
+
+      #top-submit-buttons {
+        display: none !important;
+      }
+
+      #main-form tbody {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.5rem;
+        padding: 1rem;
+      }
+
+      tr {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: subgrid;
+      }
+
+      td {
+        padding: unset;
+        border: none;
+      }
+
+      .inputtext,
+      .textarea {
+        background-color: var(--bg-hover);
+        border-color: var(--50-main-second);
+
+        &:is(:hover, :focus-visible, :focus-within) {
+          border-color: var(--accent-color);
+          outline: unset;
+        }
+
+        &:disabled {
+          background-color: var(--25-main-hover);
+        }
+      }
+
+      textarea.inputtext,
+      .textarea {
+        border-radius: 0;
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible) {
+          border-color: var(--accent-color);
+        }
+
+        &:focus {
+          background-color: var(--75-main-hover);
+          border-color: var(--accent-color);
+          outline: unset;
+        }
+      }
+
+      input[type="checkbox"] {
+        appearance: none;
+        width: 20px;
+        aspect-ratio: 1;
+        background-color: var(--bg-hover);
+        border: 1px solid var(--50-main-second);
+        cursor: pointer;
+
+        &[id="unknown_start"],
+        &[id="unknown_end"] {
+          transform: translateY(50%);
+        }
+
+        &:is(:hover, :focus-visible) {
+          border-color: var(--accent-color);
+        }
+
+        &:checked {
+          content: var(--tick);
+          background: red;
+          /* TODO: update tick icon as a mask for easier color change */
+        }
+      }
+
+      label:has(input[type="checkbox"]) {
+        cursor: pointer;
+      }
+
+      #advanced-button .separator {
+        border-color: var(--bg-hover);
+      }
+
+      #advanced-button .toggle-button {
+        background-color: var(--bg-hover);
+        color: var(--text-second);
+      }
+
+      .main_submit,
+      .delete_submit {
+        padding: 0.5rem 1rem !important;
+      }
+
+      .delete_submit {
+        --focus-outline-color: var(--red-light);
+        background-color: var(--red-light);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--red-midtone);
+        }
+      }
+    }
+  }
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Forum                                                                                   */
+  /* ======================================================================================= */
+  /* ---- 4.0.0 - Forum ---- */
+  html, .dark-mode {
+    .page-forum {
+      .forum .mal-navbar-group .mal-navbar:first-child {
+        display: flex;
+      }
+
+      .mal-badge.new {
+        background-color: var(--red-midtone);
+      }
+
+      .forum_locheader {
+        font-size: 1.2rem;
+        background-color: transparent;
+        color: var(--text-main);
+      }
+
+      .forum-topic-message .message-header {
+        background-color: var(--bg-hover);
+        color: var(--text-second);
+
+        a:is(:link, :hover, :focus-visible, :visited) {
+          color: var(--text-second);
+        }
+      }
+
+      .forum-topic-message .message-wrapper {
+        .profile {
+          --_gap: 0.2rem;
+          display: grid;
+          grid-template-columns: 20px 1fr;
+          grid-template-areas: "img img" "status name" "team-icon team-icon" "title title" "joined joined" "posts posts";
+          align-items: center;
+          align-content: start;
+          background-color: var(--bg-second);
+          border-color: var(--bg-hover);
+          color: var(--text-second);
+
+          > .tougen-anki-badge {
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
+            display: grid;
+            grid-template-columns: subgrid;
+            grid-template-rows: subgrid;
+            align-items: center;
+          }
+
+          > a {
+            grid-area: img;
+          }
+
+          .username {
+            grid-area: name;
+            font-size: 0.725rem;
+            margin-block-start: var(--_gap);
+            padding: unset;
+          }
+
+          .userstatus {
+            grid-area: status;
+            place-self: center;
+            position: relative;
+            display: grid;
+            place-items: center;
+            margin-block-start: var(--_gap);
+            visibility: hidden;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 8px;
+              aspect-ratio: 1;
+              background-color: currentColor;
+              border-radius: 50%;
+              visibility: visible;
+              animation: blink 5s ease-in-out infinite;
+            }
+
+            &.online {
+              color: var(--green-light);
+            }
+
+            &.offline {
+              color: var(--red-light);
+            }
+          }
+
+          .userinfo.joined {
+            grid-area: joined;
+            margin-block-start: var(--_gap);
+          }
+
+          .userinfo.posts {
+            grid-area: posts;
+            margin-block-start: var(--_gap);
+          }
+
+          .icon-team-title {
+            grid-area: team-icon;
+            width: 100px;
+            text-align: start;
+            margin: unset;
+            margin-block-start: var(--_gap);
+            padding: calc(0.2rem + 1px) !important;
+            border-radius: 0.2rem;
+          }
+
+          .custom-forum-title {
+            grid-area: title;
+            margin-block-start: var(--_gap);
+            padding: 0.2rem;
+            background-color: var(--25-accent-second);
+            border: 1px solid var(--50-accent-hover);
+            border-radius: 0.2rem;
+          }
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          border-color: var(--bg-hover);
+          color: var(--text-second);
+        }
+
+        .content .modified {
+          color: var(--text-dim);
+        }
+      }
+
+      .postActions {
+        margin-block-start: auto;
+      }
+
+      .forum.timeline .mal-navbar.topic-reply-bar.lightblue {
+        background-color: var(--bg-hover);
+      }
+
+      .sig-container {
+        border-color: var(--bg-hover);
+      }
+
+      .forum .message .replied {
+        background-color: rgb(from var(--bg-hover) r g b / 0.45);
+        color: var(--text-second);
+      }
+
+      .forum .message .replied .replied-container .js-replyto-target {
+        color: var(--75-accent-hover);
+      }
+
+      /* --- 4.1.0 - Polls --- */
+      .topic-poll {
+        color: var(--text-second);
+      }
+
+      .topic-poll .topic-poll-result .topic-poll-option .vote .topic-poll-button {
+        background-color: transparent;
+        border-color: var(--accent-color);
+        color: var(--text-main);
+
+        &:is(:hover, :focus-visible),
+        &.voted {
+          background-color: var(--50-accent-hover);
+          border-color: var(--50-accent-hover);
+          color: var(--accent-color);
+        }
+
+        &:is(:hover, :focus-visible)::after {
+          color: var(--accent-color);
+        }
+      }
+
+      .topic-poll .topic-poll-result .scale {
+        border-color: var(--text-dim);
+      }
+
+      /* --- 4.2.0 - Reply Box --- */
+      .topic-reply-box {
+        background-color: var(--25-main-hover);
+
+        .sceditor-container {
+          background-color: var(--bg-main);
+          border-color: var(--bg-hover);
+          color: var(--text-main);
+
+          :is(iframe, textarea) {
+            background-color: inherit;
+            color: inherit;
+          }
+        }
+
+        .sceditor-outer .mal-tabs a.item {
+          color: var(--text-second);
+
+          &.active {
+            background-color: var(--bg-main);
+            border-color: var(--bg-hover);
+          }
+
+          &:is(:hover, :focus-visible):not(.active) {
+            background-color: var(--75-main-second);
+            border-inline-color: var(--25-main-hover);
+            color: var(--75-accent-main-text);
+          }
+        }
+
+        .sceditor-toolbar {
+          padding: 0.25rem;
+          background-color: var(--50-main-second);
+          border-color: var(--bg-hover);
+          color: var(--text-main);
+        }
+
+        .sceditor-group {
+          margin: unset;
+          border-color: var(--25-main-hover);
+          border-radius: unset;
+        }
+
+        .sceditor-button {
+          width: auto;
+          height: auto;
+
+          &:is(:hover, :focus-visible) {
+            background-color: var(--bg-hover);
+            color: var(--text-main);
+          }
+        }
+
+        .sceditor-button div::before {
+          color: var(--text-second);
+        }
+
+        .sceditor-button:is(:hover, :focus-visible) div::before {
+          color: var(--text-main);
+        }
+
+        .sceditor-outer .mal-tab-item.preview {
+          background-color: var(--bg-main);
+          border-color: var(--bg-hover);
+          color: var(--text-main);
+          border-radius: 0 0.2rem 0.2rem 0.2rem;
+        }
+
+        .sceditor-outer .mal-tab-item.edit .sceditor-container {
+          border-radius: 0 0.2rem 0.2rem 0.2rem;
+        }
+
+        .mal-navbar {
+          padding: 0.5rem;
+          border-radius: 0.3rem;
+        }
+      }
+    }
+
+    /* --- 4.3.0 - Forum Widget Item --- */
+    .page-forum {
+      #forumTopics > tbody {
+        display: grid;
+        grid-template-columns: max-content 1fr auto auto;
+
+        > tr {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: subgrid;
+        }
+
+        tr:first-child td {
+          border-top: 1px solid var(--bg-hover) !important;
+        }
+
+        td {
+          border-color: var(--bg-hover);
+        }
+
+        td + td {
+          border-left: none !important;
+        }
+
+        td:nth-child(2) {
+          position: relative;
+        }
+
+        .forum-ignore,
+        td:nth-child(2) > span:first-child {
+          position: relative;
+          width: 2rem;
+          display: grid;
+          place-items: center;
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+        }
+
+        tr > td:last-child {
+          width: auto;
+          padding-inline: 1rem;
+          color: var(--text-second);
+        }
+      }
+
+      .forum_boardrow1 {
+        background-color: var(--75-main-hover);
+      }
+
+      .forum_boardrow2 {
+        width: auto;
+        display: grid;
+        place-items: center;
+        padding: 0 0.5rem;
+        background-color: var(--50-main-hover);
+      }
+    }
+
+    /* -- 4.3.1 - Forum Widget Item - Ignore Button -- */
+    table:is(#forumTopics, .forum-topics) > tbody tr > td:nth-child(2) {
+      .ignore-state-icon {
+        content: "\f056";
+        color: var(--red-midtone);
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 250ms 150ms cubic-bezier(0, 0.55, 0.45, 1);
+
+
+        &:is(:hover, :focus-visible) {
+          content: '\f057';
+          font-size: 1rem;
+          color: var(--red-light);
+          transition: font-size 500ms var(--ease-overshoot-dramatic);
+        }
+
+        &::before {
+          content: inherit;
+        }
+      }
+
+      &:is(:hover, :focus-visible) .ignore-state-icon {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* News                                                                                    */
+  /* ======================================================================================= */
+  /* ---- 5.0.0 - News ---- */
+  html, .dark-mode {
+    body.news {
+      #content.news-content-block {
+        display: grid;
+        grid-template-columns: 1fr 32cqw;
+        padding-inline: unset;
+      }
+
+      .content-left {
+        width: 100%;
+        padding-inline: 0.5rem;
+        border-color: var(--bg-hover);
+      }
+
+      .content-right {
+        width: auto;
+        padding-inline: 0.5rem;
+      }
+
+      .content-right .js-scrollfix-bottom {
+        position: sticky !important;
+        top: 0 !important;
+        bottom: unset !important;
+        width: 100% !important;
+      }
+
+      .news-breadcrumbs {
+        width: auto;
+        border-color: var(--bg-hover) !important;
+      }
+    }
+
+    /* --- 5.1.0 - Categories Filter --- */
+    body.news .menu-category {
+      width: auto;
+      height: unset;
+      display: flex !important;
+      align-items: center;
+      margin-block: 0 0.5rem !important;
+      border: unset;
+
+      > li.fl-r {
+        order: 100;
+        margin-inline-start: auto;
+      }
+
+      .btn-category {
+        font-family: var(--ff-main);
+        font-weight: 600;
+        margin: unset;
+        padding-block-end: 0.5rem;
+        border-bottom: 4px solid var(--50-main-hover) !important;
+        color: var(--text-main);
+
+        &.selected {
+          border-color: var(--_tag-color) !important;
+          color: var(--text-bright);
+        }
+
+        &:is(:hover, :focus-visible) {
+          border-color: var(--_tag-color) !important
+        }
+
+        svg circle {
+          fill: var(--_tag-color)
+        }
+      }
+
+      .btn-edit-tags {
+        font-size: 0.675rem;
+        padding: 0.2rem 0.4rem;
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        border-radius: 100vw;
+        color: var(--text-bright);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-accent-hover);
+          border-color: var(--accent-color);
+        }
+
+        &::before {
+          content: "\f02c";
+          font-family: var(--ff-fa);
+          font-weight: 600;
+          margin-inline-end: 0.5rem;
+        }
+      }
+
+      #all {
+        --_tag-color: var(--tag-color-blue);
+      }
+
+      #cat1 {
+        --_tag-color: var(--tag-color-red);
+      }
+
+      #cat2 {
+        --_tag-color: var(--tag-color-orange);
+      }
+
+      #cat3 {
+        --_tag-color: var(--tag-color-green);
+      }
+
+      #cat4 {
+        --_tag-color: var(--tag-color-purple);
+      }
+
+      #cat5 {
+        --_tag-color: var(--tag-color-pink);
+      }
+
+      #cat6 {
+        --_tag-color: var(--tag-color-gray);
+      }
+    }
+
+    /* --- 5.2.0 - News Article --- */
+    .news-list {
+      margin: unset !important;
+    }
+
+    /*     .page-common .news-list :is(.comment-list, .news-unit) { */
+    .page-common .news-list .news-unit {
+      width: auto;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas: "image title" "image text" "info info";
+      gap: 0.5rem;
+      margin: unset;
+      padding: 1rem 0;
+      border-color: var(--bg-hover);
+      content-visibility: auto;
+
+      &::after {
+        content: unset;
+      }
+
+      &:has(> div > .ad-sas) {
+        /* Hide ads */
+        display: none;
+      }
+
+      .image-link,
+      .picSurround {
+        grid-area: image;
+        width: auto;
+        height: auto;
+        z-index: 2;
+
+        .image {
+          width: 90px;
+          height: auto;
+          aspect-ratio: 5 / 7;
+        }
+      }
+
+      .news-unit-right {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+        gap: 0.5rem;
+        font-family: var(--ff-main);
+        margin: unset;
+
+        > * {
+          padding: unset;
+        }
+      }
+
+      .title {
+        grid-area: title;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .text {
+        grid-area: text;
+        font-family: inherit;
+        font-size: 12px;
+        text-align: justify;
+        color: var(--text-second);
+      }
+
+      .information {
+        grid-area: info;
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+        background-color: var(--50-main-second);
+        border-radius: 0.2rem;
+
+        .info {
+          padding-inline: 0.75rem 0;
+          font-family: inherit;
+          color: var(--text-dim);
+        }
+
+        .pv {
+          border-left-color: var(--text-dim);
+          color: var(--text-second);
+        }
+
+        .comment {
+          grid-column: 1 / -1;
+          grid-row: 1;
+          display: block;
+          text-decoration-style: dashed;
+          padding: unset;
+          color: var(--text-second);
+
+          &:is(:hover, :focus-visible) {
+            color: var(--accent-color);
+          }
+        }
+
+        .tags {
+          --_gap: 0.5rem;
+          display: flex !important;
+          gap: var(--_gap);
+          margin-inline-start: auto;
+          padding-inline: 0 0.75rem;
+          border: none;
+        }
+
+        .tags .tags-inner {
+          height: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: end;
+          gap: inherit;
+        }
+
+        .tags-inner .tags-inner-attributes {
+          margin: unset;
+          padding-inline-end: var(--_gap);
+          border-color: var(--text-dim);
+        }
+
+        .tag {
+          margin: unset !important;
+        }
+      }
+    }
+
+    /* --- 5.3.0 - Right Side --- */
+    body.news .content-right {
+      .mt24:last-child {
+        display: none;
+      }
+
+      /* -- 5.3.1 - Search -- */
+      .featured-side-block {
+        margin-block-end: 1rem !important;
+        padding-block-start: 0.5rem !important;
+
+        > p,
+        > div.mt16 {
+          display: none !important;
+        }
+
+        .featured-search-side {
+          position: relative;
+          display: inline-grid;
+          width: 100%;
+        }
+
+        .featured-search-side::after {
+          all: unset;
+          content: '\f002';
+          position: absolute;
+          top: 50%;
+          right: 0.5rem;
+          display: block;
+          font-family: var(--ff-fa);
+          font-size: 0.85rem;
+          font-weight: 600;
+          transform: translate(0, -50%);
+          opacity: 0.25;
+        }
+
+        .featured-search-input-text {
+          width: auto;
+          height: auto;
+          font-family: var(--ff-main);
+          font-size: 0.8rem;
+          font-weight: 300;
+          padding: 0.3rem 0.6rem;
+          background-color: var(--50-main-second);
+          border: 1px solid var(--25-main-hover);
+          border-radius: 0.2rem;
+          color: var(--text-main);
+          transition: border-color 200ms ease-in-out;
+
+          &::placeholder {
+            color: var(--text-dim);
+          }
+
+          &:focus-visible {
+            outline: unset;
+          }
+
+          &:is(:hover, :focus-visible) {
+            border-color: var(--accent-color);
+          }
+        }
+
+        .featured-search-input-submit {
+          display: none;
+        }
+      }
+
+      /* -- 5.3.2 - Article Blocks -- */
+      :is(.news-side-block, .tag-side-block, .columnist-side-block) {
+        content-visibility: auto;
+        contain-intrinsic-block-size: 250px;
+        padding: unset;
+
+        &:not(:last-child) {
+          margin-block-end: 1rem;
+        }
+      }
+
+      .header {
+        font-family: var(--ff-tertiary);
+        font-size: 0.85rem;
+        border-bottom-color: var(--bg-hover);
+        color: var(--text-main);
+
+        a {
+          font-family: var(--ff-main);
+          font-size: 0.68rem !important;
+        }
+      }
+
+      /* -- 5.3.3 - Articles -- */
+      :is(.news-list, .featured-list) :is(.news, .featured) {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "img title" "info info";
+        gap: 0.3rem 0.75rem;
+        font-family: var(--ff-main);
+        border-bottom-color: var(--bg-hover);
+
+        &::after {
+          content: unset;
+        }
+
+        .thumbs-link,
+        a.thumbs {
+          grid-area: img;
+          width: 75px;
+          height: auto;
+          aspect-ratio: 1;
+          z-index: 2;
+
+          img {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-second);
+            border: unset;
+          }
+        }
+
+        > div {
+          grid-column: 1 / -1;
+          grid-row: 1 / -1;
+          display: grid !important;
+          grid-template-columns: subgrid;
+          grid-template-rows: subgrid;
+        }
+
+        .title {
+          grid-area: title;
+          align-self: start;
+          font-size: 0.8rem;
+        }
+
+        .information {
+          grid-area: info;
+          display: flex !important;
+          gap: 0.2rem;
+          font-size: 0.7rem;
+          padding: unset !important;
+          color: var(--text-second);
+        }
+
+        .information > a.mr8 {
+          margin-inline-end: auto !important;
+        }
+
+        .information .comment {
+          text-decoration: none;
+          color: inherit;
+
+          &:is(:hover, :focus-visible) {
+            color: var(--accent-color);
+          }
+        }
+      }
+
+      /* -- 5.3.4 - Tags -- */
+      .tag-cloud {
+        margin: 0.5rem 0 0;
+
+        .tag {
+          margin: 0 0.5rem 0.5rem 0;
+        }
+      }
+
+      /* -- 5.3.5 - News Team -- */
+      .columnist-side-block {
+        margin: unset !important;
+      }
+
+      .columnist-side-block .columnist-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 0.5rem;
+        padding-block: 0.5rem;
+
+        .columnists-unit-side {
+          width: auto;
+          display: grid;
+          place-items: center;
+          padding: 0.25rem;
+          border-radius: 0.2rem;
+        }
+
+        .btn-columnists {
+          width: max-content;
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+          gap: 0.5rem;
+          text-decoration: none;
+        }
+
+        .name {
+          font-family: var(--ff-main);
+          font-size: 0.725rem;
+          text-decoration: none;
+        }
+
+        br {
+          display: none;
+        }
+      }
+
+      /* -- 5.3.6 - RSS -- */
+      .mt24:has(> a[href="https://myanimelist.net/rss/news.xml"]),
+      div:has(> a[href="https://myanimelist.net/rss/featured.xml"]) {
+        --_bg: #f78b19;
+        position: relative;
+        display: grid;
+        justify-content: end;
+        margin: unset !important;
+        color: var(--_bg);
+
+        > a:first-child {
+          display: none;
+        }
+
+        > a:nth-child(2) {
+          width: 1.5rem;
+          height: 1.5rem;
+          color: transparent;
+          z-index: 2;
+        }
+
+        &::after {
+          content: "\f143";
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-family: var(--ff-fa);
+          font-weight: 900;
+          font-size: 1.5rem;
+          transition: color 250ms ease-in-out;
+        }
+
+        &:has(> a:nth-child(2):is(:hover, :focus-visible))::after {
+          color: lch(from var(--_bg) 80 c h);
+          animation: pulse 250ms var(--ease-bounce-subtle) forwards;
+        }
+      }
+    }
+
+    /* --- 5.4.0 - Tags --- */
+    .page-common .news-list :is(.comment-list, .news-unit) .tags .tag,
+    body.news .tag-side-block .tag-cloud .tag,
+    body.news .news-container .tags .tag,
+    body.news .featured-pickup .featured-pickup-unit .tags .tag {
+      --_tag-color: var(--75-accent-hover);
+      --focus-outline-color: var(--_tag-color);
+      min-height: 24px;
+      align-content: center;
+      font-weight: 500;
+      text-wrap: nowrap;
+      padding: 0 0.3rem;
+      background-color: var(--_tag-color);
+      border-color: var(--_tag-color);
+      color: var(--text-bright);
+
+      &:not(.tag-color-feature-advertorial, .tag-color-feature-spoiler):is(:hover, :focus-visible) {
+        background-color: rgb(from var(--_tag-color) r g b / 0.5);
+      }
+
+      &.tag-color-feature-advertorial:is(:hover, :focus-visible) {
+        background-color: var(--accent-color);
+      }
+
+      &.tag-color-feature-spoiler {
+        --_tag-color: var(--red-midtone);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--red-light);
+        }
+      }
+
+      &.tag-color-feature-events {
+        --_tag-color: var(--tag-color-gray);
+      }
+
+      &.tag-color1 {
+        --_tag-color: var(--tag-color-red);
+      }
+
+      &.tag-color2 {
+        --_tag-color: var(--tag-color-orange);
+      }
+
+      &.tag-color3 {
+        --_tag-color: var(--tag-color-green);
+      }
+
+      &.tag-color4 {
+        --_tag-color: var(--tag-color-purple);
+      }
+
+      &.tag-color5 {
+        --_tag-color: var(--tag-color-pink);
+      }
+
+      &.tag-color6 {
+        --_tag-color: var(--tag-color-gray);
+      }
+    }
+
+    /* --- 5.5.0 - All Tags Page --- */
+    body.news .news-content-block.news-tags .menu-category-tags {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-block-start: 1rem;
+
+      > .fl-r {
+        display: none;
+      }
+
+      /* -- 5.5.1 - Filter Buttons -- */
+      .btn-category {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-family: var(--ff-main);
+        margin: unset;
+        padding: 0.3rem 0.6rem;
+        background-color: var(--bg-second);
+        border: 2px solid var(--_tag-color);
+        border-radius: 0.2rem;
+        color: var(--text-main);
+
+        &:is(:hover, :focus-visible) {
+          background-color: rgb(from var(--_tag-color) r g b / 0.3);
+        }
+
+        .icon-category-svg {
+          width: 6px;
+          height: auto;
+          aspect-ratio: 1;
+        }
+
+        circle {
+          fill: var(--_tag-color);
+        }
+
+        &.tag-color1 {
+          --_tag-color: var(--tag-color-red);
+        }
+
+        &.tag-color2 {
+          --_tag-color: var(--tag-color-orange);
+        }
+
+        &.tag-color3 {
+          --_tag-color: var(--tag-color-green);
+        }
+
+        &.tag-color4 {
+          --_tag-color: var(--tag-color-purple);
+        }
+
+        &.tag-color5 {
+          --_tag-color: var(--tag-color-pink);
+        }
+
+        &.tag-color6 {
+          --_tag-color: var(--tag-color-gray);
+        }
+      }
+
+      /* -- 5.5.2 - Tables -- */
+      ~ div.pt16 {
+        font-family: var(--ff-main);
+
+        #cat-anime {
+          --_tag-color: var(--tag-color-red);
+        }
+
+        #cat-manga {
+          --_tag-color: var(--tag-color-orange);
+        }
+
+        #cat-people {
+          --_tag-color: var(--tag-color-green);
+        }
+
+        #cat-music {
+          --_tag-color: var(--tag-color-purple);
+        }
+
+        #cat-events {
+          --_tag-color: var(--tag-color-pink);
+        }
+
+        #cat-industry {
+          --_tag-color: var(--tag-color-gray);
+        }
+
+        .news-tags-header {
+          font-family: inherit;
+          border-color: var(--bg-hover) !important;
+        }
+
+        .news-tags-table.news tr:nth-of-type(2n + 1) {
+          background-color: var(--50-main-second);
+        }
+
+        .news-tags-table.news td {
+          font-family: inherit;
+          border-color: var(--bg-hover);
+        }
+      }
+    }
+
+    /* -- 5.6.0 - News Article Page -- */
+    body.news .news-content-block .news-breadcrumbs + div.mr8 {
+      margin: unset !important;
+    }
+
+    body.news .news-container {
+      font-family: var(--ff-main);
+
+      .title {
+        background-color: transparent;
+        color: var(--text-main);
+
+        a {
+          text-decoration: none;
+          color: inherit;
+
+          &:is(:hover, :focus-visible) {
+            color: var(--accent-color);
+          }
+        }
+      }
+
+      .news-info-block {
+        margin-block: 0.5rem !important;
+        padding: 0.5rem;
+        background-color: var(--bg-second);
+        border-radius: 0.2rem;
+      }
+
+      .information {
+        display: flex;
+        gap: 0.2rem;
+        font-family: var(--ff-main);
+        margin: unset !important;
+        color: var(--text-second);
+
+        .comment {
+          text-decoration: none;
+          margin-inline-start: auto;
+          color: inherit;
+
+          &:is(:hover, :focus-visible) {
+            color: var(--accent-color);
+          }
+        }
+      }
+
+      .content {
+        font-family: var(--ff-main);
+        font-size: 0.785rem;
+        text-align: justify;
+        color: var(--text-second);
+      }
+
+      .tags {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        background-color: var(--50-main-second);
+        border-radius: 0.2rem;
+      }
+
+      .tag {
+        margin: unset;
+      }
+    }
+
+    /* -- 5.6.1 - Comments -- */
+    /* - 5.6.1.1 - Comments Header - */
+    body.news .mr8:has(> .news-container) ~ h2.mr8 {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--ff-main);
+      font-size: 0.875rem;
+      margin: unset !important;
+      padding: 0.5rem;
+      background-color: var(--bg-hover);
+
+      > span {
+        padding: unset !important;
+      }
+    }
+
+    /* - 5.6.1.2 - Comments List - */
+    body.news .mr8:has(> .news-container) ~ h2.mr8 + .news-list {
+      border: 1px solid var(--bg-hover);
+    }
+
+    .news .news-list .comment-list {
+      --_bg: var(--75-main-second);
+      width: auto;
+      font-family: var(--ff-main);
+      background-color: var(--_bg);
+      border-color: var(--bg-hover);
+
+      &:nth-child(2n) {
+        background-color: var(--_bg);
+      }
+
+      &:last-child {
+        border: none;
+      }
+
+      .text {
+        font-family: inherit;
+        font-size: 0.75rem;
+        color: var(--text-second);
+      }
+
+      .information {
+        margin-block-start: 0.5rem;
+      }
+
+      .info {
+        color: var(--text-dim);
+      }
+
+      .quotetext {
+        padding: 8px;
+        background-color: rgb(from var(--bg-hover) r g b / 0.45);
+        border: none;
+        color: inherit;
+      }
+    }
+
+    /* --- 5.7.0 - Featured Articles --- */
+    body.news .featured-content-block-outer {
+      width: auto;
+      margin: unset;
+      border-color: var(--bg-hover);
+
+      .featured-pickup {
+        content-visibility: auto;
+        contain-intrinsic-block-size: 375px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-block-end: 1rem;
+        padding: unset;
+      }
+
+      .featured-pickup .featured-pickup-unit {
+        min-height: 375px;
+        display: grid;
+        grid-template-rows: auto auto 1fr 40px;
+        gap: 0.5rem;
+        padding: unset;
+        background-color: var(--50-main-second);
+        border-radius: 0.3rem;
+        overflow: hidden;
+
+        .image {
+          width: 100%;
+          margin: unset;
+          box-shadow: unset;
+        }
+
+        .title,
+        .text,
+        .information {
+          width: auto;
+          margin: unset;
+          padding-inline: 0.75rem;
+        }
+
+        .text {
+          line-height: 1.5;
+          text-align: justify;
+          color: var(--text-second);
+        }
+
+        .information {
+          display: flex;
+          align-items: center;
+          padding-block: 0.5rem;
+          background-color: var(--bg-second);
+
+          .info {
+            color: var(--text-dim);
+          }
+
+          .pv {
+            border-color: var(--text-dim);
+            color: var(--text-second);
+          }
+
+          .tags {
+            margin-inline-start: auto !important;
+            border: none;
+          }
+
+          .tags-pickup-inner {
+            height: auto;
+          }
+
+          .tag {
+            margin: unset;
+          }
+        }
+      }
+
+    }
+
+    /* --- 5.8.0 - Featured News Widget --- */
+    .detail-page-featured-article .news-list .news-unit {
+      width: auto;
+    }
+
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Industry Lists                                                                          */
+  /* ======================================================================================= */
+  /* ---- 6.0.0 - Industry Lists ---- */
+  html, .dark-mode {
+    #content:has(> .people-favorites-ranking-table),
+    #content:has(> .characters-favorites-ranking-table),
+    .ranking-company {
+
+      /* --- 6.1.0 - Filter Bar (Alphabet Letters) --- */
+      #horiznav_nav {
+        margin-block: 1rem 0.5rem !important;
+        padding: unset;
+        border: unset;
+
+        ul {
+          display: grid;
+          grid-auto-flow: column;
+          gap: 0.25rem;
+        }
+
+        ul li {
+          min-width: 25px;
+          width: auto;
+          height: auto;
+          aspect-ratio: 1;
+          background: unset;
+          border-radius: 0.2rem;
+        }
+
+        ul li a {
+          --_bg: var(--25-main-second);
+          width: 100%;
+          height: 100%;
+          display: block;
+          align-content: center;
+          font-family: var(--ff-main);
+          font-size: 1.2rem;
+          font-weight: 900;
+          border-radius: inherit;
+          padding: unset;
+          background-color: var(--_bg);
+          border: 2px solid var(--_bg);
+          color: var(--text-bright);
+
+          &:is(:hover, :focus-visible) {
+            --_bg: var(--accent-color);
+            border-bottom-color: var(--text-bright);
+            color: var(--text-bright);
+            outline: unset;
+          }
+        }
+      }
+    }
+
+    /* --- 6.2.0 - Search Bar --- */
+    .people-search-form-search,
+    .characters-search-form-search {
+      position: relative;
+      margin: 1rem auto;
+      padding: unset !important;
+
+      &::after {
+        content: "\f002";
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        height: unset;
+        aspect-ratio: 1;
+        display: block;
+        font-family: var(--ff-fa);
+        font-size: 1rem;
+        font-weight: 900;
+        color: var(--text-dim);
+        visibility: visible;
+        translate: 0 -50%;
+      }
+
+      form {
+        width: 100%;
+      }
+
+      .inputtext {
+        width: 100%;
+        font-family: var(--ff-main);
+        font-size: 1rem;
+        border: 1px solid var(--25-main-hover);
+        border-radius: 100vw;
+
+        &::placeholder {
+          font-weight: 400;
+        }
+
+        &:is(:hover, :focus-visible) {
+          border-color: var(--accent-color);
+          outline: unset;
+        }
+      }
+
+      .inputButton {
+        display: none;
+      }
+    }
+
+
+    /* --- 6.3.0 - Table --- */
+    .top-rank-header2 {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      font-family: var(--ff-tertiary);
+      font-size: 1.4rem !important;
+      margin-block: 1rem 0.5rem !important;
+      padding-block-end: 0.5rem !important;
+      border-bottom-width: 1px !important;
+
+      .floatRightHeader {
+        margin-inline-start: auto;
+        padding: unset;
+      }
+    }
+
+    .people-favorites-ranking-table,
+    .characters-favorites-ranking-table,
+    .company-favorites-ranking-table {
+      .table-header td {
+        font-family: var(--ff-secondary);
+        font-size: 0.825rem;
+        font-weight: 600;
+        background-color: var(--accent-color);
+        border: none;
+        color: var(--text-bright);
+
+        &:first-child,
+        &:last-child {
+          border: none;
+        }
+
+        &:is(.people, .character, .animeography, .mangaography, .company, .popularity, .score, ) {
+          text-align: start;
+        }
+      }
+
+      tr.ranking-list td {
+        background-color: var(--75-main-hover);
+        border: none;
+      }
+
+      tr.ranking-list:nth-of-type(2n + 1) td {
+        background-color: var(--50-main-hover);
+      }
+
+      tr.ranking-list :is(.birthday, .numofanime, .favorites) {
+        color: var(--text-second);
+      }
+
+      tr.ranking-list .rank span {
+        font-family: var(--ff-accent);
+
+        &.rank1 {
+          font-size: 2.75rem;
+        }
+      }
+
+      tr:last-of-type {
+        border: none;
+      }
+    }
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* User                                                                                    */
+  /* ======================================================================================= */
+  /* ---- 7.0.0 - User ---- */
+  html, .dark-mode {
+    .shared-table {
+      .shared-match {
+        background-color: var(--50-main-hover);
+      }
+
+      .shared-core-lower {
+        color: var(--green-light);
+      }
+
+      .shared-core-higher {
+        color: var(--red-light);
+      }
+
+      tbody tr:last-child {
+        display: none;
+      }
+    }
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Settings                                                                                */
+  /* ======================================================================================= */
+  /* ---- 8.0.0 - Settings ---- */
+  html, .dark-mode {
+    form[name="picture_form"] .inputButton {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem !important;
+    }
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Stacks                                                                                  */
+  /* ======================================================================================= */
+  /* ---- 9.0.0 - Stacks ---- */
+  html, .dark-mode {
+    .stacks {
+      h3.underline {
+        border-color: var(--bg-hover);
+      }
+
+      .content-left {
+        border-color: var(--bg-hover);
+      }
+
+      /* --- 9.1.0 - Header --- */
+      .breadcrumbs_area.underline {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        margin: unset;
+        padding: 0.5rem 0;
+        border: unset;
+
+        .breadcrumb {
+          padding: unset;
+        }
+
+        .btn-show-spoilers {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: unset;
+          color: var(--text-dim);
+
+          i.fas {
+            margin: unset;
+            color: var(--text-dim);
+          }
+
+          &.on i.fas {
+            color: var(--accent-color);
+          }
+        }
+      }
+
+      /* --- 9.2.0 - Highlighted Content --- */
+      .content {
+        --_section-bg: var(--50-main-second);
+        display: grid;
+        gap: 3rem;
+        margin-block-end: 1rem;
+        margin-inline: -10px;
+        padding: 1rem;
+        background-color: var(--_section-bg);
+      }
+
+      .column-1,
+      /*.column-2, */
+      .column-3 {
+        margin: unset;
+        padding: unset;
+      }
+
+      /* -- 9.2.1 - Highlighted Content - Single Stack -- */
+      .column-1 {
+        display: grid;
+        grid-template-columns: auto 60cqw;
+        gap: 3rem;
+
+        > a .img .edge {
+          transform-origin: top left;
+
+          &:nth-child(1) {
+            transform: translate(12%, 10%) rotate(-8deg);
+
+            &:is(:hover, :focus-visible) {
+              transform: translate(15%, 5%) rotate(-4deg);
+            }
+          }
+
+          &:nth-child(2) {
+            transform: translate(-40%, 2%);
+
+            &:is(:hover, :focus-visible) {
+              transform: translateX(-20%);
+            }
+          }
+
+          &:nth-child(3) {
+            transform: translate(-90%, 2%) rotate(5deg);
+
+            &:is(:hover, :focus-visible) {
+              transform: translate(-65%, 8%) rotate(-5deg);
+            }
+          }
+        }
+
+        > a .img:has(.edge:nth-child(2):is(:hover, :focus-visible)) .edge:nth-child(1) {
+          transform: translate(5%, 10%) rotate(-8deg);
+        }
+
+        > a .img:has(.edge:nth-child(3):is(:hover, :focus-visible)) .edge:nth-child(2) {
+          transform: translate(-50%, 2%);
+        }
+
+        .detail {
+          padding: unset;
+        }
+      }
+
+      /* -- 9.2.2 - Highlighted Content - Triple Stack -- */
+      .column-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem;
+
+        .column-item {
+          display: grid;
+          grid-template-rows: auto 1fr;
+          gap: 0.5rem;
+          padding: unset;
+
+          .img .edge {
+            --_origin-scale: 0.98;
+
+            &:nth-child(1) {
+              transform: scale(var(--_origin-scale));
+
+              &:is(:hover, :focus-visible) {
+                transform: translateY(-2%) rotate(-3deg);
+              }
+            }
+
+            &:nth-child(2) {
+              transform: translateX(-50%) scale(var(--_origin-scale));
+
+              &:is(:hover, :focus-visible) {
+                transform: translate(-35%, -5%) rotate(-5deg);
+              }
+            }
+
+            &:nth-child(3) {
+              transform: translateX(-100%) scale(var(--_origin-scale));
+
+              &:is(:hover, :focus-visible) {
+                transform: translateX(-92%) rotate(5deg);
+              }
+            }
+          }
+
+          .img:has(.edge:nth-child(2):is(:hover, :focus-visible)) .edge:nth-child(1) {
+            transform: translateX(-8%) scale(var(--_origin-scale));
+          }
+
+          .img:has(.edge:nth-child(3):is(:hover, :focus-visible)) .edge:nth-child(2) {
+            transform: translateX(-60%) scale(var(--_origin-scale));
+          }
+
+        }
+      }
+
+      /* --- 9.3.0 - Stack Images --- */
+      .column-1 > a,
+      .column-3 .column-item {
+        container-type: inline-size;
+
+        .img {
+          display: flex;
+          width: 100cqw;
+          height: auto;
+
+          .edge {
+            position: unset;
+            width: auto;
+            height: auto;
+            transition: transform 450ms var(--ease-overshoot-smooth);
+            transform-origin: bottom left;
+          }
+
+          img {
+            --_margin: calc(var(--img-border-offset) * 2);
+            --img-border-offset: var(--img-border-offset-large);
+            --img-border-radius: var(--img-border-radius-large);
+            max-width: unset;
+            max-height: unset;
+            width: calc(100cqw / 2 - var(--_margin));
+            height: auto;
+            aspect-ratio: 225 / 320;
+            box-shadow: 0 0 0 calc(var(--img-border-offset) + var(--img-border-size)) var(--_section-bg);
+          }
+
+        }
+      }
+
+      /* --- 9.4.0 - Stack details --- */
+      #content .detail {
+        width: auto;
+
+        .title {
+          margin: unset;
+          padding: unset;
+        }
+
+        .tag {
+          margin: unset;
+        }
+      }
+
+      .detail {
+        display: grid;
+        gap: 0.5rem;
+
+        .foot {
+          display: flex;
+          align-items: end;
+          gap: 0.5rem;
+
+          .stat {
+            width: auto;
+            margin-inline-end: auto;
+            color: var(--text-dim);
+          }
+
+          .stack-balloon {
+            margin: unset;
+          }
+
+          /* -- 9.4.1 - Report Button -- */
+          .btn-report {
+            position: relative;
+            display: grid;
+            place-items: center;
+
+            .btn-report-child {
+              position: static;
+            }
+
+            .far.fa-ellipsis-h {
+              padding: 0.1rem 0.2rem;
+              border-radius: 0.2rem;
+              color: var(--text-dim);
+
+              &:is(:hover, :focus-visible) {
+                background-color: color-mix(in srgb, var(--bg-main), var(--red-dark));
+                color: var(--red-light);
+              }
+            }
+
+            &.on .fa-ellipsis-h {
+              color: var(--red-midtone);
+            }
+
+            .report-block {
+              --focus-outline-color: var(--yellow-light);
+              inset: auto 50% 100% auto;
+              padding: unset;
+              background-color: var(--red-dark);
+              border: 2px solid var(--red-midtone);
+              border-radius: 0.2rem;
+              color: var(--text-main);
+              transform: translateX(50%);
+
+              &:is(:hover, :focus-visible) {
+                background-color: var(--red-dark);
+                border-color: var(--red-light);
+                color: var(--text-bright);
+              }
+
+              &::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                width: 12px;
+                aspect-ratio: 1;
+                display: block;
+                background-color: inherit;
+                border-bottom: 2px solid;
+                border-right: 2px solid;
+                border-color: inherit;
+                transform: translate(-50%, -5px) rotate(45deg);
+              }
+            }
+
+            .report-item {
+              padding: unset;
+              text-align: center;
+
+              a {
+                display: block;
+                padding: 0.5rem 1rem;
+                color: inherit;
+                outline-offset: 4px;
+              }
+            }
+          }
+        }
+
+        .time_left {
+          color: var(--red-light);
+        }
+      }
+
+      /* --- 9.5.0 - Tags --- */
+      .tag {
+        span:not(.by) {
+          min-height: 24px;
+          display: inline-block;
+          align-content: center;
+          font-weight: 500;
+          text-wrap: nowrap;
+          padding: 0 0.5rem;
+          background-color: var(--_tag-color);
+          border-radius: 2px;
+          color: var(--text-bright);
+        }
+
+        .by {
+          margin-inline: 0.2rem 0;
+        }
+
+        .tag-anime {
+          --_tag-color: var(--tag-color-red);
+        }
+
+        .tag-manga {
+          --_tag-color: var(--tag-color-orange);
+        }
+
+        .tag-challenge {
+          --_tag-color: var(--tag-color-blue);
+        }
+      }
+
+      .search-side .quick-search a {
+        --focus-outline-color: var(--_tag-color);
+        min-height: 24px;
+        align-content: center;
+        font-weight: 500;
+        text-decoration: none;
+        text-wrap: nowrap;
+        background-color: var(--_tag-color);
+        border-color: var(--_tag-color);
+        border-radius: 2px;
+        color: var(--text-bright);
+
+        &:is(:hover, :focus-visible) {
+          background-color: rgb(from var(--_tag-color) r g b / 0.5);
+        }
+
+        &[data-ga-click-param="type:anime"] {
+          --_tag-color: var(--tag-color-red);
+        }
+
+        &[data-ga-click-param="type:manga"] {
+          --_tag-color: var(--tag-color-orange);
+        }
+
+        &[data-ga-click-param="type:myanimelist"] {
+          --_tag-color: var(--tag-color-blue);
+        }
+      }
+
+      /* --- 9.6.0 - Restack Icon --- */
+      .stack-balloon .fas {
+        color: var(--text-dim);
+      }
+
+      .stack-balloon.on .fas:not(:hover, :focus-visible),
+      .stack-balloon:not(.on) .fas:is(:hover, :focus-visible) {
+        color: var(--accent-color);
+      }
+
+      .stack-balloon.on .balloon p {
+        color: var(--accent-color);
+      }
+
+      /* --- 9.7.0 - Restacks Users Count --- */
+      .stack-balloon .balloon {
+        --_bg: var(--25-main-hover);
+        --_border-color: var(--text-dim);
+        min-width: 30px;
+        font-family: var(--ff-main);
+        text-align: center;
+        background-color: var(--_bg);
+        border-color: var(--_border-color);
+
+        &::before {
+          top: 0;
+          left: 0;
+          width: 7.5px;
+          height: auto;
+          aspect-ratio: 1;
+          margin: unset;
+          background-color: var(--_bg);
+          border: 1px solid var(--_border-color);
+          border-right: unset;
+          border-bottom: unset;
+          transform: translate(-4.5px, 7.5px) rotate(-45deg);
+        }
+
+        &::after {
+          content: unset;
+        }
+
+        p {
+          color: var(--text-second);
+        }
+      }
+
+
+      /* --- 9.8.0 - Main Content - Recent Lists --- */
+      .recent-list {
+        margin-block: 0.5rem;
+
+        .column-item {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 0.5rem;
+          padding: 0.5rem 0;
+          border-color: var(--bg-hover);
+
+          .detail {
+            display: grid;
+            gap: 0.5rem;
+            padding: unset;
+
+            .title {
+              width: auto;
+              margin: unset;
+              padding: unset;
+            }
+
+            .tag {
+              margin: unset;
+            }
+
+            .text {
+              width: auto;
+            }
+          }
+        }
+      }
+
+      /* --- 9.9.0 - Right Side - Search --- */
+      .search-side .js-search-area form {
+        input {
+          width: 100%;
+          height: auto;
+          font-family: var(--ff-main);
+          font-size: 0.8rem;
+          font-weight: 300;
+          padding: 0.3rem 0.6rem;
+          background-color: var(--50-main-second);
+          border: 1px solid var(--25-main-hover);
+          border-radius: 0.2rem;
+          color: var(--text-main);
+          transition: border-color 200ms ease-in-out;
+
+          &::placeholder {
+            color: var(--text-dim);
+          }
+
+          &:focus-visible {
+            outline: unset;
+          }
+
+          &:is(:hover, :focus-visible) {
+            border-color: var(--accent-color);
+          }
+        }
+
+        button {
+          display: none;
+        }
+      }
+
+      /* -- 9.9.1 - Right Side - Lists -- */
+      .side-list .column-item {
+        width: 100%;
+        border-color: var(--bg-hover);
+
+        .img {
+          width: 70px;
+          height: auto;
+          aspect-ratio: 10 / 14;
+
+          img {
+            max-width: unset;
+            max-height: unset;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Watch Anime                                                                             */
+  /* ======================================================================================= */
+  /* ---- 10.0.0 - Watch Anime ---- */
+  html, .dark-mode {
+
+    /* --- 10.1.0 - Nav --- */
+    .watch .video-menu-category {
+      margin-block-end: 0.5rem !important;
+      border-color: var(--bg-hover);
+
+      .btn-category {
+        background-color: var(--bg-second);
+        color: var(--text-second);
+
+        &:is(.on, :hover, :focus-visible) {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+
+      .btn-hide-blocked-video {
+        color: var(--text-second);
+      }
+    }
+
+
+    /* --- 10.2.0 - Body --- */
+    .watch-video {
+      margin: unset !important;
+
+      .video-block {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.5rem;
+        justify-items: center;
+        padding-inline: calc(0.5rem + var(--img-border-offset) + var(--img-border-size));
+      }
+
+      .video-list-outer-vertical {
+        width: 100%;
+        height: auto;
+        margin: unset;
+
+        .video-list {
+          width: calc(100% - (var(--img-border-offset-large) + var(--img-border-size)) * 2);
+          height: auto;
+          aspect-ratio: 16 / 24;
+          margin: calc(var(--img-border-offset-large) + var(--img-border-size));
+          outline: var(--img-border-size) solid var(--25-accent-main);
+          outline-offset: var(--img-border-offset-large);
+          border-radius: var(--img-border-radius-large);
+          opacity: 1;
+          transition: outline-color 250ms ease-in-out;
+
+          &:is(:hover, :focus-visible) {
+            outline-color: var(--accent-color);
+            opacity: 1;
+
+            img {
+              opacity: 0.7;
+            }
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+          }
+
+          &:has(img[src="https://cdn.myanimelist.net/images/icon-banned-youtube-rect.png"]) {
+            align-content: center;
+            background: var(--bg-second);
+
+            &::before {
+              content: "\f608";
+              display: block;
+              font-family: var(--ff-fa);
+              font-size: 4rem;
+              font-weight: 800;
+              text-align: center;
+            }
+
+            &::after {
+              content: "Not Available in Your Country";
+              display: block;
+              font-family: var(--ff-main);
+              font-size: 1.125rem;
+              font-weight: 600;
+              text-align: center;
+              text-wrap: balance;
+              margin-block: 1.5rem 2rem;
+            }
+
+            > img {
+              display: none;
+            }
+          }
+
+          .info-container {
+            width: 100%;
+
+            .title,
+            a {
+              font-family: var(--ff-secondary);
+              font-size: 0.825rem;
+              font-weight: 800;
+              text-shadow: none;
+              color: var(--text-main);
+            }
+
+            a:is(:hover, :focus-visible) {
+              background-color: var(--75-accent-second);
+              color: var(--text-bright);
+              outline: none;
+            }
+          }
+        }
+
+        .video-info-title {
+          font-size: 0.8rem;
+          color: var(--accent-color);
+        }
+
+        /* CSS-Trick: clamp video title to 2 lines */
+        .video-info-title {
+          height: unset;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: block-axis;
+        }
+      }
+    }
+
+  }
+
+  /* --- 10.3.0 - Watch Anime - Single Anime Pages - Episodes Tab --- */
+  :is(html, .dark-mode) .page-common
+  /* table:has(> tbody > tr > td > div.has-multi-episodes-info) */
+    {
+    .has-multi-episodes-info {
+      margin-block: 0.5rem !important;
+      padding: 0.3rem 0.5rem;
+      background-color: var(--bg-hover);
+      border-radius: 0.2rem;
+
+      .fn-grey2 {
+        color: var(--text-second) !important;
+      }
+    }
+
+    /* -- 10.3.1 - Video Player -- */
+    .contents-video-embed .video-embed .btn-embedded-denied {
+      width: auto;
+      height: auto;
+      aspect-ratio: 2.33 / 1;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      background-color: var(--bg-second);
+      border: 3px dashed var(--25-accent-second);
+      border-radius: 0.2rem;
+
+      span {
+        position: unset;
+        inset: unset;
+        margin: unset;
+        color: var(--text-main);
+      }
+
+      img {
+        display: none;
+      }
+    }
+
+    /* -- 10.3.2 - Current Episode Details -- */
+    .user-status-block .btn-forum-episode {
+      font-family: inherit;
+      background-color: var(--75-accent-second);
+      border-color: var(--accent-color);
+      color: var(--text-bright);
+
+      &:is(:hover, :focus-visible) {
+        background-color: var(--50-accent-hover);
+      }
+
+      span {
+        font-family: var(--ff-secondary);
+        color: var(--text-main);
+      }
+    }
+
+    .contents-video-embed .episode-information {
+      background-color: var(--25-main-hover);
+
+      .video-providers {
+        font-family: inherit;
+        color: var(--text-second);
+      }
+    }
+
+    .contents-video-embed .btn-rect {
+      font-family: inherit;
+      border-color: var(--accent-color);
+
+      &:is(:hover, :focus-visible) {
+        background-color: var(--50-accent-hover);
+        color: var(--text-main);
+      }
+
+      &.on {
+        background-color: var(--75-accent-hover);
+        color: var(--text-main);
+      }
+    }
+
+    /* -- 10.3.3 - Episode List - Carousel -- */
+    .contents-video-embed .episode-information + div {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+
+      .btn-video-anime-slide.hori:is([data-dir="prev"], .prev, [data-dir="next"], .next) {
+        background-color: var(--25-main-second);
+        border: 1px solid var(--bg-hover);
+        color: var(--text-main);
+        transition: 150ms linear;
+        transition-property: background-color, border-color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          border-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+
+      .video-anime-slide-block {
+        --_gap: 0.5rem;
+        width: auto;
+        height: auto;
+        display: flex;
+        padding: 0.25rem 0;
+        border-color: var(--bg-hover);
+        container-type: inline-size;
+
+        .video-anime-slide-outer {
+          width: 100%;
+          height: auto;
+        }
+
+        .video-anime-slide {
+          height: 100%;
+          display: flex;
+          gap: var(--_gap);
+        }
+
+        .video-anime-slide .btn-anime {
+          width: calc((100cqw - (var(--_gap) * 2)) / 3);
+          height: 100%;
+          padding: unset;
+          background-color: var(--25-main-second);
+          border: 2px solid transparent;
+          border-radius: 0.2rem;
+          transition: background-color 75ms linear, outline-color 150ms linear;
+
+          &:is(:hover, :focus-visible) {
+            border-color: var(--accent-color);
+            outline: unset;
+          }
+
+          .link {
+            width: auto;
+            height: 100%;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            background: unset;
+
+            &::after {
+              content: unset;
+            }
+          }
+
+          span[title="Paid"] {
+            display: none;
+          }
+
+          .icon-pay {
+            width: auto;
+            height: auto;
+            display: block;
+            inset: auto 5px 5px auto;
+            font-size: 1.125rem;
+            line-height: 1;
+          }
+
+          .link img {
+            height: 100%;
+          }
+
+          .text {
+            margin: unset;
+            padding-inline: 0.5rem;
+            color: var(--text-second);
+          }
+
+          .episode-number {
+            color: var(--text-main);
+          }
+
+          &.play :is(.icon-play, .episode-number) {
+            color: var(--accent-color);
+          }
+        }
+      }
+    }
+
+
+    /* -- 10.3.4 - Characters & Voice Actors List -- */
+    &.anime_episode_detail #horiznav_nav + div tbody tr > td > div.mb12 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.25rem;
+      margin-block-end: 0.25rem !important;
+
+      &::after {
+        content: unset;
+      }
+
+      table {
+        flex: 1;
+        width: unset;
+        padding: 0.5rem;
+        background-color: var(--75-main-second);
+        border: 1px solid var(--50-main-second);
+        border-radius: 0.2rem;
+      }
+
+      &:nth-child(2n) table {
+        background-color: var(--25-main-second);
+        border-color: var(--bg-second);
+      }
+
+      td:first-child {
+        width: 30px;
+
+        img {
+          width: 100%;
+        }
+
+        &::after {
+          content: unset;
+        }
+      }
+
+      td:nth-child(2) {
+        display: grid;
+        grid-template-areas: "name actor" "name actor" "name actor";
+        margin-inline-start: 0.5rem;
+        padding: unset !important;
+
+        p {
+          grid-area: actor;
+          grid-row: 1 / -1;
+        }
+      }
+    }
+
+    /* --- 10.4.0 - Watch Anime - Single Anime Pages - Videos Tab --- */
+    /* -- 10.4.1 - Episode List Block -- */
+    .video-block.episode-video .outside-region .outside-region-block {
+      display: grid;
+      place-items: center;
+      background: linear-gradient(transparent, rgb(from var(--bg-main) r g b / 0.6), var(--bg-main));
+
+      &::after {
+        content: "\f078";
+        font-family: var(--ff-fa);
+        font-size: 1.5rem;
+        font-weight: 900;
+        text-align: center;
+        border-radius: 50%;
+        color: var(--text-main);
+      }
+
+      &:is(:hover, :focus-visible)::after {
+        transform: translate(0, 5px) scale(1.2);
+        transition: transform 350ms ease-in-out;
+      }
+    }
+
+    .video-block.episode-video .js-video-list-content,
+    .video-block:not(.episode-video) section {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.5rem;
+
+      .video-list-outer {
+        --_margin: calc(var(--img-border-offset-large) + var(--img-border-size));
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin: unset;
+      }
+
+      .video-list {
+        width: calc(100% - var(--_margin) * 2);
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin: var(--_margin);
+        border-radius: var(--img-border-radius-large);
+        outline: var(--img-border-size) solid var(--25-accent-main);
+        outline-offset: var(--img-border-offset-large);
+
+        &:is(:hover, :focus-visible) {
+          outline-color: var(--accent-color);
+          opacity: 1;
+
+          img {
+            opacity: 0.7;
+          }
+        }
+
+        > img {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16 / 9;
+          border-radius: inherit;
+          object-fit: cover;
+        }
+
+        .title {
+          font-family: var(--ff-main);
+          font-size: 0.825rem;
+          text-shadow: unset;
+          color: var(--text-main);
+        }
+      }
+
+      /* - 10.4.1.1 - Thumbnail for videos "not available in your country" - */
+      .video-list:has(img[src="https://cdn.myanimelist.net/images/icon-banned-youtube.png"]) {
+        align-content: center;
+        text-decoration: none;
+        background: var(--bg-second);
+        color: var(--text-second);
+
+        &::before {
+          content: "\f608";
+          display: block;
+          font-family: var(--ff-fa);
+          font-size: 2.725rem;
+          font-weight: 800;
+          line-height: 1;
+          text-align: center;
+          margin-block-start: 0.5rem;
+        }
+
+        &::after {
+          content: "Not Available in Your Country";
+          display: block;
+          font-family: var(--ff-main);
+          font-size: 1.2rem;
+          font-weight: 600;
+          line-height: 1;
+          text-align: center;
+          text-wrap: balance;
+          margin-block: 1rem 2rem;
+        }
+
+
+        > img {
+          display: none;
+        }
+      }
+
+
+      /* - 10.4.1.2 - Video Edit/Delete Buttons - */
+      .btn-video-edit-block {
+        top: var(--_margin);
+        right: var(--_margin);
+        display: flex;
+        padding: 0.3rem;
+        background: transparent;
+        color: transparent;
+      }
+
+      .btn-video-edit,
+      .btn-video-delete {
+        position: relative;
+        width: 24px;
+        height: auto;
+        aspect-ratio: 1;
+        display: block;
+        align-content: center;
+        background-color: rgb(from var(--bg-main) r g b / 0.85);
+        border-radius: 50%;
+        color: transparent;
+        transition: background-color 75ms ease-in-out;
+        overflow: hidden;
+
+        i {
+          display: none;
+        }
+
+        &::before {
+          position: absolute;
+          inset: auto 0;
+          font-family: var(--ff-fa);
+          font-size: 0.7rem;
+          font-weight: 900;
+          text-align: center;
+          color: var(--_icon-color, var(--text-bright));
+          transition: color 250ms ease-in-out;
+        }
+
+        &:is(:hover, :focus-visible) {
+          background-color: hsl(from var(--_icon-color) h s 85);
+          animation: scaleUp 350ms var(--ease-overshoot-smooth) forwards;
+        }
+      }
+
+      .btn-video-edit {
+        margin-inline-end: 0.1rem;
+      }
+
+      .btn-video-edit::before {
+        content: "\f304";
+      }
+
+      .btn-video-delete::before {
+        content: "\f2ed";
+      }
+
+      .btn-video-edit:is(:hover, :focus-visible) {
+        --_icon-color: var(--green);
+      }
+
+      .btn-video-delete:is(:hover, :focus-visible) {
+        --_icon-color: var(--red-midtone);
+      }
+
+    }
+
+  }
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Manga Store                                                                             */
+  /* ======================================================================================= */
+  /* ---- 11.0.0 - Manga Store ---- */
+  html, .dark-mode {
+    .manga-store-error-404 > img[data-src="https://cdn.myanimelist.net/images/mal-logo-586x100.png"] {
+      content: var(--mal-logo);
+    }
+
+    .manga-store-error-404_message {
+      font-family: inherit;
+      color: var(--text-second);
+    }
+
+    .manga-store-error-404_description {
+      background-color: var(--bg-second);
+      border-color: var(--bg-hover);
+    }
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Notifications Page                                                                      */
+  /* ======================================================================================= */
+  html, .dark-mode {
+
+    /* Navigation Left Side */
+    .notification #contentWrapper .left-column {
+      border-color: var(--bg-hover);
+    }
+
+    body.notification .notificaiton-category-nav {
+      li {
+        border-color: var(--bg-hover);
+      }
+
+      a {
+        display: grid;
+        grid-template-areas: "icon . counter";
+        grid-template-columns: auto 1fr auto;
+        gap: 0.5rem;
+        align-items: center;
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--25-main-hover);
+          color: var(--text-bright);
+        }
+
+        &.active {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+
+        i {
+          grid-area: icon;
+        }
+
+        .counter {
+          grid-area: counter;
+          font-size: 0.725rem;
+          font-weight: 600;
+          background-color: var(--accent-color);
+
+          &.zero {
+            background-color: var(--75-main-hover);
+            color: var(--text-second);
+          }
+        }
+
+        &.active .counter:not(.zero) {
+          background-color: var(--text-bright);
+          color: var(--accent-color);
+        }
+      }
+    }
+
+    /* Main */
+    body.notification .notification-section {
+
+      /* Header */
+      .notification-header h3 {
+        font-size: 1rem;
+        border-color: var(--bg-hover);
+      }
+
+      .item.mark-all {
+        color: var(--accent-color);
+      }
+
+      /* Notification Items */
+      .notification-item {
+        border-color: var(--bg-hover);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--25-main-hover);
+        }
+
+        .background {
+          display: none;
+        }
+      }
+
+      .notification-item-layout {
+        display: grid;
+        grid-template-columns: 1fr auto 30px;
+        align-items: center;
+        gap: 0.5rem;
+        padding-inline: 0.5rem;
+      }
+
+      .notification-item-content {
+        width: 100%;
+        padding: unset;
+        white-space: nowrap;
+      }
+
+      .time {
+        padding: unset;
+        color: var(--text-dim);
+      }
+
+      .is-read {
+        justify-self: center;
+        margin: unset;
+        padding: unset;
+        color: var(--text-second);
+
+        .fa-check {
+          width: 25px;
+          height: auto;
+          aspect-ratio: 1;
+          display: block;
+          align-content: center;
+          padding: 0.2rem;
+          border-radius: 50%;
+          transition: background-color 150ms ease-in-out;
+        }
+
+        &:is(:hover, :focus-visible) .fa-check {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+
+    }
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Help Pages                                                                              */
+  /* ======================================================================================= */
+  html, .dark-mode {
+
+    /* About */
+    .about-content.content-bg-grey {
+      background-color: var(--bg-second);
+    }
+
+    /* Support */
+    .page-support {
+      #myanimelist #content :is(p, li, h3, h4) {
+        color: var(--text-second);
+      }
+
+      h2 {
+        padding: 0.3rem 0.6rem;
+        background-color: var(--bg-hover);
+      }
+    }
+
+    /* Advertising */
+    .page-advertising {
+      #ad_menu {
+        background-color: transparent;
+        background-image: linear-gradient(to right, var(--25-accent-main-text), var(--accent-color), var(--25-accent-main-text));
+
+        &.fixed {
+          background-color: var(--bg-second);
+          background-image: unset;
+        }
+
+        &.fixed::after {
+          background-image: linear-gradient(to bottom, var(--bg-second), transparent);
+        }
+      }
+
+      #ad_menu li a {
+        color: var(--text-main);
+
+        &:is(:hover, :focus-visible) {
+          color: var(--accent-color);
+        }
+      }
+
+      .ad-contents .ad-text-head3 {
+        color: var(--text-main);
+      }
+
+      section.ad_section:nth-of-type(2n) div.ad_section {
+        background-color: var(--75-main-second);
+      }
+
+      .ad-spec-sample-button-block .ad-spec-sample-button-cell {
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+        transition-property: background-color, border-color, color;
+
+        &.on,
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          border-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+
+      .ad-spec-sample-list {
+        background-color: var(--75-main-second);
+        border-color: var(--bg-hover);
+      }
+
+      .ad_form_content .inputtextarea {
+        width: 100%;
+      }
+
+      .ad_form_content .ad_select {
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+        color: var(--text-second);
+
+        &:focus-visible,
+        &:active {
+          outline: 2px solid var(--accent-color);
+        }
+      }
+
+      .ad_form_content .inputtext {
+        border-color: var(--bg-hover);
+      }
+
+      .ad_form_content label {
+        color: var(--text-second);
+      }
+
+      .ad-contents .text-blue1,
+      .ad_form_content label.required {
+        color: var(--accent-color);
+      }
+
+      .ad_form_content > span.text-blue1 {
+        font-style: italic;
+      }
+
+    }
+
+    /* Staff */
+    .page-common.staff {
+      #horiznav_nav {
+        border: unset;
+      }
+
+      .staff_wrap {
+        height: auto !important;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+
+      #retired_moderator + .staff_wrap {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+
+      .staff_wrap .staff:not(.retired) {
+        width: auto;
+        min-height: 125px;
+        display: grid;
+        grid-template-rows: 1rem 1fr;
+        align-items: center;
+        gap: 0.5rem;
+
+        > * {
+          margin: unset !important;
+        }
+      }
+
+      #database_administrator + .staff_wrap .staff {
+        grid-template-rows: 1rem 1fr 2rem;
+      }
+
+      .staff_wrap .staff.retired {
+        width: auto;
+        padding: 0.5rem;
+      }
+
+      .staff_wrap .staff:nth-child(2n + 1) {
+        background-color: var(--50-main-hover);
+      }
+
+      .staff_wrap .staff:nth-child(2n) {
+        background-color: var(--75-main-hover);
+      }
+    }
+  }
+
+  /* Membership */
+  .membership .about-membership {
+
+    .plan-header,
+    .plan,
+    .plan-description,
+    .about-no-ads {
+      background-color: var(--50-main-hover);
+    }
+
+    .plan-header,
+    .plan :is(.plan-monthly, .plan-annually, .plan-gift) .plan-name,
+    .about-no-ads .text .description,
+    .about-extras .about-extras-content .header {
+      color: var(--text-main);
+    }
+
+    .about-extras .about-extras-content .text {
+      color: var(--text-second);
+    }
+
+    section:nth-of-type(4) .fn-grey5 {
+      font-style: italic;
+    }
+
+    .plan :is(.plan-monthly, .plan-annually, .plan-gift) .button:not(.gift),
+    .about-no-ads .btn-subscription {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      color: var(--text-bright);
+
+      &:is(:hover, :focus-visible) {
+        background-color: var(--75-accent-hover);
+        border-color: var(--accent-color);
+      }
+    }
+
+    .plan :is(.plan-monthly, .plan-annually, .plan-gift) .button.gift {
+      background-color: var(--50-accent-hover);
+      border-color: var(--50-accent-hover);
+      color: var(--text-main);
+
+      &:is(:hover, :focus-visible) {
+        background-color: var(--25-accent-hover);
+        border-color: var(--accent-color);
+      }
+    }
+
+  }
+
+}
+
+@-moz-document url("https://myanimelist.net/modules.php?go=report") {
+
+  /* ======================================================================================= */
+  /* Report                                                                                  */
+  /* ======================================================================================= */
+  html, .dark-mode {
+    .page-common .inputButton {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem !important;
+
+    }
+  }
+
+}
