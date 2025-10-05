@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.1.0
+@version        0.1.1
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -26,7 +26,7 @@
 
   /* --- Custom Variables --- */
   :root {
-    --page-size: 1120px;
+    --page-size: clamp(1060px, 55vw + 10rem , 85%);
 
 
     /* Fonts */
@@ -1007,11 +1007,11 @@
         &::before {
           content: "";
           position: absolute;
-          inset: -100%;
+          inset: -50%;
           background-color: white;
           mask-image: var(--questionmark-image), var(--questionmark-image);
           mask-position: top left, bottom right;
-          mask-size: 12px;
+          mask-size: 24px;
           mix-blend-mode: overlay;
           rotate: -20deg;
           opacity: 0.4;
@@ -2765,13 +2765,15 @@
 
       > table > tbody > tr:has(> td.borderClass[width="225"]) {
         display: grid !important;
-        grid-template-columns: 1fr calc(100cqw - 250px);
+/*         grid-template-columns: 1fr calc(100cqw - 250px); */
+        grid-template-columns: auto 1fr;
 
         > td {
           width: auto !important;
         }
 
         > td:nth-child(1) {
+          width: clamp(225px, 30cqw + 0.5rem, 320px) !important;
           padding: unset;
           padding-inline-end: 0.5rem;
         }
@@ -3768,6 +3770,10 @@
 
 
     /* -- 3.2.10 - Characters Tab -- */
+    .rightside:has(.anime-character-container, .manga-character-container) > div[style^="padding: 20px"][style$="display: inline-block;"] { /* Hide Ads */
+      display: none !important;
+    }
+    
     /* - 3.2.10.1 - Nav - */
     .anime-character,
     .manga-character {
@@ -3869,16 +3875,20 @@
       }
     }
 
-    /* - 3.2.10.3 - Container - */
+    /* - 3.2.10.3 - Characters & Voice Actors - */
     :is(.anime-character-container, .manga-character-container) > table {
       padding: 0.5rem;
+      background-color: var(--75-main-second);
+      border: 1px solid var(--50-main-second);
+      border-radius: 0.2rem;
 
       &:nth-child(2n) {
         background-color: var(--75-main-hover);
+        border: 1px solid var(--50-main-hover);
       }
 
       + table {
-        border-top: 1px solid var(--bg-hover);
+        margin-block-start: 0.5rem;
       }
     }
 
@@ -3897,6 +3907,18 @@
 
       > td:nth-child(2) {
         grid-area: info;
+        align-self: start;
+        display: grid;
+        gap: 0.2rem;
+        
+        > .spaceit_pad {
+          padding: unset;
+        }
+        
+        .h3_character_name {
+          font-size: 0.75rem;
+          line-height: 1.7;
+        }
       }
 
       > td:nth-child(3) {
@@ -3909,12 +3931,22 @@
         tbody {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-          place-items: end;
+          align-items: start;
+          justify-items: end;
           gap: 1rem 0.5rem;
 
           tr {
             display: grid;
             grid-template-columns: 1fr auto;
+            gap: 0.25rem;
+          }
+          
+          .spaceit_pad {
+            padding: unset;
+          }
+          
+          a {
+            text-wrap: wrap;
           }
         }
       }
@@ -3923,8 +3955,55 @@
         color: var(--text-dim) !important;
       }
 
-      .bgColor1 {
-        background-color: transparent;
+      .bgColor1, .bgColor2 {
+        background-color: unset;
+      }
+
+      .borderClass {
+        border: none;
+      }
+    }
+    
+    /* - 3.2.10.4 - Staff - */
+    .rightside:has(.anime-character-container, .manga-character-container) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0 0.5rem;
+      
+      > :not(table) {
+        grid-column: 1 / -1;
+      }
+    }
+    
+    :is(.anime-character-container, .manga-character-container) ~ table {
+      margin-block-end: 0.5rem;
+      
+      
+      tr {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.5rem;
+        padding: 0.4rem;
+        background-color: var(--75-main-second);
+        border: 1px solid var(--50-main-second);
+        border-radius: 0.2rem;
+      }
+      
+      &:nth-child(2n) tr {
+        background-color: var(--75-main-hover);
+        border-color: var(--50-main-hover);
+      }
+      
+      td {
+        padding: unset;
+      }
+      
+      td:first-child {
+        width: auto;
+      }
+      
+      .bgColor1, .bgColor2 {
+        background-color: unset;
       }
 
       .borderClass {
