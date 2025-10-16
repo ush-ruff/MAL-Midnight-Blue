@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.1.1
+@version        0.1.2
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -113,6 +113,8 @@
 
     --yellow: #dfb200;
     --yellow-light: #bea236;
+    
+    --indigo: #216ecc;
 
     --purple: #8c7dd0;
 
@@ -129,6 +131,13 @@
     --tag-color-purple: var(--purple);
     --tag-color-pink: var(--pink);
     --tag-color-gray: var(--gray);
+    
+    /* Watch Colors */
+    --watching: var(--green);
+    --completed: var(--indigo);
+    --plan-to-watch: var(--gray);
+    --on-hold: var(--yellow);
+    --dropped: var(--red-light);
 
 
     /* Halloween Colors */
@@ -599,6 +608,10 @@
           color: var(--accent-color) !important;
         }
       }
+      
+      .bookstore-information .bookstore-price {
+        color: var(--red-light) !important;
+      }
 
 
       /* -- 1.1.1 - Tables -- */
@@ -614,6 +627,307 @@
 
       table.forum-topics tr td:nth-child(2n + 1) {
         background-color: var(--50-main-hover);
+      }
+      
+      /* - 1.1.1.1 - Ranking Tables - */
+      .top-ranking-table, 
+      .people-favorites-ranking-table,
+      .characters-favorites-ranking-table,
+      .company-favorites-ranking-table {
+        tbody {
+          display: grid;
+          gap: 0.25rem;
+        }
+
+        tr {
+          grid-column: 1 / -1;
+          max-width: 100%;
+          display: grid;
+          grid-template-columns: subgrid;
+        }
+
+        tr:last-of-type {
+          border: none;
+        }
+
+        .table-header td {
+          width: 100%;
+          font-family: var(--ff-main);
+          font-size: 0.925rem;
+          font-weight: 700;
+          padding: 0.325rem 0.75rem;
+          background-color: var(--accent-color);
+          border: none;
+          color: var(--text-bright);
+
+          &:is(.title, .people, .character, .animeography, .mangaography, .company, .popularity) {
+            text-align: start;
+          }
+        }
+        
+        .ranking-list:nth-of-type(2n + 1) td {
+          background-color: var(--50-main-hover);
+        }
+
+        .ranking-list td {
+          align-content: center;
+          padding: 0.75rem;
+          background-color: var(--75-main-hover);
+          border: none;
+
+          &.rank span {
+            font-family: var(--ff-accent);
+
+            &.rank1 {
+              font-size: 2.75rem;
+            }
+          }
+        }
+        
+        .title, .people {
+          display: flex;
+          gap: 0.5rem;
+
+          .fs14 {
+            font-size: 1rem !important;
+          }
+
+          .fs12 {
+            font-size: 0.825rem !important;
+          }
+          
+          > a {
+            margin: unset !important;
+          }
+
+          > a > img {
+            --img-border-offset: var(--img-border-offset-large);
+            width: 70px;
+            height: auto;
+            aspect-ratio: 50 / 78;
+          }
+        }
+        
+        :is(.animeography, .mangaography) .title {
+          width: unset;
+          font-size: 0.75rem;
+          text-wrap: wrap;
+          margin: unset;
+        }
+
+        .birthday, .numofanime, .favorites {
+          color: var(--text-second);
+        }
+      }
+      
+      .top-ranking-table tbody {
+        grid-template-columns: 100px 1fr repeat(3, 150px);
+        
+        .ranking-list .title {
+          .detail {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin: unset;
+            
+            > div:first-child {
+              position: absolute;
+            }
+            
+            > br {
+              display: none;
+            }
+          }
+          
+          .di-ib {
+            display: flex !important;
+            align-items: center;
+            gap: 0.5rem;
+          }
+          
+          h3 {
+            margin: unset;
+          }
+
+          .mal-icon {
+            margin: unset !important;
+          }
+
+          i {
+            color: var(--accent-color);
+          }
+          
+          .information {
+            font-size: 0.775rem;
+            margin: unset !important;
+            color: var(--text-second);
+          }
+          
+          .bookstore-information {
+            margin: unset;
+            
+            .link {
+              color: var(--text-second);
+              
+              &:is(:hover, :focus-visible) {
+                color: var(--accent-color);
+              }
+              
+              &::after {
+                content: "\e294";
+                font-family: var(--ff-fa);
+                color: var(--text-dim);
+              }
+            }
+            
+            i {
+              color: var(--text-dim);
+            }
+          }
+        }
+        
+        .ranking-list :is(.score, .your-score) {
+          font-size: 1.3rem !important;
+          
+          .di-ib {
+            width: auto !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .icon-score-star {
+            color: var(--text-second);
+          }
+        }
+        
+        .ranking-list .score .text {
+          color: var(--text-second);
+        }
+        
+        .ranking-list .score .icon-score-star.on {
+          color: gold;
+        }
+        
+        .ranking-list .your-score a {
+          display: grid;
+          place-items: center;
+          text-decoration: none;
+          scale: calc(1 + (var(--_scale) * 0.025) );
+          isolation: isolate;
+          
+          > * {
+            grid-column: 1 / -1;
+            grid-row: 1;
+          }
+          
+          .icon-score-star {
+            font-size: 2.75rem;
+            text-shadow: unset;
+            margin: unset !important;
+            translate: 0 -2px;
+            z-index: -1;
+          }
+          
+          &:is(:hover, :focus-visible) .icon-score-star, 
+          .icon-score-star.on {
+            color: lch(from var(--accent-color) calc(50 + (var(--_scale) * 2) ) c h)
+          }
+          
+          &:is(:hover, :focus-visible) :is(.icon-score-star, .text) {
+            animation: pulse 0.35s var(--ease-bounce-subtle) forwards;
+          }
+          
+          .text {
+            font-family: var(--ff-secondary);
+            font-size: 1rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: transparent;
+          }
+          
+          .text.on {
+            color: var(--text-bright);
+          }
+          
+          &:has(> .score-1)  { --_scale: 1;  }
+          &:has(> .score-2)  { --_scale: 2;  }
+          &:has(> .score-3)  { --_scale: 3;  }
+          &:has(> .score-4)  { --_scale: 4;  }
+          &:has(> .score-5)  { --_scale: 5;  }
+          &:has(> .score-6)  { --_scale: 6;  }
+          &:has(> .score-7)  { --_scale: 7;  }
+          &:has(> .score-8)  { --_scale: 8;  }
+          &:has(> .score-9)  { --_scale: 9;  }
+          &:has(> .score-10) { --_scale: 10; }
+        }
+        
+        .status .btn-addEdit-large {
+          width: auto;
+          font-family: var(--ff-main);
+          font-size: 0.75rem;
+          background-color: var(--_bg);
+          border: 1px solid var(--_bg);
+          color: var(--text-bright);
+          
+          &:is(:hover, :focus-visible) {
+            background-color: rgb(from var(--_bg) r g b / 0.5);
+          }
+          
+          &.watching { --_bg: var(--watching); }
+          &.completed { --_bg: var(--completed); }
+          &.plantowatch { --_bg: var(--plan-to-watch); }
+          &.on-hold { --_bg: var(--on-hold); }
+          &.dropped { --_bg: var(--dropped); }
+        }
+        
+        .status .btn-addEdit-large.notinmylist {
+          background-color: var(--accent-color);
+          border: 1px solid var(--accent-color);
+          
+          &:is(:hover, :focus-visible) {
+            background-color: var(--50-accent-main);
+            border-color: var(--accent-color);
+          }
+        }
+        
+      }
+      
+      :is(.people-favorites-ranking-table, .characters-favorites-ranking-table, .company-favorites-ranking-table) tbody {
+        grid-template-columns: 100px 1.3fr 1fr 1fr 150px;
+        
+        .ranking-list {
+          .people {
+            align-items: center;
+          }
+
+          .people > .information {
+            flex-grow: 1;
+            max-width: unset;
+            margin: unset !important;
+          }
+
+          .favorites {
+            position: relative;
+            font-size: 1.2rem;
+            font-weight: 600;
+            overflow: hidden;
+
+            &::before {
+              content: "\f005";
+              position: absolute;
+              inset: 50% auto auto 50%;
+              font-family: var(--ff-fa);
+              font-size: 10rem;
+              font-weight: 900;
+              transform: translate(-30%, -50%) rotate(30deg);
+              opacity: 0.02;
+            }
+          }
+        }
+        
       }
 
 
@@ -888,23 +1202,7 @@
         background-color: var(--accent-color);
       }
 
-      /* - 1.1.6.4 - Pagination - */
-      .pagination .link-blue-box,
-      a.link-blue-box {
-        font-family: var(--ff-secondary);
-        padding: 0.5rem;
-        background-color: var(--accent-color);
-        border-radius: 0.2rem;
-        color: var(--text-bright);
-        transition-property: background-color, color;
-
-        &:not(span):is(:hover, :focus-visible) {
-          background-color: var(--75-accent-hover);
-          border-color: var(--accent-color);
-        }
-      }
-
-      /* - 1.1.6.5 - Choose Your Own - */
+      /* - 1.1.6.4 - Choose Your Own - */
       a.btn-choose-your-own {
         padding: 0.5rem 0.75rem;
         background-color: var(--25-main-second);
@@ -1053,7 +1351,7 @@
       .ranking-unit .image img,
       .top-ranking-table .title .image,
       .featured.po-r.clearfix img,
-      .ranking-list img,
+      .ranking-list img:not(.bookstore-icon),
       .boxlist-container img,
       .anime-filter .content-left .logo img,
       &.stacks .img .edge img,
@@ -1189,8 +1487,7 @@
         background-color: var(--bg-main);
       }
 
-      #menu_left,
-      #menu_right {
+      #menu_left, #menu_right {
         height: auto;
       }
 
@@ -1272,6 +1569,39 @@
             background-color: var(--accent-color);
             color: var(--text-bright)
           }
+        }
+      }
+      
+      /* - 1.1.12.1 - Ranking Tables Header - */      
+      .top-rank-header2 {
+        display: flex;
+        align-items: center;
+        font-family: var(--ff-tertiary);
+        font-size: 1.4rem !important;
+        margin-block: 1rem 0.5rem !important;
+        padding-block-end: 0.5rem !important;
+        border-bottom-width: 1px !important;
+        
+        .icon-top-ranking-page {
+          order: 99;
+          margin-inline-start: auto;
+        }
+        
+        > span.ml16 {
+          font-family: var(--ff-secondary);
+          font-size: 0.75rem !important;
+          font-style: italic;
+          margin-inline-start: 0.5rem !important;
+          color: var(--text-second);
+        }
+      }
+      
+      .top-rank-header2:has(> .floatRightHeader) {
+        flex-direction: row-reverse;
+        
+        .floatRightHeader {
+          margin-inline-start: auto;
+          padding: unset;
         }
       }
 
@@ -1563,6 +1893,78 @@
           transition: background-color 350ms ease-out;
         }
       }
+      
+      .pagination .link-blue-box,
+      a.link-blue-box {
+        font-family: var(--ff-secondary);
+        padding: 0.5rem;
+        background-color: var(--accent-color);
+        border-radius: 0.2rem;
+        color: var(--text-bright);
+        transition-property: background-color, color;
+
+        &:not(span):is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+        }
+      }
+      
+      /* -- 1.1.19 - Alphabet Filter Bar -- */
+      #content:has(> .anime-manga-search),
+      #content:has(> .people-favorites-ranking-table),
+      #content:has(> .characters-favorites-ranking-table),
+      .ranking-company {
+        #horiznav_nav {
+          margin-block: 1rem 0.5rem !important;
+          padding: unset;
+          border: unset;
+
+          ul {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 0.2rem;
+            justify-content: center;
+          }
+
+          ul li {
+            width: auto;
+            height: auto;
+            background: unset;
+            border-radius: 0.2rem;
+          }
+
+          ul li a {
+            --_bg: var(--25-main-second);
+            min-width: 3ch;
+            width: auto;
+            height: 100%;
+            display: block;
+            align-content: center;
+            font-family: var(--ff-main);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: inherit;
+            padding: unset;
+            background-color: var(--_bg);
+            border: 2px solid var(--_bg);
+            color: var(--text-main);
+
+            &:is(:hover, :focus-visible) {
+              --_bg: var(--accent-color);
+              border-bottom-color: var(--text-bright);
+              color: var(--text-bright);
+              outline: unset;
+            }
+          }
+        }
+      }
+      
+      #content:has(> .anime-manga-search) #horiznav_nav ul li:nth-child(-n + 2) a {
+        font-size: 0.75rem;
+        font-weight: 400;
+        padding-inline: 0.5rem;
+      }
+      
     }
 
     /* --- 1.2.0 - Tip Menu --- */
@@ -2766,7 +3168,6 @@
 
       > table > tbody > tr:has(> td.borderClass[width="225"]) {
         display: grid !important;
-/*         grid-template-columns: 1fr calc(100cqw - 250px); */
         grid-template-columns: auto 1fr;
 
         > td {
@@ -2812,6 +3213,10 @@
 
       > table > tbody > tr .rightside > div[style*="width:728px"] {
         width: unset !important;
+      }
+      
+      .rightside > div[style^="overflow: hidden; padding: 10px 0; border-bottom: solid #cdcdcd 1px"] { /* Hide Ads */
+        display: none;
       }
 
     }
@@ -2949,6 +3354,7 @@
 
       ul li a {
         display: flow-root;
+        font-family: var(--ff-main);
         line-height: 1.9;
         padding: 0.125rem 0.5rem;
         background-color: var(--bg-second);
@@ -4292,6 +4698,9 @@
         }
       }
     }
+    
+    /* --- 3.4.0 - Anime/Manga Search Page --- */
+    
   }
 }
 
@@ -5531,57 +5940,7 @@
   /* ======================================================================================= */
   /* ---- 6.0.0 - Industry Lists ---- */
   html, .dark-mode {
-    #content:has(> .people-favorites-ranking-table),
-    #content:has(> .characters-favorites-ranking-table),
-    .ranking-company {
-
-      /* --- 6.1.0 - Filter Bar (Alphabet Letters) --- */
-      #horiznav_nav {
-        margin-block: 1rem 0.5rem !important;
-        padding: unset;
-        border: unset;
-
-        ul {
-          display: grid;
-          grid-auto-flow: column;
-          gap: 0.25rem;
-        }
-
-        ul li {
-          min-width: 25px;
-          width: auto;
-          height: auto;
-          aspect-ratio: 1;
-          background: unset;
-          border-radius: 0.2rem;
-        }
-
-        ul li a {
-          --_bg: var(--25-main-second);
-          width: 100%;
-          height: 100%;
-          display: block;
-          align-content: center;
-          font-family: var(--ff-main);
-          font-size: 1.2rem;
-          font-weight: 900;
-          border-radius: inherit;
-          padding: unset;
-          background-color: var(--_bg);
-          border: 2px solid var(--_bg);
-          color: var(--text-bright);
-
-          &:is(:hover, :focus-visible) {
-            --_bg: var(--accent-color);
-            border-bottom-color: var(--text-bright);
-            color: var(--text-bright);
-            outline: unset;
-          }
-        }
-      }
-    }
-
-    /* --- 6.2.0 - Search Bar --- */
+    /* --- 6.1.0 - Search Bar --- */
     .people-search-form-search,
     .characters-search-form-search {
       position: relative;
@@ -5612,6 +5971,7 @@
         width: 100%;
         font-family: var(--ff-main);
         font-size: 1rem;
+        background-color: var(--25-main-second);
         border: 1px solid var(--25-main-hover);
         border-radius: 100vw;
 
@@ -5629,71 +5989,7 @@
         display: none;
       }
     }
-
-
-    /* --- 6.3.0 - Table --- */
-    .top-rank-header2 {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      font-family: var(--ff-tertiary);
-      font-size: 1.4rem !important;
-      margin-block: 1rem 0.5rem !important;
-      padding-block-end: 0.5rem !important;
-      border-bottom-width: 1px !important;
-
-      .floatRightHeader {
-        margin-inline-start: auto;
-        padding: unset;
-      }
-    }
-
-    .people-favorites-ranking-table,
-    .characters-favorites-ranking-table,
-    .company-favorites-ranking-table {
-      .table-header td {
-        font-family: var(--ff-secondary);
-        font-size: 0.825rem;
-        font-weight: 600;
-        background-color: var(--accent-color);
-        border: none;
-        color: var(--text-bright);
-
-        &:first-child,
-        &:last-child {
-          border: none;
-        }
-
-        &:is(.people, .character, .animeography, .mangaography, .company, .popularity, .score, ) {
-          text-align: start;
-        }
-      }
-
-      tr.ranking-list td {
-        background-color: var(--75-main-hover);
-        border: none;
-      }
-
-      tr.ranking-list:nth-of-type(2n + 1) td {
-        background-color: var(--50-main-hover);
-      }
-
-      tr.ranking-list :is(.birthday, .numofanime, .favorites) {
-        color: var(--text-second);
-      }
-
-      tr.ranking-list .rank span {
-        font-family: var(--ff-accent);
-
-        &.rank1 {
-          font-size: 2.75rem;
-        }
-      }
-
-      tr:last-of-type {
-        border: none;
-      }
-    }
+    
   }
 
 }
@@ -5757,6 +6053,10 @@
       .content-left {
         border-color: var(--bg-hover);
       }
+      
+      .btn-new-stack {
+        color: var(--accent-color);
+      }
 
       /* --- 9.1.0 - Header --- */
       .breadcrumbs_area.underline {
@@ -5801,9 +6101,7 @@
         background-color: var(--_section-bg);
       }
 
-      .column-1,
-      /*.column-2, */
-      .column-3 {
+      .column-1, .column-3 {
         margin: unset;
         padding: unset;
       }
@@ -5851,6 +6149,7 @@
         }
 
         .detail {
+          margin-inline-start: 1rem;
           padding: unset;
         }
       }
@@ -6224,6 +6523,7 @@
       /* -- 9.9.1 - Right Side - Lists -- */
       .side-list .column-item {
         width: 100%;
+        padding: 0.2rem;
         border-color: var(--bg-hover);
 
         .img {
@@ -6236,6 +6536,10 @@
             max-height: unset;
             width: 100%;
           }
+        }
+        
+        .detail {
+          padding: unset;
         }
       }
     }
@@ -6636,7 +6940,8 @@
     }
 
     .video-block.episode-video .js-video-list-content,
-    .video-block:not(.episode-video) section {
+    .video-block:not(.episode-video) section, 
+    .video-block.episode-video section:not(.outside-region) {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 0.5rem;
@@ -6654,6 +6959,7 @@
         height: auto;
         aspect-ratio: 16 / 9;
         margin: var(--_margin);
+        background: var(--75-main-second);
         border-radius: var(--img-border-radius-large);
         outline: var(--img-border-size) solid var(--25-accent-main);
         outline-offset: var(--img-border-offset-large);
