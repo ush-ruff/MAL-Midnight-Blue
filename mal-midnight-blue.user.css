@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.2.0
+@version        0.3.0
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -320,7 +320,7 @@
   html, .dark-mode {
     opacity: 1;
   }
-
+  
 }
 
 @-moz-document domain("myanimelist.net") {
@@ -375,12 +375,38 @@
       background-color: var(--accent-color);
       color: var(--text-bright);
     }
+    
+    /* -- 1.0.2 - Statistic Info Popup -- */
+    .statistics-info {
+      --_bg: var(--50-main-hover);
+      --_border-color: var(--25-main-hover);
+      width: auto;
+      max-width: 20cqw;
+      font-size: 0.725rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--_bg);
+      border-color: var(--_border-color);
+      border-radius: 0.2rem;
+      color: var(--text-second);
+      
+      &::before {
+        border-top-color: var(--_bg);
+      }
+      
+      &::after {
+        border-top-color: var(--_border-color);
+      }
+    }
 
 
     /* --- 1.1.0 - Common page elements --- */
     .page-common {
       #myanimelist {
         width: var(--page-size);
+      }
+      
+      .ff-helvetica {
+        font-family: var(--ff-main) !important;
       }
 
       p:not([class]),
@@ -445,6 +471,10 @@
         font-family: var(--ff-secondary);
         font-size: 1rem;
         font-weight: 600;
+      }
+      
+      .notification-header.simple h3 {
+        color: var(--text-second);
       }
       
       .discussions_h3 > a {
@@ -841,7 +871,7 @@
               position: absolute;
               inset: 50% auto auto 50%;
               font-family: var(--ff-fa);
-              font-size: 10rem;
+              font-size: 9rem;
               font-weight: 900;
               transform: translate(-30%, -50%) rotate(30deg);
               opacity: 0.02;
@@ -883,6 +913,8 @@
       /* -- 1.1.2 - Update Bar -- */
       .updatesBar {
         background-color: var(--accent-color);
+        /* background-image: repeating-linear-gradient(45deg, var(--accent-color) 0 12px, var(--75-accent-second) 12px 24px); */
+        background-image: linear-gradient(to right, var(--accent-color), var(--75-accent-main-text));
         border-radius: 2px;
       }
 
@@ -1073,6 +1105,7 @@
       .inputButton,
       .btn-blue-rect,
       .view-style2 a.on, 
+      .btn-submit.btn-form-submit, 
       &.stacks .btn.btn-primary {
         background-color: var(--accent-color);
         border-color: var(--accent-color);
@@ -1090,6 +1123,10 @@
           opacity: 1;
         }
       }
+      
+      .btn-submit.btn-form-submit {
+        font-weight: 600;
+      }
 
       .btn-blue-rect {
         color: var(--text-bright) !important;
@@ -1104,6 +1141,7 @@
       }
 
       .inputButton {
+        font-family: var(--ff-main);
         padding: 0.2rem 0.4rem !important;
         border-radius: 0.2rem;
       }
@@ -1344,8 +1382,8 @@
           inset: -50%;
           background-color: white;
           mask-image: var(--questionmark), var(--questionmark);
-          mask-position: top left, bottom right;
-          mask-size: 24px;
+          mask-position: top left, var(--_mask-position, bottom right);
+          mask-size: var(--_mask-size-small, 24px);
           mix-blend-mode: overlay;
           rotate: -20deg;
           opacity: 0.4;
@@ -1353,18 +1391,26 @@
 
         > a {
           display: block;
-          width: 42px;
+          width: var(--_img-width, 42px);
           height: auto;
           aspect-ratio: 42 / 62;
           background-color: var(--accent-color);
           mask-image: var(--questionmark);
           mask-position: center;
           mask-repeat: no-repeat;
-          mask-size: 48px;
+          mask-size: var(--_mask-size, 48px);
         }
 
         img {
           display: none;
+        }
+        
+        :is(.anime-character-container, .manga-character-container) > table > tbody > tr > td:first-child & {
+          --_img-width: 80px;
+          --_mask-size: 96px;
+          --_mask-size-small: 48px;
+          --_mask-position: 24px 30px;
+          width: var(--_img-width);
         }
       }
 
@@ -1517,7 +1563,7 @@
       }
 
 
-      /* -- 1.1.12 - Header -- */
+      /* -- 1.1.12 - Headers -- */
       #headerSmall {
         height: auto;
         display: grid;
@@ -1672,6 +1718,33 @@
         .floatRightHeader {
           margin-inline-start: auto;
           padding: unset;
+        }
+      }
+      
+      /* - 1.1.12.2 - Rounded Tab Style Headers - */
+      .navi-seasonal .horiznav-nav-seasonal .btn-seasonal, 
+      .navi-adapted .horiznav-nav-adapted .btn-adapted, 
+      &.anime-filter #content .horiznav-nav-seasonal .btn-type {
+        display: flex;
+        gap: 0.25rem;
+        margin-inline-end: auto;
+
+        > li {
+          font-family: var(--ff-secondary);
+          font-weight: 600;
+          margin: unset;
+          background-color: var(--bg-main);
+          color: var(--text-second);
+
+          &:is(:hover, :focus-visible) {
+            background-color: var(--bg-second);
+            color: var(--accent-color);
+          }
+
+          &.on {
+            background-color: var(--accent-color);
+            color: var(--bg-hover);
+          }
         }
       }
 
@@ -1830,7 +1903,7 @@
           width: 75cqw;
         }
       }
-
+      
       &.stacks:not(.my-stacks) #content {
         display: grid;
         grid-template-columns: calc(68cqw - 5px) auto;
@@ -1901,7 +1974,7 @@
       #content:has(> .anime-manga-search),
       #content:has(> .people-favorites-ranking-table),
       #content:has(> .characters-favorites-ranking-table),
-      .ranking-company {
+      &.ranking-company {
         #horiznav_nav {
           margin-block: 1rem 0.5rem !important;
           padding: unset;
@@ -2144,9 +2217,106 @@
       width: 100% !important;
       top: calc(100% + 0.5rem) !important;
     }
+    
+    
+    /* --- 1.4.0 - List Styles --- */
+    .anime-filter2 .tile-anime-list, 
+    .stacks-detail .tile-anime-list {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
+      gap: 1rem;
+      margin: unset;
+      padding: 1rem 0;
+      
+      .seasonal-anime {
+        --_br: var(--img-border-radius-large);
+        width: 100%;
+        height: auto;
+        margin: unset;
+        
+        .image {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 3 / 4;
+          align-content: center;
+          background-color: var(--bg-second);
+          border-radius: var(--_br);
+          overflow: hidden;
+          
+          img {
+            width: 100%;
+          }
+        }
+        
+        .widget {
+          top: unset;
+          bottom: 36.2px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          line-height: unset;
+          padding: 0.5rem;
+          background-color: hsl(from var(--bg-hover) h s l / 0.8);
+          border-radius: 0 0 var(--_br) var(--_br);
+          
+          .stars, .users {
+            display: flex;
+            align-items: center;
+            font-family: var(--ff-main);
+            font-size: 0.775rem;
+            font-weight: 600;
+            margin: unset;
+            color: var(--text-main);
+          }
+          
+          .users {
+            flex-direction: row-reverse;
+            gap: 0.3rem;
+            
+            i::before {
+              content: "\f007";
+              font-weight: 400;
+            }
+          }
+        }
+        
+        .edit {
+          inset: 5px 5px auto auto;
+          
+          a {
+            width: auto;
+            font-size: 1.2rem;
+            padding: 0.3rem 0.35rem;
+            background-color: var(--_status-color, var(--accent-color));
+            border: unset;
+            border-block-end: 2px solid transparent;
+            border-radius: 0.3rem;
+            color: var(--text-bright);
+            box-shadow: 0 4px 8px hsl(from var(--bg-hover) h s l / 0.25);
+            transition: unset;
+            
+            &:is(:hover, :focus-visible) {
+              border-color: var(--text-bright);
+              opacity: unset;
+              animation: shake 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+          }
+          
+          .malicon {
+            position: unset;
+          }
+          
+          .watching, .reading       { --_status-color: var(--watching);      }
+          .completed                { --_status-color: var(--completed);     }
+          .plantowatch, .plantoread { --_status-color: var(--plan-to-watch); }
+          .on-hold                  { --_status-color: var(--on-hold);       }
+          .dropped                  { --_status-color: var(--dropped);       }
+        }
+      }
+    }
 
 
-    /* --- 1.4.0 - Halloween --- */
+    /* --- 1.5.0 - Halloween --- */
     body.halloween:not([class*="ownlist "]) {
       background-image: var(--halloween-image) !important;
     }
@@ -2187,7 +2357,7 @@
         color: var(--halloween-03);
       }
 
-      /* -- 1.4.1 - Header -- */
+      /* -- 1.5.1 - Header -- */
       #headerSmall.halloween {
         background-image: unset;
         background-color: var(--halloween-07);
@@ -2208,7 +2378,7 @@
         background-color: var(--halloween-03);
       }
 
-      /* -- 1.4.2 - Menu -- */
+      /* -- 1.5.2 - Menu -- */
       #menu.halloween #nav ul li a {
         background-color: var(--halloween-04);
 
@@ -2222,14 +2392,14 @@
         border-color: var(--halloween-04);
       }
 
-      /* -- 1.4.3 - Search Bar -- */
+      /* -- 1.5.3 - Search Bar -- */
       #searchBar.searchBar {
         --_searchBar-bg: var(--halloween-04);
         --_searchBar-border: var(--halloween-02);
         --_searchBar-text: var(--halloween-06);
       }
       
-      /* -- 1.4.4 - Images -- */
+      /* -- 1.5.4 - Images -- */
       .anime-detail-header-stats::after {
         filter: invert(0.8) sepia(1) hue-rotate(180deg) brightness(0.8);
       }
@@ -2239,7 +2409,7 @@
       }
     }
 
-    /* --- 1.5.0 - Christmas --- */
+    /* --- 1.6.0 - Christmas --- */
     body.christmas:not([class*="ownlist "]) {
       background-image: var(--christmas-image) !important;
       
@@ -2257,7 +2427,7 @@
 
     .page-common.christmas {
 
-      /* -- 1.5.1 - Header -- */
+      /* -- 1.6.1 - Header -- */
       #headerSmall.christmas {
         background: var(--christmas-03);
       }
@@ -2286,7 +2456,7 @@
         }
       }
 
-      /* -- 1.5.2 - Menu -- */
+      /* -- 1.6.2 - Menu -- */
       #menu {
         background-color: var(--christmas-01);
         background-image: var(--falling-snow);
@@ -2313,7 +2483,7 @@
         }
       }
 
-      /* -- 1.5.3 - Search Bar -- */
+      /* -- 1.6.3 - Search Bar -- */
       #searchBar.searchBar {
         --_searchBar-bg: var(--christmas-03);
         --_searchBar-border: var(--christmas-03);
@@ -2326,7 +2496,7 @@
     }
 
 
-    /* --- 1.6.0 - Easter --- */
+    /* --- 1.7.0 - Easter --- */
     .page-common.easter2025:not(.color-pc-constant) .easter2025 {
       #headerSmall.easter2025 {
         background: unset !important;
@@ -2347,7 +2517,7 @@
       }
     }
     
-    /* --- 1.7.0 - Wrap Up --- */
+    /* --- 1.8.0 - Wrap Up --- */
     .page-common.wrapup {
       #headerSmall.wrapup {
         background-image: var(--fireworks);
@@ -2916,29 +3086,6 @@
         + p {
           padding: 0.5rem 0 !important;
         }
-
-        .btn-seasonal,
-        .btn-adapted {
-          display: flex;
-          gap: 0.25rem;
-          margin-inline-end: auto;
-
-          .btn-type {
-            margin: unset;
-            background-color: var(--bg-main);
-            color: var(--text-second);
-
-            &:is(:hover, :focus-visible) {
-              background-color: var(--bg-second);
-              color: var(--accent-color);
-            }
-
-            &.on {
-              background-color: var(--accent-color);
-              color: var(--bg-hover);
-            }
-          }
-        }
       }
 
       .horiznav_nav ul li a {
@@ -3182,7 +3329,7 @@
       gap: 1rem;
 
       .js-middle_ad.seasonal-middle {
-        display: none;
+        display: none !important;
       }
     }
 
@@ -3205,42 +3352,49 @@
 
     /* -- 3.1.4 - Card -- */
     :is(.seasonal-anime-list, .adapted-manga-list) .seasonal-anime {
-      --_img-width: 167px;
+      --_img-width: 170px;
       --_img-height: 242px;
       width: auto;
       height: auto;
-      display: grid;
       margin: unset;
       background-color: var(--75-main-second);
       border-color: var(--bg-hover);
       border-radius: 0.4rem;
       box-shadow: 0 0 5px var(--75-main-second);
       isolation: isolate;
+      container-type: inline-size;
       content-visibility: auto;
 
       > div:first-child {
         grid-column: 1 / -1;
-        width: 100%;
+        width: 100cqw;
       }
 
       .title {
         position: relative;
         width: auto;
-        display: grid;
-        place-items: center;
+        display: block;
+        align-content: center;
 
         .title-text {
-          display: grid;
-          place-items: center;
-          width: 100%;
-          margin: unset;
-          padding: 1rem 2rem;
+          display: contents;
         }
 
         .h2_anime_title, 
         .h2_manga_title {
+          min-height: 60px;
+          display: block;
+          align-content: center;
           line-height: 1.2;
           color: var(--accent-color);
+          
+          a { /* CSS-Trick: clamp card title to 2 lines */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: block-axis;
+            padding: 1rem;
+            overflow: inherit;
+          }
         }
 
         &:is(:hover, :focus-visible) {
@@ -3250,16 +3404,17 @@
         &:is(:hover, :focus-visible) :is(.h2_anime_title, .h2_manga_title) {
           --_bg: rgb( from var(--25-accent-second) r g b / 0.5);
           position: absolute;
-          display: grid;
           top: 0;
           width: 100%;
-          min-height: 60px;
-          place-items: center;
-          padding: inherit;
+          min-height: 61px;
           background-color: var(--_bg);
           border-block-end: 1px solid transparent;
           box-shadow: 0 0 10px 5px var(--_bg);
           z-index: 10;
+          
+          a {
+            display: block;
+          }
         }
         
         .pin-icon {
@@ -3301,7 +3456,7 @@
             }
           }
           
-          .item.publishing {
+          .item:is(.airing, .publishing) {
             color: var(--green-light);
           }
         }
@@ -3314,11 +3469,12 @@
 
       .genres {
         width: auto;
-        height: auto;
         min-height: 2.2rem;
         padding: unset;
         background-color: var(--bg-hover);
         border-color: var(--bg-hover);
+        overflow: auto;
+        scrollbar-width: none;
       }
 
       .genres-inner {
@@ -3326,6 +3482,7 @@
         height: auto;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 0.25rem;
         align-items: center;
         justify-content: center;
@@ -3347,7 +3504,27 @@
         }
         
         a {
+          text-wrap: nowrap;
           color: inherit !important;
+        }
+      }
+      
+      .genres .btn-more-genre {
+        background-image: unset;
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        
+        &::before {
+          content: "\f078";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          font-family: var(--ff-fa);
+          font-size: 8px;
+          font-weight: 900;
+          line-height: 1;
+          color: var(--text-bright);
         }
       }
 
@@ -3360,9 +3537,6 @@
       }
 
       .image {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        justify-self: center;
         width: 100%;
         height: auto;
         display: flex;
@@ -3401,12 +3575,10 @@
         }
       }
 
-
       .synopsis {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        justify-self: center;
+        position: absolute;
         width: 100%;
+        display: block;
         height: var(--_img-height) !important;
         font-size: 0.825rem;
         text-shadow: 0 0 1px var(--bg-hover);
@@ -3476,6 +3648,10 @@
         padding-block: 0.25rem;
         color: var(--text-main);
       }
+      
+      .information-item.scormem .fa-star::before {
+        font-weight: 800;
+      }
 
       .information-item.buttons {
         display: flex;
@@ -3518,6 +3694,7 @@
           }
         }
       }
+      
     }
     
     .adapted-manga-list .seasonal-middle:has(> .item:first-child:empty) {
@@ -3547,6 +3724,7 @@
       }
 
       td {
+        --_transition-time-ease: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
         position: relative;
         width: auto;
         display: block;
@@ -3568,7 +3746,7 @@
           /* mask-position: center; */
           mask-size: var(--_size);
           opacity: 0.07;
-          transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: background-color var(--_transition-time-ease);
         }
         
         &:nth-child(1) { /* Winter */
@@ -3629,7 +3807,7 @@
         text-decoration: none;
         padding-block: 0.725rem;
         color: var(--text-second);
-        transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        transition: color var(--_transition-time-ease);
         
         &::after {
           content: unset;
@@ -4102,8 +4280,24 @@
       border-color: var(--bg-hover);
     }
 
-    .detail-characters-list :is(.left-column, .left-right) table:nth-of-type(2n) {
-      background-color: var(--75-main-hover);
+    .detail-characters-list :is(.left-column, .left-right) > table {
+      margin-block-end: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      
+      &:nth-of-type(odd) {
+        background-color: var(--75-main-second);
+        border: 1px solid var(--50-main-second);
+      }
+      
+      &:nth-of-type(even) {
+        background-color: var(--75-main-hover);
+        border: 1px solid var(--50-main-hover);
+      }
+      
+      .borderClass {
+        border: unset;
+      }
     }
 
     /* -- 3.2.6 - Opening & Ending Theme -- */
@@ -4502,11 +4696,18 @@
 
           .text {
             grid-area: review;
+            font-size: 0.775rem;
+            line-height: 1.7;
             margin-block: 0.5rem;
             color: var(--text-second);
 
             .js-visible {
               margin: unset !important;
+            }
+            
+            .js-hidden {
+              font-size: inherit;
+              line-height: inherit;
             }
           }
 
@@ -4803,7 +5004,7 @@
       grid-template-rows: auto 1fr;
       grid-template-areas: "image actors" "info actors";
       gap: 0 0.5rem;
-
+      
       > td:first-child img {
         grid-area: image;
         width: 90px;
@@ -4883,7 +5084,6 @@
     :is(.anime-character-container, .manga-character-container) ~ table {
       margin-block-end: 0.5rem;
       
-      
       tr {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -4931,6 +5131,10 @@
     #summary_stats {
       font-size: 1rem;
     }
+    
+    .score-stats .updatesBar {
+      height: 25px !important;
+    }
 
     /* -- 3.2.13 - Reviews Tab -- */
     /* - 3.2.13.1 - Nav - */
@@ -4957,6 +5161,88 @@
     }
 
     /* -- 3.2.14 - User Recommendations Tab -- */
+    #horiznav_nav:has(> ul > li > .horiznav_active[href$="userrecs"] ) ~ .borderClass {
+      --_gap: 0.75rem;
+      margin-block-end: var(--_gap);
+      padding: 0 0 calc(var(--_gap) + (var(--_gap) / 2));
+      
+      &:nth-child(1 of .borderClass) {
+        padding-block-start: calc(var(--_gap) / 2);
+      }
+    }
+    
+    #horiznav_nav:has(> ul > li > .horiznav_active[href$="userrecs"] ) ~ .borderClass > table tr {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas: "title title" "image details" "image footer";
+      gap: 0 0.5rem;
+      
+      td:nth-child(1) {
+        grid-area: image;
+        width: auto;
+        
+        div.picSurround a img {
+          width: 90px;
+        }
+      }
+      
+      td:nth-child(2) {
+        display: contents;
+        
+        > div:nth-child(2) {
+          grid-area: title;
+          margin: unset !important;
+          margin-block-end: 0.5rem !important
+        }
+        
+        > div:nth-child(3) {
+          grid-area: details;
+          margin: unset !important;
+          padding: unset !important;
+          background-color: unset !important;
+          border: unset !important;
+        }
+        
+        .borderClass:is(.bgColor1, .bgColor2) {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding-inline: 0.5rem !important;
+          background-color: var(--50-main-second) !important;
+          border: 1px solid var(--25-main-second) !important;
+          border-radius: 0.2rem;
+          
+          > div:nth-child(2) {
+            font-family: var(--ff-secondary);
+            font-size: 0.775rem;
+            font-style: italic;
+            
+            > span {
+              font-family: var(--ff-main);
+              font-style: normal;
+            }
+          }
+        }
+        
+        > div:nth-child(4) {
+          grid-area: footer;
+          margin: unset !important;
+        }
+        
+        .detail-user-recs-text {
+          max-width: unset;
+        }
+        
+        .spaceit_pad {
+          padding: 0.25rem 0;
+        }
+        
+        a[href*="/dbchanges.php?go=report"] {
+          color: var(--red-light);
+        }
+        
+      }
+    }
 
     /* -- 3.2.15 - Stacks Tab -- */
     .page-common .stacks .navi {
@@ -6429,19 +6715,20 @@
     }
 
     /* - 5.6.1.2 - Comments List - */
-    body.news .mr8:has(> .news-container) ~ h2.mr8 + .news-list {
-      border: 1px solid var(--bg-hover);
-    }
-
     .news .news-list .comment-list {
       --_bg: var(--75-main-second);
+      --_border-color: var(--50-main-second);
       width: auto;
       font-family: var(--ff-main);
+      margin-block-start: 0.5rem;
+      padding-block: 1rem !important;
+      padding-inline: 0.75rem;
       background-color: var(--_bg);
-      border-color: var(--bg-hover);
+      border: 1px solid var(--_border-color);
 
       &:nth-child(2n) {
-        background-color: var(--_bg);
+        --_bg: var(--75-main-hover);
+        --_border-color: var(--50-main-second);
       }
 
       &:last-child {
@@ -6451,11 +6738,13 @@
       .text {
         font-family: inherit;
         font-size: 0.75rem;
+        padding: unset !important;
         color: var(--text-second);
       }
 
       .information {
         margin-block-start: 0.5rem;
+        padding: unset !important;
       }
 
       .info {
@@ -6560,11 +6849,11 @@
 @-moz-document domain("myanimelist.net") {
 
   /* ======================================================================================= */
-  /* Industry Lists                                                                          */
+  /* Industry                                                                          */
   /* ======================================================================================= */
-  /* ---- 6.0.0 - Industry Lists ---- */
+  /* ---- 6.0.0 - Industry ---- */
   html, .dark-mode {
-    /* --- 6.1.0 - Search Bar --- */
+    /* --- 6.1.0 - Industry Lists - Search Bar --- */
     .people-search-form-search,
     .characters-search-form-search {
       position: relative;
@@ -6612,6 +6901,116 @@
       .inputButton {
         display: none;
       }
+    }
+    
+    /* --- 6.2.0 - Company - Detailed Page --- */
+    .anime-filter #content {
+      display: flex;
+
+      .content-left {
+        width: auto;
+        padding: 0.25rem 0.625rem;
+        border-color: var(--bg-hover);
+      }
+
+      .content-right {
+        width: 75cqw;
+        padding: 0.25rem 0.625rem;
+        container-type: inline-size;
+      }
+      
+      .normal_header {
+        margin: unset !important;
+      }
+      
+      .js-navi-company {
+        padding: unset;
+        
+        .horiznav-nav-seasonal {
+          padding: 0.5rem 0.5rem 0;
+        }
+        
+        .btn-type {
+          margin-inline-end: auto;
+        }
+        
+        .btn-show-sort {
+          color: var(--text-dim);
+        }
+      }
+    }
+    
+    /* -- 6.2.1 - List Styles -- */
+    .anime-filter :is(.list, .tile) {
+      margin: unset !important;
+      margin-block: 1rem !important
+    }
+    
+    .anime-filter .list > table > tbody {
+      display: flex;
+      flex-direction: column;
+      padding: 0 var(--_padding-inline) 0.5rem;
+
+      .seasonal-anime {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 0.5rem;
+        padding-block-end: 0.5rem;
+        
+        & + & {
+          padding-block-start: 0.5rem;
+          border-top: 1px solid var(--bg-hover);          
+        }
+        
+        [style="color: #787878;"] {
+          color: var(--text-dim) !important;
+        }
+        
+        > .borderClass {
+          width: auto;
+          display: flex;
+          flex-direction: column;
+          border: unset !important;
+          
+          .spaceit_pad {
+            padding: unset !important;
+          }
+          
+          :nth-last-child(1 of .spaceit_pad) {
+            margin-block-start: auto;
+          }
+          
+          &:nth-child(2) .spaceit_pad:nth-child(1) > a { /* Anime Title */
+            font-size: 0.825rem;
+            font-weight: 500;
+          }
+          
+          &:nth-child(3) .spaceit_pad:nth-child(1) { /* Rating */
+            font-size: 0.825rem;
+            
+            i {
+              display: none;
+            }
+            
+            span::before {
+              content: "\f005";
+              font-family: var(--ff-fa);
+              font-weight: 900;
+              margin-inline-end: 0.2rem;
+              color: var(--accent-color);
+            }
+          }
+        }
+        
+        .picSurround a img {
+          width: 60px;
+        }
+        
+      }
+    }
+    
+    .anime-filter2 .seasonal-anime-list {
+      padding-inline: unset;
     }
     
   }
@@ -7250,11 +7649,28 @@
               }
             }
             
-            &:hover::after { /* CSS-Hack: Enlarge the hover area and prevent jitter when images are overlapping */
+            /* CSS-Hack: Enlarge the hover area and prevent jitter when images are overlapping */
+            &:nth-child(1) {
+              overflow: visible;
+              
+              img {
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+              }
+            }
+            
+            &:nth-child(1)::before {
               content: "";
               position: absolute;
               inset: 0;
-              transform: translate(0, 30%);
+              transform: translate(0, -15%);
+              z-index: -1;
+            }
+            
+            &:hover::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              transform: translate(0, 15%);
               z-index: -1;
             }
           }
@@ -8047,99 +8463,6 @@
     }
     
     /* --- 9.9.1 - Stack - Detail Page - List Styles --- */
-    .stacks-detail .tile-anime-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
-      gap: 1rem;
-      margin: unset;
-      padding: 1rem 0;
-      
-      .seasonal-anime {
-        --_br: var(--img-border-radius-large);
-        width: 100%;
-        height: auto;
-        margin: unset;
-        
-        .image {
-          width: 100%;
-          height: auto;
-          aspect-ratio: 3 / 4;
-          background-color: var(--bg-second);
-          border-radius: var(--_br);
-          overflow: hidden;
-          
-          img {
-            width: 100%;
-          }
-        }
-        
-        .widget {
-          top: unset;
-          bottom: 36.2px;
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          line-height: unset;
-          padding: 0.5rem;
-          background-color: hsl(from var(--bg-hover) h s l / 0.8);
-          border-radius: 0 0 var(--_br) var(--_br);
-          
-          .stars, .users {
-            display: flex;
-            align-items: center;
-            font-family: var(--ff-main);
-            font-size: 0.775rem;
-            font-weight: 600;
-            margin: unset;
-            color: var(--text-main);
-          }
-          
-          .users {
-            flex-direction: row-reverse;
-            gap: 0.3rem;
-            
-            i::before {
-              content: "\f007";
-              font-weight: 400;
-            }
-          }
-        }
-        
-        .edit {
-          inset: 5px 5px auto auto;
-          
-          a {
-            width: auto;
-            font-size: 1.2rem;
-            padding: 0.3rem 0.35rem;
-            background-color: var(--_status-color, var(--accent-color));
-            border: unset;
-            border-block-end: 2px solid transparent;
-            border-radius: 0.3rem;
-            color: var(--text-bright);
-            box-shadow: 0 4px 8px hsl(from var(--bg-hover) h s l / 0.25);
-            transition: unset;
-            
-            &:is(:hover, :focus-visible) {
-              border-color: var(--text-bright);
-              opacity: unset;
-              animation: shake 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            }
-          }
-          
-          .malicon {
-            position: unset;
-          }
-          
-          .watching, .reading       { --_status-color: var(--watching);      }
-          .completed                { --_status-color: var(--completed);     }
-          .plantowatch, .plantoread { --_status-color: var(--plan-to-watch); }
-          .on-hold                  { --_status-color: var(--on-hold);       }
-          .dropped                  { --_status-color: var(--dropped);       }
-        }
-      }
-    }
-    
     .stacks-detail .seasonal-anime-list {
       padding: 1rem 0.5rem;
       
@@ -8233,6 +8556,7 @@
           
           i {
             margin-inline: 0.5rem 0.2rem;
+            color: var(--accent-color);
           }
         }
 
@@ -8425,12 +8749,21 @@
             transform: translate(65%, -5%) rotate(0deg);
           }
         }
-
-        &:hover::after { /* CSS-Hack: Enlarge the hover area and prevent jitter when images are overlapping */
+        
+        /* CSS-Hack: Enlarge the hover area and prevent jitter when images are overlapping */
+        &:nth-child(1)::before {
           content: "";
           position: absolute;
           inset: 0 calc((var(--img-border-offset) + var(--img-border-size)) * -1) 0 0;
-          transform: translate(0, 30%);
+          transform: translate(0, -15%);
+          z-index: -1;
+        }
+
+        &:hover::after {
+          content: "";
+          position: absolute;
+          inset: 0 calc((var(--img-border-offset) + var(--img-border-size)) * -1) 0 0;
+          transform: translate(0, 15%);
           z-index: -1;
         }
       }
@@ -8827,11 +9160,15 @@
         text-align: center;
         border-radius: 50%;
         color: var(--text-main);
+        transition: transform 250ms ease-in-out;
+      }
+      
+      &.open::after {
+        rotate: 180deg;
       }
 
       &:is(:hover, :focus-visible)::after {
         transform: translate(0, 5px) scale(1.2);
-        transition: transform 350ms ease-in-out;
       }
     }
 
@@ -9085,6 +9422,14 @@
 
       .item.mark-all {
         color: var(--accent-color);
+        
+        &.disabled {
+          color: var(--50-accent-main);
+        }
+      }
+      
+      .notification-header .right-menu .item {
+        color: var(--accent-color);
       }
 
       /* Notification Items */
@@ -9106,12 +9451,46 @@
         align-items: center;
         gap: 0.5rem;
         padding-inline: 0.5rem;
+        
+        &:has(.is-read.checked) {
+          grid-template-columns: 1fr auto;
+        }
       }
 
       .notification-item-content {
-        width: 100%;
+        width: auto;
+        max-width: unset;
         padding: unset;
         white-space: nowrap;
+      }
+      
+      .notification-item-layout > div:has(.notification-item-content.with-actions) {
+        width: auto;
+        display: flex !important;
+        align-items: center;
+        gap: 0.5rem;
+        padding: unset;
+        
+        .actions {
+          display: flow-root !important;
+          margin-inline-start: auto;
+        }
+        
+        .actions .result {
+          width: auto;
+          font-size: 0.675rem;
+          padding: 0.2rem 0.4rem;
+          background-color: var(--25-accent-main);
+          border-color: var(--50-accent-main);
+          border-radius: 0.2rem;
+          color: var(--text-bright);
+        }
+      }
+      
+      .message {
+        font-style: italic;
+        color: var(--text-dim);
+        quotes: initial;
       }
 
       .time {
@@ -9141,6 +9520,56 @@
           color: var(--text-bright);
         }
       }
+      
+      /* Pagination */
+      .notification-pagination {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin: 0.5rem 0;
+        
+        > a, > span {
+          width: 75px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          font-size: 0.775rem;
+          text-align: center;
+          margin: unset;
+          padding: 0.25rem;
+          border-radius: 0.2rem;
+          
+          i {
+            font-size: 0.85em;
+          }
+        }
+        
+        > a {
+          background-color: var(--accent-color);
+          border-color: var(--accent-color);
+          color: var(--text-bright);
+          transition: 250ms ease-in-out;
+          transition-property: background-color, color;
+          
+
+          &:is(:hover, :focus-visible) {
+            background-color: var(--75-accent-hover);
+            border-color: var(--accent-color);
+          }
+        }
+        
+        > span {
+          background-color: var(--50-accent-main);
+          border-color: var(--50-accent-main);
+          color: var(--text-second);
+          opacity: 1;
+        }
+        
+        > a[href$="/history"] {
+          width: 100%;
+        }
+      }
 
     }
   }
@@ -9155,8 +9584,27 @@
   html, .dark-mode {
 
     /* About */
+    .about-intro img {
+      width: 100%;        
+    }
+    
     .about-content.content-bg-grey {
       background-color: var(--bg-second);
+    }
+    
+    .about-header-sub {
+      font-family: var(--ff-accent);
+      font-weight: 600;
+    }
+    
+    .about-content-box {
+      width: 35cqw;
+    }
+    
+    .about-content .btn-signup {
+      font-weight: 600;
+      letter-spacing: unset;
+      border-radius: 0.25rem;
     }
 
     /* Support */
@@ -9302,6 +9750,140 @@
         background-color: var(--75-main-hover);
       }
     }
+    
+    /* Markdown Pages - Terms / Privacy / Cookie Policy / Notice at Collection */
+    .content-document-markdown {
+      padding-block: 0.5rem;
+      
+      .link_download-pdf {
+        --_icon-size: 1.25rem;
+        position: absolute;
+        position-anchor: --page-title;
+        top: calc(anchor(top));
+        left: anchor(right);
+        font-family: var(--ff-secondary);
+        font-size: 0.8rem;
+        margin-inline-start: 0.5rem;
+        
+        a {
+          width: var(--_icon-size);
+          height: var(--_icon-size);
+          display: inline-block;
+          font-style: italic;
+          text-decoration: none;
+          color: transparent;
+        }
+        
+        i {
+          font-weight: 900;
+          font-size: var(--_icon-size);
+          color: var(--text-dim);
+          transform-origin: center;
+          transition: 1s var(--ease-overshoot-dramatic);
+          
+          &:is(:hover, :focus-visible) {
+            color: var(--accent-color);
+            scale: 1.1;
+            rotate: -2deg;
+          }
+        }
+      }
+      
+      .link_download-pdf + p {
+        margin-block-start: unset;
+      }
+      
+      h1 {
+        anchor-name: --page-title;
+        width: max-content;
+        font-family: var(--ff-tertiary);
+        font-size: 1.2rem;
+        margin: unset;
+        background-color: unset;
+      }
+      
+      h1 ~ * {
+        margin-block: 0.75rem 0;
+      }
+      
+      h2 {
+        font-family: var(--ff-tertiary);
+        font-size: 1rem;
+      }
+      
+      h3 {
+        font-family: var(--ff-tertiary);
+        font-size: 0.925rem;
+        color: var(--text-main);
+      }
+      
+      h4 {
+        font-family: var(--text-main);
+        font-size: 0.8rem;
+      }
+      
+      p, li, table {
+        font-family: var(--ff-main);
+        font-size: 0.8rem;
+        line-height: 1.7;
+      }
+      
+      table {
+        border-color: var(--bg-hover);
+        
+        thead, tbody, tr, th, td {
+          font-size: inherit;
+          line-height: inherit;
+          border-color: inherit;
+        }
+        
+        thead {
+          background-color: var(--bg-hover);
+        }
+        
+        tbody tr:nth-child(even) {
+          background-color: var(--50-main-hover);
+        }
+        
+        tbody tr:nth-child(odd) {
+          background-color: var(--75-main-hover);
+        }
+      }
+    }
+    
+    /* Pressroom */
+    .page-pressroom {
+      h1 {
+        font-family: var(--ff-tertiary);
+        background-color: transparent;
+      }
+
+      .press-table {
+        margin: unset;
+      }
+
+      .press-table .press-data {
+        border: unset;
+      }
+      
+      a.btn-pdf::after {
+        content: "PDF";
+        width: auto;
+        height: auto;
+        font-size: 0.6rem;
+        padding: 0.1rem 0.5rem;
+        background-color: var(--red-dark);
+        background-image: unset;
+        border-radius: 100vw;
+        color: var(--text-main);
+      }
+    }
+    
+    /* Sitemap */
+    .sitemap :is(.sitemap__category, .sitemap__category__title) {
+      border-color: var(--bg-hover);
+    }
+    
   }
 
   /* Membership */
@@ -9356,6 +9938,48 @@
 
 }
 
+@-moz-document url-prefix("https://myanimelist.net/recommendations/") {
+
+  /* ======================================================================================= */
+  /* Recommendations Page                                                                    */
+  /* ======================================================================================= */
+  html, .dark-mode {
+    .borderDark {
+      margin: unset !important;
+      padding: 0.5rem !important;
+      border: unset;
+    }
+    
+    .borderClass:is(.bgColor1, .bgColor2) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-block: 0.5rem 0 !important;
+      padding: 0.25rem 0.5rem !important;
+      background-color: var(--50-main-second) !important;
+      border: 1px solid var(--25-main-second) !important;
+      border-radius: 0.2rem;
+      
+      > div:nth-child(2) {
+        font-family: var(--ff-secondary);
+        font-size: 0.775rem;
+        font-style: italic;
+
+        > span {
+          font-family: var(--ff-main);
+          font-style: normal;
+        }
+      }
+      
+      a[href*="/dbchanges.php?go=report"] {
+        color: var(--red-light);
+      }
+    }
+    
+  }
+  
+}
+
 @-moz-document url("https://myanimelist.net/modules.php?go=report") {
 
   /* ======================================================================================= */
@@ -9367,6 +9991,7 @@
       padding: 0.4rem 0.8rem !important;
 
     }
+    
   }
 
 }
