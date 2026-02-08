@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.3.0
+@version        0.3.1
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -540,7 +540,607 @@
       }
 
 
-      /* -- 1.1.1 - Tables -- */
+      /* -- 1.1.1 - Graphs -- */
+      .updatesBar {
+        background-color: var(--accent-color);
+        /* background-image: repeating-linear-gradient(45deg, var(--accent-color) 0 12px, var(--75-accent-second) 12px 24px); */
+        background-image: linear-gradient(to right, var(--accent-color), var(--75-accent-main-text));
+        border-radius: 2px;
+      }
+
+
+      /* -- 1.1.2 - Text Inputs & Dropdowns -- */
+      .inputtext, 
+      &.stacks input.title, 
+      &.stacks textarea.description {
+        font-family: var(--ff-main);
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.2rem;
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+        color: var(--text-second);
+        caret-color: var(--accent-color);
+        scrollbar-width: thin;
+
+        &:focus-visible {
+          /* outline: 2px solid var(--accent-color); */
+          
+          /* TODO: To check on all text inputs to see if the below change looks good */
+          outline-offset: 0;
+          
+        }
+      }
+      
+      &.stacks input.title {
+        font-size: 0.825rem;
+      }
+
+      select.inputtext {
+        cursor: pointer;
+      }
+
+      .textarea {
+        font-size: small;
+        background-color: var(--bg-main);
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+        caret-color: var(--accent-color);
+
+        &:focus-visible {
+          outline: 2px solid var(--accent-color);
+        }
+      }
+
+
+      /* -- 1.1.3 - Quotes & Code blocks -- */
+      .codetext {
+        background-color: var(--bg-hover);
+        border-color: var(--bg-hover);
+      }
+      
+      .quotetext {
+        /* position: relative; */
+        /* font-style: italic; */
+        padding-inline-start: 1rem;
+        background-color: rgb(from var(--bg-hover) r g b / 0.5);
+        border-color: rgb(from var(--bg-hover) r g b / 0.75);
+        isolation: isolate;
+        overflow: hidden;
+        
+        /*
+        &::before, &::after {
+          position: absolute;
+          font-family: var(--ff-fa);
+          font-weight: 900;
+          font-size: 5rem;
+          line-height: 0;
+          color: var(--50-accent-main-text);
+          opacity: 0.05;
+          z-index: -1;
+        }
+        
+        &::before {
+          content: "\f10d";
+          top: 0;
+          left: 5px;
+          translate: 0 15px;
+        }
+        
+        &::after {
+          content: "\f10e";
+          right: 10px;
+          bottom: 0;
+          translate: 0 -15px;
+        }
+        */
+      }
+
+
+      /* -- 1.1.4 - Icons -- */
+      .icon-about-recommendations {
+        color: var(--accent-color);
+      }
+      
+      .fa-pencil {
+        --fa: "\f304";
+      }
+
+      .fa-comment {
+        --fa: "\f27a";
+      }
+
+      .information .comment::before {
+        content: "\f27a";
+        font-family: var(--ff-fa);
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-inline-end: 0.25rem;
+      }
+
+      .watch-state-icon {
+        cursor: pointer;
+
+        &::before {
+          content: "\f1ce";
+          font-weight: 900;
+          font-size: 0.8rem;
+        }
+
+        &:hover {
+          animation: pulse 350ms var(--ease-bounce-subtle);
+        }
+
+        &:is(.watched, :hover, :focus-visible)::before {
+          color: var(--accent-color);
+        }
+
+        &.watched:is(:hover, :focus-visible)::before {
+          color: var(--red-light);
+        }
+      }
+
+      .icon-pay,
+      #widget-episode-video .widget-slide .btn-anime.episode .icon-pay,
+      .video-block .video-list .icon-pay,
+      .contents-video-embed .video-anime-slide-block.hori .video-anime-slide .btn-anime .icon-pay {
+        background: unset;
+
+        &::after {
+          content: "\f2e8";
+          font-family: var(--ff-fa);
+          font-weight: 500;
+          color: gold;
+        }
+      }
+
+      .anime-detail-header-video .video-episode .video-unit,
+      .anime-detail-header-video .video-promotion .video-unit,
+      .watch-video .video-list-outer-vertical .video-list,
+      .video-block .video-list {
+        .btn-play {
+          --_size: 2.5rem;
+          width: var(--_size);
+          height: auto;
+          aspect-ratio: 1;
+          text-indent: unset;
+          margin: unset;
+          background: radial-gradient(circle, rgb(0 0 0 / 0.5), transparent) !important;
+          border-radius: 50%;
+          color: transparent;
+          box-shadow: 0 0 10px rgb(0 0 0 / 0.5);
+          translate: -50% -50%;
+          transition: transform 350ms var(--ease-overshoot-smooth);
+          overflow: unset;
+
+          &::before {
+            content: "\f144";
+            position: absolute;
+            inset: inherit;
+            font-family: var(--ff-fa);
+            font-size: var(--_size);
+            color: var(--text-bright);
+            translate: inherit;
+          }
+
+          &:is(:hover, :focus-visible) {
+            transform: scale(1.5);
+          }
+        }
+      }
+
+
+      /* -- 1.1.5 - Buttons -- */
+      a.mal-btn.primary,
+      button.mal-btn.primary,
+      .inputButton,
+      .btn-blue-rect,
+      .view-style2 a.on, 
+      .btn-submit.btn-form-submit, 
+      &.stacks .btn.btn-primary {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: var(--text-bright);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+        }
+
+        &:disabled {
+          background-color: var(--50-accent-main);
+          border-color: var(--50-accent-main);
+          color: var(--text-second);
+          opacity: 1;
+        }
+      }
+      
+      .btn-submit.btn-form-submit {
+        font-weight: 600;
+      }
+
+      .btn-blue-rect {
+        color: var(--text-bright) !important;
+
+        &:is(:hover, :focus-visible) {
+          color: var(--text-main) !important;
+        }
+
+        &:disabled {
+          color: var(--text-second) !important;
+        }
+      }
+
+      .inputButton {
+        font-family: var(--ff-main);
+        padding: 0.2rem 0.4rem !important;
+        border-radius: 0.2rem;
+      }
+
+      a.mal-btn.primary.outline,
+      button.mal-btn.primary.outline,
+      .view-style2 a:not(.on) {
+        background-color: var(--50-accent-hover);
+        color: var(--accent-color);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          color: var(--text-main);
+        }
+      }
+
+      .view-style2 a {
+        border-color: var(--accent-color);
+      }
+
+      a.mal-btn.primary.outline.noborder,
+      button.mal-btn.primary.outline.noborder {
+        &.pressed {
+          background-color: var(--25-accent-hover);
+          color: var(--accent-color);
+        }
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          color: var(--text-main);
+        }
+      }
+
+      a.mal-btn.secondary.outline,
+      button.mal-btn.secondary.outline {
+        background-color: var(--50-main-hover);
+        border-color: var(--bg-hover);
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-main-hover);
+          color: var(--text-main);
+        }
+      }
+
+      a.mal-btn.secondary.outline.noborder,
+      button.mal-btn.secondary.outline.noborder {
+        background-color: transparent;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-main-second);
+        }
+      }
+
+      .btn-form-submit.small {
+        background-color: var(--50-accent-hover);
+        border: 1px solid var(--50-accent-hover);
+        transition-property: background-color, border-color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--25-accent-hover);
+          border-color: var(--75-accent-hover);
+        }
+      }
+
+      /* - 1.1.5.1 - Show/Hide Btn - */
+      .button:is(.show_button, .expand_quote) {
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+        color: var(--text-second);
+      }
+
+      .button.hide_button {
+        background-color: var(--25-accent-hover);
+        color: var(--75-accent-hover);
+      }
+
+      /* - 1.1.5.2 - Add/Edit Btn - */
+      a:is(.button_add, .button_edit) {
+        height: auto;
+        font-family: var(--ff-main);
+        border-radius: 3px;
+      }
+
+      a.addtolist,
+      .watch-video .video-list-outer-vertical .video-info-title a.addtolist, 
+      &.stacks .stacks-detail .list-anime-list .seasonal-anime .head .add-edit-button .button.notinmylist {
+        background-color: var(--accent-color);
+        border-bottom: 1px solid var(--text-main);
+        color: var(--text-bright);
+        transition: 250ms linear;
+        transition-property: background-color, border-color, color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+          opacity: 1;
+        }
+      }
+
+      /* - 1.1.5.3 - Top Btn - */
+      .btn-top {
+        left: calc(50vw + 50cqw + 1rem) !important;
+        background-color: var(--accent-color);
+      }
+
+      /* - 1.1.5.4 - Choose Your Own - */
+      a.btn-choose-your-own {
+        padding: 0.5rem 0.75rem;
+        background-color: var(--25-main-second);
+        border-color: var(--accent-color);
+        border-radius: 100vw;
+        transition-property: background-color, color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+      
+      /* - 1.1.5.5 - Login/Sign Up - */
+      #header-menu .header-menu-login .btn-login {
+        font-family: var(--ff-tertiary);
+        background-color: var(--bg-main) !important;
+        border: 1px solid var(--bg-main) !important;
+        color: var(--text-main) !important;
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-main-second) !important;
+        }
+      }
+      
+      #header-menu .header-menu-login .btn-signup {
+        font-family: var(--ff-tertiary);
+        background-color: var(--accent-color) !important;
+        border: 1px solid var(--accent-color) !important;
+        color: var(--text-bright) !important;
+        transition: 175ms ease-in-out;
+        transition-property: background-color, border-color;
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover) !important;
+          border-color: var(--accent-color) !important;
+        }
+      }
+
+
+      /* -- 1.1.6 - Images -- */
+      .lazyloaded {
+        image-rendering: unset;
+      }
+
+      div.picSurround img {
+        background-color: var(--bg-hover);
+      }
+
+      .img-a-r {
+        padding: unset;
+      }
+
+      /* - 1.1.6.1 - Image Unavailable - */
+      .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]) {
+        position: relative;
+        background-color: var(--50-main-hover);
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: -50%;
+          background-color: white;
+          mask-image: var(--questionmark), var(--questionmark);
+          mask-position: top left, var(--_mask-position, bottom right);
+          mask-size: var(--_mask-size-small, 24px);
+          mix-blend-mode: overlay;
+          rotate: -20deg;
+          opacity: 0.4;
+        }
+
+        > a {
+          display: block;
+          width: var(--_img-width, 42px);
+          height: auto;
+          aspect-ratio: 42 / 62;
+          background-color: var(--accent-color);
+          mask-image: var(--questionmark);
+          mask-position: center;
+          mask-repeat: no-repeat;
+          mask-size: var(--_mask-size, 48px);
+        }
+
+        img {
+          display: none;
+        }
+        
+        :is(.anime-character-container, .manga-character-container) > table > tbody > tr > td:first-child & {
+          --_img-width: 80px;
+          --_mask-size: 96px;
+          --_mask-size-small: 48px;
+          --_mask-position: 24px 30px;
+          width: var(--_img-width);
+        }
+      }
+
+      /* - 1.1.6.2 - Images - Fancy Border - */
+      div.picSurround img,
+      div.picSurround a img,
+      .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]),
+      .column-item .img .edge img,
+      .mb12.lh12.clearfix td[width="28"] a img,
+      img[src*="clubs"],
+      table[class*="-favorites-ranking-table"] td:nth-child(2) .image,
+      .table-recently-updated div.di-tc[style="width:30px;"],
+      td.forum_boardrow2 a img,
+      &.page-forum .forum-icon img,
+      .profile .statistics-updates .image img,
+      .user-comments .comment .image img,
+      /*       .user-profile .user-image > img,  */
+      .news-side-block img.thumbs,
+      .ranking-unit .image img,
+      .top-ranking-table .title .image,
+      .featured.po-r.clearfix img,
+      .ranking-list img:not(.bookstore-icon),
+      .boxlist-container img,
+      .anime-filter .content-left .logo img,
+      &.stacks .img .edge img,
+      &.stacks .side-list img,
+      &.stacks .my-list img,
+      form + .stacks-modal img,
+      .widget-slide-outer .btn-anime img,
+      .news-container .img-a-l,
+      .news-list .news-unit .image-link .image,
+      .columnist-side-block .columnist-list .columnists-unit-side .image,
+      .friend_list_updates .image,
+      .friend_list_updates .friend-image,
+      .history-updates .image,
+      .history-updates .friend-image,
+      .review-element .thumbbody img,
+      /*       .related-entries img,  */
+      .related-entries .image,
+      .anime-slide .image {
+        margin: var(--img-border-offset);
+        border: unset;
+        border-radius: var(--img-border-radius) !important;
+        outline: var(--img-border-size) solid var(--25-accent-main);
+        outline-offset: var(--img-border-offset);
+        transform-origin: center right;
+        transition: outline-color 250ms ease-in-out;
+
+        &:is(:hover, :focus-visible) {
+          outline-color: var(--accent-color);
+        }
+      }
+
+      .ranking-digest .ranking-unit .image {
+        box-shadow: unset !important;
+        overflow: unset;
+      }
+
+      .news-list :is(.comment-list, .news-unit) .image-link {
+        margin: var(--img-border-offset);
+        border: unset;
+        overflow: unset;
+      }
+
+      :is(.news-list, .featured-list) :is(.news, .featured) a:is(.thumbs-link, .thumbs) {
+        margin-inline: var(--img-border-offset) 0 !important;
+      }
+
+      .columnist-side-block .columnist-list .columnists-unit-side .image {
+        margin: var(--img-border-offset) !important;
+        box-shadow: unset;
+      }
+
+      /* - 1.1.6.3 - Images - Fancy Border (Type 2) - */
+      .news-container .img-a-r {
+        --img-border-offset: var(--img-border-offset-large);
+        --img-border-radius: 0.5rem;
+        --_gap: 0.5rem;
+        --_border-size: calc(var(--img-border-offset) + var(--img-border-size));
+        --_margin: calc(var(--_border-size) + var(--_gap));
+        --_border-color: var(--25-accent-main);
+        margin: var(--_border-size) var(--_border-size) var(--_margin) var(--_margin);
+        border-radius: var(--img-border-radius);
+        box-shadow: 0 0 0 var(--img-border-offset) var(--bg-main), 0 0 0 var(--_border-size) var(--_border-color);
+      }
+
+
+      /* -- 1.1.7 - Notice -- */
+      .notice_open_public {
+        font-style: italic;
+        color: var(--red-light);
+      }
+
+      .msg-frame {
+        font-size: 0.725rem;
+        padding: 0.5rem;
+        background-color: var(--25-accent-main);
+        border: 1px solid var(--75-accent-hover);
+        border-radius: 0.2rem;
+        color: var(--text-main);
+      }
+
+
+      /* -- 1.1.8 - Action Feedback -- */
+      .goodresult,
+      .successQuery {
+        /* TODO: UPDATE COLORS */
+        /*         background-color: var(--bg-hover) !important; */
+        /*         border-color: var(--bg-hover) !important; */
+
+        background-color: hsl(from var(--green-light) h s calc(l - 20)) !important;
+        border-color: var(--green-light) !important;
+        color: var(--text-main);
+      }
+
+      .badresult {
+        background-color: var(--red-dark);
+        border-color: var(--red-midtone);
+        color: var(--text-main);
+      }
+
+      .badresult-text {
+        color: var(--red-light);
+      }
+
+      /* -- 1.1.9 - Hover Info Container -- */
+      .hoverinfo {
+        width: 60ch;
+        height: unset;
+        background: var(--bg-second);
+        background-image: unset !important;
+        border-radius: 0.3rem;
+
+        &::after {
+          --_size: 15px;
+          width: unset;
+          height: unset;
+          background: unset !important;
+          border: var(--_size) solid transparent;
+          border-right-color: var(--bg-second);
+        }
+
+        &.left.top::after {
+          top: var(--_size);
+          left: calc(var(--_size) * -2 + 2px);
+        }
+
+        &.left.bottom::after {
+          top: unset;
+          bottom: var(--_size);
+          left: calc(var(--_size) * -2 + 2px);
+        }
+      }
+
+
+      /* -- 1.1.10 - Iframes -- */
+      iframe.movie.youtube {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+
+        &:focus-visible {
+          outline: unset;
+        }
+      }
+
+
+      /* -- 1.1.11 - Tables -- */
       td {
         font-size: 0.75rem;
         line-height: 1.7
@@ -578,7 +1178,7 @@
         background-color: var(--50-main-hover);
       }
       
-      /* - 1.1.1.1 - Ranking Tables - */
+      /* - 1.1.11.1 - Ranking Tables - */
       .top-ranking-table, 
       .people-favorites-ranking-table,
       .characters-favorites-ranking-table,
@@ -897,7 +1497,7 @@
         --_grid-columns: 100px 1.5fr repeat(3, 1fr) 150px;
       }
       
-      /* - 1.1.1.2 - BBCode Tables - */
+      /* - 1.1.11.2 - BBCode Tables - */
       .bbcode-table {
         th {
           background-color: var(--bg-second);
@@ -906,659 +1506,6 @@
         
         td {
           border-color: var(--bg-hover);
-        }
-      }
-
-
-      /* -- 1.1.2 - Update Bar -- */
-      .updatesBar {
-        background-color: var(--accent-color);
-        /* background-image: repeating-linear-gradient(45deg, var(--accent-color) 0 12px, var(--75-accent-second) 12px 24px); */
-        background-image: linear-gradient(to right, var(--accent-color), var(--75-accent-main-text));
-        border-radius: 2px;
-      }
-
-
-      /* -- 1.1.3 - Text Inputs & Dropdowns -- */
-      .inputtext, 
-      &.stacks input.title, 
-      &.stacks textarea.description {
-        font-family: var(--ff-main);
-        padding: 0.3rem 0.6rem;
-        border-radius: 0.2rem;
-        background-color: var(--bg-second);
-        border-color: var(--bg-hover);
-        color: var(--text-second);
-        caret-color: var(--accent-color);
-        scrollbar-width: thin;
-
-        &:focus-visible {
-          /* outline: 2px solid var(--accent-color); */
-          
-          /* TODO: To check on all text inputs to see if the below change looks good */
-          outline-offset: 0;
-          
-        }
-      }
-      
-      &.stacks input.title {
-        font-size: 0.825rem;
-      }
-
-      select.inputtext {
-        cursor: pointer;
-      }
-
-      .textarea {
-        font-size: small;
-        background-color: var(--bg-main);
-        border-color: var(--bg-hover);
-        color: var(--text-main);
-        caret-color: var(--accent-color);
-
-        &:focus-visible {
-          outline: 2px solid var(--accent-color);
-        }
-      }
-
-
-      /* -- 1.1.4 - Quotes & Code blocks -- */
-      .codetext {
-        background-color: var(--bg-hover);
-        border-color: var(--bg-hover);
-      }
-      
-      .quotetext {
-        /* position: relative; */
-        /* font-style: italic; */
-        padding-inline-start: 1rem;
-        background-color: rgb(from var(--bg-hover) r g b / 0.5);
-        border-color: rgb(from var(--bg-hover) r g b / 0.75);
-        isolation: isolate;
-        overflow: hidden;
-        
-        /*
-        &::before, &::after {
-          position: absolute;
-          font-family: var(--ff-fa);
-          font-weight: 900;
-          font-size: 5rem;
-          line-height: 0;
-          color: var(--50-accent-main-text);
-          opacity: 0.05;
-          z-index: -1;
-        }
-        
-        &::before {
-          content: "\f10d";
-          top: 0;
-          left: 5px;
-          translate: 0 15px;
-        }
-        
-        &::after {
-          content: "\f10e";
-          right: 10px;
-          bottom: 0;
-          translate: 0 -15px;
-        }
-        */
-      }
-
-
-      /* -- 1.1.5 - Icons -- */
-      .icon-about-recommendations {
-        color: var(--accent-color);
-      }
-      
-      .fa-pencil {
-        --fa: "\f304";
-      }
-
-      .fa-comment {
-        --fa: "\f27a";
-      }
-
-      .information .comment::before {
-        content: "\f27a";
-        font-family: var(--ff-fa);
-        font-size: 0.85em;
-        font-weight: 600;
-        margin-inline-end: 0.25rem;
-      }
-
-      .watch-state-icon {
-        cursor: pointer;
-
-        &::before {
-          content: "\f1ce";
-          font-weight: 900;
-          font-size: 0.8rem;
-        }
-
-        &:hover {
-          animation: pulse 350ms var(--ease-bounce-subtle);
-        }
-
-        &:is(.watched, :hover, :focus-visible)::before {
-          color: var(--accent-color);
-        }
-
-        &.watched:is(:hover, :focus-visible)::before {
-          color: var(--red-light);
-        }
-      }
-
-      .icon-pay,
-      #widget-episode-video .widget-slide .btn-anime.episode .icon-pay,
-      .video-block .video-list .icon-pay,
-      .contents-video-embed .video-anime-slide-block.hori .video-anime-slide .btn-anime .icon-pay {
-        background: unset;
-
-        &::after {
-          content: "\f2e8";
-          font-family: var(--ff-fa);
-          font-weight: 500;
-          color: gold;
-        }
-      }
-
-      .anime-detail-header-video .video-episode .video-unit,
-      .anime-detail-header-video .video-promotion .video-unit,
-      .watch-video .video-list-outer-vertical .video-list,
-      .video-block .video-list {
-        .btn-play {
-          --_size: 2.5rem;
-          width: var(--_size);
-          height: auto;
-          aspect-ratio: 1;
-          text-indent: unset;
-          margin: unset;
-          background: radial-gradient(circle, rgb(0 0 0 / 0.5), transparent) !important;
-          border-radius: 50%;
-          color: transparent;
-          box-shadow: 0 0 10px rgb(0 0 0 / 0.5);
-          translate: -50% -50%;
-          transition: transform 350ms var(--ease-overshoot-smooth);
-          overflow: unset;
-
-          &::before {
-            content: "\f144";
-            position: absolute;
-            inset: inherit;
-            font-family: var(--ff-fa);
-            font-size: var(--_size);
-            color: var(--text-bright);
-            translate: inherit;
-          }
-
-          &:is(:hover, :focus-visible) {
-            transform: scale(1.5);
-          }
-        }
-      }
-
-
-      /* -- 1.1.6 - Buttons -- */
-      a.mal-btn.primary,
-      button.mal-btn.primary,
-      .inputButton,
-      .btn-blue-rect,
-      .view-style2 a.on, 
-      .btn-submit.btn-form-submit, 
-      &.stacks .btn.btn-primary {
-        background-color: var(--accent-color);
-        border-color: var(--accent-color);
-        color: var(--text-bright);
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--75-accent-hover);
-          border-color: var(--accent-color);
-        }
-
-        &:disabled {
-          background-color: var(--50-accent-main);
-          border-color: var(--50-accent-main);
-          color: var(--text-second);
-          opacity: 1;
-        }
-      }
-      
-      .btn-submit.btn-form-submit {
-        font-weight: 600;
-      }
-
-      .btn-blue-rect {
-        color: var(--text-bright) !important;
-
-        &:is(:hover, :focus-visible) {
-          color: var(--text-main) !important;
-        }
-
-        &:disabled {
-          color: var(--text-second) !important;
-        }
-      }
-
-      .inputButton {
-        font-family: var(--ff-main);
-        padding: 0.2rem 0.4rem !important;
-        border-radius: 0.2rem;
-      }
-
-      a.mal-btn.primary.outline,
-      button.mal-btn.primary.outline,
-      .view-style2 a:not(.on) {
-        background-color: var(--50-accent-hover);
-        color: var(--accent-color);
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--75-accent-hover);
-          color: var(--text-main);
-        }
-      }
-
-      .view-style2 a {
-        border-color: var(--accent-color);
-      }
-
-      a.mal-btn.primary.outline.noborder,
-      button.mal-btn.primary.outline.noborder {
-        &.pressed {
-          background-color: var(--25-accent-hover);
-          color: var(--accent-color);
-        }
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--75-accent-hover);
-          color: var(--text-main);
-        }
-      }
-
-      a.mal-btn.secondary.outline,
-      button.mal-btn.secondary.outline {
-        background-color: var(--50-main-hover);
-        border-color: var(--bg-hover);
-        color: var(--text-second);
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--75-main-hover);
-          color: var(--text-main);
-        }
-      }
-
-      a.mal-btn.secondary.outline.noborder,
-      button.mal-btn.secondary.outline.noborder {
-        background-color: transparent;
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--50-main-second);
-        }
-      }
-
-      .btn-form-submit.small {
-        background-color: var(--50-accent-hover);
-        border: 1px solid var(--50-accent-hover);
-        transition-property: background-color, border-color;
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--25-accent-hover);
-          border-color: var(--75-accent-hover);
-        }
-      }
-
-      /* - 1.1.6.1 - Show/Hide Btn - */
-      .button:is(.show_button, .expand_quote) {
-        background-color: var(--bg-second);
-        border-color: var(--bg-hover);
-        color: var(--text-second);
-      }
-
-      .button.hide_button {
-        background-color: var(--25-accent-hover);
-        color: var(--75-accent-hover);
-      }
-
-      /* - 1.1.6.2 - Add/Edit Btn - */
-      a:is(.button_add, .button_edit) {
-        height: auto;
-        font-family: var(--ff-main);
-        border-radius: 3px;
-      }
-
-      a.addtolist,
-      .watch-video .video-list-outer-vertical .video-info-title a.addtolist, 
-      &.stacks .stacks-detail .list-anime-list .seasonal-anime .head .add-edit-button .button.notinmylist {
-        background-color: var(--accent-color);
-        border-bottom: 1px solid var(--text-main);
-        color: var(--text-bright);
-        transition: 250ms linear;
-        transition-property: background-color, border-color, color;
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--75-accent-hover);
-          border-color: var(--accent-color);
-          opacity: 1;
-        }
-      }
-
-      /* - 1.1.6.3 - Top Btn - */
-      .btn-top {
-        left: calc(50vw + 50cqw + 1rem) !important;
-        background-color: var(--accent-color);
-      }
-
-      /* - 1.1.6.4 - Choose Your Own - */
-      a.btn-choose-your-own {
-        padding: 0.5rem 0.75rem;
-        background-color: var(--25-main-second);
-        border-color: var(--accent-color);
-        border-radius: 100vw;
-        transition-property: background-color, color;
-
-        &:is(:hover, :focus-visible) {
-          background-color: var(--accent-color);
-          color: var(--text-bright);
-        }
-      }
-      
-      /* - 1.1.6.5 - Login/Sign Up - */
-      #header-menu .header-menu-login .btn-login {
-        font-family: var(--ff-tertiary);
-        background-color: var(--bg-main) !important;
-        border: 1px solid var(--bg-main) !important;
-        color: var(--text-main) !important;
-        
-        &:is(:hover, :focus-visible) {
-          background-color: var(--75-main-second) !important;
-        }
-      }
-      
-      #header-menu .header-menu-login .btn-signup {
-        font-family: var(--ff-tertiary);
-        background-color: var(--accent-color) !important;
-        border: 1px solid var(--accent-color) !important;
-        color: var(--text-bright) !important;
-        transition: 175ms ease-in-out;
-        transition-property: background-color, border-color;
-        
-        &:is(:hover, :focus-visible) {
-          background-color: var(--75-accent-hover) !important;
-          border-color: var(--accent-color) !important;
-        }
-      }
-
-
-      /* -- 1.1.7 - Notice -- */
-      .notice_open_public {
-        font-style: italic;
-        color: var(--red-light);
-      }
-
-      .msg-frame {
-        font-size: 0.725rem;
-        padding: 0.5rem;
-        background-color: var(--25-accent-main);
-        border: 1px solid var(--75-accent-hover);
-        border-radius: 0.2rem;
-        color: var(--text-main);
-      }
-
-
-      /* -- 1.1.8 - Action Feedback -- */
-      .goodresult,
-      .successQuery {
-        /* TODO: UPDATE COLORS */
-        /*         background-color: var(--bg-hover) !important; */
-        /*         border-color: var(--bg-hover) !important; */
-
-        background-color: hsl(from var(--green-light) h s calc(l - 20)) !important;
-        border-color: var(--green-light) !important;
-        color: var(--text-main);
-      }
-
-      .badresult {
-        background-color: var(--red-dark);
-        border-color: var(--red-midtone);
-        color: var(--text-main);
-      }
-
-      .badresult-text {
-        color: var(--red-light);
-      }
-
-      /* -- 1.1.9 - Hover Info Container -- */
-      .hoverinfo {
-        width: 60ch;
-        height: unset;
-        background: var(--bg-second);
-        background-image: unset !important;
-        border-radius: 0.3rem;
-
-        &::after {
-          --_size: 15px;
-          width: unset;
-          height: unset;
-          background: unset !important;
-          border: var(--_size) solid transparent;
-          border-right-color: var(--bg-second);
-        }
-
-        &.left.top::after {
-          top: var(--_size);
-          left: calc(var(--_size) * -2 + 2px);
-        }
-
-        &.left.bottom::after {
-          top: unset;
-          bottom: var(--_size);
-          left: calc(var(--_size) * -2 + 2px);
-        }
-      }
-
-
-      /* -- 1.1.10 - Images -- */
-      .lazyloaded {
-        image-rendering: unset;
-      }
-
-      div.picSurround img {
-        background-color: var(--bg-hover);
-      }
-
-      .img-a-r {
-        padding: unset;
-      }
-
-      /* - 1.1.10.1 - Image Unavailable - */
-      .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]) {
-        position: relative;
-        background-color: var(--50-main-hover);
-        overflow: hidden;
-
-        &::before {
-          content: "";
-          position: absolute;
-          inset: -50%;
-          background-color: white;
-          mask-image: var(--questionmark), var(--questionmark);
-          mask-position: top left, var(--_mask-position, bottom right);
-          mask-size: var(--_mask-size-small, 24px);
-          mix-blend-mode: overlay;
-          rotate: -20deg;
-          opacity: 0.4;
-        }
-
-        > a {
-          display: block;
-          width: var(--_img-width, 42px);
-          height: auto;
-          aspect-ratio: 42 / 62;
-          background-color: var(--accent-color);
-          mask-image: var(--questionmark);
-          mask-position: center;
-          mask-repeat: no-repeat;
-          mask-size: var(--_mask-size, 48px);
-        }
-
-        img {
-          display: none;
-        }
-        
-        :is(.anime-character-container, .manga-character-container) > table > tbody > tr > td:first-child & {
-          --_img-width: 80px;
-          --_mask-size: 96px;
-          --_mask-size-small: 48px;
-          --_mask-position: 24px 30px;
-          width: var(--_img-width);
-        }
-      }
-
-      /* - 1.1.10.2 - Images - Fancy Border - */
-      div.picSurround img,
-      div.picSurround a img,
-      .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]),
-      .column-item .img .edge img,
-      .mb12.lh12.clearfix td[width="28"] a img,
-      img[src*="clubs"],
-      table[class*="-favorites-ranking-table"] td:nth-child(2) .image,
-      .table-recently-updated div.di-tc[style="width:30px;"],
-      td.forum_boardrow2 a img,
-      &.page-forum .forum-icon img,
-      .profile .statistics-updates .image img,
-      .user-comments .comment .image img,
-      /*       .user-profile .user-image > img,  */
-      .news-side-block img.thumbs,
-      .ranking-unit .image img,
-      .top-ranking-table .title .image,
-      .featured.po-r.clearfix img,
-      .ranking-list img:not(.bookstore-icon),
-      .boxlist-container img,
-      .anime-filter .content-left .logo img,
-      &.stacks .img .edge img,
-      &.stacks .side-list img,
-      &.stacks .my-list img,
-      form + .stacks-modal img,
-      .widget-slide-outer .btn-anime img,
-      .news-container .img-a-l,
-      .news-list .news-unit .image-link .image,
-      .columnist-side-block .columnist-list .columnists-unit-side .image,
-      .friend_list_updates .image,
-      .friend_list_updates .friend-image,
-      .history-updates .image,
-      .history-updates .friend-image,
-      .review-element .thumbbody img,
-      /*       .related-entries img,  */
-      .related-entries .image,
-      .anime-slide .image {
-        margin: var(--img-border-offset);
-        border: unset;
-        border-radius: var(--img-border-radius) !important;
-        outline: var(--img-border-size) solid var(--25-accent-main);
-        outline-offset: var(--img-border-offset);
-        transform-origin: center right;
-        transition: outline-color 250ms ease-in-out;
-
-        &:is(:hover, :focus-visible) {
-          outline-color: var(--accent-color);
-        }
-      }
-
-      .ranking-digest .ranking-unit .image {
-        box-shadow: unset !important;
-        overflow: unset;
-      }
-
-      .news-list :is(.comment-list, .news-unit) .image-link {
-        margin: var(--img-border-offset);
-        border: unset;
-        overflow: unset;
-      }
-
-      :is(.news-list, .featured-list) :is(.news, .featured) a:is(.thumbs-link, .thumbs) {
-        margin-inline: var(--img-border-offset) 0 !important;
-      }
-
-      .columnist-side-block .columnist-list .columnists-unit-side .image {
-        margin: var(--img-border-offset) !important;
-        box-shadow: unset;
-      }
-
-      /* - 1.1.10.3 - Images - Fancy Border (Type 2) - */
-      .news-container .img-a-r {
-        --img-border-offset: var(--img-border-offset-large);
-        --img-border-radius: 0.5rem;
-        --_gap: 0.5rem;
-        --_border-size: calc(var(--img-border-offset) + var(--img-border-size));
-        --_margin: calc(var(--_border-size) + var(--_gap));
-        --_border-color: var(--25-accent-main);
-        margin: var(--_border-size) var(--_border-size) var(--_margin) var(--_margin);
-        border-radius: var(--img-border-radius);
-        box-shadow: 0 0 0 var(--img-border-offset) var(--bg-main), 0 0 0 var(--_border-size) var(--_border-color);
-      }
-
-
-      /* -- 1.1.11 - Footer -- */
-      #footer-block {
-        width: 100% !important;
-        background-color: var(--bg-second);
-
-        .footer-link-icon-block {
-          display: none;
-        }
-
-        .footer-link.home {
-          border-right-color: var(--25-accent-hover);
-        }
-
-        .footer-link a {
-          color: var(--accent-color);
-        }
-
-        #copyright {
-          color: var(--text-second);
-        }
-
-        #recaptcha-terms {
-          color: var(--text-dim);
-
-          a {
-            color: inherit;
-          }
-        }
-      }
-      
-      .footer-ranking {
-        background-color: var(--25-main-second);
-        background-image: linear-gradient(180deg, var(--75-main-second) 10%, var(--bg-second) 80%);
-        
-        .ranking-unit {
-          width: 300px;
-        }
-        
-        .ranking-unit h3.title {
-          font-family: var(--ff-tertiary);
-          font-weight: 700;
-          background-image: url(https://myanimelist.net/images/footer/footer-sns-border.png?v=1634263200);
-          background-size: 120% 1px;
-          background-repeat: no-repeat;
-          background-position: bottom;
-          border: unset;
-          color: var(--text-main);
-          
-          .view_more {
-            font-family: var(--ff-main);
-          }
-        }
-        
-        .ranking-unit ol li {
-          font-family: var(--ff-main);
-          font-size: 0.725rem;
-          
-          .rank {
-            font-size: inherit;
-            color: var(--text-dim);
-          }
         }
       }
 
@@ -1749,7 +1696,176 @@
       }
 
 
-      /* -- 1.1.13 - Notifications -- */
+      /* -- 1.1.13 - Breadcrumb -- */
+      .breadcrumb {
+        font-family: var(--ff-secondary);
+        margin: unset !important;
+        padding-block: 0.2rem 0.4rem;
+        padding-inline: 0.6rem;
+      }
+
+
+      /* -- 1.1.14 - Body -- */
+      #contentWrapper {
+        min-height: unset;
+        padding-block-end: 1rem;
+        background-color: transparent;
+        container-type: inline-size;
+      }
+
+      #content {
+        background-color: var(--bg-main);
+        background-blend-mode: multiply;
+        border-color: var(--bg-hover);
+
+        .left-column {
+          width: 68cqw;
+        }
+
+        .right-column {
+          width: auto;
+          flex-grow: 1;
+        }
+        
+        > .js-form:first-child {
+          display: contents;
+        }
+      }
+
+      &.notification #content {
+        .left-column {
+          width: auto;
+          flex-grow: 1;
+        }
+
+        .right-column {
+          width: 75cqw;
+        }
+      }
+      
+      &.stacks:not(.my-stacks) #content {
+        display: grid;
+        grid-template-columns: calc(68cqw - 5px) auto;
+
+        > .breadcrumbs_area {
+          grid-column: 1 / -1;
+        }
+
+        > .content {
+          grid-column: 1 / -1;
+        }
+
+        .content-left {
+          width: 100%;
+        }
+
+        .content-right {
+          width: 100%;
+        }
+        
+        > :is(.search-area, .tab-area, .search-list, .search-list + .pagination) {
+          grid-column: 1 / -1;
+        }
+      }
+
+
+      /* -- 1.1.15 - Pagination -- */
+      .pagination .link {
+        padding: 0.4rem;
+        background-color: var(--bg-second);
+        border-radius: 0.2rem;
+        color: var(--text-second);
+
+        &:is(:hover, :focus-visible, .current) {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+          outline-offset: 3px;
+          transition: background-color 350ms ease-out;
+        }
+      }
+      
+      .pagination .link-blue-box,
+      a.link-blue-box {
+        font-family: var(--ff-secondary);
+        padding: 0.5rem;
+        background-color: var(--accent-color);
+        border-radius: 0.2rem;
+        color: var(--text-bright);
+        transition-property: background-color, color;
+
+        &:not(span):is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+        }
+      }
+
+
+      /* -- 1.1.16 - Footer -- */
+      #footer-block {
+        width: 100% !important;
+        background-color: var(--bg-second);
+
+        .footer-link-icon-block {
+          display: none;
+        }
+
+        .footer-link.home {
+          border-right-color: var(--25-accent-hover);
+        }
+
+        .footer-link a {
+          color: var(--accent-color);
+        }
+
+        #copyright {
+          color: var(--text-second);
+        }
+
+        #recaptcha-terms {
+          color: var(--text-dim);
+
+          a {
+            color: inherit;
+          }
+        }
+      }
+      
+      .footer-ranking {
+        background-color: var(--25-main-second);
+        background-image: linear-gradient(180deg, var(--75-main-second) 10%, var(--bg-second) 80%);
+        
+        .ranking-unit {
+          width: 300px;
+        }
+        
+        .ranking-unit h3.title {
+          font-family: var(--ff-tertiary);
+          font-weight: 700;
+          background-image: url(https://myanimelist.net/images/footer/footer-sns-border.png?v=1634263200);
+          background-size: 120% 1px;
+          background-repeat: no-repeat;
+          background-position: bottom;
+          border: unset;
+          color: var(--text-main);
+          
+          .view_more {
+            font-family: var(--ff-main);
+          }
+        }
+        
+        .ranking-unit ol li {
+          font-family: var(--ff-main);
+          font-size: 0.725rem;
+          
+          .rank {
+            font-size: inherit;
+            color: var(--text-dim);
+          }
+        }
+      }
+
+
+      /* -- 1.1.17 - Notifications -- */
       .header-notification-dropdown .arrow_box {
         background-color: var(--bg-main);
         border: 1px solid var(--bg-hover);
@@ -1857,119 +1973,7 @@
         }
       }
 
-      /* -- 1.1.14 - Breadcrumb -- */
-      .breadcrumb {
-        font-family: var(--ff-secondary);
-        margin: unset !important;
-        padding-block: 0.2rem 0.4rem;
-        padding-inline: 0.6rem;
-      }
 
-
-      /* -- 1.1.15 - Body -- */
-      #contentWrapper {
-        min-height: unset;
-        padding-block-end: 1rem;
-        background-color: transparent;
-        container-type: inline-size;
-      }
-
-      #content {
-        background-color: var(--bg-main);
-        background-blend-mode: multiply;
-        border-color: var(--bg-hover);
-
-        .left-column {
-          width: 68cqw;
-        }
-
-        .right-column {
-          width: auto;
-          flex-grow: 1;
-        }
-        
-        > .js-form:first-child {
-          display: contents;
-        }
-      }
-
-      &.notification #content {
-        .left-column {
-          width: auto;
-          flex-grow: 1;
-        }
-
-        .right-column {
-          width: 75cqw;
-        }
-      }
-      
-      &.stacks:not(.my-stacks) #content {
-        display: grid;
-        grid-template-columns: calc(68cqw - 5px) auto;
-
-        > .breadcrumbs_area {
-          grid-column: 1 / -1;
-        }
-
-        > .content {
-          grid-column: 1 / -1;
-        }
-
-        .content-left {
-          width: 100%;
-        }
-
-        .content-right {
-          width: 100%;
-        }
-        
-        > :is(.search-area, .tab-area, .search-list, .search-list + .pagination) {
-          grid-column: 1 / -1;
-        }
-      }
-
-      /* -- 1.1.16 - Iframes -- */
-      iframe.movie.youtube {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16 / 9;
-
-        &:focus-visible {
-          outline: unset;
-        }
-      }
-
-      /* -- 1.1.17 - Pagination -- */
-      .pagination .link {
-        padding: 0.4rem;
-        background-color: var(--bg-second);
-        border-radius: 0.2rem;
-        color: var(--text-second);
-
-        &:is(:hover, :focus-visible, .current) {
-          background-color: var(--accent-color);
-          color: var(--text-bright);
-          outline-offset: 3px;
-          transition: background-color 350ms ease-out;
-        }
-      }
-      
-      .pagination .link-blue-box,
-      a.link-blue-box {
-        font-family: var(--ff-secondary);
-        padding: 0.5rem;
-        background-color: var(--accent-color);
-        border-radius: 0.2rem;
-        color: var(--text-bright);
-        transition-property: background-color, color;
-
-        &:not(span):is(:hover, :focus-visible) {
-          background-color: var(--75-accent-hover);
-          border-color: var(--accent-color);
-        }
-      }
-      
       /* -- 1.1.18 - Alphabet Filter Bar -- */
       #content:has(> .anime-manga-search),
       #content:has(> .people-favorites-ranking-table),
