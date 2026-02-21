@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.3.2
+@version        0.3.3
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -7053,12 +7053,124 @@
 
 }
 
+@-moz-document url-prefix("https://myanimelist.net/character/") {
+
+  /* ======================================================================================= */
+  /* Characters                                                                              */
+  /* ======================================================================================= */
+  /* ---- 7.0.0 - Characters - Detailed Page ---- */
+  html, .dark-mode {
+    /* --- 7.1.0 - Voice Actors Section --- */
+    #content > table > tbody > tr > td:nth-child(2) {
+      container-type: inline-size;
+      
+      .normal_header ~ table {
+        --_item-count: 4;
+        width: calc( (100cqw / var(--_item-count)) - (8px / (var(--_item-count) - 1)) );
+        display: inline-block;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        
+        &:nth-child(odd) {
+          background-color: var(--75-main-second);
+          border: 1px solid var(--50-main-second);
+        }
+        
+        &:nth-child(even) {
+          background-color: var(--75-main-hover);
+          border: 1px solid var(--50-main-hover);
+        }
+        
+        tr {
+          --_img-width: 50px;
+          --_mask-size-small: 30px;
+          --_mask-size: 60px;
+          display: flex;
+          gap: 0.5rem;
+          
+          img {
+            width: var(--_img-width);
+            height: auto;
+            aspect-ratio: 4 / 6;
+          }
+        }
+        
+        td:nth-child(1) {
+          width: auto;
+        }
+        
+        .picSurround:has(img[src="https://cdn.myanimelist.net/images/questionmark_23.gif"]) {
+          border-radius: var(--img-border-radius);
+          outline: var(--img-border-size) solid var(--25-accent-main);
+          outline-offset: var(--img-border-offset);
+          transition: outline-color 250ms ease-in-out;
+
+          &:is(:hover, :focus-visible) {
+            outline-color: var(--accent-color);
+          }
+
+          > a {
+            margin: var(--img-border-offset);
+          }
+        }
+        
+        td:nth-child(2) {
+          display: flex;
+          flex-direction: column;
+          
+          > div {
+            display: contents;
+          }
+        }
+        
+        .borderClass {
+          padding: unset;
+          border: unset;
+        }
+      }
+    }
+    
+    /* --- 7.2.0 - Sidebar --- */
+    .normal_header:is(.character-anime, .character-manga) {
+      margin: unset;
+    }
+    
+    .normal_header:is(.character-anime, .character-manga) + table > tbody > tr {
+      display: flex;
+      gap: 0.65rem;
+      padding-block: 0.5rem;
+      
+      + tr {
+        border-top: 1px solid var(--bg-hover);
+      }
+      
+      td:nth-child(1) {
+        width: auto;
+        
+        img {
+          width: 90px;
+        }
+      }
+      
+      td:nth-child(2) {
+        flex-grow: 1;
+      }
+      
+      .borderClass {
+        padding: unset;
+        border: unset;
+      }
+    }
+  }
+  
+}
+
 @-moz-document domain("myanimelist.net") {
 
   /* ======================================================================================= */
   /* User                                                                                    */
   /* ======================================================================================= */
-  /* ---- 7.0.0 - User ---- */
+  /* ---- 8.0.0 - User ---- */
   html, .dark-mode {
     .shared-table {
       .shared-match {
@@ -7086,7 +7198,7 @@
   /* ======================================================================================= */
   /* Settings                                                                                */
   /* ======================================================================================= */
-  /* ---- 8.0.0 - Settings ---- */
+  /* ---- 9.0.0 - Settings ---- */
   html, .dark-mode {
     form[name="picture_form"] .inputButton {
       font-size: 0.8rem;
@@ -7102,7 +7214,7 @@
   /* ======================================================================================= */
   /* Stacks                                                                                  */
   /* ======================================================================================= */
-  /* ---- 9.0.0 - Stacks ---- */
+  /* ---- 10.0.0 - Stacks ---- */
   html, .dark-mode {
     .stacks {
       h3.underline {
@@ -7219,7 +7331,7 @@
         }
       }
       
-      /* --- 9.1.0 - Header --- */
+      /* --- 10.1.0 - Header --- */
       .btn-new-stack {
         color: var(--accent-color);
         
@@ -7267,7 +7379,7 @@
         }
       }
       
-      /* -- 9.1.1 - Tab Navigation -- */
+      /* -- 10.1.1 - Tab Navigation -- */
       .tab-area {
         border-color: var(--bg-hover);
 
@@ -7294,7 +7406,7 @@
         }
       }
 
-      /* --- 9.2.0 - Highlighted Content --- */
+      /* --- 10.2.0 - Highlighted Content --- */
       .content {
         --_section-bg: var(--50-main-second);
         display: grid;
@@ -7310,7 +7422,7 @@
         padding: unset;
       }
 
-      /* -- 9.2.1 - Highlighted Content - Single Stack -- */
+      /* -- 10.2.1 - Highlighted Content - Single Stack -- */
       .column-1 {
         display: grid;
         grid-template-columns: auto 60cqw;
@@ -7366,7 +7478,7 @@
         }
       }
 
-      /* -- 9.2.2 - Highlighted Content - Triple Stack -- */
+      /* -- 10.2.2 - Highlighted Content - Triple Stack -- */
       .column-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -7425,7 +7537,7 @@
         }
       }
 
-      /* -- 9.2.3 - Highlighted Content - Stack Images -- */
+      /* -- 10.2.3 - Highlighted Content - Stack Images -- */
       .column-1 > a,
       .column-3 .column-item {
         container-type: inline-size;
@@ -7458,7 +7570,7 @@
         }
       }
 
-      /* --- 9.3.0 - Stack details --- */
+      /* --- 10.3.0 - Stack details --- */
       #content .detail {
         width: auto;
 
@@ -7517,7 +7629,7 @@
         }
       }
       
-      /* -- 9.3.1 - Restack Icon -- */
+      /* -- 10.3.1 - Restack Icon -- */
       .stack-balloon .fas {
         color: var(--text-dim);
       }
@@ -7531,7 +7643,7 @@
         color: var(--accent-color);
       }
 
-      /* -- 9.3.2 - Restacks Users Count -- */
+      /* -- 10.3.2 - Restacks Users Count -- */
       .stack-balloon .balloon {
         --_bg: var(--25-main-hover);
         --_border-color: var(--text-dim);
@@ -7564,7 +7676,7 @@
         }
       }
 
-      /* --- 9.4.0 - Tags --- */
+      /* --- 10.4.0 - Tags --- */
       .tag {
         span:not(.by) {
           min-height: 24px;
@@ -7624,7 +7736,7 @@
         }
       }
 
-      /* --- 9.5.0 - Recent Stacks List --- */
+      /* --- 10.5.0 - Recent Stacks List --- */
       .recent-list {
         margin-block: 0.5rem;
 
@@ -7659,7 +7771,7 @@
             }
           }
           
-          /* -- 9.5.1 - Recent Stacks List - Images -- */
+          /* -- 10.5.1 - Recent Stacks List - Images -- */
           .img .edge {
             --_section-bg: var(--bg-main);
             transition: transform 450ms var(--ease-overshoot-smooth);
@@ -7717,8 +7829,8 @@
         }
       }
 
-      /* --- 9.6.0 - Right Sidebar --- */
-      /* -- 9.6.1 - Search -- */
+      /* --- 10.6.0 - Right Sidebar --- */
+      /* -- 10.6.1 - Search -- */
       .search-side .js-search-area form {
         input {
           width: 100%;
@@ -7751,7 +7863,7 @@
         }
       }
 
-      /* -- 9.6.2 - Lists -- */
+      /* -- 10.6.2 - Lists -- */
       .side-list .column-item {
         width: 100%;
         display: flex;
@@ -7784,12 +7896,12 @@
         }
       }
       
-      /* --- 9.7.0 - Stacks - Search Page --- */
+      /* --- 10.7.0 - Stacks - Search Page --- */
       .search-area {
         margin-block: 1rem;
       }
       
-      /* -- 9.7.1 - Search List - */
+      /* -- 10.7.1 - Search List - */
       .search-list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(min(500px, 100%), 1fr));
@@ -7845,7 +7957,7 @@
           }
         }
         
-        /* - 9.7.1.1 - Search List - Images */
+        /* - 10.7.1.1 - Search List - Images */
         .img .edge {
           --_section-bg: var(--bg-main);
           transition: transform 450ms var(--ease-overshoot-smooth);
@@ -7901,7 +8013,7 @@
         }
       }
       
-      /* --- 9.8.0 - Create New Stack --- */
+      /* --- 10.8.0 - Create New Stack --- */
       h3 small {
         font-weight: 400;
         padding-inline-start: 0.2rem;
@@ -7943,7 +8055,7 @@
         }
       }
       
-      /* -- 9.8.1 - Create New Stack - Sidebar -- */
+      /* -- 10.8.1 - Create New Stack - Sidebar -- */
       .two-btn, 
       div.underline {
         border-color: var(--bg-hover);
@@ -8000,7 +8112,7 @@
         background-color: var(--75-main-second);
       }
       
-      /* -- 9.8.2 - Create New Stack - Stack List -- */
+      /* -- 10.8.2 - Create New Stack - Stack List -- */
       .stack-list .item {
         --_br: 0.25rem;
         display: flex;
@@ -8103,7 +8215,7 @@
         
       }
       
-      /* -- 9.8.3 - Create New Stack - Modals (Add Items Dialog / Preview) -- */
+      /* -- 10.8.3 - Create New Stack - Modals (Add Items Dialog / Preview) -- */
       .stacks-modal .modal_content {
         height: 80vmin;
         display: flex;
@@ -8339,7 +8451,7 @@
       
     }
     
-    /* --- 9.9.0 - Stack - Detail Page --- */
+    /* --- 10.9.0 - Stack - Detail Page --- */
     .stacks-detail {
       --_gap: 0.5rem;
       --_bg: var(--bg-main);
@@ -8498,7 +8610,7 @@
       }
     }
     
-    /* --- 9.9.1 - Stack - Detail Page - List Styles --- */
+    /* --- 10.9.1 - Stack - Detail Page - List Styles --- */
     .stacks-detail .seasonal-anime-list {
       padding: 1rem 0.5rem;
       
@@ -8612,7 +8724,7 @@
     }
     
     
-    /* --- 9.10.0 - My Stacks --- */
+    /* --- 10.10.0 - My Stacks --- */
     .page-common.my-stacks .my-list {
       --_br: 0.2rem;
       display: grid;
@@ -8709,7 +8821,7 @@
     }
     
     
-    /* --- 9.11.0 - Stacks Widget --- */
+    /* --- 10.11.0 - Stacks Widget --- */
     .page-common .detail-stack-block {
       gap: 1rem;
       padding: 0.5rem;
@@ -8817,10 +8929,10 @@
   /* ======================================================================================= */
   /* Watch Anime                                                                             */
   /* ======================================================================================= */
-  /* ---- 10.0.0 - Watch Anime ---- */
+  /* ---- 11.0.0 - Watch Anime ---- */
   html, .dark-mode {
 
-    /* --- 10.1.0 - Nav --- */
+    /* --- 11.1.0 - Nav --- */
     .watch .video-menu-category {
       margin-block-end: 0.5rem !important;
       border-color: var(--bg-hover);
@@ -8841,7 +8953,7 @@
     }
 
 
-    /* --- 10.2.0 - Body --- */
+    /* --- 11.2.0 - Body --- */
     .watch-video {
       margin: unset !important;
 
@@ -8951,7 +9063,7 @@
 
   }
 
-  /* --- 10.3.0 - Watch Anime - Single Anime Pages - Episodes Tab --- */
+  /* --- 11.3.0 - Watch Anime - Single Anime Pages - Episodes Tab --- */
   :is(html, .dark-mode) .page-common
   /* table:has(> tbody > tr > td > div.has-multi-episodes-info) */
     {
@@ -8966,7 +9078,7 @@
       }
     }
 
-    /* -- 10.3.1 - Video Player -- */
+    /* -- 11.3.1 - Video Player -- */
     .contents-video-embed .video-embed .btn-embedded-denied {
       width: auto;
       height: auto;
@@ -8990,7 +9102,7 @@
       }
     }
 
-    /* -- 10.3.2 - Current Episode Details -- */
+    /* -- 11.3.2 - Current Episode Details -- */
     .user-status-block .btn-forum-episode {
       font-family: inherit;
       background-color: var(--75-accent-second);
@@ -9031,7 +9143,7 @@
       }
     }
 
-    /* -- 10.3.3 - Episode List - Carousel -- */
+    /* -- 11.3.3 - Episode List - Carousel -- */
     .contents-video-embed .episode-information + div {
       display: grid;
       grid-template-columns: auto 1fr auto;
@@ -9131,7 +9243,7 @@
     }
 
 
-    /* -- 10.3.4 - Characters & Voice Actors List -- */
+    /* -- 11.3.4 - Characters & Voice Actors List -- */
     &.anime_episode_detail #horiznav_nav + div tbody tr > td > div.mb12 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -9181,8 +9293,8 @@
       }
     }
 
-    /* --- 10.4.0 - Watch Anime - Single Anime Pages - Videos Tab --- */
-    /* -- 10.4.1 - Episode List Block -- */
+    /* --- 11.4.0 - Watch Anime - Single Anime Pages - Videos Tab --- */
+    /* -- 11.4.1 - Episode List Block -- */
     .video-block.episode-video .outside-region .outside-region-block {
       display: grid;
       place-items: center;
@@ -9258,7 +9370,7 @@
         }
       }
 
-      /* - 10.4.1.1 - Thumbnail for videos "not available in your country" - */
+      /* - 11.4.1.1 - Thumbnail for videos "not available in your country" - */
       .video-list:has(img[src="https://cdn.myanimelist.net/images/icon-banned-youtube.png"]) {
         align-content: center;
         text-decoration: none;
@@ -9295,7 +9407,7 @@
       }
 
 
-      /* - 10.4.1.2 - Video Edit/Delete Buttons - */
+      /* - 11.4.1.2 - Video Edit/Delete Buttons - */
       .btn-video-edit-block {
         top: var(--_margin);
         right: var(--_margin);
@@ -9370,7 +9482,7 @@
   /* ======================================================================================= */
   /* Manga Store                                                                             */
   /* ======================================================================================= */
-  /* ---- 11.0.0 - Manga Store ---- */
+  /* ---- 12.0.0 - Manga Store ---- */
   html, .dark-mode {
     .manga-store-error-404 > img[data-src="https://cdn.myanimelist.net/images/mal-logo-586x100.png"] {
       content: var(--mal-logo);
