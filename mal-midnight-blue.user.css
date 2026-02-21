@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.3.1
+@version        0.3.2
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -46,6 +46,9 @@
     --cherry-blossom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M219 12c-23 8-43 34-52 69-4 16-5 26-5 44v16l-4-2q-38-15-74-12-29 2-47 15-27 17-16 43l5 7q3 3-3 5-11 4-17 11-12 17 0 42c15 30 54 58 93 67l6 1-6 8q-20 25-28 51c-13 39-7 76 14 87q10 5 23 2l6-2 1 4q1 24 21 32c8 2 25 2 36-1 28-9 57-31 74-58l9-12 4 4c20 32 50 56 81 66 11 3 28 3 36 1q20-8 21-32l1-4 6 2q13 3 23-2c23-12 28-53 12-95q-9-23-29-47l-3-4 9-2c40-10 75-36 90-66q12-25 0-42-6-7-17-11-7-1-2-6 19-29-12-50c-31-19-81-20-125 0v-15c0-18-1-29-5-45-9-32-26-57-46-66q-23-10-39 9l-4 5-5-6q-9-10-22-12zm45 144c6 4 7 7 7 28l-1 21c-4 9-15 12-23 6-5-4-6-7-6-27 0-16 0-19 2-22q3-8 13-8zm-25 66q4 1 10 11l7 9 7-9q10-16 19-13 9 2 12 11c2 6 0 10-7 20l-6 9 8 3c16 4 20 8 20 18q-1 13-14 14-6 0-13-3l-10-3-1 12c-1 11-1 13-3 16-6 8-18 8-24 0-2-3-3-5-3-16l-1-12-10 3q-14 5-20 1c-9-4-10-20 0-25l12-5 9-3-6-9-7-12c-3-9 4-18 14-19zm-58 6c18 6 22 8 24 15 3 9-5 19-14 19-4 0-37-11-39-13q-6-6-6-15 3-7 11-11c4-1 4-1 24 5m177-3q11 7 6 19l-5 6-20 7c-19 6-22 6-28 1q-6-6-4-15 2-8 15-12l17-6c11-3 14-3 19 0m-135 86q10 5 7 17c-2 5-21 31-25 33-10 7-24-2-22-15 0-4 20-32 25-35q7-4 15 0m81 0c5 3 25 31 25 35 2 13-12 22-22 15-4-2-23-28-25-33q-1-8 3-14c4-5 13-7 19-3'/%3E%3C/svg%3E");
     --sun: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='m250 45-12 17-15 21q-14 14-35 14c-9 0-14-1-32-9-18-7-19-8-24-5-6 2-6 5-5 26 2 27 1 36-9 48-8 12-16 16-41 22-22 6-24 7-24 14 0 4 1 6 12 18l14 19c9 15 9 37 0 52l-14 18c-11 13-12 15-12 19 0 7 2 8 23 14l25 7q18 10 25 30 3 9 1 39c-1 14 0 18 5 20s6 2 24-5c18-8 23-9 32-9q21 0 35 14l15 21 12 17q6 5 12 0l12-17 15-21q14-14 35-14c9 0 14 1 32 9 18 7 19 7 24 5s6-6 5-20q-3-30 1-39 7-20 25-30l24-7c22-6 24-7 24-14 0-4-1-6-12-19q-11-12-14-18a49 49 0 0 1 0-52l14-18c11-13 12-15 12-19 0-7-2-8-24-14l-24-7q-18-10-25-30-4-9-1-39c1-14 0-18-5-20s-6-2-24 5c-18 8-23 9-32 9q-21 0-35-14l-15-21-12-17a11 11 0 0 0-12 0m33 86q37 8 63 35a125 125 0 0 1 0 180 125 125 0 0 1-117 35c-26-6-44-16-63-35a125 125 0 0 1 0-180 121 121 0 0 1 76-37c8-1 33 0 41 2'/%3E%3Cpath d='M244 150q-25 4-48 18a107 107 0 0 0-25 152c26 35 71 50 112 39a107 107 0 0 0 27-195c-20-11-45-17-66-14'/%3E%3C/svg%3E");
     --maple-leaf: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='m251 34-17 43-17 42-54-23c-2 0-7 5-7 8l28 123-27-27c-27-28-29-29-32-29l-6 2-9 20q-5 17-8 18l-27-8c-29-8-30-9-33-4l-2 4 12 30c12 27 12 28 10 30-11 7-28 20-29 22l-1 5 105 90 2 3-4 17c-4 19-5 22-3 25 2 4 4 4 52-5l47-8 1 31v32l3 2q5 6 11 0l2-2V363l-46-29-48-32q-4-4 0-9c4-6 5-6 51 24l42 27 1-57 1-59c3-6 11-6 14 0l1 59 1 57 42-27c46-30 47-30 51-24q4 5 1 9l-48 32-47 29v23l1 23 55 10c57 10 58 10 60 6 2-3 1-6-3-25-4-17-4-17-2-19l53-45 51-45c2-5 0-8-16-19l-14-10q-1-3 11-29l12-30-2-4c-3-5-4-4-33 4l-27 8q-2-2-8-18l-9-20-6-2c-3 0-5 1-32 29-15 16-28 28-28 27 4-10 29-123 29-125q-1-4-6-6l-28 11-27 12-16-42c-17-44-18-45-23-45z'/%3E%3C/svg%3E");
+    --about-discover-more: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/refs/heads/main/Images/about-discover-more.png");
+    --about-edit-list: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/refs/heads/main/Images/about-edit-list.png");
+    --about-calendar: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/refs/heads/main/Images/about-calendar.png");
 
 
     /* Fancy Images */
@@ -437,6 +440,7 @@
       }
 
       .normal_header {
+        height: auto !important;
         padding: 0.4rem 0.6rem !important;
         background-color: var(--bg-hover);
         border-color: var(--bg-hover);
@@ -933,6 +937,7 @@
       }
 
       /* - 1.1.6.1 - Image Unavailable - */
+      .picSurround:has(img[src="https://cdn.myanimelist.net/images/questionmark_23.gif"]), 
       .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]) {
         position: relative;
         background-color: var(--50-main-hover);
@@ -1073,6 +1078,15 @@
         border: 1px solid var(--75-accent-hover);
         border-radius: 0.2rem;
         color: var(--text-main);
+      }
+      
+      .text-ribbon div[style*="background-color:#f6f6f6;color:#1c439b;"] {
+        background-color: var(--accent-color) !important;
+        color: var(--text-main) !important;
+        
+        a {
+          color: inherit !important;
+        }
       }
 
 
@@ -3423,8 +3437,10 @@
         
         .pin-icon {
           position: absolute;
-          left: 0.5rem;
+          top: 0.25rem;
+          left: 0.25rem;
           rotate: -25deg;
+          scale: 0.8;
         }
       }
 
@@ -3617,8 +3633,24 @@
       }
       
       .pin-cta {
-        grid-column: 1 / -1;
-        place-self: center;
+        --_margin: 0.4rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: var(--_margin);
+        translate: 0 -100%;
+        z-index: 99;
+        
+        &::after {
+          content: "";
+          position: absolute;
+          inset: calc(var(--_margin) * -1);
+          z-index: -1;
+        }
+      }
+      
+      &:has(.synopsis:is(:hover, :focus-visible)) .pin-cta {
+        opacity: 0;
       }
 
       .properties {
@@ -9605,10 +9637,43 @@
       width: 35cqw;
     }
     
+    .about-content-box.single {
+      width: auto;
+    }
+    
     .about-content .btn-signup {
       font-weight: 600;
       letter-spacing: unset;
       border-radius: 0.25rem;
+    }
+    
+    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_1.png?v=170130"], 
+    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_2.png?v=170130"], 
+    img[src="https://cdn.myanimelist.net/images/about/overview/fig03_1.png?v=170130"] {
+      width: var(--_width);
+      height: var(--_height);
+      padding-left: var(--_width) !important;
+      background-size: var(--_width) var(--_height);
+      background-position: left top;
+      background-repeat: no-repeat;
+    }
+    
+    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_1.png?v=170130"] {
+      --_width: 216px;
+      --_height: 160px;
+      background-image: var(--about-edit-list);
+    }
+    
+    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_2.png?v=170130"] {
+      --_width: 212px;
+      --_height: 160px;
+      background-image: var(--about-calendar);
+    }
+    
+    img[src="https://cdn.myanimelist.net/images/about/overview/fig03_1.png?v=170130"] {
+      --_width: 770px;
+      --_height: 359px;
+      background-image: var(--about-discover-more);
     }
 
     /* Support */
@@ -9626,10 +9691,13 @@
     /* Advertising */
     .page-advertising {
       #ad_menu {
+        width: 100cqw;
         background-color: transparent;
         background-image: linear-gradient(to right, var(--25-accent-main-text), var(--accent-color), var(--25-accent-main-text));
 
         &.fixed {
+          left: unset;
+          margin: unset;
           background-color: var(--bg-second);
           background-image: unset;
         }
