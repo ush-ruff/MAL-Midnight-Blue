@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.3.3
+@version        0.3.4
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -1184,11 +1184,11 @@
         }
       }
 
-      .table-recently-updated tr:nth-of-type(2n) td {
+      .table-recently-updated tr:nth-of-type(even) td {
         background-color: var(--75-main-hover);
       }
 
-      table.forum-topics tr td:nth-child(2n + 1) {
+      table.forum-topics tr td:nth-child(odd) {
         background-color: var(--50-main-hover);
       }
       
@@ -1228,7 +1228,7 @@
           }
         }
         
-        .ranking-list:nth-of-type(2n + 1) td {
+        .ranking-list:nth-of-type(odd) td {
           background-color: var(--50-main-hover);
         }
 
@@ -2661,7 +2661,7 @@
           color: gold !important;
         }
         
-        > :nth-last-child(1) {
+        > :last-child {
           margin-block-start: auto !important;
         }
       }
@@ -3314,7 +3314,7 @@
           content: "Click once to include";
         }
 
-        .selected-icon:after {
+        .selected-icon::after {
           content: "\f00c";
           color: var(--green-light);
         }
@@ -3751,11 +3751,11 @@
         background-color: transparent;
       }
       
-      tr:nth-child(2n) td {
+      tr:nth-child(even) td {
         background-color: var(--75-main-hover);
       }
 
-      tr:nth-child(2n + 1) td {
+      tr:nth-child(odd) td {
         background-color: var(--25-main-hover);
       }
 
@@ -4256,7 +4256,7 @@
         border-radius: 0.3rem;
       }
 
-      .entry:nth-child(2n + 1)::after {
+      .entry:nth-child(odd)::after {
         position: absolute;
         width: 1px;
         height: 100%;
@@ -5024,7 +5024,7 @@
       border: 1px solid var(--50-main-second);
       border-radius: 0.2rem;
 
-      &:nth-child(2n) {
+      &:nth-child(even) {
         background-color: var(--75-main-hover);
         border: 1px solid var(--50-main-hover);
       }
@@ -5130,7 +5130,7 @@
         border-radius: 0.2rem;
       }
       
-      &:nth-child(2n) tr {
+      &:nth-child(even) tr {
         background-color: var(--75-main-hover);
         border-color: var(--50-main-hover);
       }
@@ -6654,7 +6654,7 @@
           border-color: var(--bg-hover) !important;
         }
 
-        .news-tags-table.news tr:nth-of-type(2n + 1) {
+        .news-tags-table.news tr:nth-of-type(odd) {
           background-color: var(--50-main-second);
         }
 
@@ -6762,7 +6762,7 @@
       background-color: var(--_bg);
       border: 1px solid var(--_border-color);
 
-      &:nth-child(2n) {
+      &:nth-child(even) {
         --_bg: var(--75-main-hover);
         --_border-color: var(--50-main-second);
       }
@@ -8813,7 +8813,7 @@
         }
       }
       
-      tbody tr:nth-child(2n) td {
+      tbody tr:nth-child(even) td {
         --_bg: var(--75-main-hover);
         --_border-color: var(--50-main-hover);
       }
@@ -9263,7 +9263,7 @@
         border-radius: 0.2rem;
       }
 
-      &:nth-child(2n) table {
+      &:nth-child(even) table {
         background-color: var(--25-main-second);
         border-color: var(--bg-second);
       }
@@ -9831,7 +9831,7 @@
         color: var(--text-main);
       }
 
-      section.ad_section:nth-of-type(2n) div.ad_section {
+      section.ad_section:nth-of-type(even) div.ad_section {
         background-color: var(--75-main-second);
       }
 
@@ -9926,11 +9926,11 @@
         padding: 0.5rem;
       }
 
-      .staff_wrap .staff:nth-child(2n + 1) {
+      .staff_wrap .staff:nth-child(odd) {
         background-color: var(--50-main-hover);
       }
 
-      .staff_wrap .staff:nth-child(2n) {
+      .staff_wrap .staff:nth-child(even) {
         background-color: var(--75-main-hover);
       }
     }
