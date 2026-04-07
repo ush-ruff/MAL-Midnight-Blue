@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.3.5
+@version        0.4.0
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -154,17 +154,6 @@
 
 
     /* Halloween Colors */
-    /* 
-    --halloween-01: #ea6000;
-    --halloween-02: #181818;
-    --halloween-03: #981800;
-    --halloween-04: #813116;
-    --halloween-05: #ffa801;
-    --halloween-06: #f2e8c6;
-    --halloween-07: #ea60003d;
-    --halloween-08: #fefefe; 
-    --halloween-image: url("https://static.vecteezy.com/system/resources/previews/027/807/583/non_2x/spooky-halloween-wallpaper-with-pumpkin-and-old-house-free-photo.jpg");
-    */
     --halloween-01: #c86622;
     --halloween-02: #181818;
     --halloween-03: #ca2c0e;
@@ -180,13 +169,6 @@
 
 
     /* Christmas Colors */
-    /* 
-    --christmas-01: #9a1a33;
-    --christmas-02: #80a256;
-    --christmas-03: #3a5947;
-    --christmas-04: #fee0ae;
-    --christmas-05: #dea588;
-    */
     --christmas-01: #9a1a33;
     --christmas-02: #62834b;
     --christmas-03: #2f5b42;
@@ -199,8 +181,20 @@
 
 
     /* Easter Colors */
-    --easter-01: #ba8fc7;
-    --easter-02: #e1c7ea;
+    /*
+    --easter-01: #b4afd5;
+    --easter-02: #85e2ff;
+    --easter-03: #f292a5;
+    --easter-04: #faf389;
+    --easter-05: #afd5bc;
+    --easter-06: #7498f0;
+    */
+    --easter-01: #a89edd;
+    --easter-02: #74d1ee;
+    --easter-03: #d87286;
+    --easter-04: #faf389;
+    --easter-05: #afd5bc;
+    --easter-06: #6589e2;
     
     
     /* Wrap Up */
@@ -593,6 +587,10 @@
 
         &:focus-visible {
           outline: 2px solid var(--accent-color);
+        }
+        
+        &::placeholder {
+          color: var(--text-dim);
         }
       }
 
@@ -1579,7 +1577,7 @@
         display: flex;
       }
 
-      #nav li > a:not(.halloween, .easter2025) {
+      #nav li > a:not(.halloween, [class*="easter"]) {
         height: 100%;
         align-items: center;
         padding-block: 0.65rem;
@@ -2335,9 +2333,71 @@
         }
       }
     }
+    
+    
+    /* --- 1.5.0 - Modals --- */
+    .mal-modal .mal-modal-dialog {
+      box-shadow: 5px 5px 5px oklch(from var(--bg-hover) l c h / 0.5);
+    }
+    
+    .mal-modal .mal-modal-dialog .mal-modal-content {
+      background-color: var(--bg-main);
+      border-radius: 0.3rem;
+      color: var(--text-second);
+      
+      .mal-modal-header {
+        border-color: var(--bg-hover);
+      }
+      
+      .title {
+        color: var(--text-main);
+      }
+      
+      button.btn-close {
+        color: var(--text-main);
+      }
+      
+      .mal-modal-body .modal-vote-score-label .caution {
+        font-style: italic;
+        color: var(--red-light);
+      }
+      
+      .mal-modal-body .error {
+        color: var(--red-light);
+      }
+      
+      .mal-modal-body .modal-vote-score li a {
+        border-color: var(--accent-color);
+        transition: 175ms ease-in-out;
+        transition-property: color, background-color;
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+      }
+      
+      .mal-modal-body .modal-vote-reply {
+        background-color: var(--50-main-second);
+        border-color: var(--50-main-hover);
+        
+        .textarea {
+          font-family: var(--ff-main);
+          padding: 0.5rem;
+          
+          &::placeholder {
+            color: var(--text-dim);
+          }
+        }
+      }
+      
+      .mal-modal-body .modal-vote-replies {
+        color: var(--text-dim);
+      }
+    }
 
 
-    /* --- 1.5.0 - Halloween --- */
+    /* --- 1.6.0 - Halloween --- */
     body.halloween:not([class*="ownlist "]) {
       background-image: var(--halloween-image) !important;
     }
@@ -2378,7 +2438,7 @@
         color: var(--halloween-03);
       }
 
-      /* -- 1.5.1 - Header -- */
+      /* -- 1.6.1 - Header -- */
       #headerSmall.halloween {
         background-image: unset;
         background-color: var(--halloween-07);
@@ -2399,7 +2459,7 @@
         background-color: var(--halloween-03);
       }
 
-      /* -- 1.5.2 - Menu -- */
+      /* -- 1.6.2 - Menu -- */
       #menu.halloween #nav ul li a {
         background-color: var(--halloween-04);
 
@@ -2413,14 +2473,14 @@
         border-color: var(--halloween-04);
       }
 
-      /* -- 1.5.3 - Search Bar -- */
+      /* -- 1.6.3 - Search Bar -- */
       #searchBar.searchBar {
         --_searchBar-bg: var(--halloween-04);
         --_searchBar-border: var(--halloween-02);
         --_searchBar-text: var(--halloween-06);
       }
       
-      /* -- 1.5.4 - Images -- */
+      /* -- 1.6.4 - Images -- */
       .anime-detail-header-stats::after {
         filter: invert(0.8) sepia(1) hue-rotate(180deg) brightness(0.8);
       }
@@ -2430,7 +2490,7 @@
       }
     }
 
-    /* --- 1.6.0 - Christmas --- */
+    /* --- 1.7.0 - Christmas --- */
     body.christmas:not([class*="ownlist "]) {
       background-image: var(--christmas-image) !important;
       
@@ -2448,7 +2508,7 @@
 
     .page-common.christmas {
 
-      /* -- 1.6.1 - Header -- */
+      /* -- 1.7.1 - Header -- */
       #headerSmall.christmas {
         background: var(--christmas-03);
       }
@@ -2477,7 +2537,7 @@
         }
       }
 
-      /* -- 1.6.2 - Menu -- */
+      /* -- 1.7.2 - Menu -- */
       #menu {
         background-color: var(--christmas-01);
         background-image: var(--falling-snow);
@@ -2504,7 +2564,7 @@
         }
       }
 
-      /* -- 1.6.3 - Search Bar -- */
+      /* -- 1.7.3 - Search Bar -- */
       #searchBar.searchBar {
         --_searchBar-bg: var(--christmas-03);
         --_searchBar-border: var(--christmas-03);
@@ -2517,28 +2577,103 @@
     }
 
 
-    /* --- 1.7.0 - Easter --- */
-    .page-common.easter2025:not(.color-pc-constant) .easter2025 {
-      #headerSmall.easter2025 {
+    /* --- 1.8.0 - Easter --- */
+    .page-common[class*="easter"]:not(.color-pc-constant) [class*="easter"] {
+      /* -- 1.8.1 - Header -- */
+      #headerSmall[class*="easter"] {
         background: unset !important;
-        background-color: var(--easter-02) !important;
+        background-color: var(--easter-01) !important;
       }
 
       .link-mal-logo {
         background-image: url(https://myanimelist.net/images/event/2024_easter/mal_logo_egg.png?v=1634263200);
         background-size: contain;
       }
+      
+      #header-menu > div > a {
+        color: var(--easter-04) !important;
+      }
+      
+      .header-notification-button {
+        color: var(--easter-04) !important;
+        
+        &.has-unread::after {
+          background-color: var(--easter-02) !important;
+        }
+      }
+      
+      #header-menu .border::before {
+        border-color: var(--easter-04);
+      }
+      
+      /* -- 1.8.2 - Menu -- */
+      #menu[class*="easter"] {
+        background-color: var(--easter-06);
+        
+        #menu_left {
+          background-color: transparent;
+          
+          #nav li {
+            height: auto !important;
+          }
+          
+          #nav li:is(.hover, :hover, :focus-visible) {
+            background-color: oklch(from var(--easter-04) l calc(c - 0.05) h);
+            color: oklch(from var(--easter-03) calc(l - 0.1) c h );
+            
+            a {
+              color: inherit;
+            }
+            
+            li a {
+              background-color: oklch(from var(--easter-04) l calc(c - 0.05) h);
+            }
+            
+            li a:is(:hover, :focus-visible) {
+              background-color: var(--easter-03);
+              color: oklch(from var(--easter-04) calc(l + 0.1) c h );
+            }
+          }
+        }
+      }
+      
+      /* -- 1.8.3 - Search Bar -- */
+      #searchBar.searchBar {
+        --_searchBar-bg: var(--easter-01);
+        --_searchBar-border: oklch(from var(--easter-06) calc(l - 0.2) c h);
+        --_searchBar-text: oklch(from var(--easter-04) calc(l + 0.5) c h);
 
-      #menu.easter2025 #menu_left #nav li.easter2025 {
-        height: unset;
+        #topSearchText:is(:hover, :focus-visible) {
+          border-color: var(--easter-02);
+        }
+      }
+      
+      /* -- 1.8.4 - Page Title -- */
+      #contentWrapper > div:first-child .header-right {
+        color: oklch(from var(--easter-02) calc(l + 0.2) c h);
       }
 
       #contentWrapper div .h1 {
-        background-color: var(--easter-01);
+        background-color: var(--easter-03);
+        border-color: var(--easter-03);
+        color: oklch(from var(--easter-02) calc(l + 0.3) calc(c - 0.05) h);
+        
+        .title-name {
+          background-color: inherit;
+          color: inherit;
+        }
+        
+        .title-english {
+          color: oklch(from var(--easter-01) calc(l - 0.25) c h);
+        }
+        
+        .header-right a {
+          color: oklch(from var(--easter-02) calc(l + 0.2) c h);
+        }
       }
     }
     
-    /* --- 1.8.0 - Wrap Up --- */
+    /* --- 1.9.0 - Wrap Up --- */
     .page-common.wrapup {
       #headerSmall.wrapup {
         background-image: var(--fireworks);
@@ -2714,12 +2849,26 @@
         .image {
           border: unset;
         }
-
+        
+        .work {
+          flex: 1;
+        }
+        
+        .work-title {
+          display: flex;
+          justify-content: space-between;
+          
+          a {
+            margin: unset !important;
+          }
+        }
+        
         .updated-time {
           color: var(--text-dim);
         }
 
         .navi-btn {
+          margin: unset !important;
           color: var(--text-dim);
 
           &:is(:hover, :focus-visible) {
@@ -3957,19 +4106,58 @@
     .page-common .spaceit_pad.di-ib {
       display: flow-root !important;
     }
+    
+    /* - 3.2.1.1 - Anime Poster - */
+    .page-common .leftside > div:first-child a {
+      --_br: 0.75rem;
+      --_outline-offset: 3px;
+      --_outline-size: 3px;
+      --_margin: calc(var(--_outline-offset) + var(--_outline-size) + 1rem);
+      --_inner-border-color: oklch(from var(--75-accent-main) l c h / 0.6);
+      position: relative;
+      width: fit-content;
+      display: grid;
+      place-items: center;
+      margin: var(--_margin) auto;
+      rotate: -2deg;
+      transition: rotate 750ms var(--ease-overshoot-dramatic);
+      
+      &::before {
+        content: "";
+        position: absolute;
+        width: calc(100% - (var(--_outline-offset) * 2));
+        height: calc(100% - (var(--_outline-offset) * 2));
+        border: 1px solid var(--_inner-border-color);
+        border-radius: var(--_br);
+        transition: border-color 250ms ease-in-out;
+      }
+      
+      img {
+        background-color: var(--bg-second);
+        border-radius: var(--_br);
+        outline: var(--_outline-size) solid var(--75-accent-main);
+        outline-offset: var(--_outline-offset);
+      }
+      
+      &:is(:hover, :focus-visible) {
+        --_inner-border-color: oklch(from var(--accent-color) l c h / 0.75);
+        rotate: 1deg;
+      }
+      
+    }
 
-    /* - 3.2.1.1 - Streaming Platforms - */
+    /* - 3.2.1.2 - Streaming Platforms - */
     .leftside .broadcasts .info,
     .leftside .broadcasts .broadcast-item.notavailable .caption::after {
       color: var(--red-light);
     }
 
-    /* - 3.2.1.2 - "Watch Episodes" Button - */
+    /* - 3.2.1.3 - "Watch Episodes" Button - */
     a.left-info-block-broadcast-button {
       display: none;
     }
 
-    /* - 3.2.1.3 - "Notify Me" Button - */
+    /* - 3.2.1.4 - "Notify Me" Button - */
     a.left-info-block-notify-on-air-button[data-label="notify-on-air"] {
       font-family: var(--ff-main);
       background-color: var(--accent-color);
@@ -4002,7 +4190,7 @@
       }
     }
 
-    /* - 3.2.1.4 - Add to List - */
+    /* - 3.2.1.5 - Add to List - */
     .page-common .addtolist-block {
       display: grid;
       gap: 0.5rem;
@@ -4063,6 +4251,10 @@
         margin: 0 auto !important;
         padding: unset !important;
         color: var(--green-light);
+        
+        .fa-spinner {
+          color: var(--text-main);
+        }
       }
     }
 
@@ -4148,7 +4340,6 @@
         min-height: var(--_height);
         display: grid;
         grid-template-areas: "information separator ranking" "score separator ranking";
-        grid-template-columns: 250px 50px 1fr;
         align-items: center;
         padding: 0.5rem 0.5rem calc(0.5rem + 15px);
         background-color: var(--25-main-second);
@@ -4350,29 +4541,39 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 1rem;
-    }
-
-    .detail-characters-list .left-column.divider::after {
-      border-color: var(--bg-hover);
-    }
-
-    .detail-characters-list :is(.left-column, .left-right) > table {
-      margin-block-end: 0.5rem;
-      padding: 0.5rem;
-      border-radius: 0.3rem;
+      container-type: inline-size;
       
-      &:nth-of-type(odd) {
-        background-color: var(--75-main-second);
-        border: 1px solid var(--50-main-second);
+      .left-column.divider::after {
+        border-color: var(--bg-hover);
       }
       
-      &:nth-of-type(even) {
-        background-color: var(--75-main-hover);
-        border: 1px solid var(--50-main-hover);
+      :is(.left-column, .left-right) > table {
+        margin-block-end: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+
+        &:nth-of-type(odd) {
+          background-color: var(--75-main-second);
+          border: 1px solid var(--50-main-second);
+        }
+
+        &:nth-of-type(even) {
+          background-color: var(--75-main-hover);
+          border: 1px solid var(--50-main-hover);
+        }
+
+        .borderClass {
+          border: unset;
+        }
       }
       
-      .borderClass {
-        border: unset;
+      @container (width < 44.75rem) {
+        .left-column.divider > table:last-child {
+          margin-block-end: -0.5rem;
+        }
+        .left-column.divider::after {
+          content: unset;
+        }
       }
     }
 
@@ -5202,6 +5403,69 @@
       font-family: var(--ff-secondary);
       font-size: 0.725rem;
       color: var(--text-dim);
+    }
+    
+    .page-common .episode_list {
+      --_border-color: var(--bg-main);
+      --_border-size: 3px;
+      
+      .episode-list-header {
+        background-color: var(--accent-color) !important;
+        
+        td {
+          font-family: var(--ff-main);
+          border-color: var(--_border-color) !important;
+          border-width: var(--_border-size) !important;
+          color: var(--text-bright);
+        }
+      }
+      
+      .episode-list-data {
+        td {
+          border-color: var(--_border-color) !important;
+          border-width: var(--_border-size) !important;
+          color: var(--text-second);
+        }
+
+        &:nth-of-type(odd) td {
+          background-color: var(--75-main-hover);
+        }
+
+        &:nth-of-type(even) td {
+          background-color: var(--50-main-hover);
+        }
+        
+        .episode-video .malicon.malicon-movie-episode {
+          color: inherit;
+        }
+        
+        .episode-poll {
+          background-image: linear-gradient(var(--75-accent-main) 0);
+        }
+
+        .episode-poll .average {
+          color: var(--text-dim);
+        }
+      }
+      
+      :is(.episode-list-header, .episode-list-data) td {
+        &:first-child {
+          border-left: unset !important;
+        }
+
+        &:last-child {
+          border-right: unset !important;
+        }
+      }
+      
+      .average {
+        font-size: 0.9em;
+      }
+      
+      .voted .fa-star {
+        color: var(--accent-color);
+      }
+      
     }
 
     /* -- 3.2.12 - Stats Tab -- */
@@ -7838,15 +8102,6 @@
               }
             }
             
-            /* CSS-Hack: Enlarge the hover area and prevent jitter when images are overlapping */
-            &:nth-child(1) {
-              overflow: visible;
-              
-              img {
-                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-              }
-            }
-            
             &:nth-child(1)::before {
               content: "";
               position: absolute;
@@ -8866,12 +9121,17 @@
     .page-common .detail-stack-block {
       gap: 1rem;
       padding: 0.5rem;
+      container-type: inline-size;
       
       .column-item {
         flex-basis: 100%;
         display: flex;
         gap: 2.4rem;
         padding: unset;
+        
+        @container (width < 50rem) {
+          flex-direction: column;
+        }
       }
       
       .detail {
