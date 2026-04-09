@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.4.0
+@version        0.4.1
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -32,7 +32,7 @@
     /* Fonts */
     --ff-main: Lexend, sans-serif;
     --ff-secondary: Lato, sans-serif;
-    --ff-tertiary: "Bai Jamjuree", "Work Sans", Bitter, sans-serif;
+    --ff-tertiary: Bitter, sans-serif;
     --ff-accent: "Roboto Slab", sans-serif;
     --ff-fa: "Font Awesome 6 Pro";
 
@@ -160,7 +160,7 @@
     --halloween-04: #924b33;
     --halloween-05: #e8b046;
     --halloween-06: #f2e8c6;
-    --halloween-07: #ea60003d;
+    --halloween-07: oklch(from #ea6000 l c h / 0.24);
     --halloween-08: #fefefe;
     
     /* --halloween-image: url("https://www.ixpap.com/images/2023/10/Halloween-Anime-Wallpaper-2.jpg"); */
@@ -251,7 +251,7 @@
 
   @keyframes pulse {
     0%, 100% {
-      transform: scaleX(1);
+      transform: scale(1);
     }
 
     50% {
@@ -1158,7 +1158,7 @@
       /* -- 1.1.11 - Tables -- */
       td {
         font-size: 0.75rem;
-        line-height: 1.7
+        line-height: 1.7;
       }
       
       table.forum-topics tr td {
@@ -1398,7 +1398,7 @@
           
           &:is(:hover, :focus-visible) .icon-score-star, 
           .icon-score-star.on {
-            color: lch(from var(--accent-color) calc(50 + (var(--_scale) * 2) ) c h)
+            color: oklch(from var(--accent-color) calc(0.55 + (var(--_scale) / 50) ) c h);
           }
           
           &:is(:hover, :focus-visible) :is(.icon-score-star, .text) {
@@ -1595,7 +1595,7 @@
 
       #nav ul a:is(:hover, :focus-visible) {
         background-color: var(--accent-color);
-        color: var(--text-bright)
+        color: var(--text-bright);
       }
 
       #nav li li {
@@ -1645,7 +1645,7 @@
 
           &:is(:hover, :focus-visible) {
             background-color: var(--accent-color);
-            color: var(--text-bright)
+            color: var(--text-bright);
           }
         }
       }
@@ -2167,7 +2167,6 @@
       display: flex;
 
       &::after {
-        content: "";
         position: absolute;
         top: 50%;
         right: 25px;
@@ -2226,7 +2225,6 @@
       visibility: unset;
     }
 
-    .anime-search-form-search::after, 
     .stacks .search-area:has(> .quick-clear[style*="display: none"])::after {
       content: "\f002";
     }
@@ -2979,7 +2977,7 @@
           .info,
           .members {
             font-family: var(--ff-main);
-            color: var(--text-second)
+            color: var(--text-second);
           }
         }
       }
@@ -4002,7 +4000,7 @@
 
       td a {
         width: 100%;
-        display: flow;
+        display: flow-root;
         font-family: var(--ff-main);
         font-size: 0.85rem;
         font-weight: 600;
@@ -5533,7 +5531,7 @@
         > div:nth-child(2) {
           grid-area: title;
           margin: unset !important;
-          margin-block-end: 0.5rem !important
+          margin-block-end: 0.5rem !important;
         }
         
         > div:nth-child(3) {
@@ -6369,11 +6367,11 @@
         }
 
         &:is(:hover, :focus-visible) {
-          border-color: var(--_tag-color) !important
+          border-color: var(--_tag-color) !important;
         }
 
         svg circle {
-          fill: var(--_tag-color)
+          fill: var(--_tag-color);
         }
       }
 
@@ -6796,7 +6794,7 @@
         }
 
         &:has(> a:nth-child(2):is(:hover, :focus-visible))::after {
-          color: lch(from var(--_bg) 80 c h);
+          color: oklch(from var(--_bg) 0.8 c h);
           animation: pulse 250ms var(--ease-bounce-subtle) forwards;
         }
       }
@@ -7284,13 +7282,13 @@
     /* -- 6.2.1 - List Styles -- */
     .anime-filter :is(.list, .tile) {
       margin: unset !important;
-      margin-block: 1rem !important
+      margin-block: 1rem !important;
     }
     
     .anime-filter .list > table > tbody {
       display: flex;
       flex-direction: column;
-      padding: 0 var(--_padding-inline) 0.5rem;
+      padding: 0 0 0.5rem;
 
       .seasonal-anime {
         display: grid;
@@ -8923,7 +8921,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      padding: 0 var(--_padding-inline) 0.5rem;
+      padding: 0 0 0.5rem;
 
       .seasonal-anime {
         display: grid;
@@ -10303,7 +10301,7 @@
       }
       
       h4 {
-        font-family: var(--text-main);
+        font-family: var(--ff-main);
         font-size: 0.8rem;
       }
       
