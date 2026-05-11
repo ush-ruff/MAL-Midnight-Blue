@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.4.1
+@version        0.5.0
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -26,7 +26,7 @@
 
   /* --- Custom Variables --- */
   :root {
-    --page-size: clamp(1060px, 55vw + 10rem , 85%);
+    --page-size: clamp(960px, 55vw + 10rem, 2160px);
 
 
     /* Fonts */
@@ -40,16 +40,16 @@
     /* Images & Icons */
     --cube-texture: url("https://i.imgur.com/3ZFqVkc.png");
     --mal-logo: url("https://i.imgur.com/GkTwfpQ.png");
-    --questionmark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M22.14 25.7c1.54-2.78 4.5-4.42 6.22-6.88 1.82-2.58.8-7.4-4.36-7.4-3.38 0-5.04 2.56-5.74 4.68l-5.18-2.18A11.3 11.3 0 0123.98 6c4.7 0 7.92 2.14 9.56 4.82 1.4 2.3 2.22 6.6.06 9.8-2.4 3.54-4.7 4.62-5.94 6.9-.5.92-.7 1.52-.7 4.48h-5.78c-.02-1.56-.26-4.1.96-6.3M28 40c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4 4 1.8 4 4'/%3E%3C/svg%3E");
+    --questionmark: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/questionmark.svg");
     --tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23e8eaed'%3E%3Cpath d='M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z'/%3E%3C/svg%3E");
-    --snowflake: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1220 1280'%3E%3Cpath d='m500 43-30 45 43 29 43 28v61l-4-2-84-47c-1 0-57 91-56 92l46 27 46 27-1 20-1 33-1 12-17 10-28 15-11 5-29-15-29-16 6-112-70-8-46-5-2 120-55-29-4-59-2-59-108 5 1 16 8 95v9l-49 23-50 24c-1 0 9 23 22 50l23 50 21-11 47-24 25-13 26 15 27 15-43 26-44 26 7 13 44 82 95-52 28 17 26 16v29l-1 32c0 3-3 5-29 21l-28 18-6-4-88-57-69 93 52 31 50 32-27 17-26 16-52-27-53-26-22 42-21 41v15l52 24c48 23 51 24 51 27l-5 55-5 53 3 1 106 8 4-57 2-34v-13l26-15 27-15 1 51v50h13c30 2 94 3 95 3l1-54c0-30 1-53 2-54l28-16 27-15 22 13 27 17 6 4v13l2 33v21l-50 25-50 25 46 107 53-29 52-29 1 9 1 32 1 23-49 31-50 33 27 42 26 41h16l35-24 44-31 10-7 44 31 46 31a1093 1093 0 0 0 62-88c1-1-19-14-42-29l-43-28-1-30v-31l4 2 84 47 57-91-44-26-46-28-2-2 1-32 1-33 28-15 27-15 29 16 29 15-2 57-3 56 70 8 46 5 2-120 55 29 4 59 2 59 108-5-1-16-8-95v-9l49-23 50-24c1 0-9-23-22-50l-23-50-21 11-47 24-25 13-26-15-27-15 43-26 44-26-7-13-44-82-48 26-46 26-7-4-27-17-21-13v-25l1-31v-8l29-17 28-18 6 4 88 57 69-93-52-31q-52-32-50-32l27-17 26-16 52 27 53 26 22-42 21-41v-15l-52-24c-48-23-51-24-51-27l5-55 5-53h-3l-106-9-4 57-2 34v13l-26 15-27 15-1-51v-50h-13c-30-2-94-3-95-3l-1 54-1 53-60 29-32-20-19-12v-12l-2-33v-21l50-25 50-25-46-107-53 29-52 29-1-9-1-32-1-23 49-31 50-33-27-42-26-41h-16l-35 24-44 31-10 7-44-31-46-31c-2 0-9 9-32 43'/%3E%3C/svg%3E ");
-    --cherry-blossom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M219 12c-23 8-43 34-52 69-4 16-5 26-5 44v16l-4-2q-38-15-74-12-29 2-47 15-27 17-16 43l5 7q3 3-3 5-11 4-17 11-12 17 0 42c15 30 54 58 93 67l6 1-6 8q-20 25-28 51c-13 39-7 76 14 87q10 5 23 2l6-2 1 4q1 24 21 32c8 2 25 2 36-1 28-9 57-31 74-58l9-12 4 4c20 32 50 56 81 66 11 3 28 3 36 1q20-8 21-32l1-4 6 2q13 3 23-2c23-12 28-53 12-95q-9-23-29-47l-3-4 9-2c40-10 75-36 90-66q12-25 0-42-6-7-17-11-7-1-2-6 19-29-12-50c-31-19-81-20-125 0v-15c0-18-1-29-5-45-9-32-26-57-46-66q-23-10-39 9l-4 5-5-6q-9-10-22-12zm45 144c6 4 7 7 7 28l-1 21c-4 9-15 12-23 6-5-4-6-7-6-27 0-16 0-19 2-22q3-8 13-8zm-25 66q4 1 10 11l7 9 7-9q10-16 19-13 9 2 12 11c2 6 0 10-7 20l-6 9 8 3c16 4 20 8 20 18q-1 13-14 14-6 0-13-3l-10-3-1 12c-1 11-1 13-3 16-6 8-18 8-24 0-2-3-3-5-3-16l-1-12-10 3q-14 5-20 1c-9-4-10-20 0-25l12-5 9-3-6-9-7-12c-3-9 4-18 14-19zm-58 6c18 6 22 8 24 15 3 9-5 19-14 19-4 0-37-11-39-13q-6-6-6-15 3-7 11-11c4-1 4-1 24 5m177-3q11 7 6 19l-5 6-20 7c-19 6-22 6-28 1q-6-6-4-15 2-8 15-12l17-6c11-3 14-3 19 0m-135 86q10 5 7 17c-2 5-21 31-25 33-10 7-24-2-22-15 0-4 20-32 25-35q7-4 15 0m81 0c5 3 25 31 25 35 2 13-12 22-22 15-4-2-23-28-25-33q-1-8 3-14c4-5 13-7 19-3'/%3E%3C/svg%3E");
-    --sun: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='m250 45-12 17-15 21q-14 14-35 14c-9 0-14-1-32-9-18-7-19-8-24-5-6 2-6 5-5 26 2 27 1 36-9 48-8 12-16 16-41 22-22 6-24 7-24 14 0 4 1 6 12 18l14 19c9 15 9 37 0 52l-14 18c-11 13-12 15-12 19 0 7 2 8 23 14l25 7q18 10 25 30 3 9 1 39c-1 14 0 18 5 20s6 2 24-5c18-8 23-9 32-9q21 0 35 14l15 21 12 17q6 5 12 0l12-17 15-21q14-14 35-14c9 0 14 1 32 9 18 7 19 7 24 5s6-6 5-20q-3-30 1-39 7-20 25-30l24-7c22-6 24-7 24-14 0-4-1-6-12-19q-11-12-14-18a49 49 0 0 1 0-52l14-18c11-13 12-15 12-19 0-7-2-8-24-14l-24-7q-18-10-25-30-4-9-1-39c1-14 0-18-5-20s-6-2-24 5c-18 8-23 9-32 9q-21 0-35-14l-15-21-12-17a11 11 0 0 0-12 0m33 86q37 8 63 35a125 125 0 0 1 0 180 125 125 0 0 1-117 35c-26-6-44-16-63-35a125 125 0 0 1 0-180 121 121 0 0 1 76-37c8-1 33 0 41 2'/%3E%3Cpath d='M244 150q-25 4-48 18a107 107 0 0 0-25 152c26 35 71 50 112 39a107 107 0 0 0 27-195c-20-11-45-17-66-14'/%3E%3C/svg%3E");
-    --maple-leaf: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='m251 34-17 43-17 42-54-23c-2 0-7 5-7 8l28 123-27-27c-27-28-29-29-32-29l-6 2-9 20q-5 17-8 18l-27-8c-29-8-30-9-33-4l-2 4 12 30c12 27 12 28 10 30-11 7-28 20-29 22l-1 5 105 90 2 3-4 17c-4 19-5 22-3 25 2 4 4 4 52-5l47-8 1 31v32l3 2q5 6 11 0l2-2V363l-46-29-48-32q-4-4 0-9c4-6 5-6 51 24l42 27 1-57 1-59c3-6 11-6 14 0l1 59 1 57 42-27c46-30 47-30 51-24q4 5 1 9l-48 32-47 29v23l1 23 55 10c57 10 58 10 60 6 2-3 1-6-3-25-4-17-4-17-2-19l53-45 51-45c2-5 0-8-16-19l-14-10q-1-3 11-29l12-30-2-4c-3-5-4-4-33 4l-27 8q-2-2-8-18l-9-20-6-2c-3 0-5 1-32 29-15 16-28 28-28 27 4-10 29-123 29-125q-1-4-6-6l-28 11-27 12-16-42c-17-44-18-45-23-45z'/%3E%3C/svg%3E");
-    --about-discover-more: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/refs/heads/main/Images/about-discover-more.png");
-    --about-edit-list: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/refs/heads/main/Images/about-edit-list.png");
-    --about-calendar: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/refs/heads/main/Images/about-calendar.png");
-    --throbber: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/Images/throbber.gif");
+    --snowflake: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/snowflake.svg");
+    --cherry-blossom: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/cherry-blossom.svg");
+    --sun: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/sun.svg");
+    --maple-leaf: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/maple-leaf.svg");
+    --about-discover-more: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/about-page/about-discover-more.png");
+    --about-edit-list: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/about-page/about-edit-list.png");
+    --about-calendar: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/about-page/about-calendar.png");
+    --throbber: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/throbber.gif");
 
 
     /* Fancy Images */
@@ -101,7 +101,7 @@
     --text-second: #aabecf;
     --text-dim: #808f9c;
 
-    --background-image: url("https://i.imgur.com/UTum8Le.jpg");
+    --background-image: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/background.jpg");
 
 
     /* Accent Colors */
@@ -147,7 +147,7 @@
     --dropped: var(--red-light);
     
     /* Season Colors */
-    --winter: var(--blue-lighter);
+    --winter: #109ffd;
     --spring: #f465af;
     --summer: #eacb52;
     --fall: #e67852;
@@ -163,9 +163,7 @@
     --halloween-07: oklch(from #ea6000 l c h / 0.24);
     --halloween-08: #fefefe;
     
-    /* --halloween-image: url("https://www.ixpap.com/images/2023/10/Halloween-Anime-Wallpaper-2.jpg"); */
-    --halloween-image: url("https://i.imgur.com/RCWE6ts.png");
-
+    --halloween-image: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/halloween/halloween-02.png");
 
 
     /* Christmas Colors */
@@ -175,20 +173,12 @@
     --christmas-04: #fee0ae;
     --christmas-05: #dea588;
 
-    --christmas-image: url("https://getwallpapers.com/wallpaper/full/a/9/7/65729.jpg");
-    --falling-snow-bg: url("https://cdn.platformart.com/original_images/6d754bc6-2f04-4e56-b4fb-43962d8f50bf.snow_3.gif");
-    --falling-snow: url("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWJ5NjUxOG5oZHhkdHR2cGlpbTM2d3IwcjYzM2pkOG5pcmRxOXd0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CkBzt6qXCCXw4/giphy.webp");
+    --christmas-image: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/christmas/christmas-bg.jpg");
+    --falling-snow-bg: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/christmas/falling-snow-bg.gif");
+    --falling-snow: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/christmas/falling-snow.gif");
 
 
     /* Easter Colors */
-    /*
-    --easter-01: #b4afd5;
-    --easter-02: #85e2ff;
-    --easter-03: #f292a5;
-    --easter-04: #faf389;
-    --easter-05: #afd5bc;
-    --easter-06: #7498f0;
-    */
     --easter-01: #a89edd;
     --easter-02: #74d1ee;
     --easter-03: #d87286;
@@ -198,7 +188,7 @@
     
     
     /* Wrap Up */
-    --fireworks: url("https://bestanimations.com/media/fireworks/1195352433fireworks-animated-gif-23.gif");
+    --fireworks: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/wrap-up/fireworks.gif");
 
 
     /* Color Mixes */
@@ -306,6 +296,13 @@
       transform: translateX(-0.6px) rotate(-1.2deg);
     }
   }
+  
+  @keyframes bg-color {
+    from {
+      background-color: oklch(from var(--accent-color) l c h / 0.25);
+      outline: 2px solid var(--accent-color);
+    }
+  }
 
 
 }
@@ -349,6 +346,10 @@
   input {
     accent-color: var(--accent-color);
   }
+  
+  hr {
+    color: var(--bg-hover);
+  }
 
   html, .dark-mode {
     body:not([class*="ownlist "]) {
@@ -374,7 +375,7 @@
       color: var(--text-bright);
     }
     
-    /* -- 1.0.2 - Statistic Info Popup -- */
+    /* -- 1.0.2 - Popups -- */
     .statistics-info {
       --_bg: var(--50-main-hover);
       --_border-color: var(--25-main-hover);
@@ -395,6 +396,17 @@
         border-top-color: var(--_border-color);
       }
     }
+    
+    .icon-about-recommendations::after {
+      inset: -32px auto auto -90px;
+      font-family: var(--ff-main);
+      font-size: 0.775rem;
+      font-weight: 600;
+      background-color: var(--25-accent-main);
+      border-color: var(--75-accent-hover);
+      border-radius: 0.2rem;
+      color: var(--text-second);
+    }
 
 
     /* --- 1.1.0 - Common page elements --- */
@@ -409,7 +421,6 @@
 
       p:not([class]),
       .reviews_p {
-        /* text-align: justify; */
         text-wrap-style: pretty;
       }
       
@@ -421,6 +432,10 @@
       a:link,
       a:visited {
         color: var(--accent-color);
+      }
+      
+      span[style*="color: grey"] {
+        color: var(--text-dim) !important;
       }
 
       h1, 
@@ -436,6 +451,7 @@
 
       .normal_header {
         height: auto !important;
+        font-size: 0.875rem;
         padding: 0.4rem 0.6rem !important;
         background-color: var(--bg-hover);
         border-color: var(--bg-hover);
@@ -470,6 +486,18 @@
         font-family: var(--ff-secondary);
         font-size: 1rem;
         font-weight: 600;
+      }
+      
+      .content-container .container-right h2 {
+        font-family: var(--ff-secondary);
+        font-size: 1rem;
+        font-weight: 600;
+        border-color: var(--bg-hover);
+        color: var(--text-main);
+      }
+      
+      .h3_characters_voice_actors {
+        font-size: 0.75rem;
       }
       
       .notification-header.simple h3 {
@@ -511,6 +539,10 @@
       .fn-grey6 {
         color: var(--text-dim) !important;
       }
+      
+      .fn-blue1 {
+        color: var(--accent-color) !important;
+      }
 
       .dark_text,
       .dark_text:is(:hover, :focus-visible, :visited) {
@@ -542,8 +574,8 @@
       /* -- 1.1.1 - Graphs -- */
       .updatesBar {
         background-color: var(--accent-color);
-        /* background-image: repeating-linear-gradient(45deg, var(--accent-color) 0 12px, var(--75-accent-second) 12px 24px); */
-        background-image: linear-gradient(to right, var(--accent-color), var(--75-accent-main-text));
+        background-image: repeating-linear-gradient(45deg, var(--accent-color) 0 12px, var(--75-accent-second) 12px 24px);
+        /* background-image: linear-gradient(to right, var(--accent-color), var(--75-accent-main-text)); */
         border-radius: 2px;
       }
 
@@ -644,10 +676,22 @@
         color: var(--accent-color);
       }
       
+      /* - 1.1.4.1 - Icon - Edit - */
       .fa-pencil {
         --fa: "\f304";
       }
-
+      
+      a.floatRightHeader,
+      .floatRightHeader > a {
+        &[href*="dbchanges"]::before {
+          content: "\f304";
+          font-family: var(--ff-fa);
+          font-weight: 900;
+          margin-inline-end: 0.25rem;
+        }
+      }
+      
+      /* - 1.1.4.2 - Icon - Comments - */
       .fa-comment {
         --fa: "\f27a";
       }
@@ -659,7 +703,8 @@
         font-weight: 600;
         margin-inline-end: 0.25rem;
       }
-
+      
+      /* - 1.1.4.3 - Icon - Watch Forum Thread - */
       .watch-state-icon {
         cursor: pointer;
 
@@ -668,20 +713,21 @@
           font-weight: 900;
           font-size: 0.8rem;
         }
-
+        
         &:hover {
           animation: pulse 350ms var(--ease-bounce-subtle);
         }
-
+        
         &:is(.watched, :hover, :focus-visible)::before {
           color: var(--accent-color);
         }
-
+        
         &.watched:is(:hover, :focus-visible)::before {
           color: var(--red-light);
         }
       }
 
+      /* - 1.1.4.4 - Icon - Payment Required - */
       .icon-pay,
       #widget-episode-video .widget-slide .btn-anime.episode .icon-pay,
       .video-block .video-list .icon-pay,
@@ -696,6 +742,7 @@
         }
       }
 
+      /* - 1.1.4.5 - Icon - Play Video - */
       .anime-detail-header-video .video-episode .video-unit,
       .anime-detail-header-video .video-promotion .video-unit,
       .watch-video .video-list-outer-vertical .video-list,
@@ -920,6 +967,87 @@
           border-color: var(--accent-color) !important;
         }
       }
+      
+      /* - 1.1.5.6 - Copy Code - */
+      .codetext button.copycode {
+        --_size: 1.2rem;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        padding: 0.5rem;
+        background-color: var(--50-accent-second);
+        border-radius: 0.3rem;
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-second);
+          opacity: 1;
+        }
+        
+        &::before {
+          content: "\f328";
+          font-weight: 600;
+          font-size: var(--_size);
+          line-height: 0;
+          color: var(--text-second);
+        }
+      }
+      
+      /* - 1.1.5.7 - RSS Feed - */
+      div:has(> a[href="https://myanimelist.net/rss/news.xml"]),
+      div:has(> a[href="https://myanimelist.net/rss/featured.xml"]) {
+        --_bg: #f29200;
+        --_padding: 0.5rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        line-height: 1;
+        margin: unset !important;
+        padding-block: var(--_padding) !important;
+        
+        &::after {
+          content: "";
+          position: absolute;
+          inset: calc(100% - var(--_padding)) 9px auto auto;
+          border-style: solid;
+          border-width: 5px 0px 0px 10px;
+          border-color: var(--_bg) transparent transparent transparent;
+        }
+        
+        a {
+          width: fit-content;
+          display: block;
+          font: inherit;
+          font-weight: 500;
+          text-decoration: none;
+          padding: 0.3rem 0.5rem;
+          background-color: var(--_bg);
+          border: 1px solid var(--_bg);
+          border-radius: 100vw;
+          color: var(--text-bright);
+          transition: 250ms ease-in-out;
+          transition-property: background-color, color;
+          
+          &:last-child, img {
+            display: none;
+          }
+          
+          &::before {
+            content: "\f09e";
+            font-family: var(--ff-fa);
+            margin-inline-end: 0.3rem;
+          }
+          
+          &::after {
+            content: "RSS";
+          }
+          
+          &:is(:hover, :focus-visible) {
+            background-color: oklch(from var(--_bg) l c h / 0.5);
+            color: oklch(from var(--_bg) calc(l + 0.25) calc(c - 0.15) h);
+          }
+        }
+      }
 
 
       /* -- 1.1.6 - Images -- */
@@ -933,6 +1061,17 @@
 
       .img-a-r {
         padding: unset;
+      }
+      
+      img[src="https://myanimelist.net/aimage/BookStores/mirai_logo_wb.png"] {
+        --_width: 94px;
+        --_height: calc(var(--_width) * 14 / 94);
+        width: var(--_width);
+        padding-inline-start: var(--_width);
+        background-image: url("https://myanimelist.net/aimage/BookStores/mirai_logo_bb.png");
+        background-size: var(--_width) var(--_height);
+        background-position: left top;
+        background-repeat: no-repeat;
       }
 
       /* - 1.1.6.1 - Image Unavailable - */
@@ -993,12 +1132,12 @@
       &.page-forum .forum-icon img,
       .profile .statistics-updates .image img,
       .user-comments .comment .image img,
-      /*       .user-profile .user-image > img,  */
+      /* .user-profile .user-image > img, */
       .news-side-block img.thumbs,
       .ranking-unit .image img,
       .top-ranking-table .title .image,
       .featured.po-r.clearfix img,
-      .ranking-list img:not(.bookstore-icon),
+      .ranking-list img:not(.bookstore-icon, .bookstore-logo),
       .boxlist-container img,
       .anime-filter .content-left .logo img,
       &.stacks .img .edge img,
@@ -1008,15 +1147,18 @@
       .widget-slide-outer .btn-anime img,
       .news-container .img-a-l,
       .news-list .news-unit .image-link .image,
+      .forum-side-block .forum-side-list .forum-post .thumbs,
       .columnist-side-block .columnist-list .columnists-unit-side .image,
       .friend_list_updates .image,
       .friend_list_updates .friend-image,
       .history-updates .image,
       .history-updates .friend-image,
       .review-element .thumbbody img,
-      /*       .related-entries img,  */
+      /* .related-entries img, */
       .related-entries .image,
       .anime-slide .image {
+        font-family: var(--ff-secondary);
+        font-style: italic;
         margin: var(--img-border-offset);
         background-color: var(--bg-second);
         border: unset;
@@ -1025,6 +1167,7 @@
         outline-offset: var(--img-border-offset);
         transform-origin: center right;
         transition: outline-color 250ms ease-in-out;
+        overflow: hidden;
 
         &:is(:hover, :focus-visible) {
           outline-color: var(--accent-color);
@@ -1145,7 +1288,7 @@
 
       /* -- 1.1.10 - Iframes -- */
       iframe.movie.youtube {
-        width: 100%;
+        /* width: 100%; */
         height: auto;
         aspect-ratio: 16 / 9;
 
@@ -1181,7 +1324,7 @@
         
         .fa-lock-keyhole {
           font-size: 1em;
-          font-weight: 800;
+          font-weight: 900;
         }
       }
 
@@ -1191,6 +1334,10 @@
 
       table.forum-topics tr td:nth-child(odd) {
         background-color: var(--50-main-hover);
+      }
+      
+      table.forum-topics tr td:nth-child(even) {
+        background-color: var(--75-main-hover);
       }
       
       /* - 1.1.11.1 - Ranking Tables - */
@@ -1335,16 +1482,14 @@
             
             .link {
               color: var(--text-second);
-              
-              &:is(:hover, :focus-visible) {
-                color: var(--accent-color);
-              }
-              
-              &::after {
-                content: "\e294";
-                font-family: var(--ff-fa);
-                color: var(--text-dim);
-              }
+              pointer-events: none;
+            }
+            
+            .info::after {
+              content: "\e294";
+              font-family: var(--ff-fa);
+              margin: unset;
+              color: var(--text-dim);
             }
             
             i {
@@ -1650,7 +1795,7 @@
         }
       }
       
-      /* - 1.1.12.1 - Ranking Tables Header - */      
+      /* - 1.1.12.1 - Ranking Tables Header - */
       .top-rank-header2 {
         display: flex;
         align-items: center;
@@ -1785,17 +1930,47 @@
 
 
       /* -- 1.1.15 - Pagination -- */
-      .pagination .link {
+      .pagination:not(.icon-top-ranking-page-bottom, .pagination-numbers) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-inline: 0.5rem;
         padding: 0.4rem;
-        background-color: var(--bg-second);
-        border-radius: 0.2rem;
-        color: var(--text-second);
-
-        &:is(:hover, :focus-visible, .current) {
-          background-color: var(--accent-color);
-          color: var(--text-bright);
-          outline-offset: 3px;
-          transition: background-color 350ms ease-out;
+        background-color: oklch(from var(--bg-main) calc(l + 0.025) c h);
+        border-radius: 0.3rem;
+        box-shadow: 0 2px 10px oklch(from var(--bg-hover) l c h / 0.1);
+        
+        .link {
+          font-family: var(--ff-secondary);
+          font-weight: 900;
+          margin: unset;
+          padding: 0.3rem 0.6rem;
+          background-color: transparent;
+          border-radius: 0.2rem;
+          color: var(--text-second);
+          transition: background-color 250ms ease-out;
+          
+          &:is(:hover, :focus-visible) {
+            color: var(--accent-color);
+            translate: 0 -1px;
+          }
+          
+          &.current {
+            background-color: var(--accent-color);
+            color: var(--text-bright);
+          }
+        }
+        
+        .skip {
+          color: transparent;
+          
+          &::before {
+            content: "...";
+            letter-spacing: 2px;
+            margin-inline-end: -0.6rem;
+            color: var(--text-second);
+          }
         }
       }
       
@@ -1992,16 +2167,19 @@
       /* -- 1.1.18 - Alphabet Filter Bar -- */
       #content:has(> .anime-manga-search),
       #content:has(> .people-favorites-ranking-table),
+      #content:has(> div > div > #advancedsearch),
       #content:has(> .characters-favorites-ranking-table),
       &.ranking-company {
         #horiznav_nav {
+          display: flex;
+          justify-content: center;
           margin-block: 1rem 0.5rem !important;
           padding: unset;
           border: unset;
 
           ul {
-            display: grid;
-            grid-auto-flow: column;
+            width: 100%;
+            display: flex;
             gap: 0.2rem;
             justify-content: center;
           }
@@ -2021,7 +2199,7 @@
             display: block;
             align-content: center;
             font-family: var(--ff-main);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             border-radius: inherit;
             padding: unset;
@@ -2039,13 +2217,184 @@
         }
       }
       
-      #content:has(> .anime-manga-search) #horiznav_nav ul li:nth-child(-n + 2) a {
-        font-size: 0.75rem;
-        font-weight: 400;
-        padding-inline: 0.5rem;
+      #content:has(> .anime-manga-search), 
+      #content:has(> div > div > #advancedsearch) {
+        #horiznav_nav ul li:nth-child(-n + 2) a {
+          font-size: 0.75rem;
+          font-weight: 400;
+          padding-inline: 0.5rem;
+        }
       }
       
+      /* -- 1.1.19 - Sort/Filter -- */
+      &.page-common .stacks .navi, 
+      &.anime-filter .navi-seasonal {
+        .sort-order-block {
+          width: auto;
+          right: 0;
+          background-color: var(--bg-second);
+          border-color: var(--bg-hover);
+          border-radius: 0.3rem;
+          color: var(--text-second);
+        }
+
+        .sort-order-list {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-inline-end: 0.5rem;
+
+          .btn-sort-order {
+            background: unset;
+            color: inherit;
+          }
+
+          .btn-sort-order.circle {
+            position: relative;
+            padding: unset;
+            padding-inline-start: 1.2rem;
+
+            &::before {
+              content: "\f111";
+              position: absolute;
+              top: 0;
+              left: 0;
+              font-family: var(--ff-fa);
+              font-size: 0.8rem;
+            }
+
+            &.selected::after {
+              content: "\f111";
+              position: absolute;
+              top: 0;
+              left: 2px;
+              font-family: var(--ff-fa);
+              font-weight: 600;
+              font-size: 0.5rem;
+              background: unset;
+              color: var(--accent-color);
+            }
+          }
+
+          .btn-sort-order:not(.circle) {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            line-height: 2;
+            margin: unset !important;
+            padding: unset;
+
+            &::before {
+              content: "";
+              width: 14px;
+              aspect-ratio: 1;
+              display: block;
+              border: 1px solid currentColor;
+            }
+
+            &.selected::after {
+              all: unset;
+              content: "\f00c";
+              position: absolute;
+              left: 1.5px;
+              font-family: var(--ff-fa);
+              font-size: 0.75rem;
+              font-weight: 900;
+              color: var(--green-light);
+            }
+          }
+        }
+        
+        .btn-close {
+          color: var(--text-dim);
+        }
+      }
+      
+      .search-filter-sort-order-block, 
+      .search-filter-mylist-block,
+      .seasonal-sort-order-block,
+      .adapted-sort-order-block,
+      .anime-character-sort-order-block,
+      .manga-character-sort-order-block {
+        min-width: fit-content;
+        padding: 0.4rem 0.5rem;
+        background-color: var(--bg-second);
+        border-color: var(--bg-hover);
+        border-radius: 0.3rem;
+        color: var(--text-second);
+
+        .sort-order-list {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 0.2rem;
+        }
+
+        .sort-order-list .btn-sort-order {
+          color: inherit;
+        }
+
+        .sort-order-list .btn-sort-order .fa-regular:is(.fa-circle, .fa-square) {
+          color: inherit;
+        }
+
+        .sort-order-list .btn-sort-order :is(.fa-circle.fa-solid,
+          mal-tooltip.fa-circle::part(icon)) {
+          color: var(--accent-color);
+        }
+
+        .sort-order-list .btn-sort-order .fa-check {
+          color: var(--green-light);
+        }
+
+        .sort-order-list .btn-sort-order .fa-xmark {
+          color: var(--red-light);
+        }
+
+        .sort-order-list .btn-sort-order.fa-stack {
+          width: 100% !important;
+          height: auto !important;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          line-height: 2;
+          margin: unset !important;
+          padding: unset;
+
+          .fa-regular {
+            position: unset;
+          }
+
+          .fa-solid {
+            inset: unset;
+            margin-block: auto;
+          }
+
+          .fa-square::before {
+            content: "";
+            display: block;
+            width: 14px;
+            aspect-ratio: 1;
+            border: 1px solid currentColor;
+          }
+
+          .fa-check {
+            font-size: 0.75rem;
+          }
+
+          .fa-xmark {
+            font-size: 0.8rem;
+          }
+        }
+
+        .btn-close {
+          color: var(--text-dim);
+        }
+      }
+
     }
+    
 
     /* --- 1.2.0 - Menus --- */
     /* -- 1.2.1 - Tip Menu -- */
@@ -2096,6 +2445,167 @@
     }
     
     /* --- 1.3.0 - Search --- */
+    #advancedSearch {
+      container-type: inline-size;
+      
+      table tbody {
+        display: grid;
+        grid-template-columns: repeat(2, auto) 1fr;
+        gap: 0.5rem;
+        
+        tr {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: subgrid;
+          align-items: start;
+        }
+        
+        td:first-child {
+          width: auto;
+          min-width: 75px;
+        }
+        
+        small {
+          font-size: 0.9em;
+        }
+        
+        select {
+          font-size: 0.75rem;          
+        }
+        
+        select[multiple] {
+          min-width: 200px;
+          padding: 0.5rem;
+          
+          option {
+            padding: 0.25rem 0.5rem;
+          }
+        }
+        
+        #filterByType, #score, #status, #p, #r {
+          width: 100%;
+          padding: 0.5rem;
+        }
+      }
+      
+      /* Content Filter */
+      table + div {
+        font-size: 0.825rem !important;
+      }
+      
+      .category-wrapper {
+        width: 20cqw;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.2rem;
+        background-color: var(--75-main-second);
+        border: 1px solid var(--bg-hover);
+        border-radius: 0.2rem;
+        color: var(--text-second);
+        overflow: hidden;
+        
+        .category-type {
+          font-size: 0.75rem !important;
+          margin: unset !important;
+          padding: 0.5rem;
+          background-color: var(--bg-second);
+          border-bottom: 1px solid var(--bg-hover);
+        }
+        
+        .btn-sort-order {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.725rem;
+          line-height: 2;
+          margin: unset;
+          padding: 0.25rem 0.5rem;
+          background: unset;
+          color: var(--text-second);
+          
+          &:last-child {
+            margin-block-end: 0.25rem;
+          }
+          
+          &::before {
+            content: "";
+            width: 14px;
+            aspect-ratio: 1;
+            display: block;
+            border: 1px solid currentColor;
+          }
+
+          &::after {
+            all: unset;
+            position: absolute;
+            font-family: var(--ff-fa);
+            font-size: 0.75rem;
+            font-weight: 900;
+          }
+          
+          &.selected::after {
+            content: "\f00c";
+            left: 9.5px;
+            color: var(--green-light);
+          }
+          
+          &.crossed::after {
+            content: "\f00d";
+            left: 10px;
+            font-size: 0.775rem;
+            color: var(--red-light);
+          }
+        }
+        
+        .show-all-btn {
+          text-align: center;
+          text-decoration: none;
+          margin: unset;
+          padding: 0.5rem;
+          background-color: var(--50-main-second);
+          border-top: 1px solid var(--bg-hover);
+          color: inherit;
+          
+          &:is(:hover, :focus-visible) {
+            background-color: var(--accent-color);
+            color: var(--text-bright);
+          }
+        }
+      }
+      
+      .selected-icon, .crossed-icon {
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--ff-fa);
+        background: unset;
+      }
+      
+      .selected-icon::after {
+        content: "\f00c";
+        color: var(--green-light);
+      }
+      
+      .crossed-icon::after {
+        content: "\f00d";
+        font-size: 0.775rem;
+        color: var(--red-light);
+      }
+      
+      /* Search Button */
+      .category-wrapper + .ac {
+        margin-block: 1rem !important;
+        padding: unset !important;
+        
+        > .inputButton {
+          font-size: 0.875rem;
+          font-weight: 600;
+          padding: 0.5rem 1rem !important;
+        }
+      }
+      
+    }
+    
     /* -- 1.3.1 - Top Search Bar -- */
     #top-search-bar {
       --_br: 0.2rem;
@@ -2231,8 +2741,154 @@
     
     /* -- 1.3.3 - Search Bar - Results -- */
     #topSearchResultList {
+      --_title-size: 0.75rem;
+      --_info-size: 0.675rem;
       width: 100% !important;
       top: calc(100% + 0.5rem) !important;
+    }
+    
+    #advancedSearchResultList {
+      --_title-size: 0.825rem;
+      --_info-size: 0.725rem;
+      inset: calc(100% + 0.5rem) auto auto 0 !important;
+      width: 100% !important;
+    }
+    
+    .incrementalSearchResultList { /* TODO: Fix results on header bar */
+      padding: 0.5rem;
+      background-color: var(--50-main-second);
+      border-color: var(--bg-hover);
+      border-radius: 0.3rem;
+      color: var(--text-second);
+      
+      .list {
+        background-color: transparent;
+        
+        &.focus {
+          background-color: var(--25-main-hover);
+        }
+        
+        .off .info:is(.character, .person, .club, .user, .anime, .manga,  .news,  .featured,  .forum) .name, 
+        .on .info .name {
+          font-size: var(--_title-size);
+          color: var(--accent-color);
+        }
+        
+        .off .info:is(.anime, .manga,  .news,  .featured,  .forum) .media-type, 
+        .on .info :is(.media-type, .extra-info) {
+          font-size: var(--_info-size);
+          line-height: 1.7;
+          color: var(--text-dim);
+        }
+      }
+      
+      .list.list-bottom {
+        font-size: var(--_title-size);
+        text-align: center;
+        background-color: var(--accent-color);
+        border: 1px solid var(--accent-color);
+        border-radius: 0.3rem;
+        color: var(--text-bright);
+        
+        &.focus {
+          background-color: var(--25-accent-main);
+          color: var(--text-main);
+        }
+        
+        a {
+          padding: 0.3rem;
+          color: inherit !important;
+        }
+      }
+    }
+    
+    /* -- 1.3.4 - Search Bar - Clubs Explore Page */
+    .club-search-form-search {
+      --_br: 0.5rem;
+      display: flex;
+      padding: unset !important;
+      border-radius: var(--_br);
+      
+      &::after {
+        all: unset;
+        content: "\f002";
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        display: block;
+        font-family: var(--ff-fa);
+        font-size: 1.25rem;
+        font-weight: 600;
+        transform: translate(0, -50%);
+        opacity: 0.25;
+        pointer-events: none;
+      }
+      
+/*       &:has(.inputtext:focus-visible) {
+        outline: 2px solid var(--accent-color);
+      } */
+      
+      form, form > div {
+        display: contents !important;
+      }
+      
+      .form-select-outer {
+        all: unset;
+        position: relative;
+        
+        &::after {
+          content: "\f078";
+          position: absolute;
+          top: 50%;
+          right: 0.5rem;
+          font-family: var(--ff-fa);
+          font-size: 1.1em;
+          font-weight: 900;
+          transform: translate(0, -50%);
+          pointer-events: none;
+        }
+      }
+      
+      .select {
+        width: auto;
+        height: 48px;
+        font-family: inherit;
+        padding-inline-end: 0;
+        background-color: var(--bg-second);
+        background-image: unset;
+        border: 1px solid var(--bg-hover);
+        border-radius: var(--_br) 0 0 var(--_br);
+        color: var(--text-second);
+        scrollbar-width: thin;
+        cursor: pointer;
+        
+        option {
+          color: inherit;
+          
+        }
+      }
+      
+      .inputtext {
+        flex-grow: 1;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--bg-hover);
+        border-radius: 0 var(--_br) var(--_br) 0;
+        
+        &::placeholder {
+          color: var(--text-dim);
+          opacity: 0.75;
+        }
+
+        &:is(:hover, :focus-visible) {
+          border-color: var(--accent-color);
+          outline: unset;
+        }
+      }
+      
+      .inputButton {
+        display: none;
+      }
     }
     
     
@@ -2393,9 +3049,79 @@
         color: var(--text-dim);
       }
     }
+    
+    
+    /* --- 1.6.0 - Carousels --- */
+    .auto-recommendations {
+      --img-border-radius: var(--img-border-radius-large);
+      --img-border-offset: var(--img-border-offset-large);
+      --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
+      --_item-count: 5;
+      --_gap: 0.5rem;
+      --_img-width: calc(((100cqw - (var(--_gap) * (var(--_item-count) - 1))) / var(--_item-count)) - (var(--_img-margin) * 2));
+      --_img-height: calc(var(--_img-width) * 170 / 124);
+
+      height: calc(var(--_img-height) + (var(--_img-margin) * 2));
+      
+      &#v-auto-recommendation-personalized_carousel {
+        --_item-count: 9;
+      }
+
+      .items {
+        display: flex;
+        gap: var(--_gap);
+      }
+
+      .item {
+        width: var(--_img-width);
+        height: var(--_img-height);
+        flex-shrink: 0;
+        margin: var(--_img-margin);
+        border-radius: 0.4rem;
+        outline: var(--img-border-size) solid var(--25-accent-main);
+        outline-offset: var(--img-border-offset);
+
+        &:is(:hover, :focus-visible) {
+          outline-color: var(--accent-color);
+        }
+
+        .title {
+          width: 100%;
+          height: 40px;
+          align-content: center;
+          font-family: var(--ff-main);
+          font-size: 0.785rem;
+          font-weight: 500;
+          text-wrap: pretty;
+          padding: 0 0.2rem;
+          background: rgb(from var(--50-accent-main) r g b / 0.75);
+          border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
+          color: var(--text-bright);
+          text-shadow: unset;
+          opacity: 0;
+          transform: translateY(100%);
+          overflow: clip;
+          text-overflow: ellipsis;
+        }
+
+        &:is(:hover, :focus-visible) .title {
+          opacity: 1;
+          transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms 50ms linear;
+          transform: translateY(0);
+        }
+      }
+
+      &:not(:hover, :focus-visible) .btn-side.left {
+        left: -40px;
+      }
+
+      &:not(:hover, :focus-visible) .btn-side.right {
+        right: -40px;
+      }
+    }
 
 
-    /* --- 1.6.0 - Halloween --- */
+    /* --- 1.7.0 - Halloween --- */
     body.halloween:not([class*="ownlist "]) {
       background-image: var(--halloween-image) !important;
     }
@@ -2436,7 +3162,7 @@
         color: var(--halloween-03);
       }
 
-      /* -- 1.6.1 - Header -- */
+      /* -- 1.7.1 - Header -- */
       #headerSmall.halloween {
         background-image: unset;
         background-color: var(--halloween-07);
@@ -2457,7 +3183,7 @@
         background-color: var(--halloween-03);
       }
 
-      /* -- 1.6.2 - Menu -- */
+      /* -- 1.7.2 - Menu -- */
       #menu.halloween #nav ul li a {
         background-color: var(--halloween-04);
 
@@ -2471,14 +3197,14 @@
         border-color: var(--halloween-04);
       }
 
-      /* -- 1.6.3 - Search Bar -- */
+      /* -- 1.7.3 - Search Bar -- */
       #searchBar.searchBar {
         --_searchBar-bg: var(--halloween-04);
         --_searchBar-border: var(--halloween-02);
         --_searchBar-text: var(--halloween-06);
       }
       
-      /* -- 1.6.4 - Images -- */
+      /* -- 1.7.4 - Images -- */
       .anime-detail-header-stats::after {
         filter: invert(0.8) sepia(1) hue-rotate(180deg) brightness(0.8);
       }
@@ -2488,7 +3214,7 @@
       }
     }
 
-    /* --- 1.7.0 - Christmas --- */
+    /* --- 1.8.0 - Christmas --- */
     body.christmas:not([class*="ownlist "]) {
       background-image: var(--christmas-image) !important;
       
@@ -2506,7 +3232,7 @@
 
     .page-common.christmas {
 
-      /* -- 1.7.1 - Header -- */
+      /* -- 1.8.1 - Header -- */
       #headerSmall.christmas {
         background: var(--christmas-03);
       }
@@ -2535,7 +3261,7 @@
         }
       }
 
-      /* -- 1.7.2 - Menu -- */
+      /* -- 1.8.2 - Menu -- */
       #menu {
         background-color: var(--christmas-01);
         background-image: var(--falling-snow);
@@ -2562,7 +3288,7 @@
         }
       }
 
-      /* -- 1.7.3 - Search Bar -- */
+      /* -- 1.8.3 - Search Bar -- */
       #searchBar.searchBar {
         --_searchBar-bg: var(--christmas-03);
         --_searchBar-border: var(--christmas-03);
@@ -2575,9 +3301,9 @@
     }
 
 
-    /* --- 1.8.0 - Easter --- */
+    /* --- 1.9.0 - Easter --- */
     .page-common[class*="easter"]:not(.color-pc-constant) [class*="easter"] {
-      /* -- 1.8.1 - Header -- */
+      /* -- 1.9.1 - Header -- */
       #headerSmall[class*="easter"] {
         background: unset !important;
         background-color: var(--easter-01) !important;
@@ -2604,7 +3330,7 @@
         border-color: var(--easter-04);
       }
       
-      /* -- 1.8.2 - Menu -- */
+      /* -- 1.9.2 - Menu -- */
       #menu[class*="easter"] {
         background-color: var(--easter-06);
         
@@ -2635,7 +3361,7 @@
         }
       }
       
-      /* -- 1.8.3 - Search Bar -- */
+      /* -- 1.9.3 - Search Bar -- */
       #searchBar.searchBar {
         --_searchBar-bg: var(--easter-01);
         --_searchBar-border: oklch(from var(--easter-06) calc(l - 0.2) c h);
@@ -2646,7 +3372,7 @@
         }
       }
       
-      /* -- 1.8.4 - Page Title -- */
+      /* -- 1.9.4 - Page Title -- */
       #contentWrapper > div:first-child .header-right {
         color: oklch(from var(--easter-02) calc(l + 0.2) c h);
       }
@@ -2662,7 +3388,7 @@
         }
         
         .title-english {
-          color: oklch(from var(--easter-01) calc(l - 0.25) c h);
+          color: oklch(from var(--easter-04) calc(l + 0.25) c h);
         }
         
         .header-right a {
@@ -2671,7 +3397,7 @@
       }
     }
     
-    /* --- 1.9.0 - Wrap Up --- */
+    /* --- 1.10.0 - Wrap Up --- */
     .page-common.wrapup {
       #headerSmall.wrapup {
         background-image: var(--fireworks);
@@ -2704,7 +3430,7 @@
         border-color: var(--bg-hover);
       }
     }
-
+    
     /* --- 2.1.0 - Widgets --- */
     body.index .widget-container .widget {
       .index_h2_seo, 
@@ -2853,8 +3579,10 @@
         }
         
         .work-title {
-          display: flex;
-          justify-content: space-between;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 0.5rem;
+          align-items: center;
           
           a {
             margin: unset !important;
@@ -3143,68 +3871,100 @@
       &:is(.anime_suggestions, .manga_suggestions) {
         container-type: inline-size;
       }
-
-      .auto-recommendations {
+      
+      /* -- 2.1.10 - Latest Updated Episode Videos -- */
+      #widget-episode-video {
+        width: 100%;
+      }
+      
+      #widget-episode-video .widget-slide-outer {
         --img-border-radius: var(--img-border-radius-large);
         --img-border-offset: var(--img-border-offset-large);
         --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
-        --_item-count: 5;
+        --_item-count: 6;
         --_gap: 0.5rem;
         --_img-width: calc(((100cqw - (var(--_gap) * (var(--_item-count) - 1))) / var(--_item-count)) - (var(--_img-margin) * 2));
-        --_img-height: calc(var(--_img-width) * 170 / 124);
+        --_img-height: calc(var(--_img-width) * 163 / 108);
+        --_title-width: calc(((100cqw - (var(--_gap) * (var(--_item-count) - 1))) / var(--_item-count)));
+        
+        width: 100%;
+        height: auto;
+        container-type: inline-size;
 
-        height: calc(var(--_img-height) + (var(--_img-margin) * 2));
-
-        .items {
+        .widget-slide {
+          height: auto;
           display: flex;
-          gap: var(--_gap);
+          gap: 0.5rem;
         }
 
-        .item {
-          width: var(--_img-width);
-          height: var(--_img-height);
+        .btn-anime {
           flex-shrink: 0;
-          margin: var(--_img-margin);
-          border-radius: 0.4rem;
-          outline: var(--img-border-size) solid var(--25-accent-main);
-          outline-offset: var(--img-border-offset);
+          width: auto;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          margin: unset;
+          border: unset;
+        }
 
-          &:is(:hover, :focus-visible) {
-            outline-color: var(--accent-color);
-          }
-
+        .link {
+          width: min-content;
+          height: auto;
+          display: grid;
+          grid-template-rows: 1fr 50px;
+          text-decoration: unset;
+          opacity: 1;
+          
           .title {
-            width: 100%;
-            height: 40px;
-            align-content: center;
+            grid-row: 2;
+            width: var(--_img-width);
+            margin-block-end: calc(var(--_img-margin));
+            margin-inline: calc(var(--_img-margin));
+            padding-block: 1rem 0.25rem;
+            border-radius: var(--img-border-radius);
+            pointer-events: none;
+            
+            a {
+              font-family: var(--ff-secondary);
+              font-size: 0.75rem;
+              font-weight: 800;
+              text-shadow: none;
+              color: var(--text-main);
+              pointer-events: auto;
+            }
+            
+            a:is(:hover, :focus-visible) {
+              background-color: var(--75-accent-second);
+              color: var(--text-bright);
+              outline: none;
+            }
+          }
+
+          img {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            width: var(--_img-width);
+            height: var(--_img-height);
+            margin: var(--_img-margin);
+          }
+        }
+        
+        .external-link {
+          width: var(--_title-width);
+          padding: unset;
+          background-color: unset;
+          white-space: pre-wrap;
+          
+          .latest_updated_h3 a { /* CSS-Trick: clamp card title to 2 lines */
+            height: unset;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: block-axis;
+            font-size: 0.75rem;
             font-family: var(--ff-main);
-            font-size: 0.785rem;
-            font-weight: 500;
-            text-wrap: pretty;
-            padding: 0 0.2rem;
-            background: rgb(from var(--50-accent-main) r g b / 0.75);
-            border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
-            color: var(--text-bright);
-            text-shadow: unset;
-            opacity: 0;
-            transform: translateY(100%);
-            overflow: clip;
-            text-overflow: ellipsis;
+            font-weight: 400;
           }
-
-          &:is(:hover, :focus-visible) .title {
-            opacity: 1;
-            transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms 50ms linear;
-            transform: translateY(0);
-          }
-        }
-
-        &:not(:hover, :focus-visible) .btn-side.left {
-          left: -40px;
-        }
-
-        &:not(:hover, :focus-visible) .btn-side.right {
-          right: -40px;
         }
       }
 
@@ -3295,86 +4055,6 @@
     }
 
     /* -- 3.1.2 - Sort/Filter -- */
-    .seasonal-sort-order-block,
-    .adapted-sort-order-block,
-    .anime-character-sort-order-block,
-    .manga-character-sort-order-block {
-      min-width: fit-content;
-      padding: 0.4rem 0.5rem;
-      border-radius: 0.3rem;
-      background-color: var(--bg-second);
-      border-color: var(--bg-hover);
-      color: var(--text-second);
-
-      .sort-order-list {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.2rem;
-      }
-
-      .sort-order-list .btn-sort-order {
-        color: inherit;
-      }
-
-      .sort-order-list .btn-sort-order .fa-regular:is(.fa-circle, .fa-square) {
-        color: inherit;
-      }
-
-      .sort-order-list .btn-sort-order :is(.fa-circle.fa-solid,
-        mal-tooltip.fa-circle::part(icon)) {
-        color: var(--accent-color);
-      }
-
-      .sort-order-list .btn-sort-order .fa-check {
-        color: var(--green-light);
-      }
-
-      .sort-order-list .btn-sort-order .fa-xmark {
-        color: var(--red-light);
-      }
-
-      .sort-order-list .btn-sort-order.fa-stack {
-        width: 100% !important;
-        height: auto !important;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        line-height: 2;
-        margin: unset !important;
-        padding: unset;
-
-        .fa-regular {
-          position: unset;
-        }
-
-        .fa-solid {
-          inset: unset;
-          margin-block: auto;
-        }
-
-        .fa-square::before {
-          content: "";
-          display: block;
-          width: 14px;
-          aspect-ratio: 1;
-          border: 1px solid currentColor;
-        }
-
-        .fa-check {
-          font-size: 0.75rem;
-        }
-
-        .fa-xmark {
-          font-size: 0.8rem;
-        }
-      }
-
-      .btn-close {
-        color: var(--text-dim);
-      }
-    }
-
     .season .seasonal-sort-order-block {
       top: calc(100% - 2px);
 
@@ -3402,7 +4082,7 @@
         right: 278px;
       }
     }
-
+    
     .season .seasonal-sort-order-block.genres,
     .adapted .adapted-sort-order-block.genres {
       width: 100%;
@@ -3531,7 +4211,6 @@
       box-shadow: 0 0 5px var(--75-main-second);
       isolation: isolate;
       container-type: inline-size;
-      content-visibility: auto;
 
       > div:first-child {
         grid-column: 1 / -1;
@@ -3850,7 +4529,7 @@
       }
       
       .information-item.scormem .fa-star::before {
-        font-weight: 800;
+        font-weight: 900;
       }
 
       .information-item.buttons {
@@ -4064,15 +4743,18 @@
           width: unset;
         }
 
+        /*
         br + br {
           display: none;
-        }
+        } 
+        */
       }
 
       > table > tbody > tr .rightside > div[style*="width:728px"] {
         width: unset !important;
       }
       
+      .kVwNpRmQxHtBjYcL-nvwtus, 
       .rightside > div[style^="overflow: hidden; padding: 10px 0; border-bottom: solid #cdcdcd 1px"] { /* Hide Ads */
         display: none;
       }
@@ -4972,10 +5654,14 @@
 
           .text {
             grid-area: review;
-            font-size: 0.775rem;
-            line-height: 1.7;
+            justify-self: center;
+            position: relative;
+            width: 80ch;
+            font-size: 0.825rem;
+            line-height: 1.9;
             margin-block: 0.5rem;
             color: var(--text-second);
+            isolation: isolate;
 
             .js-visible {
               margin: unset !important;
@@ -4984,6 +5670,19 @@
             .js-hidden {
               font-size: inherit;
               line-height: inherit;
+            }
+            
+            &::before {
+              content: "\f10d";
+              position: absolute;
+              top: 25px;
+              left: -25px;
+              font-family: var(--ff-fa);
+              font-weight: 900;
+              font-size: 7rem;
+              line-height: 0;
+              color: oklch(from var(--50-accent-main-text) l c h / 0.05);
+              z-index: -1;
             }
           }
 
@@ -5242,7 +5941,7 @@
               border: 1px solid var(--text-second);
             }
 
-            &::after {
+            &.selected::after {
               all: unset;
               content: "\f00c";
               position: absolute;
@@ -5281,10 +5980,16 @@
       grid-template-areas: "image actors" "info actors";
       gap: 0 0.5rem;
       
-      > td:first-child img {
+      > td:nth-child(1) {
         grid-area: image;
-        width: 90px;
-        height: auto;
+        place-self: center;
+        width: auto;
+        
+        img {
+          width: 85px;
+          height: auto;
+          aspect-ratio: 3 / 4;
+        }
       }
 
       > td:nth-child(2) {
@@ -5305,6 +6010,8 @@
 
       > td:nth-child(3) {
         grid-area: actors;
+        padding-inline-start: 0.5rem;
+        border-left: 1px solid oklch(from var(--25-accent-main) l c h / 0.25);
 
         table {
           width: 100%;
@@ -5313,14 +6020,35 @@
         tbody {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-          align-items: start;
-          justify-items: end;
           gap: 1rem 0.5rem;
 
           tr {
-            display: grid;
-            grid-template-columns: 1fr auto;
+            display: flex;
+            flex-direction: row-reverse;
             gap: 0.25rem;
+            padding: 0.5rem;
+            background-color: oklch(from var(--_card-bg) l c h / 0.25);
+            border: 1px solid oklch(from var(--_card-border) l c h / 0.25);
+            border-radius: 0.3rem;
+            
+            &[style*="display: table-row"] {
+              display: flex !important;
+            }
+            
+            &:nth-child(odd) {
+              --_card-bg: var(--25-accent-main);
+              --_card-border: var(--50-accent-main);
+            }
+            
+            &:nth-child(even) {
+              --_card-bg: var(--25-accent-hover);
+              --_card-border: var(--50-accent-hover);
+            }
+            
+            td:first-child {
+              flex-grow: 1;
+              text-align: start;
+            }
           }
           
           .spaceit_pad {
@@ -5467,12 +6195,174 @@
     }
 
     /* -- 3.2.12 - Stats Tab -- */
+    .rightside:has(#summary_stats) {
+      container-name: --summary;
+      container-type: inline-size;
+    }
+    
     #summary_stats {
       font-size: 1rem;
     }
     
-    .score-stats .updatesBar {
-      height: 25px !important;
+    .score-stats {
+      tbody {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0 0.5rem;
+        align-items: center;
+      }
+      
+      tr {
+        display: contents;
+      }
+      
+      td {
+        border-block: 1px dashed var(--75-main-hover);
+      }
+      
+      .spaceit_pad {
+        display: flex;
+        align-items: center;
+      }
+      
+      .score-label {
+        width: auto;
+        text-align: center;
+        padding-inline-start: 0.5rem;
+      }
+      
+      .updatesBar {
+        height: 25px !important;
+        
+        + span small {
+          font-size: 0.9em;
+          font-weight: 300;
+          color: var(--text-dim);
+        }
+      }
+    }
+    
+    /* - 3.2.12.1 - Summary Stats - */
+    @scope (.rightside) to (#score_stats ~ *) {
+      #summary_stats ~ .spaceit_pad {
+        --_margin: 0.5rem;
+        --_total-margin: calc(var(--_margin) * 7);
+        width: calc((100cqw - var(--_total-margin) - 0.5px) / 6);
+        display: inline-flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-inline-start: var(--_margin);
+        padding: 0.5rem 0 !important;
+        border-radius: 0.3rem;
+        
+        &:nth-last-child(1 of .spaceit_pad) {
+          margin-inline-end: var(--_margin);
+        }
+        
+        + br {
+          display: none;
+        }
+        
+        .dark_text {
+          font-size: 0.675rem;
+          font-weight: 400;
+          
+          &::before {
+            content: var(--_fa);
+            font-family: var(--ff-fa);
+            font-weight: 900;
+            margin-inline-end: 0.25rem;
+          }
+        }
+        
+        &:nth-child(1 of .spaceit_pad) { --_fa: "\f06e"; }
+        &:nth-child(2 of .spaceit_pad) { --_fa: "\f00c"; }
+        &:nth-child(3 of .spaceit_pad) { --_fa: "\f04c"; }
+        &:nth-child(4 of .spaceit_pad) { --_fa: "\f05e"; }
+        &:nth-child(5 of .spaceit_pad) { --_fa: "\e105"; }
+        &:nth-child(6 of .spaceit_pad) { --_fa: "\f621"; }
+        
+      }
+    }
+    
+    /* - 3.2.12.2 - Recently Updated By - */
+    .spaceit:has(+ .table-recently-updated), 
+    .table-recently-updated + .spaceit {
+      display: flex;
+      justify-content: space-between;
+      color: transparent;
+      
+      a {
+        font-family: var(--ff-secondary);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.25rem 0.5rem;
+        background-color: var(--accent-color);
+        border-radius: 0.2rem;
+        color: var(--text-bright);
+        transition-property: background-color, color;
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover);
+          border-color: var(--accent-color);
+        }
+      }
+    }
+    
+    .table-recently-updated tbody {
+      --img-border-radius: 50%;
+      display: grid;
+      grid-template-columns: 1fr repeat(4, auto);
+      gap: 0.25rem;
+      
+      tr {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        
+        td {
+          align-content: center;
+          width: auto;
+          padding: 0.3rem 0.6rem;
+          border: none;
+          
+          &:first-child {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+            div {
+              width: auto !important;
+              padding: unset !important;
+            }
+          }
+          
+          .image-member {
+            width: 40px;
+            height: auto;
+            aspect-ratio: 1;
+          }
+        }
+        
+        &:nth-child(even) td {
+          background-color: var(--75-main-hover);
+        }
+        
+        &:nth-child(odd):not(:first-child) td {
+          background-color: var(--50-main-hover);
+        }
+        
+        &:first-child td {
+          background-color: var(--accent-color);
+          color: var(--text-bright);
+          
+          a {
+            color: inherit;
+          }
+        }
+      }
     }
 
     /* -- 3.2.13 - Reviews Tab -- */
@@ -5501,21 +6391,28 @@
 
     /* -- 3.2.14 - User Recommendations Tab -- */
     #horiznav_nav:has(> ul > li > .horiznav_active[href$="userrecs"] ) ~ .borderClass {
-      --_gap: 0.75rem;
-      margin-block-end: var(--_gap);
-      padding: 0 0 calc(var(--_gap) + (var(--_gap) / 2));
-      
-      &:nth-child(1 of .borderClass) {
-        padding-block-start: calc(var(--_gap) / 2);
-      }
+      margin-block: 1rem;
+      padding: unset;
+      border: unset;
     }
     
     #horiznav_nav:has(> ul > li > .horiznav_active[href$="userrecs"] ) ~ .borderClass > table tr {
+      position: relative;
       display: grid;
       grid-template-columns: auto 1fr;
-      grid-template-areas: "title title" "image details" "image footer";
-      gap: 0 0.5rem;
+      grid-template-areas: "title title" "image text" "footer footer" "more more";
+      gap: 0 0.75rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--75-main-second);
+      border: 1px solid var(--75-main-hover);
+      border-radius: 0.3rem;
+      isolation: isolate;
       
+      .spaceit_pad {
+        padding: unset;
+      }
+      
+      /* Image */
       td:nth-child(1) {
         grid-area: image;
         width: auto;
@@ -5528,56 +6425,108 @@
       td:nth-child(2) {
         display: contents;
         
+        /* Title */
         > div:nth-child(2) {
           grid-area: title;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.85rem;
           margin: unset !important;
           margin-block-end: 0.5rem !important;
-        }
-        
-        > div:nth-child(3) {
-          grid-area: details;
-          margin: unset !important;
-          padding: unset !important;
-          background-color: unset !important;
-          border: unset !important;
-        }
-        
-        .borderClass:is(.bgColor1, .bgColor2) {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding-inline: 0.5rem !important;
-          background-color: var(--50-main-second) !important;
-          border: 1px solid var(--25-main-second) !important;
-          border-radius: 0.2rem;
           
-          > div:nth-child(2) {
-            font-family: var(--ff-secondary);
-            font-size: 0.775rem;
-            font-style: italic;
+          > span {
+            margin-inline-start: auto;
+          }
+          
+          a[title="permalink" i] {
+            font-size: 0.75rem;
+          }
+        }
+        
+        /* Content */
+        > div:nth-child(3) {
+          display: contents;
+        }
+        
+        /* Text */
+        .detail-user-recs-text {
+          grid-area: text;
+          position: relative;
+          width: min(80ch, 100%);
+          max-width: unset;
+          font-size: 0.825rem;
+          margin-inline: auto;
+          padding-inline: 3rem;
+
+          &::before {
+            content: "\f10d";
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            font-family: var(--ff-fa);
+            font-weight: 900;
+            font-size: 5rem;
+            line-height: 0;
+            color: oklch(from var(--50-accent-main-text) l c h / 0.05);
+          }
+          
+          /* Footer */
+          + div {
+            grid-area: footer;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            margin-block-start: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--bg-second);
+            border: 1px solid var(--50-main-hover);
+            border-radius: 0.3rem;
             
             > span {
-              font-family: var(--ff-main);
-              font-style: normal;
+              order: 1;
+              margin-inline-start: auto;
             }
           }
         }
         
-        > div:nth-child(4) {
-          grid-area: footer;
-          margin: unset !important;
-        }
-        
-        .detail-user-recs-text {
-          max-width: unset;
-        }
-        
-        .spaceit_pad {
-          padding: 0.25rem 0;
-        }
-        
+        /* Report Button */
         a[href*="/dbchanges.php?go=report"] {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
           color: var(--red-light);
+          
+          &::before {
+            content: "\e405";
+            font-family: var(--ff-fa);
+            font-size: 1.1em;
+            font-weight: 900;
+            margin-block-start: 1px;
+            margin-inline-end: 0.25rem;
+          }
+          
+          small {
+            font-size: inherit;
+          }
+          
+          &:is(:hover, :focus-visible) small {
+            text-decoration: underline;
+          }
+        }
+        
+        /* More Recommendations */
+        > div:nth-child(4) {
+          grid-area: more;
+          margin: unset !important;
+          
+          &::before {
+            content: "\f101";
+            font-family: var(--ff-fa);
+            margin-inline-end: 0.25rem;
+            color: var(--accent-color);
+          }
         }
         
       }
@@ -5599,55 +6548,6 @@
       .btn-show-sort {
         margin: unset;
         color: var(--text-second);
-      }
-      
-      .sort-order-block {
-        width: auto;
-        right: 0;
-        background-color: var(--bg-second);
-        border-color: var(--bg-hover);
-        border-radius: 0;
-      }
-      
-      .sort-order-list {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.2rem;
-        margin-inline-end: 0.5rem;
-        
-        .btn-sort-order.circle {
-          position: relative;
-          padding: unset;
-          padding-inline-start: 1.2rem;
-          background: unset;
-          color: inherit;
-        }
-        
-        .btn-sort-order.circle::before {
-          content: "\f111";
-          position: absolute;
-          top: 0;
-          left: 0;
-          font-family: var(--ff-fa);
-          font-size: 0.8rem;
-        }
-        
-        .btn-sort-order.circle.selected::after {
-          content: "\f111";
-          position: absolute;
-          top: 0;
-          left: 2px;
-          font-family: var(--ff-fa);
-          font-weight: 600;
-          font-size: 0.5rem;
-          background: unset;
-          color: var(--accent-color);
-        }
-      }
-
-      .btn-close {
-        color: var(--text-dim);
       }
     }
 
@@ -5676,7 +6576,10 @@
       grid-template-areas: "image title" "image text " "info  info ";
       gap: 0.5rem;
       padding-block: 0.5rem;
-      border-bottom: 1px solid var(--bg-hover);
+      
+      &:not(:nth-last-child(1 of .clearfix)) {
+        border-bottom: 1px solid var(--bg-hover);
+      }
 
       &:has(> p.spaceit:first-child) {
         grid-template-columns: unset;
@@ -5691,6 +6594,7 @@
         img {
           width: 60px;
           height: auto;
+          aspect-ratio: 5 / 7;
         }
       }
 
@@ -5705,10 +6609,15 @@
         padding: 0.5rem 0.5rem;
         background-color: var(--50-main-second);
         border-radius: 0.2rem;
+        color: var(--text-second);
       }
 
       + .borderClass {
         display: none;
+      }
+      
+      ~ div[style*="display: inline-block"] {
+        display: none !important;
       }
 
       &::after,
@@ -5720,6 +6629,50 @@
     /* -- 3.2.17 - Featured Articles Tab -- */
     .page-common .breadcrumb:has(> div > a[href*="featured"]) + h2 {
       font-size: 1rem;
+    }
+    
+    /* -- 3.2.18 - Clubs -- */
+    .page-common .rightside:has(#horiznav_nav > ul > li > a.horiznav_active[href*="/clubs"]) {
+      --_gap: 0.5rem;
+      counter-reset: --clubs-list;
+      
+      .borderClass {
+        counter-increment: --clubs-list 1;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin-block-end: var(--_gap);
+        padding: 0.5rem;
+        background-color: var(--75-main-hover);
+        border: 1px solid var(--50-main-hover);
+        border-radius: 0.2rem;
+        overflow: hidden;
+        
+        &::before {
+          content: counter(--clubs-list);
+          position: absolute;
+          top: 0;
+          right: 0.5rem;
+          font-size: 2.2rem;
+          font-weight: 700;
+          color: var(--text-dim);
+          opacity: 0.1;
+          translate: 0 -10%;
+        }
+        
+        &:nth-child(2n of &) {
+          background-color: var(--75-main-second);
+          border-color: var(--50-main-second);
+        }
+        
+        small {
+          font-size: 1em;
+        }
+      }
+      
+      div[style*="display: inline-block"] {
+        display: none !important;
+      }
     }
 
 
@@ -5900,6 +6853,61 @@
     }
     
     /* --- 3.4.0 - Anime/Manga Search Page --- */
+    .anime-manga-search .normal_header {
+      margin-block-start: 1rem !important;
+      padding-block: 0.5rem !important;
+    }
+    
+    .anime-manga-search .genre-link {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.5rem;
+      align-items: center;
+      padding-block: 0.5rem;
+      
+      .genre-list-col {
+        display: contents;
+      }
+      
+      .genre-list {
+        width: auto;
+        border: unset;
+      }
+      
+      .genre-name-link {
+        font-family: var(--ff-main);
+        font-size: 0.75rem;
+        margin: unset;
+        padding: 0.75rem 1rem;
+        background-color: oklch(from var(--25-accent-main) l c h / 0.3);
+        border: 1px solid var(--50-accent-main);
+        border-radius: 0.3rem;
+        color: var(--text-main);
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--accent-color);
+          border-color: var(--accent-color);
+          color: var(--text-bright);
+        }
+
+        &::after {
+          content: unset;
+        }
+      }
+    }
+    
+    .anime-filter .btn-show-sort {
+      color: var(--text-second);
+    }
+    
+    .anime-filter .genre-description {
+      font-size: 0.75rem;
+      line-height: 1.7;
+      background-color: var(--25-accent-main);
+      border-color: var(--accent-color);
+      border-radius: 0.3rem;
+      color: var(--text-main);
+    }
     
   }
 }
@@ -6298,6 +7306,313 @@
         opacity: 1;
       }
     }
+    
+    /* --- 4.5.0 - Forum Explore Page --- */
+    .page-common.forum {
+      .content-container {
+        display: grid;
+        grid-template-columns: 1fr 32cqw;
+        
+        .container-left {
+          width: auto;
+          padding-inline-end: 0.5rem;
+          border-color: var(--bg-hover);
+          
+          div[style*="width:720px"] {
+            width: auto !important;
+          }
+        }
+        
+        .container-right {
+          width: auto;
+        }
+      }
+      
+      /* -- 4.5.1 - Forum Explore Page - Boards List -- */
+      .forum-board-list {
+        width: auto;
+      }
+      
+      .forum-header {
+        font-family: var(--ff-tertiary);
+        font-size: 1rem;
+        font-weight: 600;
+        padding-block: 0.4rem;
+        background-color: var(--accent-color);
+        color: var(--text-bright);
+      }
+      
+      .forum-board {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        padding: unset;
+        background-color: var(--50-main-hover);
+        border: 1px solid var(--bg-hover);
+        color: inherit;
+        
+        + .forum-board {
+          border-block-start: unset;
+        }
+        
+        .board {
+          width: auto;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          grid-template-areas: "icon title" "subboards subboards" "description description";
+          align-items: center;
+          align-content: center;
+          gap: 0.5rem 0;
+          font-size: 0.775rem;
+          padding: 0.725rem;
+          
+          i {
+            grid-area: icon;
+            font-size: 0.875rem !important;
+            margin-inline-end: 0.25rem;
+          }
+          
+          .forum-board-title {
+            font-size: 0.825rem;
+          }
+          
+          .forum-subboards {
+            grid-area: subboards;
+            padding: unset;
+          }
+          
+          .forum-board-description {
+            grid-area: description;
+            font-style: italic;
+            padding: unset;
+            color: var(--text-dim);
+          }
+          
+          br {
+            display: none;
+          }
+        }
+        
+        .topics {
+          width: auto;
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          gap: 1px;
+          padding-block-start: unset;
+          
+          .mb12 {
+            margin: unset !important;
+          }
+          
+          li {
+            place-content: center;
+            padding: 0.725rem;
+            background-color: var(--75-main-second);
+            
+            &::after {
+              content: unset;
+            }
+            
+            .user_thumb {
+              display: none;
+            }
+            
+            .topic-title {
+              width: auto;
+              display: flex !important;
+              flex-direction: column;
+              margin: unset;
+            }
+            
+            .topic-title-link {
+              font-size: 0.775rem;
+              color: var(--text-second);
+              white-space: wrap;
+            }
+            
+            .date {
+              font-size: 0.725rem !important;
+              padding: unset !important;
+              
+              a:last-child {
+                font-size: 1rem;
+                line-height: 0;
+              }
+            }
+            
+            br {
+              display: none;
+            }
+          }
+        }
+      }
+      
+      /* -- 4.5.2 - Forum Explore Page - "Mark All Read" Button -- */
+      .forum-board-list + div.di-b > .btn-rect-grey1 {
+        font-family: var(--ff-main);
+        font-size: 0.675rem;
+        padding: 0.3rem 0.6rem;
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        border-radius: 0.2rem;
+        color: var(--text-bright);
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-accent-main);
+        }
+        
+        &:active {
+          box-shadow: inset 0 0 5px 3px oklch(from var(--25-accent-main-text) l c h / 0.75);
+        }
+        
+        a {
+          text-decoration: inherit;
+          color: inherit;
+        }
+      }
+      
+      /* -- 4.5.3 - Forum Explore Page - Moderators List -- */
+      .forum-mods-list, 
+      .forum-mods-container {
+        width: auto;
+      }
+      
+      .forum-mods {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+        align-items: center;
+        gap: 0.5rem;
+        
+        .link-forum-mods {
+          width: auto;
+          padding: unset;
+        }
+        
+        .link {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+          gap: 0.5rem;
+          
+          .name {
+            width: 100%;
+            padding: unset;
+          }
+          
+          .thumb {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            background-color: var(--bg-second);
+          }
+        }
+      }
+      
+      
+      /* -- 4.5.4 - Forum Explore Page - Sidebar -- */
+      .forum-search-side {
+        display: flex;
+        
+        .forum-search-select {
+          width: 95px;
+          border-radius: var(--_br) 0 0 var(--_br);
+          scrollbar-width: thin;
+        }
+        
+        .forum-search-input-text {
+          flex-grow: 1;
+          width: auto;
+          border-radius: 0 var(--_br) var(--_br) 0;
+          white-space: wrap;
+        }
+        
+        .forum-search-select, 
+        .forum-search-input-text {
+          --_br: 0.2rem;
+          height: auto;
+          font-family: var(--ff-main);
+          font-size: 0.75rem;
+          font-weight: 300;
+          padding: 0.3rem 0.6rem;
+          background-color: var(--50-main-second);
+          border: 1px solid var(--25-main-hover);
+          color: var(--text-main);
+          transition: border-color 200ms ease-in-out;
+        }
+        
+        > button {
+          display: none;
+        }
+        
+        + div {
+          font-family: inherit !important;
+        }
+      }
+      
+      .forum-side-block {
+        padding: unset;
+      }
+      
+      .forum-side-block .header {
+        font-family: var(--ff-tertiary);
+        font-size: 0.925rem;
+        border-bottom-color: var(--bg-hover);
+        color: var(--text-main);
+        
+        a {
+          font-family: var(--ff-secondary);
+        }
+      }
+      
+      .forum-side-block .forum-side-list {
+        font-family: var(--ff-main);
+        
+        .forum-post {
+          display: flex;
+          gap: 0.5rem;
+          border-color: var(--bg-hover);
+          
+          &::after {
+            content: unset;
+          }
+          
+          .thumb {
+            margin: unset !important;
+            
+            img {
+              float: unset;
+              width: 70px;
+              height: auto;
+              aspect-ratio: 4 / 5;
+              background-color: var(--bg-second);
+              border-color: var(--bg-hover);
+            }
+          }
+          
+          .information-block {
+            flex-grow: 1;
+            width: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: unset !important;
+            
+            .title {
+              font-size: 0.775rem;
+            }
+            
+            .information {
+              font-size: 0.675rem !important;
+            }
+            
+            .comment {
+              color: var(--text-dim);
+            }
+          }
+        }
+      }
+      
+    }
+    
   }
 }
 
@@ -6309,9 +7624,13 @@
   /* ---- 5.0.0 - News ---- */
   html, .dark-mode {
     body.news {
+      h2 {
+        font-family: var(--ff-main);
+      }
+      
       #content.news-content-block {
         display: grid;
-        grid-template-columns: 1fr 32cqw;
+        grid-template-columns: 1fr 30cqw;
         padding-inline: unset;
       }
 
@@ -6441,7 +7760,6 @@
       margin: unset;
       padding: 1rem 0;
       border-color: var(--bg-hover);
-      content-visibility: auto;
 
       &::after {
         content: unset;
@@ -6594,7 +7912,7 @@
         }
 
         .featured-search-input-text {
-          width: auto;
+          width: 100%;
           height: auto;
           font-family: var(--ff-main);
           font-size: 0.8rem;
@@ -6626,8 +7944,6 @@
 
       /* -- 5.3.2 - Article Blocks -- */
       :is(.news-side-block, .tag-side-block, .columnist-side-block) {
-        content-visibility: auto;
-        contain-intrinsic-block-size: 250px;
         padding: unset;
 
         &:not(:last-child) {
@@ -6713,7 +8029,7 @@
         }
       }
 
-      /* -- 5.3.4 - Tags -- */
+      /* -- 5.3.4 - Trending Tags -- */
       .tag-cloud {
         margin: 0.5rem 0 0;
 
@@ -6758,44 +8074,6 @@
 
         br {
           display: none;
-        }
-      }
-
-      /* -- 5.3.6 - RSS -- */
-      .mt24:has(> a[href="https://myanimelist.net/rss/news.xml"]),
-      div:has(> a[href="https://myanimelist.net/rss/featured.xml"]) {
-        --_bg: #f78b19;
-        position: relative;
-        display: grid;
-        justify-content: end;
-        margin: unset !important;
-        color: var(--_bg);
-
-        > a:first-child {
-          display: none;
-        }
-
-        > a:nth-child(2) {
-          width: 1.5rem;
-          height: 1.5rem;
-          color: transparent;
-          z-index: 2;
-        }
-
-        &::after {
-          content: "\f143";
-          position: absolute;
-          top: 0;
-          right: 0;
-          font-family: var(--ff-fa);
-          font-weight: 900;
-          font-size: 1.5rem;
-          transition: color 250ms ease-in-out;
-        }
-
-        &:has(> a:nth-child(2):is(:hover, :focus-visible))::after {
-          color: oklch(from var(--_bg) 0.8 c h);
-          animation: pulse 250ms var(--ease-bounce-subtle) forwards;
         }
       }
     }
@@ -6862,7 +8140,55 @@
     }
 
     /* --- 5.5.0 - All Tags Page --- */
+    body.news .news-content-block.news-tags {
+      .news-breadcrumbs .breadcrumb {
+        padding-inline: unset;
+      }
+      
+      .news-tags-header {
+        padding-block-end: 0.5rem;
+        border-color: var(--bg-hover) !important;
+      }
+      
+      #cat-categories .news-tags-table {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.5rem;
+        padding-block: 0.5rem;
+
+        .tag-list-col {
+          display: contents;
+        }
+
+        .tag-list-col .tag-list {
+          width: auto;
+          display: block;
+          font-family: var(--ff-main);
+          background-color: var(--25-accent-main);
+          border: 1px solid var(--50-accent-main);
+          border-radius: 0.3rem;
+          color: var(--text-main);
+          
+          &:is(:hover, :focus-visible) {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--text-bright);
+          }
+          
+          .tag-name-link {
+            padding: 0.5rem 0.75rem;
+            color: inherit;
+          }
+          
+          a::after {
+            content: unset;
+          }
+        }
+      }
+    }
+    
     body.news .news-content-block.news-tags .menu-category-tags {
+      width: auto;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -6968,7 +8294,7 @@
       }
     }
 
-    /* -- 5.6.0 - News Article Page -- */
+    /* --- 5.6.0 - News Article Page --- */
     body.news .news-content-block .news-breadcrumbs + div.mr8 {
       margin: unset !important;
     }
@@ -6988,6 +8314,10 @@
             color: var(--accent-color);
           }
         }
+      }
+      
+      .summary {
+        color: inherit;
       }
 
       .news-info-block {
@@ -7013,6 +8343,10 @@
             color: var(--accent-color);
           }
         }
+        
+        br {
+          display: none;
+        }
       }
 
       .content {
@@ -7020,14 +8354,25 @@
         font-size: 0.785rem;
         text-align: justify;
         color: var(--text-second);
+        
+        .userimg {
+          max-width: 100%;
+        }
       }
 
       .tags {
+        --_gap: 0.5rem;
         display: flex;
-        gap: 0.5rem;
-        padding: 0.75rem;
+        gap: var(--_gap);
+        padding: 0.75rem !important;
         background-color: var(--50-main-second);
         border-radius: 0.2rem;
+        
+        .tags-inner-attributes {
+          margin: unset;
+          padding-inline-end: var(--_gap);
+          border-color: var(--text-dim);
+        }
       }
 
       .tag {
@@ -7099,14 +8444,30 @@
     }
 
     /* --- 5.7.0 - Featured Articles --- */
+    body.news .featured-article-body {
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--text-main);
+      }
+      
+      p {
+        font-family: var(--ff-main);
+        font-size: 0.775rem;
+        line-height: 1.7;
+        color: var(--text-second);
+      }
+      
+      dl, dt, dd, ol, li {
+        font-family: var(--ff-main);
+        color: var(--text-second);
+      }
+    }
+    
     body.news .featured-content-block-outer {
       width: auto;
       margin: unset;
       border-color: var(--bg-hover);
 
       .featured-pickup {
-        content-visibility: auto;
-        contain-intrinsic-block-size: 375px;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -7134,6 +8495,7 @@
         .text,
         .information {
           width: auto;
+          font-family: var(--ff-main);
           margin: unset;
           padding-inline: 0.75rem;
         }
@@ -7243,19 +8605,24 @@
     }
     
     /* --- 6.2.0 - Company - Detailed Page --- */
-    .anime-filter #content {
+    .anime-filter #content:has(> .content-left) {
       display: flex;
 
       .content-left {
-        width: auto;
+        width: min(40ch, 25cqw);
         padding: 0.25rem 0.625rem;
         border-color: var(--bg-hover);
       }
 
       .content-right {
+        flex-grow: 1;
         width: 75cqw;
         padding: 0.25rem 0.625rem;
         container-type: inline-size;
+      }
+      
+      .logo, .logo img {
+        height: auto;
       }
       
       .normal_header {
@@ -7277,6 +8644,14 @@
           color: var(--text-dim);
         }
       }
+      
+      .spaceit_pad {
+        width: auto;
+      }
+    }
+    
+    .anime-filter #contentWrapper + div[style*="clear"] {
+      display: none;
     }
     
     /* -- 6.2.1 - List Styles -- */
@@ -7496,20 +8871,100 @@
 
 }
 
-@-moz-document domain("myanimelist.net") {
+
+@-moz-document url-prefix("https://myanimelist.net/clubs.php") {
 
   /* ======================================================================================= */
-  /* Settings                                                                                */
+  /* Clubs                                                                                   */
   /* ======================================================================================= */
-  /* ---- 9.0.0 - Settings ---- */
+  /* ---- 9.0.0 - Clubs ---- */
   html, .dark-mode {
-    form[name="picture_form"] .inputButton {
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.4rem 0.8rem !important;
+    #content > table div[style*="width: 733px"] {
+      width: auto !important;
+    }
+    
+    /* --- 9.1.0 - Clubs - Explore Page --- */
+    .club-search-form-search + .normal_header {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.925rem;
+      font-family: var(--ff-tertiary);
+      line-height: unset;
+      
+      &::after {
+        content: unset;
+      }
+    }
+    
+    .club-list tbody {
+      display: grid;
+      grid-template-columns: 1fr repeat(4, auto);
+      gap: 0.25rem;
+      
+      &:has(> .table-header > .myclubs) {
+        grid-template-columns: 1fr repeat(5, auto);
+      }
+      
+      tr {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+      }
+      
+      td {
+        align-content: center;
+        width: auto !important;
+        padding: 0.3rem 0.6rem !important;
+        border: unset;
+        
+        .informantion {
+          color: var(--text-second);
+        }
+      }
+      
+      tr:nth-child(even) td {
+        background-color: var(--75-main-hover);
+      }
+      
+      tr:nth-child(odd):not(.table-header) td {
+        background-color: var(--50-main-hover);
+      }
+      
+      .table-header td {
+        background-color: var(--accent-color);
+        color: var(--text-bright);
+        
+        a {
+          color: inherit;
+        }
+        
+        &.club {
+          text-align: start;
+        }
+        
+        &.action:not(.myclubs)::before {
+          content: "Action";
+        }
+      }
+      
+      .btn-club-join {
+        font-family: var(--ff-main);
+        font-size: 0.725rem;
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: var(--text-bright);
+        transition-property: background-color;
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-accent-main);
+        }
+      }
+      
     }
   }
-
+  
 }
 
 @-moz-document domain("myanimelist.net") {
@@ -8195,7 +9650,7 @@
         margin-block: 1rem;
       }
       
-      /* -- 10.7.1 - Search List - */
+      /* -- 10.7.1 - Search List -- */
       .search-list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(min(500px, 100%), 1fr));
@@ -8251,7 +9706,7 @@
           }
         }
         
-        /* - 10.7.1.1 - Search List - Images */
+        /* - 10.7.1.1 - Search List - Images - */
         .img .edge {
           --_section-bg: var(--bg-main);
           transition: transform 450ms var(--ease-overshoot-smooth);
@@ -8338,7 +9793,8 @@
         }
       }
       
-      .btn.btn-trash, .btn-delete {
+      .btn.btn-trash, 
+      .btn-delete {
         --_bg: var(--red-midtone);
         background-color: oklch(from var(--_bg) l c h / 0.3);
         border-color: var(--_bg);
@@ -8904,7 +10360,7 @@
       }
     }
     
-    /* --- 10.9.1 - Stack - Detail Page - List Styles --- */
+    /* -- 10.9.1 - Stack - Detail Page - List Styles -- */
     .stacks-detail .seasonal-anime-list {
       padding: 1rem 0.5rem;
       
@@ -9129,6 +10585,10 @@
         
         @container (width < 50rem) {
           flex-direction: column;
+          
+          &.column-item > a {
+            width: 120px;
+          }
         }
       }
       
@@ -9305,7 +10765,7 @@
               display: block;
               font-family: var(--ff-fa);
               font-size: 4rem;
-              font-weight: 800;
+              font-weight: 900;
               text-align: center;
             }
 
@@ -9681,7 +11141,7 @@
           display: block;
           font-family: var(--ff-fa);
           font-size: 2.725rem;
-          font-weight: 800;
+          font-weight: 900;
           line-height: 1;
           text-align: center;
           margin-block-start: 0.5rem;
@@ -9800,6 +11260,21 @@
 
 }
 
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
+  /* Settings                                                                                */
+  /* ======================================================================================= */
+  /* ---- 13.0.0 - Settings ---- */
+  html, .dark-mode {
+    form[name="picture_form"] .inputButton {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem !important;
+    }
+  }
+
+}
 @-moz-document domain("myanimelist.net") {
 
   /* ======================================================================================= */
@@ -10058,9 +11533,9 @@
       border-radius: 0.25rem;
     }
     
-    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_1.png?v=170130"], 
-    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_2.png?v=170130"], 
-    img[src="https://cdn.myanimelist.net/images/about/overview/fig03_1.png?v=170130"] {
+    img[src*="images/about/overview/fig01_1.png"], 
+    img[src*="images/about/overview/fig01_2.png"], 
+    img[src*="images/about/overview/fig03_1.png"] {
       width: var(--_width);
       height: var(--_height);
       padding-left: var(--_width) !important;
@@ -10069,19 +11544,19 @@
       background-repeat: no-repeat;
     }
     
-    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_1.png?v=170130"] {
+    img[src*="/images/about/overview/fig01_1.png"] {
       --_width: 216px;
       --_height: 160px;
       background-image: var(--about-edit-list);
     }
     
-    img[src="https://cdn.myanimelist.net/images/about/overview/fig01_2.png?v=170130"] {
+    img[src*="/images/about/overview/fig01_2.png"] {
       --_width: 212px;
       --_height: 160px;
       background-image: var(--about-calendar);
     }
     
-    img[src="https://cdn.myanimelist.net/images/about/overview/fig03_1.png?v=170130"] {
+    img[src*="/images/about/overview/fig03_1.png"] {
       --_width: 770px;
       --_height: 359px;
       background-image: var(--about-discover-more);
