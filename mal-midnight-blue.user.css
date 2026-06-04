@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.5.0
+@version        0.6.0
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -24,9 +24,10 @@
   /*   @import url('https://cdn.jsdelivr.net/gh/ush-ruff/Common@main/MAL/entryimagelink.css'); */
   /*   @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"); */
 
+
   /* --- Custom Variables --- */
   :root {
-    --page-size: clamp(960px, 55vw + 10rem, 2160px);
+    --page-size: clamp(960px, 55vw + 10rem, 1600px);
 
 
     /* Fonts */
@@ -368,6 +369,10 @@
     .mal-navbar {
       background-color: var(--bg-hover);
     }
+    
+    .mal-badge.mal-badge-new {
+      display: none;
+    }
 
     /* -- 1.0.1 - Charts -- */
     .mal-progress .mal-progress-bar.primary {
@@ -398,7 +403,7 @@
     }
     
     .icon-about-recommendations::after {
-      inset: -32px auto auto -90px;
+      inset: unset;
       font-family: var(--ff-main);
       font-size: 0.775rem;
       font-weight: 600;
@@ -406,6 +411,7 @@
       border-color: var(--75-accent-hover);
       border-radius: 0.2rem;
       color: var(--text-second);
+      translate: calc(-50% + 14px) calc(-100% - 0.5rem);
     }
 
 
@@ -421,6 +427,7 @@
 
       p:not([class]),
       .reviews_p {
+        line-height: 1.7 !important;
         text-wrap-style: pretty;
       }
       
@@ -460,7 +467,7 @@
 
       h2, 
       .h2 {
-        font-size: 0.825rem;
+        font-size: 0.925rem;
         border-color: var(--bg-hover);
         color: var(--text-main);
       }
@@ -574,8 +581,8 @@
       /* -- 1.1.1 - Graphs -- */
       .updatesBar {
         background-color: var(--accent-color);
-        background-image: repeating-linear-gradient(45deg, var(--accent-color) 0 12px, var(--75-accent-second) 12px 24px);
-        /* background-image: linear-gradient(to right, var(--accent-color), var(--75-accent-main-text)); */
+        background-image: repeating-linear-gradient(in oklch 45deg, var(--accent-color) 0 12px, var(--75-accent-second) 12px 24px);
+        /* background-image: linear-gradient(in oklch to right, var(--accent-color), var(--75-accent-main-text)); */
         border-radius: 2px;
       }
 
@@ -672,7 +679,8 @@
 
 
       /* -- 1.1.4 - Icons -- */
-      .icon-about-recommendations {
+      .icon-about-recommendations, 
+      :is(.icon-watch2, .icon-watch-pv2) :is(.malicon.malicon-movie-episode, .malicon.malicon-movie-pv, .malicon.malicon-streaming) {
         color: var(--accent-color);
       }
       
@@ -1063,17 +1071,6 @@
         padding: unset;
       }
       
-      img[src="https://myanimelist.net/aimage/BookStores/mirai_logo_wb.png"] {
-        --_width: 94px;
-        --_height: calc(var(--_width) * 14 / 94);
-        width: var(--_width);
-        padding-inline-start: var(--_width);
-        background-image: url("https://myanimelist.net/aimage/BookStores/mirai_logo_bb.png");
-        background-size: var(--_width) var(--_height);
-        background-position: left top;
-        background-repeat: no-repeat;
-      }
-
       /* - 1.1.6.1 - Image Unavailable - */
       .picSurround:has(img[src*="myanimelist.net/images/questionmark_23.gif"]), 
       .picSurround:has(img[src*="myanimelist.net/r/42x62/images/questionmark_23.gif"]) {
@@ -1206,6 +1203,28 @@
         background-color: var(--bg-second);
         border-radius: var(--img-border-radius);
         box-shadow: 0 0 0 var(--img-border-offset) var(--bg-main), 0 0 0 var(--_border-size) var(--_border-color);
+      }
+      
+      /* - 1.1.6.4 - Mirai Bookstore Logo - */
+      img[src*="/BookStores/mirai_logo_wb.png"] {
+        --_width: 94px;
+        --_height: calc(var(--_width) * 14 / 94);
+        width: var(--_width);
+        padding-inline-start: var(--_width);
+        background-image: url("https://myanimelist.net/aimage/BookStores/mirai_logo_bb.png");
+        background-size: var(--_width) var(--_height);
+        background-position: left top;
+        background-repeat: no-repeat;
+      }
+      
+      img[src*="/BookStores/mirai_icon_wb.png"] {
+        --_width: 14px;
+        width: var(--_width);
+        padding-inline-start: var(--_width);
+        background-image: url("https://myanimelist.net/aimage/BookStores/mirai_icon_bb.png");
+        background-size: var(--_width);
+        background-position: left top;
+        background-repeat: no-repeat;
       }
 
 
@@ -1758,6 +1777,7 @@
       }
 
       .header-notification-button.has-unread::after {
+        top: 0;
         background-color: var(--accent-color);
       }
 
@@ -1875,8 +1895,18 @@
 
       #content {
         background-color: var(--bg-main);
-        background-blend-mode: multiply;
         border-color: var(--bg-hover);
+        isolation: isolate;
+        
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 700'%3E%3Cdefs%3E%3Cfilter id='a' width='140%25' height='140%25' x='-20%25' y='-20%25' color-interpolation-filters='linearRGB' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse'%3E%3CfeTurbulence width='100%25' height='100%25' x='0%25' y='0%25' baseFrequency='.146' numOctaves='4' result='turbulence' seed='15' stitchTiles='stitch'/%3E%3CfeSpecularLighting width='100%25' height='100%25' x='0%25' y='0%25' in='turbulence' lighting-color='%23fff' result='specularLighting' specularConstant='1.2' specularExponent='20' surfaceScale='18'%3E%3CfeDistantLight azimuth='3' elevation='53'/%3E%3C/feSpecularLighting%3E%3C/filter%3E%3C/defs%3E%3Cpath fill='transparent' d='M0 0h700v700H0z'/%3E%3Cpath fill='%23fff' d='M0 0h700v700H0z' filter='url(%23a)'/%3E%3C/svg%3E");
+          mix-blend-mode: overlay;
+          opacity: 0.2;
+          z-index: -1;
+        }
 
         .left-column {
           width: 68cqw;
@@ -1988,6 +2018,32 @@
           border-color: var(--accent-color);
         }
       }
+      
+      /* - 1.1.15.1 - Search Results - */
+      script + .normal_header.clearfix.pt16 > .fl-r span {
+        display: flex;
+        justify-content: end;
+        gap: 0.5rem;
+        background-color: unset;
+      }
+      
+      script + div + .normal_header.clearfix.pt16 > .fl-r, 
+      .normal_header + .js-block-list > div.mt8 > .spaceit, 
+/*       div[class*="-search-form-search"] + .normal_header > .fl-r,  */
+      div[class*="-search-form-search"] + div + table + div.borderClass {
+        margin: unset;
+        padding: 0.3rem 0.6rem;
+        background-color: oklch(from var(--bg-main) calc(l + 0.025) c h);
+        border-radius: 0.3rem;
+        box-shadow: 0 2px 10px oklch(from var(--bg-hover) l c h / 0.1);
+        
+        span {
+          display: flex;
+          justify-content: end;
+          gap: 0.5rem;
+          background-color: unset;
+        }
+      }
 
 
       /* -- 1.1.16 - Footer -- */
@@ -2022,7 +2078,7 @@
       
       .footer-ranking {
         background-color: var(--25-main-second);
-        background-image: linear-gradient(180deg, var(--75-main-second) 10%, var(--bg-second) 80%);
+        background-image: linear-gradient(in oklch 180deg, var(--75-main-second) 10%, var(--bg-second) 80%);
         
         .ranking-unit {
           width: 300px;
@@ -2167,6 +2223,7 @@
       /* -- 1.1.18 - Alphabet Filter Bar -- */
       #content:has(> .anime-manga-search),
       #content:has(> .people-favorites-ranking-table),
+      #content:has(> div > #advancedsearch),
       #content:has(> div > div > #advancedsearch),
       #content:has(> .characters-favorites-ranking-table),
       &.ranking-company {
@@ -2217,7 +2274,9 @@
         }
       }
       
+      /* - 1.1.18.1 - Alphabet Filter Bar - "Upcoming" & "Just Added" - */
       #content:has(> .anime-manga-search), 
+      #content:has(> div > #advancedsearch),
       #content:has(> div > div > #advancedsearch) {
         #horiznav_nav ul li:nth-child(-n + 2) a {
           font-size: 0.75rem;
@@ -2227,11 +2286,63 @@
       }
       
       /* -- 1.1.19 - Sort/Filter -- */
+      .review-sort-and-filter span[data-ga-click-type] {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: unset;
+        background: unset;
+        
+        &::before {
+          content: "";
+          width: 14px;
+          aspect-ratio: 1;
+          display: block;
+          border: 1px solid currentColor;
+        }
+        
+        &::after {
+          all: unset;
+          position: absolute;
+          font-family: var(--ff-fa);
+          font-weight: 900;          
+        }
+
+        &:not(.on)::after {
+          content: "\f00d";
+          left: 2px;
+          font-size: 0.775rem;
+          color: var(--red-light);
+        }
+        
+        &.on::after {
+          content: "\f00c";
+          left: 1.5px;
+          font-size: 0.75rem;
+          color: var(--green-light);
+        }
+      }
+      
+      /* - 1.1.19.1 - Div style - */
       &.page-common .stacks .navi, 
-      &.anime-filter .navi-seasonal {
-        .sort-order-block {
-          width: auto;
+      &.anime-filter .navi-seasonal, 
+      .people-character, 
+      .people-staff, 
+      .people-manga, 
+      .reviews-horiznav-nav-sort-block {
+        
+        .sort-order-block[style*="display: block"], 
+        [class*="-sort-order-block "][style*="display: block"], 
+        .review-sort-order-block.show {
+          top: calc(100% - 2px) !important;
           right: 0;
+          width: auto;
+          max-width: max-content;
+          display: grid !important;
+          grid-template-columns: 1fr auto;
+          grid-template-areas: "list close";
+          gap: 0 1rem;
           background-color: var(--bg-second);
           border-color: var(--bg-hover);
           border-radius: 0.3rem;
@@ -2239,19 +2350,24 @@
         }
 
         .sort-order-list {
+          grid-area: list;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          gap: 0.5rem;
-          margin-inline-end: 0.5rem;
+          gap: 0.2rem;
+          
+          &.sort {
+            gap: 0.5rem;
+          }
 
           .btn-sort-order {
+            position: relative;
             background: unset;
             color: inherit;
           }
 
+          /* Radio */
           .btn-sort-order.circle {
-            position: relative;
             padding: unset;
             padding-inline-start: 1.2rem;
 
@@ -2264,7 +2380,7 @@
               font-size: 0.8rem;
             }
 
-            &.selected::after {
+            &:is(:hover, :focus-visible, .selected)::after {
               content: "\f111";
               position: absolute;
               top: 0;
@@ -2273,10 +2389,19 @@
               font-weight: 600;
               font-size: 0.5rem;
               background: unset;
-              color: var(--accent-color);
+            }
+            
+            &.selected::after {
+              color: var(--accent-color);              
+            }
+            
+            
+            &:is(:hover, :focus-visible):not(.selected)::after {
+              color: oklch(from var(--50-accent-main-text) l c h / 0.75);
             }
           }
 
+          /* Checkbox */
           .btn-sort-order:not(.circle) {
             display: flex;
             align-items: center;
@@ -2292,8 +2417,8 @@
               display: block;
               border: 1px solid currentColor;
             }
-
-            &.selected::after {
+            
+            &:is(:hover, :focus-visible, .selected)::after {
               all: unset;
               content: "\f00c";
               position: absolute;
@@ -2301,22 +2426,33 @@
               font-family: var(--ff-fa);
               font-size: 0.75rem;
               font-weight: 900;
+            }
+
+            &.selected::after {
               color: var(--green-light);
+            }
+            
+            &:is(:hover, :focus-visible):not(.selected)::after {
+              left: 2.5px;
+              color: oklch(from var(--50-accent-main-text) l c h / 0.75);
             }
           }
         }
         
         .btn-close {
+          grid-area: close;
           color: var(--text-dim);
         }
       }
       
+      /* - 1.1.19.2 - SVG style - */
       .search-filter-sort-order-block, 
       .search-filter-mylist-block,
       .seasonal-sort-order-block,
       .adapted-sort-order-block,
       .anime-character-sort-order-block,
-      .manga-character-sort-order-block {
+      .manga-character-sort-order-block, 
+      .reviews-horiznav-nav-sort-block .review-filter-block {
         min-width: fit-content;
         padding: 0.4rem 0.5rem;
         background-color: var(--bg-second);
@@ -2324,72 +2460,166 @@
         border-radius: 0.3rem;
         color: var(--text-second);
 
-        .sort-order-list {
+        .sort-order-list, 
+        .filter-list {
           display: flex;
           flex-direction: column;
           justify-content: center;
           gap: 0.2rem;
-        }
-
-        .sort-order-list .btn-sort-order {
-          color: inherit;
-        }
-
-        .sort-order-list .btn-sort-order .fa-regular:is(.fa-circle, .fa-square) {
-          color: inherit;
-        }
-
-        .sort-order-list .btn-sort-order :is(.fa-circle.fa-solid,
-          mal-tooltip.fa-circle::part(icon)) {
-          color: var(--accent-color);
-        }
-
-        .sort-order-list .btn-sort-order .fa-check {
-          color: var(--green-light);
-        }
-
-        .sort-order-list .btn-sort-order .fa-xmark {
-          color: var(--red-light);
-        }
-
-        .sort-order-list .btn-sort-order.fa-stack {
-          width: 100% !important;
-          height: auto !important;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          line-height: 2;
-          margin: unset !important;
-          padding: unset;
-
-          .fa-regular {
-            position: unset;
+          
+          .btn-sort-order, 
+          .fa-regular:is(.fa-circle, .fa-square) {
+            color: inherit;
           }
+          
+          /* Radio */
+          .btn-sort-order {
+            .fa-circle.fa-solid, 
+            mal-tooltip.fa-circle::part(icon) {
+              color: var(--accent-color);
+            }
 
-          .fa-solid {
-            inset: unset;
-            margin-block: auto;
+            &:is(:hover, :focus-visible):not(.selected) .fa-circle.fa-solid {
+              display: block !important;
+              color: oklch(from var(--50-accent-main-text) l c h / 0.75);
+            }
           }
+          
+          /* Checkbox */
+          .fa-stack {
+            width: 100% !important;
+            height: auto !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            line-height: 2;
+            margin: unset !important;
+            padding: unset;
 
-          .fa-square::before {
-            content: "";
-            display: block;
-            width: 14px;
-            aspect-ratio: 1;
-            border: 1px solid currentColor;
-          }
+            .fa-regular {
+              position: unset;
+            }
 
-          .fa-check {
-            font-size: 0.75rem;
-          }
+            .fa-solid {
+              inset: unset;
+              margin-block: auto;
+            }
 
-          .fa-xmark {
-            font-size: 0.8rem;
+            .fa-square::before {
+              content: "";
+              display: block;
+              width: 14px;
+              aspect-ratio: 1;
+              border: 2px solid var(--text-dim);
+              border-radius: 0.15rem;
+            }
+
+            .fa-check {
+              font-size: 0.75rem;
+              color: var(--green-light);
+            }
+
+            .fa-xmark {
+              font-size: 0.8rem;
+              color: var(--red-light);
+            }
+
+            &:is(:hover, :focus-visible):not(.selected, .crossed) .fa-check {
+              display: block !important;
+              color: oklch(from var(--50-accent-main-text) l c h / 0.75);
+            }
           }
+          
         }
 
         .btn-close {
           color: var(--text-dim);
+        }
+        
+      }
+      
+      /* - 1.1.19.3 - Categories Filter List - */
+      .reviews-horiznav-nav-sort-block .review-filter-block {
+        top: calc(100% - 2px) !important;
+        left: 0 !important;
+      }
+      
+      &.season .seasonal-sort-order-block.genres,
+      &.adapted .adapted-sort-order-block.genres, 
+      .reviews-horiznav-nav-sort-block .review-filter-block {
+        width: 100%;
+        padding: 1rem;
+
+        .sort-order-list, 
+        .filter-list {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          align-items: center;
+          gap: 0.2rem 0;
+          margin-block-start: -1rem;
+          color: transparent;
+
+          > *:not(a) {
+            color: var(--text-second);
+          }
+
+          > div {
+            grid-column: 1 / -1;
+            margin-block: 1rem 0.5rem !important;
+            padding-block: 0 0.25rem;
+            border-bottom: 1px solid var(--25-accent-hover);
+          }
+
+          .clear-all-btn {
+            grid-column: -2 / -1;
+            grid-row: 2;
+            justify-self: center;
+            padding: unset;
+          }
+
+          .selected-icon,
+          .crossed-icon {
+            all: unset;
+            display: block;
+
+            &::before {
+              display: inline-block;
+              margin-inline-end: 0.5rem;
+              color: var(--text-second);
+            }
+
+            &::after {
+              font-family: 'Font Awesome 6 Pro';
+            }
+          }
+
+          .selected-icon {
+            grid-column: 1;
+            grid-row: 2;
+          }
+
+          .crossed-icon {
+            grid-column: 2;
+            grid-row: 2;
+          }
+
+          .selected-icon::before {
+            content: "Click once to include";
+          }
+
+          .selected-icon::after {
+            content: "\f00c";
+            color: var(--green-light);
+          }
+
+          .crossed-icon::before {
+            content: "Click twice to exclude";
+          }
+
+          .crossed-icon::after {
+            content: "\f00d";
+            color: var(--red-light);
+          }
         }
       }
 
@@ -2479,6 +2709,11 @@
           
           option {
             padding: 0.25rem 0.5rem;
+            
+            &[selected] {
+              background-color: var(--75-accent-second);
+              color: var(--text-bright);
+            }
           }
         }
         
@@ -2514,6 +2749,7 @@
         }
         
         .btn-sort-order {
+          position: relative;
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -2524,6 +2760,10 @@
           background: unset;
           color: var(--text-second);
           
+          &[style*="display: block"] {
+            display: flex !important;
+          }
+          
           &:last-child {
             margin-block-end: 0.25rem;
           }
@@ -2533,7 +2773,8 @@
             width: 14px;
             aspect-ratio: 1;
             display: block;
-            border: 1px solid currentColor;
+            border: 2px solid var(--text-dim);
+            border-radius: 0.15rem;
           }
 
           &::after {
@@ -2544,9 +2785,17 @@
             font-weight: 900;
           }
           
+          &:is(:hover, :focus-visible):not(.crossed)::after, 
           &.selected::after {
             content: "\f00c";
             left: 9.5px;
+          }
+          
+          &:is(:hover, :focus-visible):not(.selected, .crossed)::after {
+            color: oklch(from var(--50-accent-main-text) l c h / 0.75);
+          }
+          
+          &.selected::after {
             color: var(--green-light);
           }
           
@@ -2891,6 +3140,141 @@
       }
     }
     
+    /* -- 1.3.5 - Advanced Search Results Table -- */
+    .normal_header + .js-block-list, 
+    .normal_header.js-search-filter-block ~ .js-block-list.list, 
+    .js-navi-adapted + .js-block-list.list {
+      
+      tbody {
+        --_gap: 0.25rem;
+        display: grid;
+        grid-template-columns: auto 5fr repeat(var(--_column-count, 1), 1fr);
+        gap: var(--_gap) 0;
+        
+        &:has(tr:nth-child(1) > td:nth-child(4)) {--_column-count: 2;}
+        &:has(tr:nth-child(1) > td:nth-child(5)) {--_column-count: 3;}
+        &:has(tr:nth-child(1) > td:nth-child(6)) {--_column-count: 4;}
+        &:has(tr:nth-child(1) > td:nth-child(7)) {--_column-count: 5;}
+        &:has(tr:nth-child(1) > td:nth-child(8)) {--_column-count: 6;}
+        &:has(tr:nth-child(1) > td:nth-child(9)) {--_column-count: 7;}
+      }
+      
+      tr {
+        display: contents;
+      }
+      
+      td {
+        width: auto;
+        align-content: center;
+        padding: 0.5rem;
+        border: unset;
+      }
+      
+      tr:nth-child(odd) td {
+        background-color: var(--50-main-hover);
+      }
+      
+      tr:nth-child(even) td {
+        background-color: var(--75-main-hover);
+      }
+      
+      tr:nth-child(1) td {
+        background-color: var(--accent-color);
+        color: var(--text-bright);
+        
+        &:nth-child(1)::before {
+          content: "Title";
+          font-weight: 700;
+          margin-inline-start: 0.5rem;
+        }
+        
+        &:nth-child(2) {
+          color: transparent;
+          user-select: none;
+        }
+        
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.25rem;
+          color: inherit;
+        }
+        
+        .fa-sort {
+          display: flow-root;
+          margin: unset !important;
+        }
+        
+        .fa-sort::before {
+          content: "\f883";
+          font-size: 0.85em;
+          line-height: 1;
+          margin-block-start: 1px;
+        }
+      }
+      
+      td:nth-child(2) ~ td {
+        margin-inline-start: var(--_gap);
+      }
+      
+      td:nth-child(1) {
+        align-content: start;
+      }
+      
+      td:nth-child(2) {
+        --_gap: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: var(--_gap);
+        padding-inline-start: 0.25rem;
+        
+        a {
+          align-self: start;
+        }
+        
+        .hoverinfo_trigger {
+          font-weight: 500 !important;
+          margin-block-start: calc(var(--_gap) * -1);
+        }
+      }
+      
+      .picSurround > a {
+        display: block !important;
+        padding: calc(var(--img-border-offset) + var(--img-border-size));
+      }
+      
+      img:not(.bookstore-icon) {
+        width: 60px;
+        height: auto;
+        aspect-ratio: 2 / 3;
+      }
+      
+      .title {
+        width: 100%;
+        
+        .hoverinfo_trigger {
+          font-weight: 500 !important;
+        }
+        
+        a:last-child {
+          margin-block-start: 0.2rem;
+        }
+      }
+      
+      .bookstore-search-result {
+        margin: unset;
+      }
+      
+      .Lightbox_AddEdit {
+        margin: unset !important;
+        
+        ~ .btn-anime-watch-status {
+          display: none;
+        }
+      }
+    }
+    
     
     /* --- 1.4.0 - List Styles --- */
     .anime-filter2 .tile-anime-list, 
@@ -2918,6 +3302,17 @@
           
           img {
             width: 100%;
+          }
+        }
+        
+        .title {
+          width: auto;
+          
+          a {
+            display: block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
           }
         }
         
@@ -3077,6 +3472,7 @@
         height: var(--_img-height);
         flex-shrink: 0;
         margin: var(--_img-margin);
+        background-color: var(--bg-second);
         border-radius: 0.4rem;
         outline: var(--img-border-size) solid var(--25-accent-main);
         outline-offset: var(--img-border-offset);
@@ -3086,16 +3482,17 @@
         }
 
         .title {
+          --_br: calc(var(--img-border-radius) + var(--img-border-offset));
           width: 100%;
-          height: 40px;
+          min-height: 40px;
           align-content: center;
           font-family: var(--ff-main);
           font-size: 0.785rem;
           font-weight: 500;
           text-wrap: pretty;
-          padding: 0 0.2rem;
+          padding: 0.5rem 0.2rem;
           background: rgb(from var(--50-accent-main) r g b / 0.75);
-          border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
+          border-radius: 0 0 var(--_br) var(--_br);
           color: var(--text-bright);
           text-shadow: unset;
           opacity: 0;
@@ -3222,7 +3619,7 @@
         content: "";
         position: fixed;
         inset: 0;
-        background-image: linear-gradient(to bottom, #0000, #000 70%), var(--falling-snow-bg);
+        background-image: linear-gradient(in oklch to bottom, #0000, #000 70%), var(--falling-snow-bg);
         background-repeat: repeat-x;
         background-blend-mode: multiply;
         mix-blend-mode: screen;
@@ -3436,7 +3833,7 @@
       .index_h2_seo, 
       .widget-header {
         font-family: var(--ff-tertiary);
-        font-size: 0.85rem;
+        font-size: 0.925rem;
 
         > span[style="float: right;"] {
           font-family: var(--ff-main);
@@ -3450,6 +3847,14 @@
 
       .index_h2_seo a {
         color: inherit;
+      }
+      
+      .widget-slide-block {
+        width: 100%;
+      }
+      
+      .widget-slide-outer {
+        width: 100%;
       }
       
 
@@ -3511,7 +3916,7 @@
         }
         
         .reviews_h3 a {
-          font-size: 0.725rem;
+          font-size: 0.775rem;
         }
         
         .textReadability {
@@ -3778,7 +4183,6 @@
         --img-border-radius: var(--img-border-radius-large);
         --img-border-offset: var(--img-border-offset-large);
         --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
-        width: 100%;
         height: auto;
 
         .widget-slide {
@@ -3799,16 +4203,20 @@
           width: min-content;
           height: auto;
           display: grid;
-          grid-template-rows: 1fr 50px;
+          grid-template-areas: "pile";
           text-decoration: unset;
           opacity: 1;
+          
+          > * {
+            grid-area: pile;
+          }
 
           .h3_character_name {
-            grid-column: 1;
-            grid-row: 2;
-            display: grid;
-            align-items: center;
+            align-self: end;
+            min-height: 50px;
+            align-content: center;
             margin: 0 var(--_img-margin) var(--_img-margin);
+            padding-block: 0.5rem;
             background-color: rgb(from var(--50-accent-main) r g b / 0.75);
             border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
             pointer-events: none;
@@ -3855,6 +4263,10 @@
           background-color: var(--75-main-second);
           border: 1px solid var(--50-main-second);
           border-radius: 0.2rem;
+        }
+        
+        .spaceit {
+          line-height: 1.7;
         }
 
         .lightLink {
@@ -3912,26 +4324,45 @@
           width: min-content;
           height: auto;
           display: grid;
-          grid-template-rows: 1fr 50px;
+          grid-template-areas: "pile";
+          place-items: center;
           text-decoration: unset;
           opacity: 1;
           
+          > * {
+            grid-area: pile;
+          }
+          
           .title {
-            grid-row: 2;
+            align-self: end;
+            position: unset;
+            inset: unset;
             width: var(--_img-width);
+            min-height: 65px;
+            align-content: end;
             margin-block-end: calc(var(--_img-margin));
             margin-inline: calc(var(--_img-margin));
-            padding-block: 1rem 0.25rem;
+            padding-block: 0.5rem;
+            background-image: linear-gradient(in oklch 180deg, transparent, oklch(from var(--bg-hover) l c h / 0.5) 25%, var(--bg-hover));
             border-radius: var(--img-border-radius);
             pointer-events: none;
+            z-index: 2;
             
             a {
+              display: flex !important;
+              align-items: center;
               font-family: var(--ff-secondary);
               font-size: 0.75rem;
               font-weight: 800;
               text-shadow: none;
+              padding-block: 0.15rem;
               color: var(--text-main);
               pointer-events: auto;
+              
+              > span {
+                width: auto;
+                height: auto;
+              }
             }
             
             a:is(:hover, :focus-visible) {
@@ -3990,7 +4421,7 @@
       &.fixed::after {
         width: 100%;
         padding: unset;
-        background-image: linear-gradient(to bottom, var(--bg-hover), transparent);
+        background-image: linear-gradient(in oklch to bottom, var(--bg-hover), transparent);
       }
 
       .horiznav_nav,
@@ -4001,6 +4432,7 @@
 
       .horiznav-nav-seasonal,
       .horiznav-nav-adapted {
+        width: 100%;
         display: flex;
         flex-direction: row-reverse;
         gap: 0.5rem;
@@ -4083,83 +4515,6 @@
       }
     }
     
-    .season .seasonal-sort-order-block.genres,
-    .adapted .adapted-sort-order-block.genres {
-      width: 100%;
-      padding: 1rem;
-
-      .sort-order-list {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        align-items: center;
-        gap: 0.2rem 0;
-        margin-block-start: -1rem;
-        color: transparent;
-
-        > *:not(a) {
-          color: var(--text-second);
-        }
-
-        > div {
-          grid-column: 1 / -1;
-          margin-block: 1rem 0.5rem !important;
-          padding-block: 0 0.25rem;
-          border-bottom: 1px solid var(--25-accent-hover);
-        }
-
-        .clear-all-btn {
-          grid-column: -2 / -1;
-          grid-row: 2;
-          justify-self: center;
-          padding: unset;
-        }
-
-        .selected-icon,
-        .crossed-icon {
-          all: unset;
-          display: block;
-
-          &::before {
-            display: inline-block;
-            margin-inline-end: 0.5rem;
-            color: var(--text-second);
-          }
-
-          &::after {
-            font-family: 'Font Awesome 6 Pro';
-          }
-        }
-
-        .selected-icon {
-          grid-column: 1;
-          grid-row: 2;
-        }
-
-        .crossed-icon {
-          grid-column: 2;
-          grid-row: 2;
-        }
-
-        .selected-icon::before {
-          content: "Click once to include";
-        }
-
-        .selected-icon::after {
-          content: "\f00c";
-          color: var(--green-light);
-        }
-
-        .crossed-icon::before {
-          content: "and twice to exclude";
-        }
-
-        .crossed-icon::after {
-          content: "\f00d";
-          color: var(--red-light);
-        }
-      }
-    }
-
     .season .navi-seasonal .fa-xmark {
       left: 1px;
       color: var(--red-light);
@@ -4204,6 +4559,7 @@
       --_img-height: 242px;
       width: auto;
       height: auto;
+      font-family: var(--ff-main);
       margin: unset;
       background-color: var(--75-main-second);
       border-color: var(--bg-hover);
@@ -4443,7 +4799,7 @@
         width: 100%;
         display: block;
         height: var(--_img-height) !important;
-        font-size: 0.825rem;
+        font-size: 0.775rem;
         text-shadow: 0 0 4px var(--bg-hover);
         padding-block: 0.5rem;
         padding-inline: 1.25rem 0.75rem;
@@ -4459,6 +4815,10 @@
           backdrop-filter: blur(2px);
           opacity: 1;
         }
+        
+        .preline {
+          line-height: 1.7;
+        }
       }
       
       &:has(.synopsis:is(:hover, :focus-visible)) .image {
@@ -4467,7 +4827,6 @@
         a:first-child {
           scale: 2;
           transition: scale 750ms cubic-bezier(0.22, 1, 0.36, 1);
-          
         }
         
         .link-image {
@@ -4750,7 +5109,8 @@
         */
       }
 
-      > table > tbody > tr .rightside > div[style*="width:728px"] {
+      > table > tbody > tr .rightside > div[style*="width:728px"], 
+      > table > tbody > tr > td:nth-child(2) > div[style*="width:728px;"]:has(.kVwNpRmQxHtBjYcL-nvwtus) {
         width: unset !important;
       }
       
@@ -5012,6 +5372,7 @@
       display: grid !important;
       grid-template-columns: 1fr auto;
       margin: unset !important;
+      container-type: inline-size;
     }
 
     .anime-detail-header-stats {
@@ -5019,13 +5380,16 @@
         height: auto;
         min-height: var(--_height);
         display: grid;
+        grid-template-columns: 1fr auto 1fr;
         grid-template-areas: "information separator ranking" "score separator ranking";
         align-items: center;
+        gap: 0 0.5rem;
         padding: 0.5rem 0.5rem calc(0.5rem + 15px);
         background-color: var(--25-main-second);
         border-color: var(--bg-hover);
         border-radius: 0.25rem;
         color: var(--text-second);
+        isolation: isolate;
 
         &::before {
           grid-area: separator;
@@ -5085,6 +5449,8 @@
           grid-area: ranking;
           display: grid !important;
           align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
           margin: 15px 0 0 !important;
           padding: unset !important;
         }
@@ -5104,7 +5470,34 @@
         }
         
         .numbers {
+          display: grid;
+          grid-template-columns: 0.9em auto 1fr;
+          align-items: center;
+          gap: 0.25rem;
           font-family: var(--ff-main);
+          font-size: clamp(0.875rem, 0.75rem + 0.3cqw, 1rem);
+          
+          &::before {
+            place-self: center;
+            content: var(--_content);
+            font-family: var(--ff-fa);
+            font-weight: 900;
+            font-size: 0.9em;
+/*             margin-inline-end: 0.25rem; */
+            color: var(--text-dim);
+          }
+          
+          &.ranked {
+            --_content: "\f2eb";
+          }
+          
+          &.popularity {
+            --_content: "\f06d  ";
+          }
+          
+          &.members {
+            --_content: "\f406  ";
+          }
         }
       }
 
@@ -5144,6 +5537,38 @@
 
       .video-unit .title {
         font-family: var(--ff-main);
+        padding: 15px 10px 5px !important;
+      }
+      
+      .video-unit:not(:has(> .btn-play)) {
+        text-decoration: none;
+        background-image: unset !important;
+        background-color: var(--bg-second);
+        color: var(--text-second);
+        
+        &::before {
+          content: "\f608";
+          display: block;
+          font-family: var(--ff-fa);
+          font-size: 3rem;
+          font-weight: 900;
+          text-align: center;
+          line-height: 1.2;
+          margin-block: 0.5rem;
+        }
+        
+        &::after {
+          content: "Not Available in Your Country";
+          display: block;
+          font-family: var(--ff-main);
+          font-size: 1.125rem;
+          font-weight: 600;
+          text-align: center;
+          text-wrap: balance;
+          line-height: 1.2;
+          margin-block: -0.25rem 2rem;
+          margin-inline: 0.5rem;
+        }
       }
     }
 
@@ -5152,8 +5577,9 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       justify-content: center;
-      gap: 0.5rem;
-
+      gap: 1rem;
+      container-type: inline-size;
+      
       .entry {
         position: relative;
         width: auto;
@@ -5165,14 +5591,29 @@
         padding: 0.3rem;
         border: none;
         border-radius: 0.3rem;
-      }
+        
+        &:not(:has(> .image)) {
+          display: none;
+        }
+        
+        &:nth-child(odd)::after {
+          content: unset
+        }
+        
+        &:nth-child(even)::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -0.5rem;
+          width: 1px;
+          height: 100%;
+          display: block;
+          border-left: 1px solid var(--bg-hover);
 
-      .entry:nth-child(odd)::after {
-        position: absolute;
-        width: 1px;
-        height: 100%;
-        right: -0.25rem;
-        border-color: var(--bg-hover);
+          @container (width < 716px) {
+            content: unset;
+          }
+        }
       }
 
       .entry .image {
@@ -5215,13 +5656,27 @@
     .related-entries .entries-tile .entry:is(:nth-child(4n), :nth-child(4n-1)) {
       background-color: var(--75-main-hover);
     }
+    
+    @container (width < 716px) {
+      .related-entries .entries-tile .entry:is(:nth-child(4n), :nth-child(4n-1)) {
+        background-color: unset;
+      }
+      
+      .related-entries .entries-tile .entry:nth-child(2n) {
+        background-color: var(--75-main-hover);
+      }
+    }
 
     /* -- 3.2.5 - Characters & Voice Actors -- */
     .detail-characters-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(2, minmax(350px, 1fr));
       gap: 1rem;
       container-type: inline-size;
+      
+      @container (width < 1060px) {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      }
       
       .left-column.divider::after {
         border-color: var(--bg-hover);
@@ -5247,12 +5702,25 @@
         }
       }
       
-      @container (width < 44.75rem) {
+      @container (width < 716px) {
         .left-column.divider > table:last-child {
           margin-block-end: -0.5rem;
         }
+        
         .left-column.divider::after {
           content: unset;
+        }
+        
+        .left-right > table {
+          &:nth-of-type(even) {
+            background-color: var(--75-main-second);
+            border: 1px solid var(--50-main-second);
+          }
+
+          &:nth-of-type(odd) {
+            background-color: var(--75-main-hover);
+            border: 1px solid var(--50-main-hover);
+          }
         }
       }
     }
@@ -5260,8 +5728,12 @@
     /* -- 3.2.6 - Opening & Ending Theme -- */
     .detail-characters-list ~ .di-t {
       display: grid !important;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(2, minmax(350px, 1fr));
       gap: 1rem;
+      
+      @container (width < 1060px) {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      }
 
       .di-tc {
         width: auto !important;
@@ -5401,7 +5873,7 @@
         --img-border-offset: var(--img-border-offset-large);
         --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
         --_img-width: calc(((100cqw - var(--_gap) * (var(--_items) - 1)) / var(--_items)) - var(--_img-margin) * 2);
-        --_slider-height: calc((var(--_img-width) + var(--_img-margin) * 2) * 14 / 9);
+        --_slider-height: calc(var(--_img-width) * 14 / 9);
 
         container-type: inline-size;
 
@@ -5423,9 +5895,16 @@
         .link {
           width: auto !important;
           height: auto !important;
+          display: grid;
+          grid-template-areas: "pile";
           margin: var(--img-border-size);
+          
+          > * {
+            grid-area: pile;
+          }
 
           .title {
+            --_br: 3px;
             inset: auto auto var(--img-border-offset) var(--img-border-offset);
             width: calc(100% - var(--img-border-offset) * 2);
             min-height: 40px;
@@ -5433,9 +5912,10 @@
             font-family: var(--ff-main);
             font-size: 0.785rem !important;
             font-weight: 500;
-            padding: 0 0.2rem;
+            margin: unset;
+            padding: 0.5rem 0.2rem;
             background: rgb(from var(--50-accent-main) r g b / 0.75);
-            border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
+            border-radius: 0 0 var(--_br) var(--_br);
             color: var(--text-bright);
             text-shadow: none;
             opacity: 0;
@@ -5445,7 +5925,7 @@
           &:is(:hover, :focus-visible) .title {
             opacity: 1;
             transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms 50ms linear;
-            transform: translateY(0);
+            transform: translateY(0.3px);
           }
 
           .users {
@@ -5585,7 +6065,6 @@
             align-items: center;
             gap: 0.25rem 0.5rem;
             justify-content: end;
-
             margin: unset;
           }
 
@@ -5594,7 +6073,7 @@
             text-align: right;
             margin: unset;
             padding: 0.25rem 0.5rem;
-            background: linear-gradient(90deg, transparent 0%, var(--_tag-color));
+            background: linear-gradient(in oklch 90deg, transparent 0%, var(--_tag-color));
             border: unset;
             color: var(--text-main);
           }
@@ -5656,10 +6135,12 @@
             grid-area: review;
             justify-self: center;
             position: relative;
-            width: 80ch;
+            width: auto;
+            max-width: 80ch;
             font-size: 0.825rem;
             line-height: 1.9;
             margin-block: 0.5rem;
+            margin-inline: 3rem;
             color: var(--text-second);
             isolation: isolate;
 
@@ -5683,6 +6164,20 @@
               line-height: 0;
               color: oklch(from var(--50-accent-main-text) l c h / 0.05);
               z-index: -1;
+            }
+            
+            .thumb-right {
+              position: absolute;
+              left: 100%;
+              width: auto;
+              margin-block-start: calc(0.5rem + var(--img-border-size));
+              margin-inline-start: 1rem;
+              
+              img {
+                width: 90px;
+                height: auto;
+                aspect-ratio: 2 / 3;
+              }
             }
           }
 
@@ -6209,7 +6704,7 @@
         display: grid;
         grid-template-columns: auto 1fr;
         gap: 0 0.5rem;
-        align-items: center;
+        padding: 0.5rem;
       }
       
       tr {
@@ -6217,7 +6712,11 @@
       }
       
       td {
-        border-block: 1px dashed var(--75-main-hover);
+        border-block-end: 1px dashed var(--25-main-hover);
+      }
+      
+      tr:last-child td {
+        border: unset;
       }
       
       .spaceit_pad {
@@ -6227,8 +6726,8 @@
       
       .score-label {
         width: auto;
+        align-content: center;
         text-align: center;
-        padding-inline-start: 0.5rem;
       }
       
       .updatesBar {
@@ -6254,7 +6753,9 @@
         font-size: 1rem;
         font-weight: 600;
         margin-inline-start: var(--_margin);
-        padding: 0.5rem 0 !important;
+        padding: 1rem 0 !important;
+        background-color: oklch(from var(--_status-color) l c h / 0.05);
+        border-bottom: 2px solid var(--_status-color);
         border-radius: 0.3rem;
         
         &:nth-last-child(1 of .spaceit_pad) {
@@ -6274,15 +6775,16 @@
             font-family: var(--ff-fa);
             font-weight: 900;
             margin-inline-end: 0.25rem;
+            color: oklch(from var(--_status-color) calc(l + 0.1) c h / 0.5);
           }
         }
         
-        &:nth-child(1 of .spaceit_pad) { --_fa: "\f06e"; }
-        &:nth-child(2 of .spaceit_pad) { --_fa: "\f00c"; }
-        &:nth-child(3 of .spaceit_pad) { --_fa: "\f04c"; }
-        &:nth-child(4 of .spaceit_pad) { --_fa: "\f05e"; }
-        &:nth-child(5 of .spaceit_pad) { --_fa: "\e105"; }
-        &:nth-child(6 of .spaceit_pad) { --_fa: "\f621"; }
+        &:nth-child(1 of .spaceit_pad) { --_fa: "\f06e"; --_status-color: var(--watching);      }
+        &:nth-child(2 of .spaceit_pad) { --_fa: "\f00c"; --_status-color: var(--completed);     }
+        &:nth-child(3 of .spaceit_pad) { --_fa: "\f04c"; --_status-color: var(--on-hold);       }
+        &:nth-child(4 of .spaceit_pad) { --_fa: "\f05e"; --_status-color: var(--dropped);       }
+        &:nth-child(5 of .spaceit_pad) { --_fa: "\e105"; --_status-color: var(--plan-to-watch); }
+        &:nth-child(6 of .spaceit_pad) { --_fa: "\f621"; --_status-color: var(--text-bright);   }
         
       }
     }
@@ -6862,7 +7364,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 0.5rem;
-      align-items: center;
+      align-items: start;
       padding-block: 0.5rem;
       
       .genre-list-col {
@@ -6883,11 +7385,13 @@
         border: 1px solid var(--50-accent-main);
         border-radius: 0.3rem;
         color: var(--text-main);
+        transition: scale 250ms var(--ease-overshoot-smooth), background-color 150ms ease-in-out, color 250ms ease-in-out;
 
         &:is(:hover, :focus-visible) {
           background-color: var(--accent-color);
           border-color: var(--accent-color);
           color: var(--text-bright);
+          scale: 1.025;
         }
 
         &::after {
@@ -8164,15 +8668,17 @@
           width: auto;
           display: block;
           font-family: var(--ff-main);
-          background-color: var(--25-accent-main);
+          background-color: oklch(from var(--25-accent-main) l c h / 0.3);
           border: 1px solid var(--50-accent-main);
           border-radius: 0.3rem;
           color: var(--text-main);
+          transition: scale 250ms var(--ease-overshoot-smooth), background-color 150ms ease-in-out, color 250ms ease-in-out;
           
           &:is(:hover, :focus-visible) {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
             color: var(--text-bright);
+            scale: 1.05;
           }
           
           .tag-name-link {
@@ -8466,6 +8972,8 @@
       width: auto;
       margin: unset;
       border-color: var(--bg-hover);
+      container-type: inline-size;
+      container-name: --featured-content-block;
 
       .featured-pickup {
         display: grid;
@@ -8473,22 +8981,44 @@
         gap: 1rem;
         margin-block-end: 1rem;
         padding: unset;
+        
+        @container --featured-content-block (width > 900px) {
+          grid-template-columns: unset;
+        }
       }
 
       .featured-pickup .featured-pickup-unit {
+        --_gap: 0.5rem;
         min-height: 375px;
         display: grid;
         grid-template-rows: auto auto 1fr 40px;
-        gap: 0.5rem;
+        grid-template-areas: "image" "title" "text" "footer";
+        gap: var(--_gap);
         padding: unset;
         background-color: var(--50-main-second);
-        border-radius: 0.3rem;
+        border-radius: 0.6rem;
         overflow: hidden;
+        
+        @container --featured-content-block (width > 900px) {
+          min-height: unset;
+          grid-template-columns: 350px 1fr;
+          grid-template-rows: auto 1fr 40px;
+          grid-template-areas: "image title" "image text" "footer footer";
+        }
 
         .image {
-          width: 100%;
-          margin: unset;
+          --_margin: 0.5rem;
+          grid-area: image;
+          width: calc(100% - var(--_margin) * 2);
+          height: auto;
+          aspect-ratio: 35 / 16;
+          margin: var(--_margin) var(--_margin) 0;
+          border-radius: 0.35rem;
           box-shadow: unset;
+          
+          @container --featured-content-block (width > 900px) {
+            margin: var(--_margin) 0 var(--_margin) var(--_margin);
+          }
         }
 
         .title,
@@ -8499,18 +9029,35 @@
           margin: unset;
           padding-inline: 0.75rem;
         }
+        
+        .title {
+          grid-area: title;
+          font-size: 0.925rem;
+          text-wrap: pretty;
+          
+          @container --featured-content-block (width > 900px) {
+            padding-block-start: 0.5rem;
+          }
+        }
 
         .text {
+          grid-area: text;
           line-height: 1.5;
           text-align: justify;
           color: var(--text-second);
         }
 
         .information {
+          grid-area: footer;
           display: flex;
           align-items: center;
           padding-block: 0.5rem;
           background-color: var(--bg-second);
+          overflow: hidden;
+          
+          @container --featured-content-block (width > 900px) {
+            margin-block-start: calc(var(--_gap) * -1);
+          }
 
           .info {
             color: var(--text-dim);
@@ -8523,6 +9070,7 @@
 
           .tags {
             margin-inline-start: auto !important;
+            padding: unset;
             border: none;
           }
 
@@ -8727,6 +9275,150 @@
       padding-inline: unset;
     }
     
+    /* --- 6.3.0 - People - Detailed Page --- */
+    .people-character, .people-staff, .people-manga {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      margin-block: -1rem 0.5rem;
+      background-color: var(--bg-hover);
+      border-color: var(--bg-hover);
+      
+      .btn-show-sort {
+        color: var(--text-dim);
+      }
+    }
+    
+    .table-people-character .js-people-character, 
+    .js-table-people-staff .js-people-staff, 
+    .js-table-people-manga .js-people-manga {
+      --_img-width: 60px;
+      --_mask-size-small: 36px;
+      --_mask-size: 72px;
+      display: grid;
+      grid-template-columns: auto 2fr 1fr auto;
+      gap: 0.5rem;
+      margin-block-end: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      
+      &:nth-child(odd) {
+        background-color: var(--75-main-second);
+        border: 1px solid var(--50-main-second);
+      }
+
+      &:nth-child(even) {
+        background-color: var(--75-main-hover);
+        border: 1px solid var(--50-main-hover);
+      }
+      
+      td {
+        width: auto;
+        border: unset;
+        
+        &:first-child {
+          align-self: center;
+        }
+      }
+      
+      .js-people-title {
+        font-size: 0.825rem;
+      }
+      
+      .anime-info-text, 
+      .character-total-favorites {
+        color: var(--text-dim);
+      }
+
+      img {
+        width: var(--_img-width);
+        height: auto;
+        aspect-ratio: 4 / 6;
+      }
+      
+      .picSurround:has(img[src*="/images/questionmark_23.gif"]) {
+        margin: var(--img-border-offset);
+        border-radius: var(--img-border-radius);
+        outline: var(--img-border-size) solid var(--25-accent-main);
+        outline-offset: var(--img-border-offset);
+        transition: outline-color 250ms ease-in-out;
+
+        &:is(:hover, :focus-visible) {
+          outline-color: var(--accent-color);
+        }
+
+        > a {
+          margin: var(--img-border-offset);
+        }
+      }
+      
+      .borderClass:has(> .anime-info-text) {
+        display: flex;
+        flex-direction: column;
+        
+        .anime-info-text {
+          margin-block-start: auto;
+        }
+      }
+      
+      .borderClass:has(div > .icon-people-score-star) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        .spaceit_pad:nth-child(1) {
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          gap: 0.5rem;
+        }
+        
+        .score-val {
+          font-size: 1rem;
+        }
+        
+        .icon-people-score-star {
+          width: 1rem;
+          height: auto;
+          font-size: 1rem;
+          line-height: 1;
+          margin: unset !important;
+          background: unset;
+          color: var(--text-dim);
+          
+          &.on {
+            color: var(--accent-color);
+          }
+          
+          &::before {
+            content: "\f005";
+            font-family: var(--ff-fa);
+            font-weight: 900;
+            font-style: normal;
+          }
+        }
+        
+        .spaceit_pad:nth-child(2) {
+          display: none;
+        }
+      }
+      
+    }
+    
+    .table-people-character .js-people-character {
+      grid-template-columns: auto 2fr 1fr auto;
+    }
+    
+    .js-table-people-staff .js-people-staff, 
+    .js-table-people-manga .js-people-manga {
+      grid-template-columns: auto 3fr 1fr;
+    }
+    
+    /* -- 6.3.1 - Sidebar -- */
+    .people-informantion-more {
+      width: auto;
+    }
+    
   }
 
 }
@@ -8748,6 +9440,10 @@
         display: inline-block;
         padding: 0.5rem;
         border-radius: 0.3rem;
+        
+        @container (width < 750px) {
+          --_item-count: 3;
+        }
         
         &:nth-child(odd) {
           background-color: var(--75-main-second);
@@ -8867,12 +9563,94 @@
         display: none;
       }
     }
+    
+    /* --- 8.1.0 - Users - Explore Page --- */
+    .breadcrumb + table[width="100%"] > tbody:not(:has(> tr:nth-child(2))) > tr {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      
+      > td {
+        position: relative;
+        width: auto;
+        padding: unset !important;
+      }
+      
+      > td:nth-child(1)::after {
+        content: "";
+        position: absolute;
+        top: 0.25rem;
+        right: -0.5rem;
+        width: 1px;
+        height: calc(100% - 0.5rem);
+        display: block;
+        background-color: var(--bg-hover);
+      }
+      
+      > td:nth-child(1) > table > tbody {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.15rem;
+        
+        tr {
+          display: contents;
+        }
+        
+        td {
+          width: auto;
+          min-height: 125px;
+          display: grid;
+          grid-template-rows: 1fr auto 1rem;
+          grid-template-areas: "image" "username" "title";
+          align-items: center;
+          gap: 0.25rem;
+          padding: 1rem 0.5rem;
+          border: unset;
+          border-radius: 0.3rem;
+          
+          > * {
+            margin: unset !important;
+          }
+          
+          .picSurround {
+            grid-area: image;
+          }
+
+          > div:nth-child(1) {
+            grid-area: username;
+            margin-block-start: 0.25rem !important;
+          }
+
+          > div:nth-child(3) {
+            grid-area: title;
+          }
+        }
+        
+        td:nth-child(odd) {
+          background-color: var(--50-main-hover);
+        }
+
+        td:nth-child(even) {
+          background-color: var(--75-main-hover);
+        }
+        
+        tr:nth-child(odd) {
+          td:nth-child(even) {
+            background-color: var(--50-main-hover);
+          }
+
+          td:nth-child(odd) {
+            background-color: var(--75-main-hover);
+          }
+        }
+      }
+    }
   }
 
 }
 
 
-@-moz-document url-prefix("https://myanimelist.net/clubs.php") {
+@-moz-document url-prefix("https://myanimelist.net/clubs") {
 
   /* ======================================================================================= */
   /* Clubs                                                                                   */
@@ -8962,7 +9740,81 @@
         }
       }
       
+      .picSurround > a {
+        display: block;
+        padding: calc(var(--img-border-offset) + var(--img-border-size));
+      }
+      
     }
+    
+    /* --- 9.2.0 - Clubs Page --- */
+    [id^="comment"] {
+      margin-block-end: 0.5rem;
+      padding: 0.5rem 0.25rem;
+      border-radius: 0.15rem;
+      
+      + br {
+        display: none;
+      }
+      
+      &.bgNone {
+        background-color: var(--75-main-second);
+      }
+    }
+    
+    /* -- 9.2.1 - Club Members -- */
+    table > tbody:has(> tr > td > div + .picSurround > a[href*="profile"]) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.15rem;
+
+      tr {
+        display: contents;
+      }
+
+      td {
+        width: auto;
+        min-height: 75px;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-template-areas: "image" "username";
+        align-items: center;
+        gap: 0.25rem;
+        padding: 1rem 0.5rem;
+        border: unset;
+        border-radius: 0.3rem;
+
+        > * {
+          margin: unset !important;
+        }
+
+        .picSurround {
+          grid-area: image;
+        }
+
+        > div:nth-child(1) {
+          grid-area: username;
+          margin-block-start: 0.25rem !important;
+        }
+        
+        &:nth-child(odd) {
+          background-color: var(--50-main-hover);
+        }
+        
+        &:nth-child(even) {
+          background-color: var(--75-main-hover);
+        }
+      }
+      
+    }
+    
+    /* -- 9.2.1.1 - All Club Members Page - Header -- */
+    div.borderClass:has(+ table > tbody > tr > td > div + .picSurround > a[href*="profile"]) {
+      margin-block-end: 0.5rem;
+      padding-block: 0.5rem;
+    }
+    
+    
   }
   
 }
@@ -9167,12 +10019,30 @@
       /* --- 10.2.0 - Highlighted Content --- */
       .content {
         --_section-bg: var(--50-main-second);
+        position: relative;
         display: grid;
         gap: 3rem;
         margin-block-end: 1rem;
         margin-inline: -10px;
         padding: 1rem;
         background-color: var(--_section-bg);
+        background-image: var(--cube-texture);
+        background-blend-mode: multiply;
+        
+        &::before, &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 10px;
+          display: block;
+          background-image: linear-gradient(in oklch 180deg, oklch(0 0 0 / 0.1) 5%, transparent);
+        }
+        
+        &::after {
+          bottom: 0;
+          rotate: 180deg;
+        }
       }
 
       .column-1, .column-3 {
@@ -9580,6 +10450,10 @@
 
       /* --- 10.6.0 - Right Sidebar --- */
       /* -- 10.6.1 - Search -- */
+      .search-side > p {
+        width: auto !important;
+      }
+      
       .search-side .js-search-area form {
         input {
           width: 100%;
@@ -9698,7 +10572,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(transparent 70%, var(--_bg));
+            background: linear-gradient(in oklch, transparent 70%, var(--_bg));
           }
           
           .foot {
@@ -10284,32 +11158,46 @@
         
         .mylist {
           grid-area: mylist;
-          position: unset;
         }
         
         .mean_score {
           grid-area: mean-score;
           justify-self: start;
+        }
+        
+        .mylist, 
+        .mean_score {
           position: unset;
+          display: flex;
+          flex-direction: column;
+          padding-inline-end: 0.5rem;
         }
         
         .score {
-          --_br: 0.2rem;
+          --_br: 0.15rem;
+          --_padding: 0.15rem;
           grid-area: score;
           position: unset;
           display: flex;
           height: 80%;
           margin: unset;
-          padding: 0.3rem;
+          padding: var(--_padding);
           background-color: color-mix(in oklab, var(--bg-main) 90%, var(--text-dim));
           border: 2px solid color-mix(in oklab, var(--bg-main) 75%, var(--text-dim));
-          border-radius: 0.25rem;
+          border-radius: calc(var(--_br) + var(--_padding));
           
           .graph {
             height: 100%;
             line-height: unset;
             background-color: var(--_bg) !important;
-            border-radius: var(--_br);
+            
+            &:nth-child(1 of .graph:not([style*="width: 0"])) {
+              border-radius: var(--_br) 0 0 var(--_br);
+            }
+            
+            &:nth-last-child(1 of .graph:not([style*="width: 0"])) {
+              border-radius: 0 var(--_br) var(--_br) 0;
+            }
           }
           
           .graph + .graph:not([style*="width: 0"]) {
@@ -11057,7 +11945,7 @@
     .video-block.episode-video .outside-region .outside-region-block {
       display: grid;
       place-items: center;
-      background: linear-gradient(transparent, rgb(from var(--bg-main) r g b / 0.6), var(--bg-main));
+      background: linear-gradient(in oklch, transparent, oklch(from var(--bg-main) l c h / 0.6), var(--bg-main));
 
       &::after {
         content: "\f078";
@@ -11260,20 +12148,473 @@
 
 }
 
-@-moz-document domain("myanimelist.net") {
+@-moz-document url-prefix("https://myanimelist.net/recommendations") {
 
   /* ======================================================================================= */
-  /* Settings                                                                                */
+  /* Recommendations                                                                         */
   /* ======================================================================================= */
-  /* ---- 13.0.0 - Settings ---- */
+  /* ---- 13.0.0 - Recommendations Page ---- */
   html, .dark-mode {
-    form[name="picture_form"] .inputButton {
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.4rem 0.8rem !important;
+    .borderDark {
+      margin: unset !important;
+      padding: 0.5rem !important;
+      border: unset;
+      outline: 2px solid lime;
     }
-  }
+    
+    .borderClass:is(.bgColor1, .bgColor2) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-block: 0.5rem 0 !important;
+      padding: 0.25rem 0.5rem !important;
+      background-color: var(--50-main-second) !important;
+      border: 1px solid var(--25-main-second) !important;
+      border-radius: 0.2rem;
+      
+      > div:nth-child(2) {
+        font-family: var(--ff-secondary);
+        font-size: 0.775rem;
+        font-style: italic;
 
+        > span {
+          font-family: var(--ff-main);
+          font-style: normal;
+        }
+      }
+      
+      a[href*="/dbchanges.php?go=report"] {
+        color: var(--red-light);
+        outline: 2px solid lime;
+      }
+    }
+    
+    /* --- 13.1.0 - Cards --- */
+    #horiznav_nav + div {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+      gap: 1rem;
+      padding: 1rem 0 !important;
+      
+      > div.borderClass {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 1rem;
+        margin: unset;
+        padding: 0.75rem 0.75rem 0.5rem;
+        background-color: var(--75-main-second);
+        border: 1px solid var(--50-main-second);
+        border-radius: 0.2rem;
+        
+        /* Anime Details */
+        tr {
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+          
+          &::after {
+            content: "";
+            position: absolute;
+            place-self: center;
+            width: 1px;
+            height: 100%;
+            background-color: oklch(from var(--50-accent-main-text) l c h / 0.05);
+          }
+        }
+        
+        td {
+          width: auto;
+          display: grid;
+          grid-template-rows: 1.2lh minmax(1.2lh, max-content) 1fr;
+          gap: 0 0.75rem;
+          
+          &:nth-child(1) {
+            grid-template-columns: auto 1fr;
+            grid-template-areas: "image status" "image title" "image button";
+          }
+          
+          &:nth-child(2) {
+            grid-template-columns: 1fr auto;
+            grid-template-areas: "status image" "title image" "button image";
+            justify-items: end;
+            
+            > a {
+              text-align: end;
+            }
+            
+            .hoverinfo_trigger {
+              anchor-name: --recommended-anime-image;
+            }
+            
+            .hoverinfo {
+              position-anchor: --recommended-anime-image;
+              left: unset !important;
+              right: calc(anchor(left) + 20px);
+              
+              &::after {
+                left: unset;
+                right: calc(var(--_size) * -2 + 2px);
+                rotate: 180deg;
+              }
+            }
+          }
+          
+          .picSurround {
+            grid-area: image;
+            margin: unset !important;
+            
+            img {
+              width: 70px;
+              height: auto;
+              aspect-ratio: 2 / 3;
+            }
+          }
+          
+          > a {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      
+      .recommendations-user-recs-text {
+        justify-self: start;
+        position: relative;
+        width: min(80ch, 100%);
+        max-width: unset;
+        min-height: 3lh;
+        font-size: 0.775rem;
+        line-height: 1.7;
+        margin-block: unset;
+        margin-inline: auto;
+        padding: 1rem 2rem 0.5rem;
+        
+        &::before {
+          content: "\f10d";
+          position: absolute;
+          top: 30px;
+          left: 10px;
+          font-family: var(--ff-fa);
+          font-weight: 900;
+          font-size: 5rem;
+          line-height: 0;
+          color: oklch(from var(--50-accent-main-text) l c h / 0.05);
+        }
+      }
+      
+      /* Footer */
+      div > .lightLink {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.25rem;
+        margin: unset;
+        padding: 0.5rem 1rem;
+        background-color: var(--bg-second);
+        border: 1px solid var(--50-main-hover);
+        border-radius: 0.3rem;
+        color: var(--text-second);
+        
+        /* Report Button */
+        > div {
+          order: 1;
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          margin-inline-start: auto;
+          color: var(--red-light);
+          
+          &::before {
+            content: "\e405";
+            font-family: var(--ff-fa);
+            font-size: 1.1em;
+            font-weight: 900;
+            text-decoration: none;
+            margin-block-start: 1px;
+          }
+        }
+        
+        .lightLink {
+          padding: unset;
+          color: inherit;     
+        }
+      }
+    }
+    
+    /* -- 13.1.1 - Pagination -- */
+    #horiznav_nav > div[style*="float: right"] > span {
+      display: flex;
+      gap: 0.5rem;
+      background: unset;
+    }
+    
+    #horiznav_nav + div > .spaceit:not(.borderClass) {
+      grid-column: 1 / -1;
+      margin: unset;
+      padding: 0.3rem 0.6rem;
+      background-color: oklch(from var(--bg-main) calc(l + 0.025) c h);
+      border-radius: 0.3rem;
+      box-shadow: 0 2px 10px oklch(from var(--bg-hover) l c h / 0.1);
+      
+      span {
+        display: flex;
+        justify-content: end;
+        gap: 0.5rem;
+        background-color: unset;
+      }
+    }
+    
+    /* --- 13.2.0 - UserRecs Tab --- */
+    #horiznav_nav:has(.horiznav_active[href="?s=userrecs"]) + div {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding-block-start: 0.5rem !important;
+      
+      > div {
+        display: contents;
+        
+        &::after {
+          content: unset;
+        }
+        
+        > div {
+          counter-reset: --user-rec-list;
+          width: auto !important;
+          display: grid;
+          gap: 0.25rem;
+          margin: unset !important;
+          padding-inline: 0.5rem;
+          
+          > h2 {
+            font-family: var(--ff-tertiary);
+            font-size: 1rem;
+            margin: unset;
+            padding-block: 0.5rem;
+          }
+          
+          > div.spaceit {
+            position: relative;
+            margin: unset;
+            padding: 0.5rem;
+            border-radius: 0.15rem;
+            isolation: isolate;
+            overflow: hidden;
+            
+            &:nth-child(even) {
+              background-image: linear-gradient(in oklch 90deg, var(--75-main-hover), var(--bg-main));
+            }
+            
+            &:nth-child(odd) {
+              background-image: linear-gradient(in oklch 90deg, var(--75-main-second), var(--bg-main));
+            }
+          }
+          
+          > div.spaceit {
+            padding-inline-start: 1rem;
+            
+            &::before {
+              counter-increment: --user-rec-list 1;
+              content: counter(--user-rec-list);
+              position: absolute;
+              top: 0.25lh;
+              left: 0.5rem;
+              display: inline-block;
+              font-family: var(--ff-accent);
+              font-size: 2rem;
+              font-weight: 900;
+              line-height: 1;
+              text-align: start;
+              color: oklch(from var(--text-dim) l c h / 0.15);
+            }
+          }
+        }
+      }
+    }
+    
+  }
+  
+}
+
+@-moz-document url-prefix("https://myanimelist.net/blog") {
+
+  /* ======================================================================================= */
+  /* Blogs                                                                                   */
+  /* ======================================================================================= */
+  /* ---- 14.0.0 - Blogs ---- */
+  html, .dark-mode {
+    .normal_header + .lightLink {
+      font-size: 0.925rem !important;
+      margin-block-end: 0.5rem !important;
+      color: var(--text-main);
+      
+      + div {
+        margin-block: 0.5rem !important;
+      }
+    }
+    
+    .blog_detail_content_wrapper {
+      font-size: 0.825rem;
+      line-height: 1.7;
+    }
+    
+    .blog_detail_cap_wrapper, .borderClass:has(> .lightLink.to-left) {
+      display: flex;
+      margin-block: 2rem 0.5rem;
+      padding: 0.5rem !important;
+      background-color: var(--50-main-hover);
+      border: unset;
+      border-radius: 0.2rem;
+      
+      > span.lightLink {
+        color: var(--text-second);
+      }
+    }
+    
+    .blog_detail_comment_table {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.5rem;
+      margin-block-end: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 0.2rem;
+      
+      &:nth-child(odd) {
+        background-color: var(--75-main-second);
+      }
+      
+      &:nth-child(even) {
+        background-color: var(--75-main-hover);
+      }
+      
+      tbody, tr {
+        display: contents;
+      }
+      
+      tr:not(:has(> .borderClass)) {
+        display: none;
+      }
+      
+      td {
+        width: auto;
+        padding: unset;
+      }
+      
+      .picSurround {
+        width: 75px;
+        height: auto;
+        aspect-ratio: 1;
+        padding: calc(var(--img-border-offset) + var(--img-border-size));
+        
+        img.profile-w48 {
+          max-width: unset;
+          max-height: unset;
+          width: calc(100% - var(--img-border-size) * 2);
+        }
+      }
+      
+      td.w-break {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        
+        > .dark_text {
+          margin: unset !important;
+        }
+        
+        > div[style*="margin-top"] {
+          margin-block-start: auto !important;
+        }
+      }
+    }
+    
+    .blog_detail_comment_wrapper {
+      > .dark_text {
+        font-size: 0.825rem;
+        color: var(--text-second) !important;
+      }
+      
+      form {
+        display: flex !important;
+        flex-direction: column;
+        gap: 0.5rem;
+        
+        > div {
+          display: contents;
+        }
+      }
+      
+      .textarea {
+        width: 100% !important;
+        height: 5lh;
+        font-family: var(--ff-main);
+        padding: 0.5rem;
+        background-color: var(--25-main-second);
+        scrollbar-width: thin;
+      }
+      
+      .inputButton {
+        align-self: end;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem !important;
+      }
+    }
+    
+    /* ---- 14.1.0 - Blogs - Explore Page ---- */
+    .breadcrumb + div[style*="padding: 8px"] > .normal_header + table > tbody {
+      tr {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        
+        &:not(:first-child, :empty) {
+          border-top: 1px solid var(--bg-hover);
+        }
+      }
+      
+      td {
+        position: relative;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem !important;
+        
+        &:first-child::after {
+          content: "";
+          position: absolute;
+          top: 5%;
+          right: 0;
+          width: 1px;
+          height: 90%;
+          background-color: var(--bg-hover);
+        }
+        
+        > div {
+          display: contents;
+          
+          > a[href*="blog.php"] {
+            font-size: 0.825rem !important;
+          }
+          
+          > :nth-child(2) {
+            min-height: 2lh;
+          }
+          
+          > .lightLink {
+            align-content: center;
+            margin-block-start: auto !important;
+            padding: 0.2rem 0.6rem;
+            background-color: var(--50-main-hover);
+            border-radius: 0.2rem;
+          }
+        }
+      }
+      
+    }
+    
+    
+  }
+  
 }
 @-moz-document domain("myanimelist.net") {
 
@@ -11501,6 +12842,22 @@
 @-moz-document domain("myanimelist.net") {
 
   /* ======================================================================================= */
+  /* Settings                                                                                */
+  /* ======================================================================================= */
+  /* ---- xx.0.0 - Settings ---- */
+  html, .dark-mode {
+    form[name="picture_form"] .inputButton {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem !important;
+    }
+  }
+
+}
+
+@-moz-document domain("myanimelist.net") {
+
+  /* ======================================================================================= */
   /* Help Pages                                                                              */
   /* ======================================================================================= */
   html, .dark-mode {
@@ -11579,7 +12936,7 @@
       #ad_menu {
         width: 100cqw;
         background-color: transparent;
-        background-image: linear-gradient(to right, var(--25-accent-main-text), var(--accent-color), var(--25-accent-main-text));
+        background-image: linear-gradient(in oklch to right, var(--25-accent-main-text), var(--accent-color), var(--25-accent-main-text));
 
         &.fixed {
           left: unset;
@@ -11589,7 +12946,7 @@
         }
 
         &.fixed::after {
-          background-image: linear-gradient(to bottom, var(--bg-second), transparent);
+          background-image: linear-gradient(in oklch to bottom, var(--bg-second), transparent);
         }
       }
 
@@ -11682,17 +13039,31 @@
         width: auto;
         min-height: 125px;
         display: grid;
-        grid-template-rows: 1rem 1fr;
+        grid-template-rows: 1fr 1rem;
+        grid-template-areas: "image" "username" "title";
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.25rem;
+        border-radius: 0.3rem;
 
         > * {
           margin: unset !important;
         }
+        
+        .picSurround {
+          grid-area: image;
+        }
+        
+        > div:nth-child(1) {
+          grid-area: username;
+        }
+        
+        > div:nth-child(3) {
+          grid-area: title;
+        }
       }
 
       #database_administrator + .staff_wrap .staff {
-        grid-template-rows: 1rem 1fr 2rem;
+        grid-template-rows: 1fr 1rem 2rem;
       }
 
       .staff_wrap .staff.retired {
@@ -11894,48 +13265,6 @@
 
   }
 
-}
-
-@-moz-document url-prefix("https://myanimelist.net/recommendations/") {
-
-  /* ======================================================================================= */
-  /* Recommendations Page                                                                    */
-  /* ======================================================================================= */
-  html, .dark-mode {
-    .borderDark {
-      margin: unset !important;
-      padding: 0.5rem !important;
-      border: unset;
-    }
-    
-    .borderClass:is(.bgColor1, .bgColor2) {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-block: 0.5rem 0 !important;
-      padding: 0.25rem 0.5rem !important;
-      background-color: var(--50-main-second) !important;
-      border: 1px solid var(--25-main-second) !important;
-      border-radius: 0.2rem;
-      
-      > div:nth-child(2) {
-        font-family: var(--ff-secondary);
-        font-size: 0.775rem;
-        font-style: italic;
-
-        > span {
-          font-family: var(--ff-main);
-          font-style: normal;
-        }
-      }
-      
-      a[href*="/dbchanges.php?go=report"] {
-        color: var(--red-light);
-      }
-    }
-    
-  }
-  
 }
 
 @-moz-document url("https://myanimelist.net/modules.php?go=report") {
