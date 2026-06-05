@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.6.0
+@version        0.7.0
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -139,7 +139,7 @@
     --tag-color-purple: var(--purple);
     --tag-color-pink: var(--pink);
     --tag-color-gray: var(--gray);
-    
+
     /* Watch Status Colors */
     --watching: var(--green);
     --completed: var(--indigo);
@@ -644,8 +644,8 @@
         /* position: relative; */
         /* font-style: italic; */
         padding-inline-start: 1rem;
-        background-color: rgb(from var(--bg-hover) r g b / 0.5);
-        border-color: rgb(from var(--bg-hover) r g b / 0.75);
+        background-color: oklch(from var(--bg-hover) l c h / 0.5);
+        border-color: oklch(from var(--bg-hover) l c h / 0.75);
         isolation: isolate;
         overflow: hidden;
         
@@ -762,10 +762,10 @@
           aspect-ratio: 1;
           text-indent: unset;
           margin: unset;
-          background: radial-gradient(circle, rgb(0 0 0 / 0.5), transparent) !important;
+          background: radial-gradient(circle, oklch(0 0 0 / 0.5), transparent) !important;
           border-radius: 50%;
           color: transparent;
-          box-shadow: 0 0 10px rgb(0 0 0 / 0.5);
+          box-shadow: 0 0 10px oklch(0 0 0 / 0.5);
           translate: -50% -50%;
           transition: transform 350ms var(--ease-overshoot-smooth);
           overflow: unset;
@@ -787,7 +787,56 @@
       }
 
 
-      /* -- 1.1.5 - Buttons -- */
+      /* -- 1.1.5 - Tags -- */
+      #all, 
+      .tag-challenge,
+      a[data-ga-click-param="type:myanimelist"] {
+        --_tag-color: var(--tag-color-blue);
+      }
+
+      #cat1, 
+      .tag-color1,
+      #cat-anime,
+      .tag-anime,
+      a[data-ga-click-param="type:anime"] {
+        --_tag-color: var(--tag-color-red);
+      }
+
+      #cat2,
+      .tag-color2,
+      #cat-manga, 
+      .tag-manga,
+      a[data-ga-click-param="type:manga"] {
+        --_tag-color: var(--tag-color-orange);
+      }
+
+      #cat3,
+      .tag-color3,
+      #cat-people {
+        --_tag-color: var(--tag-color-green);
+      }
+
+      #cat4,
+      .tag-color4,
+      #cat-music {
+        --_tag-color: var(--tag-color-purple);
+      }
+
+      #cat5,
+      .tag-color5,
+      #cat-events {
+        --_tag-color: var(--tag-color-pink);
+      }
+
+      #cat6,
+      .tag-color6,
+      #cat-industry,
+      .tag-color-feature-events {
+        --_tag-color: var(--tag-color-gray);
+      }
+
+
+      /* -- 1.1.6 - Buttons -- */
       a.mal-btn.primary,
       button.mal-btn.primary,
       .inputButton,
@@ -895,7 +944,7 @@
         }
       }
 
-      /* - 1.1.5.1 - Show/Hide Btn - */
+      /* - 1.1.6.1 - Show/Hide Btn - */
       .button:is(.show_button, .expand_quote) {
         background-color: var(--bg-second);
         border-color: var(--bg-hover);
@@ -907,7 +956,7 @@
         color: var(--75-accent-hover);
       }
 
-      /* - 1.1.5.2 - Add/Edit Btn - */
+      /* - 1.1.6.2 - Add/Edit Btn - */
       a:is(.button_add, .button_edit) {
         height: auto;
         font-family: var(--ff-main);
@@ -930,13 +979,13 @@
         }
       }
 
-      /* - 1.1.5.3 - Top Btn - */
+      /* - 1.1.6.3 - Top Btn - */
       .btn-top {
         left: calc(50vw + 50cqw + 1rem) !important;
         background-color: var(--accent-color);
       }
 
-      /* - 1.1.5.4 - Choose Your Own - */
+      /* - 1.1.6.4 - Choose Your Own - */
       a.btn-choose-your-own {
         padding: 0.5rem 0.75rem;
         background-color: var(--25-main-second);
@@ -950,7 +999,7 @@
         }
       }
       
-      /* - 1.1.5.5 - Login/Sign Up - */
+      /* - 1.1.6.5 - Login/Sign Up - */
       #header-menu .header-menu-login .btn-login {
         font-family: var(--ff-tertiary);
         background-color: var(--bg-main) !important;
@@ -976,7 +1025,7 @@
         }
       }
       
-      /* - 1.1.5.6 - Copy Code - */
+      /* - 1.1.6.6 - Copy Code - */
       .codetext button.copycode {
         --_size: 1.2rem;
         aspect-ratio: 1;
@@ -1000,7 +1049,7 @@
         }
       }
       
-      /* - 1.1.5.7 - RSS Feed - */
+      /* - 1.1.6.7 - RSS Feed - */
       div:has(> a[href="https://myanimelist.net/rss/news.xml"]),
       div:has(> a[href="https://myanimelist.net/rss/featured.xml"]) {
         --_bg: #f29200;
@@ -1058,7 +1107,7 @@
       }
 
 
-      /* -- 1.1.6 - Images -- */
+      /* -- 1.1.7 - Images -- */
       .lazyloaded {
         image-rendering: unset;
       }
@@ -1071,9 +1120,8 @@
         padding: unset;
       }
       
-      /* - 1.1.6.1 - Image Unavailable - */
-      .picSurround:has(img[src*="myanimelist.net/images/questionmark_23.gif"]), 
-      .picSurround:has(img[src*="myanimelist.net/r/42x62/images/questionmark_23.gif"]) {
+      /* - 1.1.7.1 - Image Unavailable - */
+      .picSurround:has(img[src*="/images/questionmark_23.gif"]) {
         position: relative;
         background-color: var(--50-main-hover);
         overflow: hidden;
@@ -1116,7 +1164,7 @@
         }
       }
 
-      /* - 1.1.6.2 - Images - Fancy Border - */
+      /* - 1.1.7.2 - Images - Fancy Border - */
       div.picSurround img,
       div.picSurround a img,
       .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]),
@@ -1191,7 +1239,7 @@
         box-shadow: unset;
       }
 
-      /* - 1.1.6.3 - Images - Fancy Border (Type 2) - */
+      /* - 1.1.7.3 - Images - Fancy Border (Type 2) - */
       .news-container .img-a-r {
         --img-border-offset: var(--img-border-offset-large);
         --img-border-radius: 0.5rem;
@@ -1205,7 +1253,7 @@
         box-shadow: 0 0 0 var(--img-border-offset) var(--bg-main), 0 0 0 var(--_border-size) var(--_border-color);
       }
       
-      /* - 1.1.6.4 - Mirai Bookstore Logo - */
+      /* - 1.1.7.4 - Mirai Bookstore Logo - */
       img[src*="/BookStores/mirai_logo_wb.png"] {
         --_width: 94px;
         --_height: calc(var(--_width) * 14 / 94);
@@ -1228,7 +1276,7 @@
       }
 
 
-      /* -- 1.1.7 - Notice -- */
+      /* -- 1.1.8 - Notice -- */
       .notice_open_public {
         font-style: italic;
         color: var(--red-light);
@@ -1253,14 +1301,11 @@
       }
 
 
-      /* -- 1.1.8 - Action Feedback -- */
+      /* -- 1.1.9 - Action Feedback -- */
       .goodresult,
       .successQuery {
         /* TODO: UPDATE COLORS */
-        /*         background-color: var(--bg-hover) !important; */
-        /*         border-color: var(--bg-hover) !important; */
-
-        background-color: hsl(from var(--green-light) h s calc(l - 20)) !important;
+        background-color: oklch(from var(--green-light) calc(l * 0.6) calc(c * 0.6) h) !important;
         border-color: var(--green-light) !important;
         color: var(--text-main);
       }
@@ -1275,7 +1320,7 @@
         color: var(--red-light);
       }
 
-      /* -- 1.1.9 - Hover Info Container -- */
+      /* -- 1.1.10 - Hover Info Container -- */
       .hoverinfo {
         width: 60ch;
         height: unset;
@@ -1305,7 +1350,7 @@
       }
 
 
-      /* -- 1.1.10 - Iframes -- */
+      /* -- 1.1.11 - Iframes -- */
       iframe.movie.youtube {
         /* width: 100%; */
         height: auto;
@@ -1317,7 +1362,7 @@
       }
 
 
-      /* -- 1.1.11 - Tables -- */
+      /* -- 1.1.12 - Tables -- */
       td {
         font-size: 0.75rem;
         line-height: 1.7;
@@ -1359,7 +1404,7 @@
         background-color: var(--75-main-hover);
       }
       
-      /* - 1.1.11.1 - Ranking Tables - */
+      /* - 1.1.12.1 - Ranking Tables - */
       .top-ranking-table, 
       .people-favorites-ranking-table,
       .characters-favorites-ranking-table,
@@ -1602,7 +1647,7 @@
           color: var(--text-bright);
           
           &:is(:hover, :focus-visible) {
-            background-color: rgb(from var(--_bg) r g b / 0.5);
+            background-color: oklch(from var(--_bg) l c h / 0.5);
           }
           
           &.watching, &.reading       { --_bg: var(--watching);      }
@@ -1676,7 +1721,7 @@
         --_grid-columns: 100px 1.5fr repeat(3, 1fr) 150px;
       }
       
-      /* - 1.1.11.2 - BBCode Tables - */
+      /* - 1.1.12.2 - BBCode Tables - */
       .bbcode-table {
         th {
           background-color: var(--bg-second);
@@ -1689,7 +1734,7 @@
       }
 
 
-      /* -- 1.1.12 - Headers -- */
+      /* -- 1.1.13 - Headers -- */
       #headerSmall {
         height: auto;
         display: grid;
@@ -1748,7 +1793,7 @@
       }
 
       #nav > li:is(.hover, :hover, :focus-visible) a {
-        background-color: rgb(from var(--bg-second) r g b / 0.9);
+        background-color: oklch(from var(--bg-second) l c h / 0.9);
         color: var(--text-main);
       }
 
@@ -1801,8 +1846,8 @@
 
       .header-list .header-list-dropdown,
       .header-profile .header-profile-dropdown {
-        background-color: rgb(from var(--bg-second) r g b / 0.9);
-        box-shadow: 0 0 2px rgb(from var(--bg-hover) r g b / 0.9);
+        background-color: oklch(from var(--bg-second) l c h / 0.9);
+        box-shadow: 0 0 2px oklch(from var(--bg-hover) l c h / 0.9);
 
         ul li a {
           background-color: transparent;
@@ -1815,7 +1860,7 @@
         }
       }
       
-      /* - 1.1.12.1 - Ranking Tables Header - */
+      /* - 1.1.13.1 - Ranking Tables Header - */
       .top-rank-header2 {
         display: flex;
         align-items: center;
@@ -1848,7 +1893,7 @@
         }
       }
       
-      /* - 1.1.12.2 - Rounded Tab Style Headers - */
+      /* - 1.1.13.2 - Rounded Tab Style Headers - */
       .navi-seasonal .horiznav-nav-seasonal .btn-seasonal, 
       .navi-adapted .horiznav-nav-adapted .btn-adapted, 
       &.anime-filter #content .horiznav-nav-seasonal .btn-type {
@@ -1876,7 +1921,7 @@
       }
 
 
-      /* -- 1.1.13 - Breadcrumb -- */
+      /* -- 1.1.14 - Breadcrumb -- */
       .breadcrumb {
         font-family: var(--ff-secondary);
         margin: unset !important;
@@ -1885,7 +1930,7 @@
       }
 
 
-      /* -- 1.1.14 - Body -- */
+      /* -- 1.1.15 - Body -- */
       #contentWrapper {
         min-height: unset;
         padding-block-end: 1rem;
@@ -1959,7 +2004,7 @@
       }
 
 
-      /* -- 1.1.15 - Pagination -- */
+      /* -- 1.1.16 - Pagination -- */
       .pagination:not(.icon-top-ranking-page-bottom, .pagination-numbers) {
         display: flex;
         align-items: center;
@@ -2019,7 +2064,7 @@
         }
       }
       
-      /* - 1.1.15.1 - Search Results - */
+      /* - 1.1.16.1 - Search Results - */
       script + .normal_header.clearfix.pt16 > .fl-r span {
         display: flex;
         justify-content: end;
@@ -2046,7 +2091,7 @@
       }
 
 
-      /* -- 1.1.16 - Footer -- */
+      /* -- 1.1.17 - Footer -- */
       #footer-block {
         width: 100% !important;
         background-color: var(--bg-second);
@@ -2111,11 +2156,11 @@
       }
 
 
-      /* -- 1.1.17 - Notifications -- */
+      /* -- 1.1.18 - Notifications -- */
       .header-notification-dropdown .arrow_box {
         background-color: var(--bg-main);
         border: 1px solid var(--bg-hover);
-        box-shadow: 3px 6px 15px 2px rgb(from var(--bg-hover) r g b / 0.5);
+        box-shadow: 3px 6px 15px 2px oklch(from var(--bg-hover) l c h / 0.5);
       }
 
       .header-notification-dropdown-inner h3 {
@@ -2182,7 +2227,7 @@
 
         .action-button.accept {
           --_bg: var(--green-light);
-          --_bg-hover: hsl(from var(--green-light) h s calc(l - 15));
+          --_bg-hover: oklch(from var(--green-light) calc(l * 0.7) calc(c * 0.7) h);
         }
 
         .action-button.deny {
@@ -2220,7 +2265,7 @@
       }
 
 
-      /* -- 1.1.18 - Alphabet Filter Bar -- */
+      /* -- 1.1.19 - Alphabet Filter Bar -- */
       #content:has(> .anime-manga-search),
       #content:has(> .people-favorites-ranking-table),
       #content:has(> div > #advancedsearch),
@@ -2274,7 +2319,7 @@
         }
       }
       
-      /* - 1.1.18.1 - Alphabet Filter Bar - "Upcoming" & "Just Added" - */
+      /* - 1.1.19.1 - Alphabet Filter Bar - "Upcoming" & "Just Added" - */
       #content:has(> .anime-manga-search), 
       #content:has(> div > #advancedsearch),
       #content:has(> div > div > #advancedsearch) {
@@ -2285,7 +2330,7 @@
         }
       }
       
-      /* -- 1.1.19 - Sort/Filter -- */
+      /* -- 1.1.20 - Sort/Filter -- */
       .review-sort-and-filter span[data-ga-click-type] {
         position: relative;
         display: flex;
@@ -2324,7 +2369,7 @@
         }
       }
       
-      /* - 1.1.19.1 - Div style - */
+      /* - 1.1.20.1 - Div style - */
       &.page-common .stacks .navi, 
       &.anime-filter .navi-seasonal, 
       .people-character, 
@@ -2445,7 +2490,7 @@
         }
       }
       
-      /* - 1.1.19.2 - SVG style - */
+      /* - 1.1.20.2 - SVG style - */
       .search-filter-sort-order-block, 
       .search-filter-mylist-block,
       .seasonal-sort-order-block,
@@ -2538,7 +2583,7 @@
         
       }
       
-      /* - 1.1.19.3 - Categories Filter List - */
+      /* - 1.1.20.3 - Categories Filter List - */
       .reviews-horiznav-nav-sort-block .review-filter-block {
         top: calc(100% - 2px) !important;
         left: 0 !important;
@@ -2589,7 +2634,7 @@
             }
 
             &::after {
-              font-family: 'Font Awesome 6 Pro';
+              font-family: var(--ff-fa);
             }
           }
 
@@ -2630,7 +2675,7 @@
     /* -- 1.2.1 - Tip Menu -- */
     .mal-tipmenu,
     .page-common .mal-tipmenu {
-      --_bg: rgb(from var(--accent-color) r g b / 0.8);
+      --_bg: oklch(from var(--accent-color) l c h / 0.8);
       background-color: unset;
 
       &::before {
@@ -2653,7 +2698,7 @@
     
     /* -- 1.2.2 - Dropdown Menu -- */
     .mal-dropdown-outer .mal-dropdown-menu {
-      --_bg: rgb(from var(--bg-second) r g b / 0.9);
+      --_bg: oklch(from var(--bg-second) l c h / 0.9);
       background-color: var(--_bg);
       border: unset;
       box-shadow: unset;
@@ -2670,7 +2715,7 @@
       
       .divider {
         margin: 0.25rem 0.5rem;
-        border-color: rgb(from var(--text-dim) r g b / 0.2);
+        border-color: oklch(from var(--text-dim) l c h / 0.2);
       }
     }
     
@@ -3073,10 +3118,6 @@
         pointer-events: none;
       }
       
-/*       &:has(.inputtext:focus-visible) {
-        outline: 2px solid var(--accent-color);
-      } */
-      
       form, form > div {
         display: contents !important;
       }
@@ -3324,7 +3365,7 @@
           justify-content: space-between;
           line-height: unset;
           padding: 0.5rem;
-          background-color: hsl(from var(--bg-hover) h s l / 0.8);
+          background-color: oklch(from var(--bg-hover) l c h / 0.8);
           border-radius: 0 0 var(--_br) var(--_br);
           
           .stars, .users {
@@ -3360,7 +3401,7 @@
             border-block-end: 2px solid transparent;
             border-radius: 0.3rem;
             color: var(--text-bright);
-            box-shadow: 0 4px 8px hsl(from var(--bg-hover) h s l / 0.25);
+            box-shadow: 0 4px 8px oklch(from var(--bg-hover) l c h / 0.25);
             transition: unset;
             
             &:is(:hover, :focus-visible) {
@@ -3491,7 +3532,7 @@
           font-weight: 500;
           text-wrap: pretty;
           padding: 0.5rem 0.2rem;
-          background: rgb(from var(--50-accent-main) r g b / 0.75);
+          background: oklch(from var(--50-accent-main) l c h / 0.75);
           border-radius: 0 0 var(--_br) var(--_br);
           color: var(--text-bright);
           text-shadow: unset;
@@ -4217,7 +4258,7 @@
             align-content: center;
             margin: 0 var(--_img-margin) var(--_img-margin);
             padding-block: 0.5rem;
-            background-color: rgb(from var(--50-accent-main) r g b / 0.75);
+            background-color: oklch(from var(--50-accent-main) l c h / 0.75);
             border-radius: 0 0 var(--img-border-radius) var(--img-border-radius);
             pointer-events: none;
             opacity: 0;
@@ -4615,7 +4656,7 @@
         }
 
         &:is(:hover, :focus-visible) :is(.h2_anime_title, .h2_manga_title) {
-          --_bg: rgb( from var(--25-accent-second) r g b / 0.5);
+          --_bg: oklch( from var(--25-accent-second) l c h / 0.5);
           position: absolute;
           top: 0;
           width: 100%;
@@ -4772,7 +4813,7 @@
         a:first-child {
           width: var(--_img-width);
           height: var(--_img-height);
-          box-shadow: 0 0 40px rgb(from var(--bg-hover) r g b / 0.5);
+          box-shadow: 0 0 40px oklch(from var(--bg-hover) l c h / 0.5);
           z-index: 1;
         }
         
@@ -4787,7 +4828,7 @@
           inset: 0;
           width: auto;
           height: auto;
-          background-color: rgb(from var(--75-main-hover) r g b / 0.5);
+          background-color: oklch(from var(--75-main-hover) l c h / 0.5);
           background-blend-mode: overlay;
           color: transparent;
           filter: blur(3px);
@@ -4811,7 +4852,7 @@
         z-index: 2;
         
         &:is(:hover, :focus-visible) {
-          background-color: rgb(from var(--75-main-second) r g b / 0.85);
+          background-color: oklch(from var(--75-main-second) l c h / 0.85);
           backdrop-filter: blur(2px);
           opacity: 1;
         }
@@ -5094,19 +5135,11 @@
         .anime-slide-block .anime-slide,
         .page-forum tr > td {
           width: unset !important;
-
-          /* TODO: To fix width breaking on Forum Tab */
         }
 
         .rightside > table > tbody > tr:nth-of-type(4) .detail-page-featured-article .news-unit {
           width: unset;
         }
-
-        /*
-        br + br {
-          display: none;
-        } 
-        */
       }
 
       > table > tbody > tr .rightside > div[style*="width:728px"], 
@@ -5597,7 +5630,7 @@
         }
         
         &:nth-child(odd)::after {
-          content: unset
+          content: unset;
         }
         
         &:nth-child(even)::after {
@@ -5621,7 +5654,6 @@
         --img-border-offset: var(--img-border-offset-large);
         max-width: unset;
         max-height: unset;
-        width: 125px;
         width: 90px;
         height: auto;
         aspect-ratio: 3 / 4;
@@ -5914,7 +5946,7 @@
             font-weight: 500;
             margin: unset;
             padding: 0.5rem 0.2rem;
-            background: rgb(from var(--50-accent-main) r g b / 0.75);
+            background: oklch(from var(--50-accent-main) l c h / 0.75);
             border-radius: 0 0 var(--_br) var(--_br);
             color: var(--text-bright);
             text-shadow: none;
@@ -5934,7 +5966,7 @@
             font-family: var(--ff-main);
             padding: 0.2rem 0.4rem;
             text-shadow: none !important;
-            background-color: rgb(from var(--accent-color) r g b / 0.75) !important;
+            background-color: oklch(from var(--accent-color) l c h / 0.75) !important;
             border-radius: 100vw;
             color: var(--text-bright) !important;
           }
@@ -7223,7 +7255,7 @@
 
     body.ownlist_anime_update #dialog {
       min-width: 75%;
-      background-color: rgb(from var(--bg-second) r g b / 0.8);
+      background-color: oklch(from var(--bg-second) l c h / 0.8);
       border-color: var(--bg-hover);
       border-radius: 0.2rem;
 
@@ -7582,7 +7614,7 @@
       }
 
       .forum .message .replied {
-        background-color: rgb(from var(--bg-hover) r g b / 0.45);
+        background-color: oklch(from var(--bg-hover) l c h / 0.45);
         color: var(--text-second);
       }
 
@@ -8218,34 +8250,6 @@
           margin-inline-end: 0.5rem;
         }
       }
-
-      #all {
-        --_tag-color: var(--tag-color-blue);
-      }
-
-      #cat1 {
-        --_tag-color: var(--tag-color-red);
-      }
-
-      #cat2 {
-        --_tag-color: var(--tag-color-orange);
-      }
-
-      #cat3 {
-        --_tag-color: var(--tag-color-green);
-      }
-
-      #cat4 {
-        --_tag-color: var(--tag-color-purple);
-      }
-
-      #cat5 {
-        --_tag-color: var(--tag-color-pink);
-      }
-
-      #cat6 {
-        --_tag-color: var(--tag-color-gray);
-      }
     }
 
     /* --- 5.2.0 - News Article --- */
@@ -8253,7 +8257,6 @@
       margin: unset !important;
     }
 
-    /*     .page-common .news-list :is(.comment-list, .news-unit) { */
     .page-common .news-list .news-unit {
       width: auto;
       display: grid;
@@ -8587,19 +8590,19 @@
     body.news .tag-side-block .tag-cloud .tag,
     body.news .news-container .tags .tag,
     body.news .featured-pickup .featured-pickup-unit .tags .tag {
-      --_tag-color: var(--75-accent-hover);
-      --focus-outline-color: var(--_tag-color);
+      --_tag-accent: var(--_tag-color, var(--75-accent-hover));
+      --focus-outline-color: var(--_tag-accent);
       min-height: 24px;
       align-content: center;
       font-weight: 500;
       text-wrap: nowrap;
       padding: 0 0.3rem;
-      background-color: var(--_tag-color);
-      border-color: var(--_tag-color);
+      background-color: var(--_tag-accent);
+      border-color: var(--_tag-accent);
       color: var(--text-bright);
 
       &:not(.tag-color-feature-advertorial, .tag-color-feature-spoiler):is(:hover, :focus-visible) {
-        background-color: rgb(from var(--_tag-color) r g b / 0.5);
+        background-color: oklch(from var(--_tag-accent) l c h / 0.5);
       }
 
       &.tag-color-feature-advertorial:is(:hover, :focus-visible) {
@@ -8612,34 +8615,6 @@
         &:is(:hover, :focus-visible) {
           background-color: var(--red-light);
         }
-      }
-
-      &.tag-color-feature-events {
-        --_tag-color: var(--tag-color-gray);
-      }
-
-      &.tag-color1 {
-        --_tag-color: var(--tag-color-red);
-      }
-
-      &.tag-color2 {
-        --_tag-color: var(--tag-color-orange);
-      }
-
-      &.tag-color3 {
-        --_tag-color: var(--tag-color-green);
-      }
-
-      &.tag-color4 {
-        --_tag-color: var(--tag-color-purple);
-      }
-
-      &.tag-color5 {
-        --_tag-color: var(--tag-color-pink);
-      }
-
-      &.tag-color6 {
-        --_tag-color: var(--tag-color-gray);
       }
     }
 
@@ -8718,7 +8693,7 @@
         color: var(--text-main);
 
         &:is(:hover, :focus-visible) {
-          background-color: rgb(from var(--_tag-color) r g b / 0.3);
+          background-color: oklch(from var(--_tag-color) l c h / 0.3);
         }
 
         .icon-category-svg {
@@ -8730,59 +8705,11 @@
         circle {
           fill: var(--_tag-color);
         }
-
-        &.tag-color1 {
-          --_tag-color: var(--tag-color-red);
-        }
-
-        &.tag-color2 {
-          --_tag-color: var(--tag-color-orange);
-        }
-
-        &.tag-color3 {
-          --_tag-color: var(--tag-color-green);
-        }
-
-        &.tag-color4 {
-          --_tag-color: var(--tag-color-purple);
-        }
-
-        &.tag-color5 {
-          --_tag-color: var(--tag-color-pink);
-        }
-
-        &.tag-color6 {
-          --_tag-color: var(--tag-color-gray);
-        }
       }
 
       /* -- 5.5.2 - Tables -- */
       ~ div.pt16 {
         font-family: var(--ff-main);
-
-        #cat-anime {
-          --_tag-color: var(--tag-color-red);
-        }
-
-        #cat-manga {
-          --_tag-color: var(--tag-color-orange);
-        }
-
-        #cat-people {
-          --_tag-color: var(--tag-color-green);
-        }
-
-        #cat-music {
-          --_tag-color: var(--tag-color-purple);
-        }
-
-        #cat-events {
-          --_tag-color: var(--tag-color-pink);
-        }
-
-        #cat-industry {
-          --_tag-color: var(--tag-color-gray);
-        }
 
         .news-tags-header {
           font-family: inherit;
@@ -8943,7 +8870,7 @@
 
       .quotetext {
         padding: 8px;
-        background-color: rgb(from var(--bg-hover) r g b / 0.45);
+        background-color: oklch(from var(--bg-hover) l c h / 0.45);
         border: none;
         color: inherit;
       }
@@ -9098,7 +9025,7 @@
 @-moz-document domain("myanimelist.net") {
 
   /* ======================================================================================= */
-  /* Industry                                                                          */
+  /* Industry                                                                                */
   /* ======================================================================================= */
   /* ---- 6.0.0 - Industry ---- */
   html, .dark-mode {
@@ -9946,7 +9873,7 @@
         color: var(--accent-color);
         
         &.on {
-          background-color: rgb(from var(--bg-main) r g b / 0.75);
+          background-color: oklch(from var(--bg-main) l c h / 0.75);
           border-radius: 0.2rem;
         }
       }
@@ -10321,18 +10248,6 @@
         .by {
           margin-inline: 0.2rem 0;
         }
-
-        .tag-anime {
-          --_tag-color: var(--tag-color-red);
-        }
-
-        .tag-manga {
-          --_tag-color: var(--tag-color-orange);
-        }
-
-        .tag-challenge {
-          --_tag-color: var(--tag-color-blue);
-        }
       }
 
       .search-side .quick-search a {
@@ -10348,19 +10263,7 @@
         color: var(--text-bright);
 
         &:is(:hover, :focus-visible) {
-          background-color: rgb(from var(--_tag-color) r g b / 0.5);
-        }
-
-        &[data-ga-click-param="type:anime"] {
-          --_tag-color: var(--tag-color-red);
-        }
-
-        &[data-ga-click-param="type:manga"] {
-          --_tag-color: var(--tag-color-orange);
-        }
-
-        &[data-ga-click-param="type:myanimelist"] {
-          --_tag-color: var(--tag-color-blue);
+          background-color: oklch(from var(--_tag-color) l c h / 0.5);
         }
       }
 
@@ -11711,9 +11614,7 @@
   }
 
   /* --- 11.3.0 - Watch Anime - Single Anime Pages - Episodes Tab --- */
-  :is(html, .dark-mode) .page-common
-  /* table:has(> tbody > tr > td > div.has-multi-episodes-info) */
-    {
+  :is(html, .dark-mode) .page-common {
     .has-multi-episodes-info {
       margin-block: 0.5rem !important;
       padding: 0.3rem 0.5rem;
@@ -12018,7 +11919,7 @@
       }
 
       /* - 11.4.1.1 - Thumbnail for videos "not available in your country" - */
-      .video-list:has(img[src="https://cdn.myanimelist.net/images/icon-banned-youtube.png"]) {
+      .video-list:has(img[src*="/images/icon-banned-youtube.png"]) {
         align-content: center;
         text-decoration: none;
         background: var(--bg-second);
@@ -12072,7 +11973,7 @@
         aspect-ratio: 1;
         display: block;
         align-content: center;
-        background-color: rgb(from var(--bg-main) r g b / 0.85);
+        background-color: oklch(from var(--bg-main) l c h / 0.85);
         border-radius: 50%;
         color: transparent;
         transition: background-color 75ms ease-in-out;
@@ -12159,7 +12060,6 @@
       margin: unset !important;
       padding: 0.5rem !important;
       border: unset;
-      outline: 2px solid lime;
     }
     
     .borderClass:is(.bgColor1, .bgColor2) {
@@ -12185,7 +12085,6 @@
       
       a[href*="/dbchanges.php?go=report"] {
         color: var(--red-light);
-        outline: 2px solid lime;
       }
     }
     
