@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.7.0
+@version        0.7.1
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -2921,12 +2921,12 @@
       }
     }
 
-    #searchBar {
+    .page-common #searchBar {
       display: flex;
       padding: unset;
     }
 
-    #searchBar.searchBar {
+    .page-common #searchBar.searchBar {
       --_searchBar-bg: var(--bg-second);
       --_searchBar-border: var(--bg-hover);
       --_searchBar-text: var(--text-second);
@@ -3496,7 +3496,6 @@
       --_gap: 0.5rem;
       --_img-width: calc(((100cqw - (var(--_gap) * (var(--_item-count) - 1))) / var(--_item-count)) - (var(--_img-margin) * 2));
       --_img-height: calc(var(--_img-width) * 170 / 124);
-
       height: calc(var(--_img-height) + (var(--_img-margin) * 2));
       
       &#v-auto-recommendation-personalized_carousel {
@@ -4339,7 +4338,6 @@
         --_img-width: calc(((100cqw - (var(--_gap) * (var(--_item-count) - 1))) / var(--_item-count)) - (var(--_img-margin) * 2));
         --_img-height: calc(var(--_img-width) * 163 / 108);
         --_title-width: calc(((100cqw - (var(--_gap) * (var(--_item-count) - 1))) / var(--_item-count)));
-        
         width: 100%;
         height: auto;
         container-type: inline-size;
@@ -5906,7 +5904,6 @@
         --_img-margin: calc(var(--img-border-offset) + var(--img-border-size));
         --_img-width: calc(((100cqw - var(--_gap) * (var(--_items) - 1)) / var(--_items)) - var(--_img-margin) * 2);
         --_slider-height: calc(var(--_img-width) * 14 / 9);
-
         container-type: inline-size;
 
         .anime-slide-outer {
@@ -6091,7 +6088,6 @@
           .tags {
             grid-area: tags;
             width: 100%;
-
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -6100,7 +6096,7 @@
             margin: unset;
           }
 
-          .tag.tag {
+          .tags .tag.tag {
             font-weight: 400;
             text-align: right;
             margin: unset;
@@ -6108,59 +6104,59 @@
             background: linear-gradient(in oklch 90deg, transparent 0%, var(--_tag-color));
             border: unset;
             color: var(--text-main);
-          }
 
-          .tag.btn-label:is(:hover, :focus-visible) {
-            background-color: transparent;
-            filter: brightness(1.2);
-          }
-
-          .tag.tag:first-child {
-            width: 100%;
-            order: 1;
-            align-self: start;
-          }
-
-          .tag.recommended {
-            --_tag-color: var(--green-light);
-          }
-
-          .tag.mixed-feelings {
-            --_tag-color: var(--orange-light);
-          }
-
-          .tag.not-recommended {
-            --_tag-color: var(--red-light);
-          }
-
-          .tag.preliminary {
-            order: 2;
-            font-style: italic;
-            margin: unset;
-            background-color: transparent;
-            border: none;
-            color: var(--green-light);
-
-            span {
-              color: var(--text-second);
+            &:first-child {
+              width: 100%;
+              order: 1;
+              align-self: start;
             }
-          }
 
-          .tag.tag:has(img) {
-            order: 3;
-            padding: 0.125rem 0.5rem;
-            background-color: var(--50-accent-hover);
-            border: 1px solid transparent;
-          }
+            &.preliminary {
+              order: 2;
+              font-style: italic;
+              margin: unset;
+              background-color: transparent;
+              border: none;
+              color: var(--green-light);
 
-          .tag.btn-label:has(img):is(:hover, :focus-visible) {
-            background-color: var(--75-accent-hover);
-            border-color: var(--accent-color);
-            color: var(--text-bright);
-          }
+              span {
+                color: var(--text-second);
+              }
+            }
+            
+            &:has(img) {
+              order: 3;
+              padding: 0.125rem 0.5rem;
+              background-color: var(--50-accent-hover);
+              border: 1px solid transparent;
+            }
+            
+            &.btn-label:is(:hover, :focus-visible) {
+              background-color: transparent;
+              filter: brightness(1.2);
+            }
+            
+            &.btn-label:has(img):is(:hover, :focus-visible) {
+              background-color: var(--75-accent-hover);
+              border-color: var(--accent-color);
+              color: var(--text-bright);
+            }
 
-          .tag > img {
-            display: none;
+            > img {
+              display: none;
+            }
+
+            &.recommended {
+              --_tag-color: var(--green-light);
+            }
+
+            &.mixed-feelings {
+              --_tag-color: var(--orange-light);
+            }
+
+            &.not-recommended {
+              --_tag-color: var(--red-light);
+            }
           }
 
           .text {
@@ -6272,12 +6268,12 @@
             gap: 1rem;
             padding: 0 0.5rem;
 
-            > * {
+            > :is(*, [class]) {
               margin: unset;
               color: var(--text-second);
             }
 
-            :is(.readmore, .showless, .open, .gift, .menu) a {
+            :is(.readmore, .showless, .open, .gift, .menu) :is(a, a[class]) {
               color: inherit;
 
               &:is(:hover, :focus-visible) {
