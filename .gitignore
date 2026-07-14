@@ -1,2 +1,7 @@
 toc.txt
 todos.txt
+
+# AI tooling
+.agents/
+.opencode/
+skills-lock.json
