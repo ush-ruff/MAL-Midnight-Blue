@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.7.1
+@version        0.8.0
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -20,11 +20,6 @@
 
   @import url('https://fonts.cdnfonts.com/css/avenir'); /* DEBUGGING ONLY */
 
-  /* --- Image Imports --- */
-  /*   @import url('https://cdn.jsdelivr.net/gh/ush-ruff/Common@main/MAL/entryimagelink.css'); */
-  /*   @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"); */
-
-
   /* --- Custom Variables --- */
   :root {
     --page-size: clamp(960px, 55vw + 10rem, 1600px);
@@ -40,6 +35,7 @@
 
     /* Images & Icons */
     --cube-texture: url("https://i.imgur.com/3ZFqVkc.png");
+    --noise: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/noise.svg");
     --mal-logo: url("https://i.imgur.com/GkTwfpQ.png");
     --questionmark: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/questionmark.svg");
     --tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23e8eaed'%3E%3Cpath d='M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z'/%3E%3C/svg%3E");
@@ -51,6 +47,8 @@
     --about-edit-list: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/about-page/about-edit-list.png");
     --about-calendar: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/about-page/about-calendar.png");
     --throbber: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/throbber.gif");
+    --google-play: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/google-play.png");
+    --apple-store: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/icons/apple-store.png");
 
 
     /* Fancy Images */
@@ -304,7 +302,29 @@
       outline: 2px solid var(--accent-color);
     }
   }
+  
+  /* --- Reduced Motion --- */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* --- Hide Social Media Buttons --- */
+  .sns-unit, 
+  .js-sns-icon-container {
+    display: none !important;
+  }
 
+  /* --- Hide MAL x Japan --- */
+  .banner-header-anime-straming {
+    display: none !important;
+  }
 
 }
 
@@ -350,6 +370,14 @@
   
   hr {
     color: var(--bg-hover);
+  }
+  
+  [style*="color: blue"] {
+    color: var(--blue-light) !important;
+  }
+  
+  [style*="color: red"] {
+    color: var(--red-light) !important;
   }
 
   html, .dark-mode {
@@ -402,16 +430,23 @@
       }
     }
     
+    .icon-about-recommendations::before {
+      anchor-name: --icon-about-recommendations; 
+    }
+    
     .icon-about-recommendations::after {
+      position-anchor: --icon-about-recommendations;
+      position-area: bottom;
       inset: unset;
       font-family: var(--ff-main);
       font-size: 0.775rem;
       font-weight: 600;
+      margin-block: 0.5rem;
       background-color: var(--25-accent-main);
       border-color: var(--75-accent-hover);
       border-radius: 0.2rem;
       color: var(--text-second);
-      translate: calc(-50% + 14px) calc(-100% - 0.5rem);
+      z-index: 99;
     }
 
 
@@ -473,7 +508,7 @@
       }
 
       .h2_overwrite {
-        font-size: 1rem; /* TEST */
+        font-size: 1rem;
       }
       
       .h2_side {
@@ -590,7 +625,8 @@
       /* -- 1.1.2 - Text Inputs & Dropdowns -- */
       .inputtext, 
       &.stacks input.title, 
-      &.stacks textarea.description {
+      &.stacks textarea.description, 
+      #dialog .textarea {
         font-family: var(--ff-main);
         padding: 0.3rem 0.6rem;
         border-radius: 0.2rem;
@@ -605,7 +641,6 @@
           
           /* TODO: To check on all text inputs to see if the below change looks good */
           outline-offset: 0;
-          
         }
       }
       
@@ -626,6 +661,7 @@
 
         &:focus-visible {
           outline: 2px solid var(--accent-color);
+          outline-offset: 0;
         }
         
         &::placeholder {
@@ -641,40 +677,17 @@
       }
       
       .quotetext {
-        /* position: relative; */
-        /* font-style: italic; */
         padding-inline-start: 1rem;
         background-color: oklch(from var(--bg-hover) l c h / 0.5);
         border-color: oklch(from var(--bg-hover) l c h / 0.75);
         isolation: isolate;
         overflow: hidden;
-        
-        /*
-        &::before, &::after {
-          position: absolute;
-          font-family: var(--ff-fa);
-          font-weight: 900;
-          font-size: 5rem;
-          line-height: 0;
-          color: var(--50-accent-main-text);
-          opacity: 0.05;
-          z-index: -1;
-        }
-        
-        &::before {
-          content: "\f10d";
-          top: 0;
-          left: 5px;
-          translate: 0 15px;
-        }
-        
-        &::after {
-          content: "\f10e";
-          right: 10px;
-          bottom: 0;
-          translate: 0 -15px;
-        }
-        */
+      }
+      
+      .bbcode-explanation :is(code, .code) {
+        background-color: var(--25-main-hover);
+        border-color: var(--bg-hover);
+        color: var(--green);
       }
 
 
@@ -1163,11 +1176,49 @@
           width: var(--_img-width);
         }
       }
+      
+      .picSurround:has(img[src*="/images/na.gif"]) > a {
+        --_img-width: 50px;
+        --_img-height: 70px;
+        position: relative;
+        overflow: hidden;
+        
+        img {
+          width: var(--_img-width) !important;
+          height: var(--_img-height) !important;
+          display: block;
+          padding-inline-start: calc(var(--_img-width));
+        }
+      }
+      
+      #advancedSearchResultList .image[style*="/images/na.gif"] {
+        position: relative;
+        background-image: unset !important;
+      }
+      
+      #advancedSearchResultList .image[style*="/images/na.gif"]::before, 
+      .picSurround:has(img[src*="/images/na.gif"]) > a::before {
+        content: "N/A";
+        position: absolute;
+        inset: 0;
+        display: block;
+        align-content: center;
+        font-family: var(--ff-secondary);
+        font-size: 1.5rem;
+        font-weight: 900;
+        font-style: normal;
+        text-align: center;
+        color: var(--25-accent-main-text);
+        rotate: -5deg;
+        opacity: 0.85;
+        pointer-events: none;
+      }
 
       /* - 1.1.7.2 - Images - Fancy Border - */
       div.picSurround img,
       div.picSurround a img,
-      .picSurround:has(img[src="https://cdn.myanimelist.net/r/42x62/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c"]),
+      .picSurround:has(img[src*="/42x62/images/questionmark_23.gif"]),
+      .picSurround:has(img[src*="/100x140/images/questionmark_23.gif"]),
       .column-item .img .edge img,
       .mb12.lh12.clearfix td[width="28"] a img,
       img[src*="clubs"],
@@ -1176,6 +1227,7 @@
       td.forum_boardrow2 a img,
       &.page-forum .forum-icon img,
       .profile .statistics-updates .image img,
+      .incrementalSearchResultList .list .image,
       .user-comments .comment .image img,
       /* .user-profile .user-image > img, */
       .news-side-block img.thumbs,
@@ -1274,6 +1326,31 @@
         background-position: left top;
         background-repeat: no-repeat;
       }
+      
+      /* - 1.1.7.5 - Play Store Images - */
+      img[src*="/images/about/support/google-play-badge.png"], 
+      img[src*="/images/about/support/app-store-badge.png"] {
+        --_width: 150px;
+        --_height: calc(var(--_width) * 318 / 958);
+        width: var(--_width) !important;
+        height: var(--_height) !important;
+        padding-inline-start: var(--_width);
+        background-size: var(--_width) var(--_height);
+        background-position: left top;
+        background-repeat: no-repeat;
+        
+        a:has(> &) {
+          text-decoration: none;
+        }
+      }
+      
+      img[src*="/images/about/support/google-play-badge.png"] {
+        background-image: var(--google-play);
+      }
+      
+      img[src*="/images/about/support/app-store-badge.png"] {
+        background-image: var(--apple-store);
+      }
 
 
       /* -- 1.1.8 - Notice -- */
@@ -1371,7 +1448,6 @@
       table.forum-topics tr td {
         width: auto;
         padding: 0.25rem 0.5rem;
-        /* TEST */
         border-color: var(--bg-hover);
         
         &.watch-state {
@@ -1749,6 +1825,10 @@
         position: unset;
         grid-column: 2;
         justify-self: end;
+        
+        .header-menu-login:has(> .btn-mal-service) { /* Hide "Hide Ads" Button */
+          display: none !important;
+        }
       }
 
       .link-mal-logo {
@@ -1822,8 +1902,19 @@
       }
 
       .header-notification-button.has-unread::after {
-        top: 0;
+        box-sizing: content-box !important;
+        top: -3px;
+        left: 19px;
+        min-width: 1em;
+        aspect-ratio: 1;
+        display: block;
+        align-content: center;
+        line-height: 1;
+        text-align: center;
+        padding: 2px;
         background-color: var(--accent-color);
+        border: 1px solid var(--bg-second);
+        border-radius: 100%;
       }
 
       .header-profile-link:is(:hover, :focus-visible) {
@@ -1947,7 +2038,8 @@
           content: "";
           position: absolute;
           inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 700'%3E%3Cdefs%3E%3Cfilter id='a' width='140%25' height='140%25' x='-20%25' y='-20%25' color-interpolation-filters='linearRGB' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse'%3E%3CfeTurbulence width='100%25' height='100%25' x='0%25' y='0%25' baseFrequency='.146' numOctaves='4' result='turbulence' seed='15' stitchTiles='stitch'/%3E%3CfeSpecularLighting width='100%25' height='100%25' x='0%25' y='0%25' in='turbulence' lighting-color='%23fff' result='specularLighting' specularConstant='1.2' specularExponent='20' surfaceScale='18'%3E%3CfeDistantLight azimuth='3' elevation='53'/%3E%3C/feSpecularLighting%3E%3C/filter%3E%3C/defs%3E%3Cpath fill='transparent' d='M0 0h700v700H0z'/%3E%3Cpath fill='%23fff' d='M0 0h700v700H0z' filter='url(%23a)'/%3E%3C/svg%3E");
+          background-image: var(--noise);
+          background-size: 300px;
           mix-blend-mode: overlay;
           opacity: 0.2;
           z-index: -1;
@@ -2284,6 +2376,10 @@
             display: flex;
             gap: 0.2rem;
             justify-content: center;
+            
+            @container (width < 1100px) {
+              width: 90%;
+            }
           }
 
           ul li {
@@ -3048,37 +3144,84 @@
       width: 100% !important;
     }
     
-    .incrementalSearchResultList { /* TODO: Fix results on header bar */
+    .incrementalSearchResultList {
+      --_img-width: 65px;
       padding: 0.5rem;
       background-color: var(--50-main-second);
       border-color: var(--bg-hover);
       border-radius: 0.3rem;
       color: var(--text-second);
       
-      .list {
+      .list:is(.anime, .manga, .character, .club) {
+        padding: 0.5rem;
         background-color: transparent;
+        border-radius: 0.2rem;
         
         &.focus {
           background-color: var(--25-main-hover);
         }
         
-        .off .info:is(.character, .person, .club, .user, .anime, .manga,  .news,  .featured,  .forum) .name, 
-        .on .info .name {
+        > a > div {
+          --_gap: 0.75rem;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: var(--_gap);
+          container-type: inline-size;
+        }
+        
+        .info {
+          max-width: calc(100cqw - var(--_img-width) - var(--_gap));
+          display: flex;
+          flex-direction: column;
+          padding: unset;
+        }
+        
+        .image {
+          position: unset;
+          width: var(--_img-width);
+          height: auto;
+          aspect-ratio: 5.8 / 3.8;
+          
+          .on & {
+            aspect-ratio: 5.8 / 7.8;
+          }
+        }
+        
+        :is(.on, .off) .info .name {
           font-size: var(--_title-size);
           color: var(--accent-color);
         }
         
-        .off .info:is(.anime, .manga,  .news,  .featured,  .forum) .media-type, 
-        .on .info :is(.media-type, .extra-info) {
+        :is(.on, .off) .info :is(.media-type, .extra-info) {
           font-size: var(--_info-size);
           line-height: 1.7;
           color: var(--text-dim);
         }
+        
+        .on .info .extra-info {
+          color: var(--text-second);
+        }
+      }
+      
+      .list.separator {
+        height: auto;
+        font-size: 0.825rem;
+        margin-block: 0.5rem 0.25rem;
+        padding: 0.2rem 0.4rem;
+        background-color: var(--bg-hover);
+        border-color: var(--bg-hover);
+        border-radius: 0.2rem;
+        color: var(--text-main);
+      }
+      
+      > div:first-child > .list.separator {
+        margin-block-start: unset;
       }
       
       .list.list-bottom {
         font-size: var(--_title-size);
         text-align: center;
+        margin-block-start: 0.5rem;
         background-color: var(--accent-color);
         border: 1px solid var(--accent-color);
         border-radius: 0.3rem;
@@ -3264,19 +3407,12 @@
       }
       
       td:nth-child(2) {
-        --_gap: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: var(--_gap);
+        display: grid;
+        align-content: start;
         padding-inline-start: 0.25rem;
         
         a {
           align-self: start;
-        }
-        
-        .hoverinfo_trigger {
-          font-weight: 500 !important;
-          margin-block-start: calc(var(--_gap) * -1);
         }
       }
       
@@ -3293,13 +3429,26 @@
       
       .title {
         width: 100%;
+        display: grid !important;
+        grid-template-columns: repeat(3, auto);
+        grid-template-areas: "title btn extra";
+        justify-content: start;
+        gap: 0.5rem;
         
         .hoverinfo_trigger {
+          grid-area: title;
           font-weight: 500 !important;
+          
+          /* TODO: position hoverinfo using CSS anchor positioning */
         }
         
-        a:last-child {
-          margin-block-start: 0.2rem;
+        > a:last-child {
+          grid-area: btn;
+          place-self: center;
+        }
+        
+        > div:first-child {
+          grid-area: extra;
         }
       }
       
@@ -3314,6 +3463,211 @@
           display: none;
         }
       }
+    }
+    
+    /* -- 1.3.6 - Search All Results -- */
+    .search_all .content-result {
+      .content-left {
+        border-color: var(--bg-hover);
+      }
+      
+      .result-header {
+        font-size: 0.825rem;
+        padding: 0.5rem;
+        background-color: var(--bg-hover);
+        color: var(--text-main);
+      }
+      
+      .link-content-jump {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-family: var(--ff-main);
+        margin: unset !important;
+        
+        span {
+          margin-inline-end: 0.25rem !important;
+        }
+        
+        .link {
+          margin: unset;
+          padding: 0.3rem 0.6rem;
+          background-color: var(--bg-second);
+          border: 1px solid var(--bg-second);
+          border-radius: 0.2rem;
+          color: var(--text-second);
+          
+          &:is(:hover, :focus-visible, .on) {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            border-bottom-color: var(--text-bright);
+            color: var(--text-bright);
+          }
+          
+          &:active {
+            margin-block-start: -1px;
+            background-color: var(--50-accent-second);
+            border-color: var(--50-accent-second);
+            border-bottom-color: var(--75-accent-main);
+            border-block-width: 0 2px;
+            color: var(--text-main);
+          }
+        }
+      }
+      
+      .content-left article {
+        display: grid;
+        gap: 0.5rem;
+      }
+      
+      .content-left .list {
+        display: flex !important;
+        gap: 0.5rem;
+        margin: unset;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        
+        &:nth-child(even) {
+          background-color: var(--75-main-hover);
+          border: 1px solid var(--50-main-hover);
+        }
+        
+        &:nth-child(odd) {
+          background-color: var(--75-main-second);
+          border: 1px solid var(--50-main-second);
+        }
+        
+        .picSurround {
+          --_img-width: 60px;
+          --_mask-size: 72px;
+          --_mask-size-small: 34px;
+          width: auto;
+        }
+        
+        img {
+          width: var(--_img-width);
+          height: auto;
+          aspect-ratio: 42 / 62;
+          
+          &.thumb {
+            aspect-ratio: 1;
+          }
+        }
+        
+        .information {
+          flex-grow: 1;
+          padding: unset !important;
+          
+          a.hoverinfo_trigger {
+            font-size: 0.775rem;
+          }
+          
+          div.fs10 {
+            font-size: 0.725rem !important;
+          }
+        }
+      }
+      
+      .btn-search-more {
+        font-family: var(--ff-main);
+        padding: 0.4rem 0.8rem;
+        background-color: var(--accent-color);
+        border: 1px solid var(--accent-color);
+        color: var(--text-bright);
+        transition: 175ms ease-in-out;
+        transition-property: background, border;
+        
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-accent-main);
+        }
+        
+        &:active {
+          background-color: var(--25-accent-main);
+          border-color: var(--25-accent-main);
+          border-bottom-color: var(--75-accent-main);
+          border-block-width: 0 2px;
+        }
+      }
+      
+      /* - 1.3.6.1 - Right Side - */
+      .content-right .result-header:nth-child(1) {
+        margin-block-start: unset !important;
+      }
+      
+      .content-right .list {
+        display: grid !important;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "img  title" "info info ";
+        gap: 0.3rem 0.75rem;
+        font-family: var(--ff-main);
+        margin: unset;
+        padding: 0.5rem 0;
+        border-color: var(--bg-hover);
+        
+        &:has(> .information > a[href*="clubs.php"]) {
+          grid-template-areas: "img  title" "img info ";
+        }
+        
+        > div {
+          display: contents !important;
+        }
+        
+        .thumb a {
+          --_img-width: 75px;
+          --_img-height: 75px;
+          grid-area: img;
+          
+          img {
+            width: 75px;
+            height: auto;
+            aspect-ratio: 1;
+          }
+          
+          &:has(img[src*="/images/na.gif"]) {
+            padding: var(--img-border-offset);
+          }
+        }
+        
+        .information > .hoverinfo_trigger {
+          grid-area: title;
+        }
+        
+        .information > div {
+          grid-area: info;
+          display: flex;
+          align-items: center;
+          gap: 0.2rem;
+          font-size: 0.7rem !important;
+          padding: unset !important;
+          color: var(--text-second) !important;
+          
+          .users {
+            text-decoration: none;
+            margin-inline-start: auto;
+            color: inherit;
+            
+            &:is(:hover, :focus-visible) {
+              color: var(--accent-color);
+            }
+            
+            &::before {
+              content: "\f27a";
+              font-family: var(--ff-fa);
+              font-size: 0.85em;
+              font-weight: 600;
+              margin-inline-end: 0.25rem;
+            }
+          }
+        }
+        
+        .information:has(a[href*="clubs.php"]) > div {
+          flex-direction: column;
+          align-items: start;
+          gap: 0.5rem;
+        }
+        
+      }
+      
     }
     
     
@@ -3484,6 +3838,38 @@
       .mal-modal-body .modal-vote-replies {
         color: var(--text-dim);
       }
+    }
+    
+    /* -- 1.5.1 - Dialog Boxes -- */
+    #dialog {
+      --_border-width: 10px;
+      --_border-color: var(--25-main-hover);
+      --_spacing-color: var(--75-main-hover);
+      --_dash-length: 25px;
+      --_spacing: 15px;
+      --_angle: 100deg;
+      position: relative;
+      background-image: 
+        repeating-linear-gradient(calc(-60deg + var(--_angle)), var(--_border-color), var(--_border-color) var(--_dash-length), var(--_spacing-color) var(--_dash-length), var(--_spacing-color) calc(var(--_dash-length) + var(--_spacing)), var(--_border-color) calc(var(--_dash-length) + var(--_spacing))), 
+        repeating-linear-gradient(calc(300deg + var(--_angle)), var(--_border-color), var(--_border-color) var(--_dash-length), var(--_spacing-color) var(--_dash-length), var(--_spacing-color) calc(var(--_dash-length) + var(--_spacing)), var(--_border-color) calc(var(--_dash-length) + var(--_spacing))), 
+        repeating-linear-gradient(calc(120deg + var(--_angle)), var(--_border-color), var(--_border-color) var(--_dash-length), var(--_spacing-color) var(--_dash-length), var(--_spacing-color) calc(var(--_dash-length) + var(--_spacing)), var(--_border-color) calc(var(--_dash-length) + var(--_spacing))), 
+        repeating-linear-gradient(calc(2100deg + var(--_angle)), var(--_border-color), var(--_border-color) var(--_dash-length), var(--_spacing-color) var(--_dash-length), var(--_spacing-color) calc(var(--_dash-length) + var(--_spacing)), var(--_border-color) calc(var(--_border-width) + var(--_spacing))); 
+      background-size: var(--_border-width) 100%, 100% var(--_border-width), var(--_border-width) 100% , 100% var(--_border-width); 
+      background-position: 0 0, 0 0, 100% 0, 0 100%; 
+      background-repeat: no-repeat; 
+      border: 2px solid var(--bg-hover);
+      border-radius: 0.2rem;
+      box-shadow: 2px 4px 10px 2px oklch(from var(--bg-hover) l c h / 0.15);
+      
+      > tbody {
+        display: block;
+        margin: var(--_border-width);
+        
+        > tr > td {
+          border: 2px solid var(--bg-hover);
+        }
+      }
+      
     }
     
     
@@ -4578,6 +4964,9 @@
     .seasonal-anime-list .anime-header {
       grid-column: 1 / -1;
       line-height: 1.25;
+      font-family: var(--ff-secondary);
+      font-size: 0.95rem;
+      font-weight: 900;
       margin: unset;
       background-color: var(--accent-color);
       border: unset;
@@ -4737,24 +5126,30 @@
 
       .genres-inner {
         width: auto;
-        height: auto;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: 0.25rem;
         align-items: center;
-        justify-content: center;
-        padding: 0.5rem 0;
+        padding: 0.5rem;
       }
 
       .genres .genre {
+        font-family: var(--ff-secondary);
         font-size: 0.65rem;
+        font-weight: 600;
         margin: unset;
         padding: 0.2rem 0.6rem;
         background-color: var(--25-accent-hover);
         border-color: var(--25-accent-hover);
         color: var(--accent-color);
         border-radius: 100vw;
+        
+        &:nth-child(1) {
+          margin-inline-start: auto;
+        }
+        
+        &:nth-last-child(1) {
+          margin-inline-end: auto;
+        }
 
         &:is(:hover, :focus-visible) {
           background-color: var(--50-accent-hover);
@@ -4768,22 +5163,7 @@
       }
       
       .genres .btn-more-genre {
-        background-image: unset;
-        background-color: var(--accent-color);
-        border-color: var(--accent-color);
-        
-        &::before {
-          content: "\f078";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          font-family: var(--ff-fa);
-          font-size: 8px;
-          font-weight: 900;
-          line-height: 1;
-          color: var(--text-bright);
-        }
+        display: none;
       }
 
       .toggle-text {
@@ -4951,6 +5331,13 @@
             color: var(--text-main);
             opacity: 1;
           }
+          
+          &:active {
+            margin-block-start: -1px;
+            background-color: var(--50-accent-second);
+            border-bottom: 2px var(--75-accent-main);
+            color: var(--text-main);
+          }
         }
 
         .bubble {
@@ -4969,7 +5356,22 @@
             left: -9px;
             border-right-color: var(--_bg);
           }
+          
+          &.episode {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0 0.5rem !important;
+            
+            > .bubble-item {
+              margin: unset;
+            }
+          }
         }
+      }
+      
+      .information.completed .bubble .fa-star::before {
+        color: var(--accent-color);
       }
       
     }
@@ -4980,9 +5382,9 @@
 
     /* -- 3.1.5 - Archive -- */
     .season .anime-seasonal-byseason {
-      --_mi: 1rem;
-      width: calc(100% - var(--_mi) * 2);
-      margin: var(--_mi) !important;
+      --_margin: 1rem;
+      width: calc(100% - var(--_margin) * 2);
+      margin: var(--_margin) !important;
 
       tr {
         display: grid;
@@ -5020,15 +5422,14 @@
           background: var(--text-dim);
           mask-image: var(--_mask-img);
           mask-repeat: no-repeat;
-          /* mask-position: center; */
           mask-size: var(--_size);
           opacity: 0.07;
-          transition: background-color var(--_transition-time-ease);
+          transition: background-color var(--_transition-time-ease), scale 0.6s var(--ease-overshoot-dramatic);
         }
         
         &:nth-child(1) { /* Winter */
           --_mask-img: var(--snowflake);
-          --_bg-hover: var(--winter);
+          --_season-accent-color: var(--winter);
           
           &::before {
             rotate: 10deg;
@@ -5037,7 +5438,7 @@
         
         &:nth-child(2) { /* Spring */
           --_mask-img: var(--cherry-blossom);
-          --_bg-hover: var(--spring);
+          --_season-accent-color: var(--spring);
           
           &::before {
             rotate: -15deg;
@@ -5047,7 +5448,7 @@
         
         &:nth-child(3) { /* Summer */
           --_mask-img: var(--sun);
-          --_bg-hover: var(--summer);
+          --_season-accent-color: var(--summer);
           
           &::before {
             --_size: 80px;
@@ -5057,7 +5458,7 @@
         
         &:nth-child(4) { /* Fall */
           --_mask-img: var(--maple-leaf);
-          --_bg-hover: var(--fall);
+          --_season-accent-color: var(--fall);
           
           &::before {
             --_size: 70px;
@@ -5067,7 +5468,8 @@
         }
         
         &:has(> a:hover)::before {
-          background: var(--_bg-hover);
+          background: var(--_season-accent-color);
+          scale: 1.25;
         }
         
         &:not(:has(> a)) { /* Hide future seasons without any data */
@@ -5091,7 +5493,8 @@
         }
         
         &:is(:hover, :focus-visible) {
-          color: var(--_bg-hover);
+          color: var(--_season-accent-color);
+          box-shadow: inset 0 0 15px oklch(from var(--_season-accent-color) l c h / 0.1);
         }
       }
     }
@@ -5363,6 +5766,14 @@
           border-color: var(--accent-color);
           border-bottom-color: var(--text-bright);
           color: var(--text-bright);
+        }
+        
+        &:active {
+          background-color: var(--50-accent-second);
+          border-color: var(--50-accent-second);
+          border-bottom-color: var(--75-accent-main);
+          border-block-width: 0 2px;
+          color: var(--text-main);
         }
       }
 
@@ -5810,12 +6221,15 @@
 
     /* -- 3.2.7 - Episode Videos -- */
     #episode_video .anime-slide {
+      --_gap: 0.5rem;
       display: flex;
-      gap: 0.5rem;
+      gap: var(--_gap);
+      container-type: inline-size;
 
       .btn-anime {
         flex-grow: 1;
         width: auto !important;
+        max-width: calc(25cqw - var(--_gap));
         margin: unset;
 
         .link {
@@ -6688,7 +7102,7 @@
           color: inherit;
         }
         
-        .episode-poll {
+        .episode-poll.scored {
           background-image: linear-gradient(var(--75-accent-main) 0);
         }
 
@@ -9462,7 +9876,7 @@
   
 }
 
-@-moz-document domain("myanimelist.net") {
+@-moz-document url-prefix("https://myanimelist.net/users") {
 
   /* ======================================================================================= */
   /* User                                                                                    */
@@ -9582,6 +9996,10 @@
   html, .dark-mode {
     #content > table div[style*="width: 733px"] {
       width: auto !important;
+      
+      &[style*="overflow: hidden"] {
+        overflow: unset !important;
+      }
     }
     
     /* --- 9.1.0 - Clubs - Explore Page --- */
@@ -9671,6 +10089,29 @@
     }
     
     /* --- 9.2.0 - Clubs Page --- */
+    .form-club-user-comment {
+      display: flex !important;
+      flex-direction: column;
+      gap: 0.5rem;
+      
+      .textarea {
+        font-family: inherit;
+        text-indent: 4px;
+        padding-block: 0.4rem;
+        background-color: var(--bg-second);
+      }
+      
+      > div {
+        align-self: end;
+        margin: unset !important;
+      }
+      
+      .inputButton[type="submit" i] {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem !important;
+      }
+    }
+    
     [id^="comment"] {
       margin-block-end: 0.5rem;
       padding: 0.5rem 0.25rem;
@@ -9737,6 +10178,24 @@
       padding-block: 0.5rem;
     }
     
+    /* -- 9.2.2 - Sidebar -- */
+    #profileRows a[href*="/clubs.php?action=leave"] {
+      margin-block-start: 0.5rem;
+    }
+    
+    #club-mass-message-subscribe a {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+      margin-block-end: -1.5rem;
+      
+      &::before {
+        content: "\f1f6";
+        font-family: var(--ff-fa);
+        font-weight: 500;
+      }
+      
+    }
     
   }
   
@@ -9862,6 +10321,10 @@
             outline-offset: 4px;
           }
         }
+      }
+      
+      .time_left {
+        color: var(--red-light);
       }
       
       /* --- 10.1.0 - Header --- */
@@ -10269,7 +10732,7 @@
 
         .column-item {
           display: flex;
-          gap: 1rem;
+          gap: 1.5rem;
           padding: 0.5rem 0;
           border-color: var(--bg-hover);
           
@@ -10482,10 +10945,17 @@
         /* - 10.7.1.1 - Search List - Images - */
         .img .edge {
           --_section-bg: var(--bg-main);
+          width: auto;
+          height: auto;
           transition: transform 450ms var(--ease-overshoot-smooth);
           transform-origin: center left;
 
           img {
+            width: 90px;
+            max-width: unset;
+            height: auto;
+            max-height: unset;
+            aspect-ratio: 90 / 124;
             box-shadow: 0 0 0 calc(var(--img-border-offset) + var(--img-border-size)) var(--_section-bg);
           }
 
@@ -10531,7 +11001,20 @@
         }
         
         .img.spoiler .edge {
-          border-radius: var(--img-border-radius-large);
+          overflow: unset;
+          
+          img {
+            filter: unset;
+          }
+          
+          &::before {
+            content: "";
+            position: absolute;
+            inset: var(--img-border-offset);
+            background-color: oklch(from var(--bg-main) l c h / 0.2);
+            border-radius: calc(var(--img-border-radius-large) - var(--img-border-offset));
+            backdrop-filter: blur(20px);
+          }
         }
       }
       
@@ -11040,16 +11523,17 @@
         margin-block-end: 1rem;
         padding: 1rem;
         background-color: var(--50-main-second);
-        border: 1px solid var(--25-main-second);
+        border: 1px solid var(--25-accent-main);
         border-radius: 0.2rem;
+        box-shadow: 0 0 0 2px var(--bg-main);
         color: var(--text-second);
         
         &::after {
           content: "";
           position: absolute;
-          top: 100%;
-          left: -1px;
-          width: calc(100% + 2px);
+          top: calc(100% + 1px);
+          left: -2px;
+          width: calc(100% + 4px);
           height: 1rem;
           background: var(--_bg);
           border-bottom: 1px solid var(--bg-hover);
@@ -11091,11 +11575,13 @@
             background-color: var(--_bg) !important;
             
             &:nth-child(1 of .graph:not([style*="width: 0"])) {
-              border-radius: var(--_br) 0 0 var(--_br);
+              border-top-left-radius: var(--_br);
+              border-bottom-left-radius: var(--_br);
             }
             
             &:nth-last-child(1 of .graph:not([style*="width: 0"])) {
-              border-radius: 0 var(--_br) var(--_br) 0;
+              border-top-right-radius: var(--_br);
+              border-bottom-right-radius: var(--_br);
             }
           }
           
@@ -11880,6 +12366,7 @@
       }
 
       .video-list {
+        --_br: calc(var(--img-border-radius-large) + var(--img-border-offset-large) - var(--img-border-size));
         width: calc(100% - var(--_margin) * 2);
         height: auto;
         aspect-ratio: 16 / 9;
@@ -11902,8 +12389,13 @@
           width: 100%;
           height: auto;
           aspect-ratio: 16 / 9;
-          border-radius: inherit;
+          border-radius: var(--_br);
           object-fit: cover;
+        }
+        
+        > .info-container {
+          border-radius: var(--_br);
+          overflow: hidden;
         }
 
         .title {
@@ -12507,6 +12999,62 @@
       
     }
     
+    /* ---- 14.2.0 - Blogs - User Home Page ---- */
+    #content > div:has(> div[style*="float: right"]) {
+      display: grid;
+      grid-template-columns: 68cqw 1fr;
+      gap: 1rem;
+      
+      > div[style*="float: right"] {
+        grid-column: 2;
+        width: auto !important;
+        
+        + div {
+          grid-row: 1;
+          position: relative;
+          padding: unset !important;
+          
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -0.5rem;
+            width: 1px;
+            height: 100%;
+            border-right: 1px solid var(--bg-hover);
+          }
+        }
+      }
+    }
+    
+    /* --- 14.2.1 - User Home Page - Pagination --- */
+    #content > div > div[style*="padding-right: 210px"] > div:nth-last-child(1) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: unset !important;
+      padding: 0.4rem;
+      background-color: oklch(from var(--bg-main) calc(l + 0.025) c h);
+      border-radius: 0.3rem;
+      color: transparent;
+      box-shadow: 0 2px 10px oklch(from var(--bg-hover) l c h / 0.1);
+      
+      a {
+        font-family: var(--ff-secondary);
+        font-weight: 900;
+        text-decoration: none;
+        padding: 0.4rem 0.6rem;
+        background-color: var(--accent-color);
+        border: 1px solid var(--accent-color);
+        border-radius: 0.2rem;
+        color: var(--text-bright);
+        transition-property: background-color, color;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--50-accent-main);
+        }
+      }
+    }
     
   }
   
@@ -12816,13 +13364,21 @@
 
     /* Support */
     .page-support {
-      #myanimelist #content :is(p, li, h3, h4) {
+      #myanimelist #content :is(h3, h4, span.fw-b) {
+        color: var(--text-main);
+      }
+      
+      #myanimelist #content :is(p, li) {
         color: var(--text-second);
       }
 
       h2 {
         padding: 0.3rem 0.6rem;
         background-color: var(--bg-hover);
+      }
+      
+      li + li {
+        margin-block-start: 0.5rem;
       }
     }
 
@@ -12867,8 +13423,7 @@
         color: var(--text-main);
         transition-property: background-color, border-color, color;
 
-        &.on,
-        &:is(:hover, :focus-visible) {
+        &:is(.on, :hover, :focus-visible) {
           background-color: var(--accent-color);
           border-color: var(--accent-color);
           color: var(--text-bright);
@@ -12889,8 +13444,7 @@
         border-color: var(--bg-hover);
         color: var(--text-second);
 
-        &:focus-visible,
-        &:active {
+        &:is(:focus-visible, :active) {
           outline: 2px solid var(--accent-color);
         }
       }
@@ -13112,6 +13666,7 @@
 
   /* Membership */
   .membership .about-membership {
+    font-family: var(--ff-main);
 
     .plan-header,
     .plan,
@@ -13122,16 +13677,43 @@
 
     .plan-header,
     .plan :is(.plan-monthly, .plan-annually, .plan-gift) .plan-name,
-    .about-no-ads .text .description,
+    .about-no-ads .text .description .header,
     .about-extras .about-extras-content .header {
       color: var(--text-main);
+      
+      &:empty {
+        display: none;
+      }
+    }
+    
+    .plan-header, 
+    .plan :is(.plan-monthly, .plan-annually, .plan-gift) .plan-name, 
+    .about-extras .about-extras-content .header, 
+    .about-no-ads .text .header {
+      font-family: var(--ff-tertiary);
+      
     }
 
-    .about-extras .about-extras-content .text {
+    .about-extras .about-extras-content .text,
+    .about-no-ads .text .description {
       color: var(--text-second);
+    }
+    
+    section:nth-of-type(2) {
+      margin-block: -1rem 1rem;
+    }
+    
+    section:nth-of-type(3) {
+      margin-inline: -10px;
+      padding-block: 1.5rem 2rem !important;
+      background-color: var(--bg-second);
+      background-image: var(--cube-texture);
+      background-blend-mode: overlay;
     }
 
     section:nth-of-type(4) .fn-grey5 {
+      font-family: var(--ff-secondary);
+      font-size: 0.925rem !important;
       font-style: italic;
     }
 
@@ -13160,6 +13742,19 @@
 
   }
 
+}
+
+@-moz-document url-prefix("https://myanimelist.net/info.php?go=bbcode") {
+
+  /* ======================================================================================= */
+  /* BB Code Help                                                                            */
+  /* ======================================================================================= */
+  html, .dark-mode {
+    .page-common > div {
+      background-color: oklch(from var(--bg-second) l c h / 0.85);
+    }
+  }
+  
 }
 
 @-moz-document url("https://myanimelist.net/modules.php?go=report") {
