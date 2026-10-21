@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.9.1
+@version        0.9.2
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -162,6 +162,7 @@
     --halloween-06: #f2e8c6;
     --halloween-07: oklch(from #ea6000 l c h / 0.24);
     --halloween-08: #fefefe;
+    --halloween-09: #524742;
     
     --halloween-image-left: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/halloween/halloween-left.png");
     --halloween-image-right: url("https://raw.githubusercontent.com/ush-ruff/MAL-Midnight-Blue/main/images/halloween/halloween-right.png");
@@ -4656,17 +4657,17 @@
       }
 
       .header-profile-link {
-        color: var(--halloween-01);
-      }
-
-      .header-profile-link:is(:hover, :focus-visible) {
-        color: var(--halloween-03);
+        color: var(--halloween-05);
+        
+        &:is(:hover, :focus-visible) {
+          color: var(--halloween-06) !important;
+        }
       }
 
       /* -- 1.8.1 - Header -- */
       #headerSmall.halloween {
         background-image: unset;
-        background-color: var(--halloween-07);
+        background-color: var(--halloween-09);
         background-position: 0.25rem 0.125rem;
       }
       
@@ -4686,10 +4687,10 @@
 
       /* -- 1.8.2 - Menu -- */
       #menu.halloween #nav ul li a {
-        background-color: var(--halloween-04);
+        background-color: var(--halloween-09);
 
         &:is(:hover, :focus-visible) {
-          background-color: var(--halloween-05);
+          background-color: var(--halloween-04);
           color: var(--halloween-08);
         }
       }
