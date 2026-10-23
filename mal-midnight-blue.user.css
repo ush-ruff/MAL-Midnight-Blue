@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.9.3
+@version        0.9.4
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -4623,7 +4623,8 @@
 
     /* --- 1.8.0 - Halloween --- */
     body.halloween:not([class*="ownlist "]) {
-      background-image: var(--halloween-image) !important;
+      background-image: linear-gradient(90deg, alpha(from var(--halloween-01) / 0.5) 0 0), var(--halloween-image) !important;
+      background-blend-mode: color-dodge;
     }
 
     .page-common.halloween {
@@ -4665,7 +4666,7 @@
       /* -- 1.8.1 - Header -- */
       #headerSmall.halloween {
         background-image: unset;
-        background-color: var(--halloween-09);
+        background-color: var(--halloween-07);
         background-position: 0.25rem 0.125rem;
       }
       
