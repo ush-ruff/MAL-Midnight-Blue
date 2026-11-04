@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.10.0
+@version        0.10.1
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -1642,7 +1642,7 @@
       .boxlist > div.di-tc:has(img[src*="/images/questionmark_23.gif"]),
       .picSurround:has(img[src*="/images/questionmark_23.gif"]) {
         position: relative;
-        background-color: var(--50-main-hover);
+        background-color: var(--bg-second);
         overflow: hidden;
 
         &::before {
@@ -1725,7 +1725,7 @@
           position: relative;
           width: var(--_img-width);
           height: auto;
-          background-color: var(--50-main-hover);
+          background-color: var(--bg-second);
           aspect-ratio: 5 / 7;
           overflow: hidden;
 
@@ -4025,7 +4025,7 @@
           }
 
           &[style*="/images/questionmark_23.gif"] {
-            background-color: var(--50-main-hover);
+            background-color: var(--bg-second);
             background-image: unset !important;
 
             &::before {
