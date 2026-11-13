@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/MAL-Midnight-Blue
 @updateURL      https://github.com/ush-ruff/MAL-Midnight-Blue/raw/main/mal-midnight-blue.user.css
-@version        0.10.1
+@version        0.11.0
 @description    A dark blue theme for MyAnimelist.
 @author         ushruff
 @license        GNU GPLv3
@@ -133,6 +133,7 @@
     --tag-color-purple: var(--purple);
     --tag-color-pink: var(--pink);
     --tag-color-gray: var(--gray);
+    --tag-color-indigo: var(--indigo);
 
     /* Watch Status Colors */
     --watching: var(--green);
@@ -336,6 +337,7 @@
 
 @-moz-document domain("myanimelist.net") {
 
+
 }
 
 @-moz-document domain("myanimelist.net") {
@@ -471,6 +473,61 @@
       border-radius: 0.2rem;
       color: var(--text-second);
       z-index: 99;
+    }
+
+    .mal-profile-card {
+      background-color: var(--50-main-second);
+      border-color: var(--bg-hover);
+      box-shadow: 0 0 10px 2px oklch(from var(--bg-hover) l c h / 0.3);
+
+      .signature {
+        max-height: 200px;
+        min-height: unset;
+        background-color: var(--bg-second);
+      }
+
+      .main {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .main .avatar {
+        width: calc(100px + var(--img-margin));
+
+        .title .mal-badge {
+          font-family: var(--ff-main);
+          padding: 0.2rem;
+          background-color: var(--25-accent-second);
+          border: 1px solid var(--50-accent-hover);
+          border-radius: 0.2rem;
+          color: var(--text-main);
+        }
+      }
+
+      .main .content .user {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 0.5rem;
+
+        .registered,
+        .posts {
+          color: var(--text-second);
+        }
+
+        .mal-btn {
+          font-family: var(--ff-main);
+          margin: unset;
+        }
+      }
+
+    }
+
+    .toast-container .toast {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      color: var(--text-bright);
+      box-shadow: 0 0 10px 2px oklch(from var(--bg-hover) l c h / 0.3);
     }
 
     /* -- 1.0.3 - Error 404 -- */
@@ -1203,7 +1260,8 @@
       .anime-detail-header-video .video-episode .video-unit,
       .anime-detail-header-video .video-promotion .video-unit,
       .watch-video .video-list-outer-vertical .video-list,
-      .video-block .video-list {
+      .video-block .video-list,
+      #widget-promotional-video .widget-slide-outer {
         .btn-play {
           --_size: 2.5rem;
           width: var(--_size);
@@ -1238,7 +1296,8 @@
       /* -- 1.1.5 - Tags -- */
       #all,
       .tag-challenge,
-      a[data-ga-click-param="type:myanimelist"] {
+      a[data-ga-click-param="type:myanimelist"],
+      .social_media_moderator {
         --_tag-color: var(--tag-color-blue);
       }
 
@@ -1248,7 +1307,11 @@
       .tag-anime,
       a[data-ga-click-param="type:anime"],
       .mal-badge.anime,
-      .anime_db_moderator {
+      .anime_db_administrator,
+      .manga_db_administrator,
+      .lead_administrator,
+      .site_administrator,
+      .content_administrator {
         --_tag-color: var(--tag-color-red);
       }
 
@@ -1258,33 +1321,42 @@
       .tag-manga,
       a[data-ga-click-param="type:manga"],
       .mal-badge.manga,
+      .anime_db_moderator,
       .manga_db_moderator {
         --_tag-color: var(--tag-color-orange);
       }
 
       #cat3,
       .tag-color3,
-      #cat-people {
+      #cat-people,
+      .news_moderator {
         --_tag-color: var(--tag-color-green);
       }
 
       #cat4,
       .tag-color4,
-      #cat-music {
+      #cat-music,
+      .review_recommendation_moderator {
         --_tag-color: var(--tag-color-purple);
       }
 
       #cat5,
       .tag-color5,
-      #cat-events {
+      #cat-events,
+      .community_moderator {
         --_tag-color: var(--tag-color-pink);
       }
 
       #cat6,
       .tag-color6,
       #cat-industry,
-      .tag-color-feature-events {
+      .tag-color-feature-events,
+      .rewrite_moderator {
         --_tag-color: var(--tag-color-gray);
+      }
+
+      .irc_moderator {
+        --_tag-color: var(--tag-color-indigo);
       }
 
       /* -- 1.1.6 - Buttons -- */
@@ -1610,7 +1682,11 @@
           right: calc(anchor(right) - 5px);
           padding: unset;
           background-color: inherit;
-          border: 2px solid var(--_bg);
+
+          &::before {
+            border: 2px solid var(--_bg);
+            border-radius: inherit;
+          }
         }
 
         .text {
@@ -1622,6 +1698,11 @@
         &:is(:hover, :focus-visible) {
           border-color: var(--25-accent-second);
           color: var(--accent-color) !important;
+        }
+
+        div:has(> &) {
+          width: max-content;
+          margin-inline: auto;
         }
       }
 
@@ -1785,6 +1866,8 @@
       .table-recently-updated div.di-tc[style="width:30px;"],
       .incrementalSearchResultList .list .image,
       .featured.po-r.clearfix img,
+      .staff_wrap .staff img,
+      .mal-profile-card .main .avatar .link .avatar-icon,
 
       td.forum_boardrow2 a img,
       &.page-forum .forum-icon img,
@@ -1951,7 +2034,7 @@
 
       /* - 1.1.7.7 - Anime, Manga, Character, Staff, Company Portrait/Logo - */
       .leftside > div:first-child a,
-      div a:has([class*="portrait"]),
+      div a:has([class*="portrait"]):not(.js-picture-gallery),
       #content > table:first-child > tbody > tr > td.borderClass:first-child > div:first-child > a[href*="/people/"]:has(> img),
       &.anime-filter .content-left .logo {
         --_br: 0.75rem;
@@ -2018,6 +2101,95 @@
         .broadcast-credit-logo {
           margin-block-start: -1px;
           filter: invert(1);
+        }
+      }
+
+      /* - 1.1.7.9 - Photo Gallery - */
+      table:has(> tbody > tr > td > .picSurround > .js-picture-gallery) {
+        --_item-size: 200px;
+        --img-border-offset: var(--img-border-offset-large);
+        --img-border-radius: var(--img-border-radius-large);
+        --_btn-margin: 0.25rem;
+        width: 100%;
+
+        tbody {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(min(var(--_item-size), 100%), 1fr));
+          align-items: center;
+          justify-content: center;
+          gap: 2rem 0.5rem;
+        }
+
+        tr {
+          display: contents;
+        }
+
+        td {
+          width: auto;
+          margin-inline: auto;
+        }
+
+        td:has(> div[style*="padding:12px 0px"]) {
+          display: none;
+        }
+
+        td:has(> .picSurround > .js-picture-gallery) {
+          display: grid;
+          grid-template-rows: 1fr auto;
+          padding: calc(var(--img-margin-large) - var(--img-border-size));
+          overflow: hidden;
+
+          .picSurround {
+            grid-column: 1;
+            grid-row: 1 / -1;
+
+            img {
+              width: calc(var(--_item-size) - var(--img-margin-large) * 2);
+              height: auto;
+              object-fit: cover;
+            }
+          }
+
+          .picSurround + div {
+            grid-column: 1;
+            grid-row: 2;
+            width: 100%;
+            display: flex;
+            opacity: 0;
+            transform: translateY(150%);
+            transition: opacity 150ms ease-out, transform 350ms var(--ease-bounce-subtle);
+
+            a {
+              width: calc(100% - var(--img-margin-large) - var(--_btn-margin));
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 0.2rem;
+              text-decoration: none;
+              margin-block-end: var(--_btn-margin);
+              margin-inline: calc(var(--img-margin-large) + var(--_btn-margin));
+              padding-block: 0.4rem;
+              background-color: var(--accent-color);
+              border: 2px solid var(--accent-color);
+              border-radius: 0.3rem;
+              color: var(--text-bright);
+
+              &::before {
+                content: "\e405";
+                font-family: var(--ff-fa);
+                font-weight: 900;
+              }
+
+              &:is(:hover, :focus-visible) {
+                background-color: oklch(from var(--50-accent-main) l c h / 0.95);
+              }
+            }
+          }
+
+          &:is(:hover, :focus-visible) .picSurround + div {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       }
 
@@ -2854,6 +3026,10 @@
         }
       }
 
+      &.profile #content {
+        width: 100%;
+      }
+
       &.profile .content-container {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -3597,7 +3773,7 @@
       }
 
       /* -- 1.1.21 - Stacks Progress Bar -- */
-      .stacks-detail .score,
+      .stacks-detail .any_status .score,
       &.profile .stacks-list .column-item .score {
         --_br: 0.15rem;
         --_padding: 0.15rem;
@@ -4914,7 +5090,7 @@
         repeating-linear-gradient(calc(300deg + var(--_angle)), var(--_border-color), var(--_border-color) var(--_dash-length), var(--_spacing-color) var(--_dash-length), var(--_spacing-color) calc(var(--_dash-length) + var(--_spacing)), var(--_border-color) calc(var(--_dash-length) + var(--_spacing))),
         repeating-linear-gradient(calc(120deg + var(--_angle)), var(--_border-color), var(--_border-color) var(--_dash-length), var(--_spacing-color) var(--_dash-length), var(--_spacing-color) calc(var(--_dash-length) + var(--_spacing)), var(--_border-color) calc(var(--_dash-length) + var(--_spacing))),
         repeating-linear-gradient(calc(2100deg + var(--_angle)), var(--_border-color), var(--_border-color) var(--_dash-length), var(--_spacing-color) var(--_dash-length), var(--_spacing-color) calc(var(--_dash-length) + var(--_spacing)), var(--_border-color) calc(var(--_border-width) + var(--_spacing)));
-      background-size: var(--_border-width) 100%, 100% var(--_border-width), var(--_border-width) 100% , 100% var(--_border-width);
+      background-size: var(--_border-width) 100%, 100% var(--_border-width), var(--_border-width) 100%, 100% var(--_border-width);
       background-position: 0 0, 0 0, 100% 0, 0 100%;
       background-repeat: no-repeat;
       border: 2px solid var(--bg-hover);
@@ -5893,7 +6069,7 @@
               margin-inline-end: auto;
             }
 
-            > a:last-child {
+            > a:last-child:not(:first-child) {
               display: flex;
               align-items: center;
               color: var(--text-second);
@@ -5906,6 +6082,10 @@
                 margin-inline-start: -0.5rem;
                 margin-inline-end: 0.2rem;
               }
+            }
+
+            &:has(+ .pv) {
+              width: auto;
             }
           }
 
@@ -6194,27 +6374,45 @@
         }
       }
 
-      /* -- 2.1.7 - Seasonal Anime/Manga -- */
+      /* -- 2.1.7 - Recommendations -- */
+      &.recommendations .widget-content {
+        display: grid;
+        gap: 0.5rem;
+        margin-block-start: 0.5rem;
+      }
+
+      /* - 2.1.7.1 - Anime Details - */
+      &.recommendations .widget-content > div.borderClass td > h3 {
+        font-size: 0.775rem;
+      }
+
+      /* -- 2.1.8 - Auto Recommendations -- */
+      &:is(.anime_suggestions, .manga_suggestions) {
+        container-type: inline-size;
+      }
+
+      /* --- 2.2.0 - Widgets - Sliders --- */
+      :is(#widget-seasonal-video, #widget-episode-video) .widget-slide-outer .widget-slide {
+        width: auto !important;
+        height: auto;
+        display: flex;
+        gap: 0.5rem;
+        padding-block-end: 0.5rem;
+        overflow-x: auto;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: thin;
+
+        &:is(:hover, :focus-visible) {
+          scrollbar-color: var(--accent-color) var(--bg-second);
+        }
+      }
+
+      /* -- 2.2.1 - Seasonal Anime/Manga -- */
       #widget-seasonal-video .widget-slide-outer {
         --img-border-radius: var(--img-border-radius-large);
         --img-border-offset: var(--img-border-offset-large);
         --img-margin: var(--img-margin-large);
         height: auto;
-
-        .widget-slide {
-          width: auto !important;
-          height: auto;
-          display: flex;
-          gap: 0.5rem;
-          padding-block-end: 0.5rem;
-          overflow-x: scroll;
-          scrollbar-color: transparent transparent;
-          scrollbar-width: thin;
-
-          &:is(:hover, :focus-visible) {
-            scrollbar-color: var(--accent-color) var(--bg-second);
-          }
-        }
 
         .btn-anime {
           width: auto;
@@ -6280,26 +6478,20 @@
         display: none !important;
       }
 
-      /* -- 2.1.8 - Recommendations -- */
-      &.recommendations .widget-content {
-        display: grid;
-        gap: 0.5rem;
-        margin-block-start: 0.5rem;
-      }
-
-      /* - 2.1.8.1 - Anime Details - */
-      &.recommendations .widget-content > div.borderClass td > h3 {
-        font-size: 0.775rem;
-      }
-
-      /* -- 2.1.9 - Auto Recommendations -- */
-      &:is(.anime_suggestions, .manga_suggestions) {
-        container-type: inline-size;
-      }
-
-      /* -- 2.1.10 - Latest Updated Episode Videos -- */
+      /* -- 2.2.2 - Latest Updated Episode Videos -- */
       #widget-episode-video {
         width: 100%;
+        container-type: inline-size;
+
+        > .btn-widget-slide-side {
+          display: none !important;
+        }
+
+        @container (width < 716px) {
+          .widget-slide-outer {
+            --_item-count: 5 !important;
+          }
+        }
       }
 
       #widget-episode-video .widget-slide-outer {
@@ -6314,12 +6506,6 @@
         width: 100%;
         height: auto;
         container-type: inline-size;
-
-        .widget-slide {
-          height: auto;
-          display: flex;
-          gap: 0.5rem;
-        }
 
         .btn-anime {
           flex-shrink: 0;
@@ -6409,6 +6595,99 @@
             font-weight: 400;
           }
         }
+      }
+
+      /* -- 2.2.3 - Anime Trailers -- */
+      &.popular_promotion_video {
+        margin-block-end: -0.5rem;
+
+        .btn-widget-slide-side {
+          display: none !important;
+        }
+      }
+
+      #widget-promotional-video .widget-slide-outer {
+        --_item-count: 3;
+        --_gap: 0.5rem;
+        --_margin: calc(var(--img-border-offset-large) + var(--img-border-size));
+        --_br: calc(var(--img-border-radius-large) + var(--img-border-offset-large) - var(--img-border-size));
+        --_item-size: calc(100cqw / var(--_item-count) - var(--_gap) + (var(--_gap) / var(--_item-count)));
+        width: 100%;
+        height: auto;
+        margin: unset;
+        container-type: inline-size;
+
+        .widget-slide {
+          width: auto !important;
+          height: auto;
+          display: grid;
+          grid-auto-flow: column;
+          gap: var(--_gap);
+          padding-block: 0.5rem;
+          overflow-x: auto;
+          scrollbar-color: transparent transparent;
+          scrollbar-width: thin;
+
+          &:is(:hover, :focus-visible) {
+            scrollbar-color: var(--accent-color) var(--bg-second);
+          }
+
+          .btn-anime {
+            all: unset;
+            width: var(--_item-size);
+            height: auto;
+            margin: unset;
+          }
+
+          .link {
+            width: auto;
+            height: auto;
+            aspect-ratio: 16 / 10;
+            margin: var(--_margin);
+            background-color: var(--75-main-second);
+            background-size: cover;
+            background-position: top center;
+            border: unset;
+            border-radius: var(--_br);
+            outline: var(--img-border-size) solid var(--25-accent-main);
+            outline-offset: var(--img-border-offset-large);
+            opacity: 1;
+            transition: outline-color 150ms ease-in-out;
+
+            &:is(:hover, :focus-visible) {
+              outline-color: var(--accent-color);
+            }
+
+            .title {
+              width: 100%;
+              font-family: var(--ff-main);
+              font-size: 0.825rem;
+              line-height: 1;
+              text-shadow: unset;
+              padding: 1rem 0.5rem 0.5rem;
+              border-radius: 0 0 var(--_br) var(--_br);
+              color: var(--text-main);
+            }
+          }
+
+          .external-link {
+            width: 100%;
+            padding-block-start: 0.25rem;
+            background-color: unset;
+            white-space: pre-wrap;
+
+            .promotional_videos_h3 a { /* CSS-Trick: clamp card title to 2 lines */
+              height: unset;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: block-axis;
+              font-size: 0.75rem;
+              font-family: var(--ff-main);
+              font-weight: 400;
+            }
+          }
+        }
+
       }
 
     }
@@ -6545,6 +6824,10 @@
 
       .js-middle_ad.seasonal-middle {
         display: none !important;
+      }
+
+      .broadcast-credit-row {
+        grid-column: 1 / -1;
       }
     }
 
@@ -7176,22 +7459,30 @@
     /* --- 3.2.0 - Single Anime / Manga Pages --- */
     .page-common #content {
       container-type: inline-size;
+      
+      > table:has(> tbody > tr > td.borderClass[width="225"]) {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        outline: 2px solid lime; /* DEBUG */
+        
+        > tbody, 
+        > tbody > tr {
+          display: contents;
+        }
+      }
 
       > table > tbody > tr:has(> td.borderClass[width="225"]) {
-        display: grid !important;
-        grid-template-columns: auto 1fr;
-
-        > td {
-          width: auto !important;
-        }
+/*         display: grid; */
+/*         grid-template-columns: auto 1fr; */
 
         > td:nth-child(1) {
-          width: clamp(225px, 20cqw + 1rem, 320px) !important;
+          width: clamp(225px, 20cqw + 1rem, 320px);
           padding: unset;
           padding-inline-end: 0.5rem;
         }
 
         > td:nth-child(2) {
+          width: auto;
           font-size: 0.775rem;
           padding: unset !important;
           padding-inline-start: 0.5rem !important;
@@ -7200,7 +7491,7 @@
         .leftside,
         .rightside {
           position: static !important;
-          width: unset !important;
+          width: auto !important;
         }
 
         .rightside .di-t > .di-tc:not(.anime-detail-header-video),
@@ -7209,11 +7500,11 @@
         .anime-slide-block .anime-slide-outer,
         .anime-slide-block .anime-slide,
         .page-forum tr > td {
-          width: unset !important;
+          width: auto !important;
         }
 
         .rightside > table > tbody > tr:nth-of-type(4) .detail-page-featured-article .news-unit {
-          width: unset;
+          width: auto;
         }
 
         [itemprop="description"] {
@@ -7222,9 +7513,9 @@
         }
       }
 
-      > table > tbody > tr .rightside > div[style*="width:728px"],
+      > table > tbody > tr :is(td, .rightside) > div[style*="width:728px"],
       > table > tbody > tr > td:nth-child(2) > div[style*="width:728px;"]:has(.kVwNpRmQxHtBjYcL-nvwtus) {
-        width: unset !important;
+        width: auto !important;
       }
 
       .kVwNpRmQxHtBjYcL-nvwtus,
@@ -7898,13 +8189,15 @@
       filter: unset;
       cursor: pointer;
 
-      &:is(:hover, :focus-visible) {
+      &:is(:hover, :focus-visible):not(.oped-preview-button-gray) {
         color: var(--text-main);
         opacity: unset;
+        animation: scaleUp 350ms var(--ease-overshoot-dramatic) forwards;
       }
 
       &.oped-preview-button-gray {
         color: color-mix(in oklab, var(--text-dim) 80%, black);
+        opacity: unset;
         cursor: auto;
       }
 
@@ -7925,35 +8218,70 @@
     }
 
     /* -- 3.2.7 - Episode Videos -- */
-    #episode_video .anime-slide {
+    #episode_video {
       --_gap: 0.5rem;
-      display: flex;
-      gap: var(--_gap);
+      --_margin: calc(var(--img-border-offset-large) + var(--img-border-size));
+      --_br: calc(var(--img-border-radius-large) + var(--img-border-offset-large) - var(--img-border-size));
+      height: auto !important;
       container-type: inline-size;
+
+      .anime-slide {
+        display: flex;
+        gap: var(--_gap);
+
+        @container (width < 716px) {
+          --_item-count: 3;
+        }
+      }
 
       .btn-anime {
         flex-grow: 1;
         width: auto !important;
-        max-width: calc(25cqw - var(--_gap));
-        margin: unset;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-width: calc(100cqw / var(--_item-count, 4) - var(--_gap));
+        margin: var(--_margin);
+        background-color: var(--75-main-second);
+        border-radius: var(--img-border-radius-large);
+        outline: var(--img-border-size) solid var(--25-accent-main);
+        outline-offset: var(--img-border-offset-large);
+        transition: outline-color 150ms ease-in-out;
+
+        &:is(:hover, :focus-visible) {
+          outline-color: var(--accent-color);
+
+          .link::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: black;
+            mix-blend-mode: darken;
+            opacity: 0.2;
+          }
+        }
 
         .link {
-          position: relative;
           width: auto !important;
           height: auto !important;
           aspect-ratio: 16 / 9;
+          background-size: cover;
+          background-position: center;
+          border-radius: var(--_br);
+          opacity: 1;
+          overflow: hidden;
+        }
 
-          .title {
-            position: absolute;
-            width: 100% !important;
-            font-family: var(--ff-secondary);
-            font-size: 0.825rem;
-            font-weight: 800;
-            text-shadow: none;
-            color: var(--text-main);
-          }
+        .title {
+          width: 100% !important;
+          font-family: var(--ff-main);
+          font-size: 0.825rem;
+          padding: 1rem 0.5rem 0.5rem;
+          text-shadow: unset;
+          color: var(--text-main);
         }
       }
+
     }
 
     /* -- 3.2.8 - Recommendations -- */
@@ -8017,13 +8345,17 @@
       #anime_recommendation, #manga_recommendation {
         --_items: 6;
         --_gap: 0.5rem;
-
         --img-border-radius: var(--img-border-radius-large);
         --img-border-offset: var(--img-border-offset-large);
         --img-margin: var(--img-margin-large);
         --_img-width: calc(((100cqw - var(--_gap) * (var(--_items) - 1)) / var(--_items)) - var(--img-margin) * 2);
-        --_slider-height: calc(var(--_img-width) * 14 / 9);
+        --_slider-height: calc((var(--_img-width) * 14 / 9) + 1rem);
+        margin-block-end: -0.5rem;
         container-type: inline-size;
+
+        .btn-anime-slide-side {
+          display: none;
+        }
 
         .anime-slide-outer {
           height: var(--_slider-height) !important;
@@ -8032,6 +8364,14 @@
         .anime-slide {
           display: flex;
           gap: var(--_gap);
+          padding-block-end: 0.5rem;
+          overflow-x: scroll;
+          scrollbar-width: thin;
+          scrollbar-color: transparent transparent;
+
+          &:is(:hover, :focus-visible) {
+            scrollbar-color: var(--accent-color) var(--bg-second);
+          }
         }
 
         .btn-anime {
@@ -8517,12 +8857,88 @@
       }
     }
 
-    /* -- 3.2.10 - Characters Tab -- */
+    /* -- 3.2.10 - News -- */
+    div:has(> #recent_news) ~ div.clearfix:has(+ .borderClass) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas: "image title" "image text" "info  info";
+      gap: 0.5rem;
+      margin-block: 0.5rem;
+      padding: 0.5rem;
+      background: var(--75-main-second);
+      border: 1px solid var(--50-main-second);
+      border-radius: 0.2rem;
+
+      .picSurround {
+        grid-area: image;
+        margin: var(--img-margin) !important;
+
+        img {
+          width: 75px;
+          height: auto;
+          aspect-ratio: 5 / 7;
+        }
+      }
+
+      > p:nth-child(2) {
+        grid-area: title;
+        margin: unset;
+        padding: unset;
+      }
+
+      > div:nth-child(3) {
+        grid-area: text;
+      }
+
+      > p:nth-child(4) {
+        grid-area: info;
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        margin: unset;
+        padding: 0.5rem;
+        background-color: var(--bg-second);
+        border: 1px solid var(--50-main-hover);
+        border-radius: 0.2rem;
+        color: var(--text-second);
+
+        > a:first-of-type {
+          margin-inline-end: auto;
+        }
+
+        > a:last-child {
+          display: flex;
+          align-items: center;
+          color: var(--text-second);
+
+          &::before {
+            content: "\f27a";
+            font-family: var(--ff-fa);
+            font-size: 0.9em;
+            font-weight: 900;
+            margin-inline-start: -0.5rem;
+            margin-inline-end: 0.2rem;
+          }
+        }
+      }
+
+      &::after {
+        content: unset;
+      }
+
+      + .borderClass {
+        display: none;
+      }
+
+    }
+
+    /* -- 3.2.11 - Characters Tab -- */
     .rightside:has(.anime-character-container, .manga-character-container) > div[style^="padding: 20px"][style$="display: inline-block;"] { /* Hide Ads */
       display: none !important;
     }
 
-    /* - 3.2.10.1 - Nav - */
+    /* - 3.2.11.1 - Nav - */
     .anime-character,
     .manga-character {
       height: auto;
@@ -8542,7 +8958,7 @@
         color: inherit;
       }
 
-      /* - 3.2.10.2 - Filter & Sort - */
+      /* - 3.2.11.2 - Filter & Sort - */
       .anime-character-sort-order-block,
       .manga-character-sort-order-block {
         top: calc(100% - 2px);
@@ -8623,7 +9039,7 @@
       }
     }
 
-    /* - 3.2.10.3 - Characters & Voice Actors - */
+    /* - 3.2.11.3 - Characters & Voice Actors - */
     :is(.anime-character-container, .manga-character-container) > table {
       padding: 0.5rem;
       background-color: var(--75-main-second);
@@ -8744,7 +9160,7 @@
       }
     }
 
-    /* - 3.2.10.4 - Staff - */
+    /* - 3.2.11.4 - Staff - */
     .rightside:has(.anime-character-container, .manga-character-container) {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -8790,7 +9206,7 @@
       }
     }
 
-    /* -- 3.2.11 - Episodes & Videos Tab -- */
+    /* -- 3.2.12 - Episodes & Videos Tab -- */
     .page-common .episode-video .floatRightHeader + h2 {
       font-size: 1rem;
     }
@@ -8864,7 +9280,7 @@
 
     }
 
-    /* -- 3.2.12 - Stats Tab -- */
+    /* -- 3.2.13 - Stats Tab -- */
     .rightside:has(#summary_stats) {
       container-type: inline-size;
     }
@@ -8915,7 +9331,7 @@
       }
     }
 
-    /* - 3.2.12.1 - Summary Stats - */
+    /* - 3.2.13.1 - Summary Stats - */
     @scope (.rightside) to (#score_stats ~ *) {
       #summary_stats ~ .spaceit_pad {
         --_margin: 0.5rem;
@@ -8963,7 +9379,7 @@
       }
     }
 
-    /* - 3.2.12.2 - Recently Updated By - */
+    /* - 3.2.13.2 - Recently Updated By - */
     .spaceit:has(+ .table-recently-updated),
     .table-recently-updated + .spaceit {
       display: flex;
@@ -9045,8 +9461,8 @@
       }
     }
 
-    /* -- 3.2.13 - Reviews Tab -- */
-    /* - 3.2.13.1 - Nav - */
+    /* -- 3.2.14 - Reviews Tab -- */
+    /* - 3.2.14.1 - Nav - */
     .reviews-horiznav-nav-sort-block {
       padding: 0.5rem 1rem !important;
       background-color: var(--bg-hover);
@@ -9069,7 +9485,7 @@
       }
     }
 
-    /* -- 3.2.14 - User Recommendations Tab -- */
+    /* -- 3.2.15 - User Recommendations Tab -- */
     #horiznav_nav:has(> ul > li > .horiznav_active[href$="userrecs"] ) ~ .borderClass {
       margin-block: 1rem;
       padding: unset;
@@ -9212,7 +9628,7 @@
       }
     }
 
-    /* -- 3.2.15 - Stacks Tab -- */
+    /* -- 3.2.16 - Stacks Tab -- */
     .page-common .stacks .navi {
       height: auto;
       display: flex;
@@ -9231,7 +9647,7 @@
       }
     }
 
-    /* -- 3.2.16 - News Tab -- */
+    /* -- 3.2.17 - News Tab -- */
     .page-common .rightside:has(#horiznav_nav > ul > li > a.horiznav_active[href*="/news"]) {
 
       div:has(> .sUaidzctQfngSNMH-pdatla),
@@ -9306,13 +9722,13 @@
       }
     }
 
-    /* -- 3.2.17 - Featured Articles Tab -- */
+    /* -- 3.2.18 - Featured Articles Tab -- */
     .page-common .breadcrumb:has(> div > a[href*="featured"]) + h2 {
       font-size: 1rem;
     }
 
-    /* -- 3.2.18 - Clubs Tab -- */
-    .page-common .rightside:has(#horiznav_nav > ul > li > a.horiznav_active[href*="/clubs"]) {
+    /* -- 3.2.19 - Clubs Tab -- */
+    .page-common :is(td, .rightside):has(#horiznav_nav > ul > li > a.horiznav_active[href*="/clubs"]) {
       --_gap: 0.5rem;
       counter-reset: --clubs-list;
 
@@ -9908,6 +10324,7 @@
 
           .custom-forum-title {
             grid-area: title;
+            width: max-content;
             margin-block-start: var(--_gap);
             padding: 0.2rem;
             background-color: var(--25-accent-second);
@@ -9957,6 +10374,148 @@
 
       .forum .message .replied .replied-container .js-replyto-target {
         color: var(--75-accent-hover);
+      }
+
+      /* -- 4.1.1 - Forum Message - Conversation View -- */
+      .forum.thread {
+        --_avatar-size: 60px;
+        --_img-width: calc(var(--_avatar-size) - (var(--img-margin) * 2));
+        --_message-gap: 0.5rem;
+        --_message-padding: 0.5rem;
+        --_replies-border-size: 4px;
+        --_replies-margin: calc(var(--_avatar-size) - var(--_message-padding) - var(--_replies-border-size));
+        --_replies-padding: 1rem;
+
+        .messages {
+          display: grid;
+          gap: var(--_message-gap);
+        }
+
+        .message {
+          padding: var(--_message-padding);
+          padding-block-end: calc(var(--_message-gap) + var(--_message-padding));
+          border-bottom: 1px solid var(--bg-hover);
+
+          &.first {
+            --_img-width: calc(100% - (var(--img-margin) * 2));
+          }
+
+          .message-container {
+            gap: 0.5rem;
+
+            .avatar {
+              flex-grow: 1;
+              width: var(--_avatar-size);
+
+              .forum-icon img {
+                width: var(--_img-width);
+                height: auto;
+                max-width: unset;
+                max-height: unset;
+              }
+            }
+
+            .content {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+              border: unset;
+
+              .user {
+                height: auto !important;
+                display: flex;
+                gap: 0.5rem;
+                margin: unset;
+
+                > .item {
+                  margin: unset;
+                }
+
+                .item.update,
+                .item.modified {
+                  color: var(--text-dim);
+                }
+              }
+
+              .mal-badge {
+                font-family: var(--ff-main);
+                padding: 0.2rem 0.4rem;
+                background-color: var(--25-accent-second);
+                border: 1px solid var(--50-accent-hover);
+                border-radius: 0.2rem;
+                color: var(--text-main);
+                transition: 150ms ease-in-out;
+                transition-property: background-color, border-color, color;
+
+                &.mods-title:is(:hover, :focus-visible) {
+                  background-color: var(--50-accent-main);
+                  border-color: var(--accent-color);
+                  color: var(--text-bright);
+                  opacity: 1;
+                }
+              }
+
+              .body {
+                flex-grow: 1;
+                margin: unset;
+              }
+
+              .message-toolbar {
+                margin: unset;
+              }
+
+              .left {
+                width: 100%;
+              }
+
+              .mal-btn-toolbar {
+                position: relative;
+                display: flex;
+                gap: 0.5rem;
+                margin: unset;
+              }
+
+              .mal-btn {
+                margin: unset;
+              }
+
+              .mal-btn:nth-last-child(1 of .mal-btn) {
+                margin-inline-start: auto;
+              }
+
+              .mal-dropdown-menu {
+                top: 100% !important;
+                right: 0;
+                left: unset !important;
+              }
+            }
+          }
+        }
+
+        .replies.in-thread {
+          display: grid;
+          gap: 0.5rem;
+          margin-inline-start: var(--_replies-margin);
+          padding: var(--_replies-padding);
+          border-left: var(--_replies-border-size) solid var(--25-main-hover);
+          background-color: var(--75-main-second);
+
+          > .message:first-child {
+            padding-block-start: unset;
+          }
+        }
+
+      }
+
+      .forum.thread .js-thread-loadmore {
+        font-family: var(--ff-main);
+        font-size: 0.825rem !important;
+        font-weight: 600;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--75-accent-hover) !important;
+          border-color: var(--75-accent-hover) !important;
+        }
       }
 
       /* --- 4.2.0 - Polls --- */
@@ -10055,6 +10614,8 @@
         background-color: var(--bg-hover);
 
         > .normal_header {
+          justify-content: start;
+          gap: 0.25rem;
           margin: unset;
         }
 
@@ -10822,7 +11383,7 @@
       align-content: center;
       font-weight: 500;
       text-wrap: nowrap;
-      padding: 0 0.3rem;
+      padding: 0 0.5rem;
       background-color: var(--_tag-accent);
       border-color: var(--_tag-accent);
       color: var(--text-bright);
@@ -10831,8 +11392,10 @@
         background-color: oklch(from var(--_tag-accent) l c h / 0.5);
       }
 
-      &.tag-color-feature-advertorial:is(:hover, :focus-visible) {
-        background-color: var(--accent-color);
+      &.tag.tag-color-feature-advertorial {
+        background-color: var(--75-main-second);
+        border-color: var(--75-main-second);
+        color: var(--text-second);
       }
 
       &.tag-color-feature-spoiler {
@@ -11770,23 +12333,43 @@
 
     .normal_header:is(.character-anime, .character-manga) + table > tbody > tr {
       display: flex;
-      gap: 0.65rem;
-      padding-block: 0.5rem;
+      gap: 0.25rem;
+      margin-block-start: 0.5rem;
+      padding: 0.25rem;
+      border-radius: 0.3rem;
 
-      + tr {
-        border-top: 1px solid var(--bg-hover);
+      &:nth-child(even) {
+        background-color: var(--75-main-hover);
+        border: 1px solid var(--50-main-hover);
+      }
+
+      &:nth-child(odd) {
+        background-color: var(--75-main-second);
+        border: 1px solid var(--50-main-second);
       }
 
       td:nth-child(1) {
         width: auto;
+        padding: var(--img-margin);
 
         img {
-          width: 90px;
+          width: 60px;
         }
       }
 
       td:nth-child(2) {
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .spaceit_pad {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 0.5rem;
+          align-items: start;
+          padding: unset;
+        }
       }
 
       .borderClass {
@@ -12801,7 +13384,7 @@
       }
 
       .search-list .column-item {
-        --_bg:  var(--75-main-hover);
+        --_bg: var(--75-main-hover);
         display: flex;
         gap: 0.5rem;
         margin: unset;
@@ -14807,8 +15390,16 @@
 
       .icon-team-title {
         font-family: var(--ff-secondary);
+        margin: unset;
         padding: 0.3rem 0.6rem !important;
         text-box: trim-both cap alphabetic;
+        background-color: var(--_tag-color);
+        border: 1px solid var(--_tag-color);
+        border-radius: 0.2rem;
+
+        &:is(:hover, :focus-visible) {
+          background-color: oklch(from var(--_tag-color) l c h / 0.5);
+        }
       }
     }
 
@@ -15245,10 +15836,15 @@
         gap: 0.5rem;
 
         .icon-user-function {
+          width: 45px;
+          height: auto;
+          aspect-ratio: 1.2 / 1;
           margin: unset;
+          padding: 0.5rem;
           background-color: var(--accent-color);
           border-color: var(--accent-color);
-          color: var(--text-main);
+          border-radius: 0.2rem;
+          color: var(--text-bright);
 
           &.disabled,
           &.disabled:is(:hover, :focus-visible) {
@@ -15423,8 +16019,9 @@
     /* -- 15.2.1 - About Me -- */
     .l-aboutme-contents,
     .profile .user-profile-about,
-    #aboutme_paradox-live,
-    #aboutme_paradox-live .l-mainvisual {
+    #modern-about-me [id^="aboutme"],
+    #modern-about-me .l-mainvisual,
+    #modern-about-me .l-intro {
       width: auto;
     }
 
@@ -15736,7 +16333,7 @@
       .fav-slide-outer {
         --_item-count: 8;
         --_gap: 0.5rem;
-        --_img-width:  calc( ((100cqw - (var(--_gap) * (var(--_item-count) - 1) ) - var(--img-margin)) / var(--_item-count)) - var(--img-margin) );
+        --_img-width: calc( ((100cqw - (var(--_gap) * (var(--_item-count) - 1) ) - var(--img-margin)) / var(--_item-count)) - var(--img-margin) );
         --_mask-size: var(--_img-width);
         --_mask-size-small: calc(var(--_img-width) / 2.25);
         width: 100%;
@@ -15748,7 +16345,6 @@
       }
 
       .fav-slide {
-        counter-reset: --_fav-item-count;
         width: 100% !important;
         display: flex;
         flex-wrap: nowrap;
@@ -15768,36 +16364,6 @@
           width: auto;
           height: auto;
           margin: unset;
-          counter-increment: --_fav-item-count;
-
-          &::before {
-            content: counter(--_fav-item-count);
-            position: absolute;
-            top: var(--img-border-offset);
-            left: var(--img-border-offset);
-            width: 30px;
-            height: auto;
-            aspect-ratio: 1;
-            display: block;
-            align-content: center;
-            font-family: var(--ff-accent);
-            font-size: 1rem;
-            font-weight: 700;
-            text-align: center;
-            text-box: trim-both cap alphabetic;
-            padding: 0.2rem;
-            background-color: oklch(from var(--accent-color) l c h / 0.75);
-            border-radius: var(--img-border-radius) 0 100% 0 / 0 100% 100% 0;
-            color: var(--text-bright);
-            transform-origin: top left;
-            transition: transform 150ms var(--ease-out);
-            pointer-events: none;
-            z-index: 99;
-          }
-
-          &:is(:hover, :focus-visible)::before {
-            transform: translateY(calc(-100% - var(--img-border-offset) * 1)) rotate(-90deg);
-          }
 
           .link {
             --_br: calc(var(--img-border-radius) + var(--img-border-offset));
@@ -15832,7 +16398,7 @@
           &:is(:hover, :focus-visible) :is(.users, .title) {
             opacity: 1;
             transform: unset;
-            transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms 50ms linear;
+            transition: transform 350ms var(--ease-bounce-subtle), opacity 250ms linear;
           }
 
           .image {
@@ -16613,7 +17179,6 @@
         color: var(--text-dim);
       }
 
-      /* TODO: Fix daterangepicker style */
     }
 
     /* -- 15.4.4 - Tables -- */
@@ -16829,22 +17394,8 @@
       grid-template-columns: calc(var(--_img-width) * 1.33) 1fr;
       gap: 1rem;
       margin: unset;
-      padding: 0.5rem;
-      border-radius: 0.3rem;
-
-      &:nth-child(even) {
-        background-color: var(--75-main-hover);
-        border: 1px solid var(--50-main-hover);
-      }
-
-      &:nth-child(odd) {
-        background-color: var(--75-main-second);
-        border: 1px solid var(--50-main-second);
-      }
-
-      + .column-item {
-        margin-block-start: 0.75rem;
-      }
+      padding-block: 0.75rem;
+      border-color: var(--bg-hover);
 
       .img {
         width: auto;
